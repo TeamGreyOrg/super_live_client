@@ -212,8 +212,6 @@ export default class Viewer extends Component {
           linkFavicon={linkFavicon}
           linkTitle={linkTitle}
           linkDesc={linkDesc}
-          // title={title}
-          // description={description}
         />
       );
   };
@@ -294,7 +292,6 @@ export default class Viewer extends Component {
               tintColor="white"
             />
           </TouchableOpacity>
-          <PastPIP roomName={roomName} />
           <FloatingHearts count={countHeart} />
         </View>
       );
@@ -315,10 +312,7 @@ export default class Viewer extends Component {
         </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
           <View style={styles.footerBar}>
-            <View style={styles.head}>
-              <PastPIP />
-              {this.onPressLinkButton()}
-            </View>
+            <View style={styles.head}>{this.onPressLinkButton()}</View>
             {isVisibleFooter && (
               <View style={styles.body}>
                 {this.renderChatGroup()}
