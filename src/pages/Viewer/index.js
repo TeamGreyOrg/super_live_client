@@ -29,12 +29,13 @@ export default class Viewer extends Component {
     super(props);
     this.Animation = new Animated.Value(0);
     const { route } = props;
+    // route로 넘어오는 정보: { userName, roomName: userName, enteredRoomName, enteredProductLink });
     const data = get(route, 'params.data');
     const roomName = get(data, 'roomName');
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
     const userName = get(route, 'params.userName', '');
-    // const goodsUrl = get(route, 'goodsURL');
-    const goodsUrl = 'https://bit.ly/34QamxY';
+    const goodsUrl = get(data, 'productLink');
+    // const goodsUrl = 'https://bit.ly/34QamxY';
     this.state = {
       messages: [],
       countHeart: 0,
@@ -47,8 +48,6 @@ export default class Viewer extends Component {
       linkImg: undefined,
       requestOptions: {},
       isVisibleFooter: true,
-      // title: undefined,
-      // description: undefined,
     };
     this.roomName = roomName;
     this.userName = userName;
