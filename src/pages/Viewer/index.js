@@ -13,6 +13,8 @@ import {
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import moment from 'moment';
+import { getLinkPreview } from 'link-preview-js';
+import RNUrlPreview from './RNUrlPreview';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import FloatingHearts from '../../components/FloatingHearts';
@@ -31,16 +33,29 @@ export default class Viewer extends Component {
     const roomName = get(data, 'roomName');
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
     const userName = get(route, 'params.userName', '');
+    // const goodsUrl = get(route, 'goodsURL');
+    const goodsUrl = 'https://bit.ly/34QamxY';
     this.state = {
       messages: [],
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
+      isUri: false,
+      linkTitle: undefined,
+      linkDesc: undefined,
+      linkFavicon: undefined,
+      linkImg: undefined,
+      requestOptions: {},
+      isVisibleFooter: true,
+      // title: undefined,
+      // description: undefined,
     };
     this.roomName = roomName;
     this.userName = userName;
+    this.goodsUrl = goodsUrl;
     this.liveStatus = liveStatus;
     this.timeout = null;
+    this.getPreview(goodsUrl, this.state.requestOptions);
   }
 
   componentDidMount() {
@@ -128,6 +143,37 @@ export default class Viewer extends Component {
     });
   };
 
+  getPreview = (text, options) => {
+    const { onError, onLoad } = this.props;
+    getLinkPreview(text, options)
+      .then((data) => {
+        onLoad(data);
+        this.setState({
+          isUri: true,
+          linkTitle: data.title ? data.title : undefined,
+          linkDesc: data.description ? data.description : undefined,
+          linkImg:
+            data.images && data.images.length > 0
+              ? data.images.find((element) => {
+                  return (
+                    element.includes('.png') ||
+                    element.includes('.jpg') ||
+                    element.includes('.jpeg')
+                  );
+                })
+              : undefined,
+          linkFavicon:
+            data.favicons && data.favicons.length > 0
+              ? data.favicons[data.favicons.length - 1]
+              : undefined,
+        });
+      })
+      .catch((error) => {
+        onError(error);
+        this.setState({ isUri: false });
+      });
+  };
+
   onPressHeart = () => {
     SocketManager.instance.emitSendHeart({
       roomName: this.roomName,
@@ -152,6 +198,25 @@ export default class Viewer extends Component {
   onPressClose = () => {
     const { navigation } = this.props;
     navigation.goBack();
+  };
+
+  onPressLinkButton = () => {
+    // const { goodsUrl } = this.goodsUrl;
+    const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
+    const { isVisibleFooter } = this.state;
+    if (isVisibleFooter)
+      return (
+        <RNUrlPreview
+          isUri={isUri}
+          goodsUrl={this.goodsUrl}
+          linkImg={linkImg}
+          linkFavicon={linkFavicon}
+          linkTitle={linkTitle}
+          linkDesc={linkDesc}
+          // title={title}
+          // description={description}
+        />
+      );
   };
 
   onPressVisible = () => {
@@ -214,6 +279,7 @@ export default class Viewer extends Component {
   render() {
     const { countHeart } = this.state;
     const { roomName } = this.props;
+    const { isVisibleFooter } = this.state;
     /**
      * Replay mode
      */
@@ -250,14 +316,18 @@ export default class Viewer extends Component {
         </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
           <View style={styles.footerBar}>
-            <View style={styles.head}>{this.onPressLinkButton()}</View>
-            <View style={styles.body}>
-              {this.renderChatGroup()}
-              {this.renderListMessages()}
+            <View style={styles.head}>
+              <PastPIP />
+              {this.onPressLinkButton()}
             </View>
+            {isVisibleFooter && (
+              <View style={styles.body}>
+                {this.renderChatGroup()}
+                {this.renderListMessages()}
+              </View>
+            )}
           </View>
         </TouchableWithoutFeedback>
-        <PastPIP />
         <FloatingHearts count={countHeart} />
       </SafeAreaView>
     );
@@ -265,6 +335,14 @@ export default class Viewer extends Component {
 }
 
 Viewer.propTypes = {
+  // goodsUrl: PropTypes.string,
+  requestOptions: PropTypes.shape({
+    headers: PropTypes.objectOf(PropTypes.string),
+    imagesPropertyType: PropTypes.string,
+    proxyUrl: PropTypes.string,
+  }),
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
   roomName: PropTypes.string,
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
@@ -273,6 +351,10 @@ Viewer.propTypes = {
 };
 
 Viewer.defaultProps = {
+  onLoad: () => {},
+  onError: () => {},
+  // goodsUrl: null,
+  requestOptions: {},
   roomName: '',
   navigation: {
     goBack: () => null,

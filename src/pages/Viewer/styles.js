@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   PIPContainer: {
-    flex: 3,
     zIndex: 3,
   },
   MultiText: {
@@ -72,7 +71,12 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   contentWrapper: { flex: 0.9 },
-  head: { flex: 0.9, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-end' },
+  head: {
+    flex: 0.9,
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
   body: { flex: 0.1 },
   footerBar: { flex: 1 },
   footerBarURL: { flex: 1, flexDirection: 'row' },
