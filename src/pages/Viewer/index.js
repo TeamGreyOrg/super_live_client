@@ -145,6 +145,13 @@ export default class Viewer extends Component {
     navigation.goBack();
   };
 
+  onPressCompare = () => {
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Comparison')
+  }
+
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
       inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -233,6 +240,12 @@ export default class Viewer extends Component {
             style={styles.icoClose}
             source={require('../../assets/close.png')}
             tintColor="white"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+          <Image
+              style={styles.icoCompare}
+              source={require('../../assets/compare-icon.png')}
           />
         </TouchableOpacity>
         <PastPIP/>

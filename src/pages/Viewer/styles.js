@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  btnCompare: {
+    position: 'absolute',
+    top: 55,
+    right: 50,
+  },
   PIP: {
     bottom: 70,
     width: 200,

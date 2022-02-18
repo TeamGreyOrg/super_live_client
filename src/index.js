@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Streamer from './pages/Streamer';
 import Viewer from './pages/Viewer';
 import Input from './pages/Input';
+import Comparison from './pages/Comparison';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ class App extends Component {
             headerShown: false,
           }}
         >
+          <Stack.Screen name="Comparison" component={Comparison} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Input" component={Input} />
