@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
-import styles from './styles';
 import get from 'lodash/get';
+import styles from './styles';
 import SocketManager from '../../socketManager';
 
 class Input extends React.Component {
@@ -11,8 +11,8 @@ class Input extends React.Component {
     const roomName = get(route, 'params.roomName');
     const userName = get(route, 'params.userName', '');
     this.state = {
-        enteredRoomName: '',
-        enteredProductLink: '',
+      enteredRoomName: '',
+      enteredProductLink: '',
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -24,10 +24,10 @@ class Input extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
-    const enteredRoomName = this.state.enteredRoomName
-    const enteredProductLink = this.state.enteredProductLink
+    const { enteredRoomName } = this.state;
+    const { enteredProductLink } = this.state;
 
-    navigate('Streamer', { userName, roomName: userName, enteredRoomName: enteredRoomName, enteredProductLink: enteredProductLink});
+    navigate('Streamer', { userName, roomName: userName, enteredRoomName, enteredProductLink });
   };
 
   render() {
@@ -36,15 +36,15 @@ class Input extends React.Component {
         <Text style={styles.title}>Input room title and product link</Text>
         <Text style={styles.inputHeader}>Room title</Text>
         <TextInput
-        style={styles.input}
-        onChangeText={(enteredRoomName) => this.setState({enteredRoomName})}
-        value={this.state.enteredRoomName}
+          style={styles.input}
+          onChangeText={(enteredRoomName) => this.setState({ enteredRoomName })}
+          value={this.state.enteredRoomName}
         />
         <Text style={styles.inputHeader}>Product link</Text>
         <TextInput
-        style={styles.input}
-        onChangeText={(enteredProductLink) => this.setState({enteredProductLink})}
-        value={this.state.enteredProductLink}
+          style={styles.input}
+          onChangeText={(enteredProductLink) => this.setState({ enteredProductLink })}
+          value={this.state.enteredProductLink}
         />
         <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
           <Text style={styles.textButton}>LiveStream Now</Text>
