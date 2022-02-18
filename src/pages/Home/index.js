@@ -27,7 +27,7 @@ class Home extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Input', { userName, roomName: userName});
+    navigate('Input', { userName, roomName: userName });
   };
 
   onPressCardItem = (data) => {
@@ -45,10 +45,10 @@ class Home extends React.Component {
     const { listLiveStream } = this.state;
 
     // Only include not cancelled live streams
-    let newListLiveStream = [];
+    const newListLiveStream = [];
     for (let i = 0; i < listLiveStream.length; i++) {
       if (listLiveStream[i].liveStatus !== -1) {
-        newListLiveStream.push(listLiveStream[i])
+        newListLiveStream.push(listLiveStream[i]);
       }
     }
 
