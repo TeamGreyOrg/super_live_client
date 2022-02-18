@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Image, TouchableOpacity, Text, SafeAreaView, Animated, Alert } from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  SafeAreaView,
+  Animated,
+  Alert,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import moment from 'moment';
@@ -11,7 +20,7 @@ import ChatInputGroup from '../../components/ChatInputGroup';
 import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { RTMP_SERVER } from '../../config';
-import PastPIP from './PastPIP.js';
+import PastPIP from './PastPIP';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -62,7 +71,7 @@ export default class Viewer extends Component {
     } else {
       this.setState({
         inputUrl: `${RTMP_SERVER}/live/${this.roomName}`,
-        // use HLS from trasporting in mdeia server to Viewer
+        // use HLS from trasporting in media server to Viewer
         messages: this.messages,
       });
       SocketManager.instance.emitJoinRoom({
@@ -145,6 +154,11 @@ export default class Viewer extends Component {
     navigation.goBack();
   };
 
+  onPressVisible = () => {
+    const { isVisibleFooter } = this.state;
+    this.setState(() => ({ isVisibleFooter: !isVisibleFooter }));
+  };
+
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
       inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -199,6 +213,7 @@ export default class Viewer extends Component {
 
   render() {
     const { countHeart } = this.state;
+    const { roomName } = this.props;
     /**
      * Replay mode
      */
@@ -214,7 +229,7 @@ export default class Viewer extends Component {
               tintColor="white"
             />
           </TouchableOpacity>
-          <PastPIP roomName={this.props.roomName}/>
+          <PastPIP roomName={roomName} />
           <FloatingHearts count={countHeart} />
         </View>
       );
@@ -223,11 +238,9 @@ export default class Viewer extends Component {
      * Viewer mode
      */
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         {this.renderBackgroundColors()}
         {this.renderNodePlayerView()}
-        {this.renderChatGroup()}
-        {this.renderListMessages()}
         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
           <Image
             style={styles.icoClose}
@@ -235,14 +248,24 @@ export default class Viewer extends Component {
             tintColor="white"
           />
         </TouchableOpacity>
-        <PastPIP/>
+        <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
+          <View style={styles.footerBar}>
+            <View style={styles.head}>{this.onPressLinkButton()}</View>
+            <View style={styles.body}>
+              {this.renderChatGroup()}
+              {this.renderListMessages()}
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+        <PastPIP />
         <FloatingHearts count={countHeart} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
 Viewer.propTypes = {
+  roomName: PropTypes.string,
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
   }),
@@ -250,6 +273,7 @@ Viewer.propTypes = {
 };
 
 Viewer.defaultProps = {
+  roomName: '',
   navigation: {
     goBack: () => null,
   },

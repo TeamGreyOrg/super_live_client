@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import OverlayModal from './OverlayModal';
 
@@ -24,7 +24,7 @@ export default class PastPIP extends Component {
     const { show } = this.state;
     const { roomName } = this.state;
     return (
-      <View style={styles.PIPcontainer}>
+      <View style={styles.PIPContainer}>
         <TouchableOpacity
           style={styles.btnPast}
           onPress={() => {
