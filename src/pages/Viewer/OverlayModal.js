@@ -1,48 +1,53 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native';
+import { View, Image } from 'react-native';
+import PropTypes from 'prop-types';
+import { NodePlayerView } from 'react-native-nodemediaclient';
 import styles from './styles';
 import { RTMP_SERVER } from '../../config';
-import test_image from '../../assets/ico_live.png'
-import {Image} from 'react-native'
-import { NodePlayerView } from 'react-native-nodemediaclient';
+import TestImage from '../../assets/ico_live.png';
 
 export default class OverlayModal extends Component {
-  constructor(props) {
-    super(props)
-  };
   render() {
-    const show = this.props.show;
+    const { show, roomName } = this.props;
     let multiUrl = ``;
-    if (this.props.roomName == '1'){
+    if (roomName === '1') {
       multiUrl = `${RTMP_SERVER}/live/2`;
-    }
-    else{
+    } else {
       multiUrl = `${RTMP_SERVER}/live/3`;
     }
-    if (show){
+    if (show) {
       return (
-        <View  style={styles.Modalcontainer}>
-          <Image source={test_image} style={styles.LiveImage}/>
-       </View>
+        <View style={styles.Modalcontainer}>
+          <Image source={TestImage} style={styles.LiveImage} />
+        </View>
       );
     }
-    else {
-      return (
-          <NodePlayerView
-          style={styles.PIP}
-          ref={(vb) => {
-            this.nodePlayerView = vb;
-          }}
-          inputUrl={multiUrl}
-          scaleMode="ScaleAspectFit"
-          bufferTime={300}
-          maxBufferTime={1000}
-          autoplay
-        />
-      );
-    }
+
+    return (
+      <NodePlayerView
+        style={styles.PIP}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={multiUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        autoplay
+      />
+    );
   }
 }
+
+OverlayModal.propTypes = {
+  show: PropTypes.bool,
+  roomName: PropTypes.string,
+};
+
+OverlayModal.defaultProps = {
+  show: true,
+  roomName: '',
+};
 
 /*
 <NodePlayerView
