@@ -14,7 +14,7 @@ import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
-import RNUrlPreview from './RNUrlPreview';
+import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import FloatingHearts from '../../components/FloatingHearts';
@@ -206,7 +206,7 @@ export default class Viewer extends Component {
     const { isVisibleFooter } = this.state;
     if (isVisibleFooter)
       return (
-        <RNUrlPreview
+        <BannerButton
           isUri={isUri}
           goodsUrl={this.goodsUrl}
           linkImg={linkImg}
