@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import OverlayModal from './OverlayModal.js'
+import OverlayModal from './OverlayModal';
 
 export default class PastPIP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
-    }
+      show: false,
+    };
   }
 
   _onPressItem() {
     this.setState((previousState) => {
-    console.log(previousState.show)
-      return ({
+      console.log(previousState.show);
+      return {
         show: !previousState.show,
-      })
+      };
     });
   }
 
   render() {
+    const { show } = this.state;
+    const { roomName } = this.state;
     return (
       <View style={styles.PIPcontainer}>
-        <TouchableOpacity style={styles.btnPast} onPress={() => {this._onPressItem()}}>
-            <Text style={styles.MultiText}>
-              Get Multi-live-view!
-            </Text>
+        <TouchableOpacity
+          style={styles.btnPast}
+          onPress={() => {
+            this._onPressItem();
+          }}
+        >
+          <Text style={styles.MultiText}>Get Multi-live-view!</Text>
         </TouchableOpacity>
-        <OverlayModal show={this.state.show} roomName={this.props.roomName}/>
+        <OverlayModal show={show} roomName={roomName} />
       </View>
     );
-
   }
 }
