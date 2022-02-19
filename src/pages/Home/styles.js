@@ -5,17 +5,37 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#3498db',
   },
+  welcomeText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    margin: 0,
+  },
+  // --------main card list-----------
+  flatList: {
+    // width: SCREEN_WIDTH,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  // --------footer-----------
   liveStreamButton: {
     backgroundColor: '#34495e',
     alignItems: 'center',
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderRadius: 10,
-    marginHorizontal: 25,
-    marginBottom: 15,
+  },
+  logoutButton: {
+    justifyContent: 'center',
+    backgroundColor: 'gray',
+    paddingVertical: 10,
+    borderRadius: 10,
   },
   textButton: {
+    marginLeft: 10,
+    marginRight: 10,
     color: 'white',
-    fontSize: 25,
+    fontSize: 15,
   },
   input: {
     backgroundColor: 'white',
@@ -26,23 +46,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     fontSize: 23,
     fontWeight: '600',
-  },
-  flatList: {
-    marginHorizontal: 15,
-  },
-  welcomeText: {
-    fontSize: 30,
-    color: 'white',
-    fontWeight: 'bold',
-    marginLeft: 20,
-    marginTop: 25,
-  },
-  title: {
-    fontSize: 25,
-    color: 'white',
-    fontWeight: '700',
-    marginLeft: 20,
-    marginVertical: 25,
   },
 });
 

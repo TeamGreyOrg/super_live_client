@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
+import StreamLive from '../Stream/StreamLive';
+import SavedLive from '../Stream/SavedLive';
+import Empty from '../Stream/Empty';
 import SocketManager from '../../socketManager';
 import styles from './styles';
-import LiveStreamCard from './LiveStreamCard';
+import Header from './Header';
+import Footer from './Footer';
+import Theme from '../Theme/theme';
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,6 +27,15 @@ class Home extends React.Component {
     });
   }
 
+  onPressLogout = () => {
+    const { route } = this.props;
+    const userName = get(route, 'params.userName', '');
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Login', { userName });
+  };
+
   onPressLiveStreamNow = () => {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
@@ -30,42 +45,52 @@ class Home extends React.Component {
     navigate('Input', { userName, roomName: userName });
   };
 
-  onPressCardItem = (data) => {
-    const { route } = this.props;
-    const userName = get(route, 'params.userName', '');
-    const {
-      navigation: { navigate },
-    } = this.props;
-    navigate('Viewer', { userName, data });
-  };
-
   render() {
+    const Tab = createMaterialTopTabNavigator();
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     const { listLiveStream } = this.state;
-
-    // Only include not cancelled live streams
-    const newListLiveStream = [];
-    for (let i = 0; i < listLiveStream.length; i++) {
-      if (listLiveStream[i].liveStatus !== -1) {
-        newListLiveStream.push(listLiveStream[i]);
-      }
-    }
-
     return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.welcomeText}>Welcome : {userName}</Text>
-        <Text style={styles.title}>List live stream video</Text>
-        <FlatList
-          contentContainerStyle={styles.flatList}
-          data={newListLiveStream}
-          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-          keyExtractor={(item) => item._id}
+      <>
+        <Header userName={userName} />
+        {/* <Tab.Navigator
+          tabBarOptions={{
+            activeTintColor: '#e91e63',
+            labelStyle: { fontSize: 12 },
+            barStyle: { backgroundColor: 'powderblue' },
+          }}
+        > */}
+        <Tab.Navigator
+          tabBarOptions={{
+            activeTintColor: Theme.color.PrettyRed,
+            inactiveTintColor: Theme.color.DarkGray,
+            indicatorStyle: {
+              borderBottomColor: Theme.color.PrettyRed,
+              borderBottomWidth: 2,
+            },
+          }}
+        >
+          <Tab.Screen
+            name="StreamLive"
+            component={StreamLive}
+            options={{ tabBarLabel: '진행중인 라이브' }}
+          />
+          <Tab.Screen
+            name="UpcomLive"
+            component={Empty}
+            options={{ tabBarLabel: '다가오는 라이브' }}
+          />
+          <Tab.Screen
+            name="SavedLive"
+            component={SavedLive}
+            options={{ tabBarLabel: '지나간 라이브' }}
+          />
+        </Tab.Navigator>
+        <Footer
+          onPressLiveStreamNow={this.onPressLiveStreamNow}
+          onPressLogout={this.onPressLogout}
         />
-        <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
-          <Text style={styles.textButton}>LiveStream Now</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      </>
     );
   }
 }

@@ -10,7 +10,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import get from 'lodash/get';
-import { LIVE_STATUS } from '../../utils/constants';
+import { LIVE_STATUS } from '../../../utils/constants';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   streamInfo: {
     width: '100%',
-    height: 30,
+    height: 50,
     flexDirection: 'row',
     backgroundColor: 'gray',
     padding: 5,
@@ -77,29 +77,29 @@ const LiveStreamCard = ({ data, onPress }) => {
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
-        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
     case LIVE_STATUS.ON_LIVE:
       statusIcon = (
-        <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+        <Image source={require(`../../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
       break;
-    // case LIVE_STATUS.FINISH:
-    //   statusIcon = (
-    //     <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
-    //   );
-    //   break;
+    case LIVE_STATUS.FINISH:
+      statusIcon = (
+        <Image source={require(`../../../assets/ico_replay.png`)} style={styles.statusIcon} />
+      );
+      break;
     default:
       statusIcon = (
-        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
   }
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
+        <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.bgimage}>
           {statusIcon}
         </ImageBackground>
       </TouchableOpacity>
