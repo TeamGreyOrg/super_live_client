@@ -22,7 +22,7 @@ import ChatInputGroup from '../../components/ChatInputGroup';
 import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { RTMP_SERVER } from '../../config';
-import PastPIP from './PastPIP';
+// import PastPIP from './PastPIP';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -312,13 +312,11 @@ export default class Viewer extends Component {
         </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
           <View style={styles.footerBar}>
-            <View style={styles.head}>{this.onPressLinkButton()}</View>
-            {isVisibleFooter && (
-              <View style={styles.body}>
-                {this.renderChatGroup()}
-                {this.renderListMessages()}
-              </View>
-            )}
+            <View style={styles.head}>
+              {this.onPressLinkButton()}
+              {this.renderListMessages()}
+            </View>
+            {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}
           </View>
         </TouchableWithoutFeedback>
         <FloatingHearts count={countHeart} />
@@ -328,7 +326,6 @@ export default class Viewer extends Component {
 }
 
 Viewer.propTypes = {
-  // goodsUrl: PropTypes.string,
   requestOptions: PropTypes.shape({
     headers: PropTypes.objectOf(PropTypes.string),
     imagesPropertyType: PropTypes.string,
