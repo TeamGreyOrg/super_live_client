@@ -1,21 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/toispre/Desktop/my_own_sword/super-live-client-eddie/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/toispre/.gradle/caches/transforms-3/7dc151db95d6eb3b90152777f15def87/transformed/appcompat-1.1.0/res/values-v23/values-v23.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,20,34,35,36,37,41,42,43,44",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,190,325,400,487,1371,2267,2386,2513,2618,2842,2957,3064,3177",
-                        "endLines": "2,3,4,5,19,33,34,35,36,40,41,42,43,47",
-                        "endColumns": "134,134,74,86,12,12,118,126,104,12,114,106,112,12",
-                        "endOffsets": "185,320,395,482,1366,2262,2381,2508,2613,2837,2952,3059,3172,3402"
-                    }
-                },
-                {
-                    "source": "/Users/toispre/.gradle/caches/transforms-3/d786b7a6c052e944ed42da1cbf1bf61c/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\d786b7a6c052e944ed42da1cbf1bf61c\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -34,7 +23,18 @@
                     }
                 },
                 {
-                    "source": "/Users/toispre/.gradle/caches/transforms-3/64faaaa21392e85cc0ac5c3ecd1dd4c2/transformed/material-1.1.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,37,41,42,43,44",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1371,2267,2386,2513,2618,2842,2957,3064,3177",
+                        "endLines": "2,3,4,5,19,33,34,35,36,40,41,42,43,47",
+                        "endColumns": "134,134,74,86,12,12,118,126,104,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1366,2262,2381,2508,2613,2837,2952,3059,3172,3402"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
