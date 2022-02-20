@@ -13,7 +13,6 @@ export default class PastPIP extends Component {
 
   _onPressItem() {
     this.setState((previousState) => {
-    console.log(previousState.show)
       return ({
         show: !previousState.show,
       })
@@ -28,7 +27,7 @@ export default class PastPIP extends Component {
               Get Multi-live-view!
             </Text>
         </TouchableOpacity>
-        <OverlayModal show={this.state.show} roomName={this.props.roomName}/>
+        <OverlayModal show={1} roomName={this.props.roomName}/>
       </View>
     );
 

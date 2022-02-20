@@ -19,6 +19,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import FloatingHearts from '../../components/FloatingHearts';
 import { RTMP_SERVER } from '../../config';
 import Logger from '../../utils/logger';
+import { NavigationContext } from '@react-navigation/native';
 
 export default class Streamer extends React.Component {
   constructor(props) {
@@ -115,7 +116,8 @@ export default class Streamer extends React.Component {
        */
       SocketManager.instance.emitBeginLiveStream({ userName, roomName: userName });
       SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
-      if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();
+      if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();  
+      NavigationContext;    
     } else if (Number(currentLiveStatus) === Number(LIVE_STATUS.ON_LIVE)) {
       /**
        * Finish live stream

@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
+import {View, Text, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import LiveStreamCard from './LiveStreamCard';
+import VideoModal from './Modal.js';
+
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listLiveStream: [],
+      //previousSteeam: '',
     };
   }
 
@@ -34,14 +37,17 @@ class Home extends React.Component {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     const {
-      navigation: { navigate },
+      navigation: { push },
     } = this.props;
-    navigate('Viewer', { userName, data });
+    push('Viewer', { userName, data });
   };
+
 
   render() {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
+    const previousShow = get(route, 'params.show')
+    const roomName = get(route, 'params.roomName')
     const { listLiveStream } = this.state;
 
     // Only include not cancelled live streams
@@ -53,6 +59,7 @@ class Home extends React.Component {
     }
 
     return (
+        
       <SafeAreaView style={styles.container}>
         <Text style={styles.welcomeText}>Welcome : {userName}</Text>
         <Text style={styles.title}>List live stream video</Text>
@@ -61,7 +68,9 @@ class Home extends React.Component {
           data={newListLiveStream}
           renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
           keyExtractor={(item) => item._id}
-        />
+        >
+        </FlatList>
+        <VideoModal show={previousShow} roomName={roomName} />
         <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
           <Text style={styles.textButton}>LiveStream Now</Text>
         </TouchableOpacity>
@@ -70,11 +79,12 @@ class Home extends React.Component {
   }
 }
 
+
 Home.propTypes = {
   route: PropTypes.shape({}),
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
-  }).isRequired,
+  }).isRequired, 
 };
 
 Home.defaultProps = {

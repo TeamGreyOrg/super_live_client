@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Image, TouchableOpacity, Text, SafeAreaView, Animated, Alert } from 'react-native';
+import { 
+    StyleSheet,
+    View, 
+    Image, 
+    TouchableOpacity, 
+    SafeAreaView, 
+    Animated, 
+    Alert,
+    PanResponder,
+    Dimensions,
+  } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import moment from 'moment';
@@ -10,8 +20,8 @@ import FloatingHearts from '../../components/FloatingHearts';
 import ChatInputGroup from '../../components/ChatInputGroup';
 import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
-import { RTMP_SERVER } from '../../config';
-import PastPIP from './PastPIP.js';
+import { HTTP } from '../../config';
+import Home from '../Home/index';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -27,11 +37,53 @@ export default class Viewer extends Component {
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
+      previousShow: true
     };
     this.roomName = roomName;
     this.userName = userName;
     this.liveStatus = liveStatus;
     this.timeout = null;
+  }
+  componentWillMount() {
+    this._y = 0;
+    this._animation = new Animated.Value(0);
+    this._animation.addListener(({ value }) => {
+      this._y = value;
+    })
+
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        {
+          dy: this._animation,
+        },
+      ]), 
+
+      onPanResponderRelease: (e, gestureState) => {
+        if (gestureState.dy > 100) {
+          Animated.timing(this._animation, {
+            toValue: 300,
+            duration: 200,
+          }).start();
+          this._animation.setOffset(300);
+        } else{
+          this._animation.setOffset(0);
+          Animated.timing(this._animation, {
+            toValue: 0,
+            duration: 200,
+          }).start();
+        }
+      },
+    });
+  }
+  handleOpen = () => {
+    this._animation.setOffset(0);
+    Animated.timing(this._animation, {
+      toValue: 0,
+      duration: 200,
+    }).start();
   }
 
   componentDidMount() {
@@ -57,11 +109,11 @@ export default class Viewer extends Component {
           })(i, this);
         }
       });
-      const inputUrl = `${RTMP_SERVER}/live/${this.roomName}/replayFor${this.userName}`;
+      const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
       this.setState({ inputUrl });
     } else {
       this.setState({
-        inputUrl: `${RTMP_SERVER}/live/${this.roomName}`,
+        inputUrl: `${HTTP}/live/${this.roomName}.flv`,
         // use HLS from trasporting in mdeia server to Viewer
         messages: this.messages,
       });
@@ -141,22 +193,22 @@ export default class Viewer extends Component {
   };
 
   onPressClose = () => {
-    const { navigation } = this.props;
-    navigation.goBack();
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Home', { show: true, roomName: this.roomName })
   };
 
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
       inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
-      outputRange: ['#1abc9c', '#3498db', '#9b59b6', '#34495e', '#f1c40f', '#1abc9c'],
+      outputRange: ['red', '#3498db', '#9b59b6', '#34495e', '#f1c40f', 'red'],
     });
     if (this.liveStatus === LIVE_STATUS.FINISH) return null;
     return (
       <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
         <SafeAreaView style={styles.wrapperCenterTitle}>
-          <Text style={styles.titleText}>
-            Stay here and wait until start live stream you will get 30% discount
-          </Text>
+         
         </SafeAreaView>
       </Animated.View>
     );
@@ -199,6 +251,43 @@ export default class Viewer extends Component {
 
   render() {
     const { countHeart } = this.state;
+    const { width, height: screenHeight  } = Dimensions.get("window");
+    const videoHeight = width * 2.05555;
+    const padding = 5;
+    const yOutput = ((screenHeight - videoHeight) + (( videoHeight * .8) / 2)) - padding;
+    const xOutput = ((width * .5) / 2) - padding;
+
+    const translateYInterpolate = this._animation.interpolate({
+      inputRange: [0, 300],
+      outputRange: [0, yOutput],
+      extrapolate: "clamp",
+    });
+
+    const scaleInterpolate = this._animation.interpolate({
+      inputRange: [0, 300],
+      outputRange: [1, 0.3],
+      extrapolate: "clamp",
+    });
+
+    const translateXInterpolate = this._animation.interpolate({
+      inputRange: [0, 300],
+      outputRange: [0, xOutput],
+      extrapolate: "clamp",
+    });
+
+    const videoStyles = {
+      transform: [
+        {
+          translateY: translateYInterpolate,
+        },
+        {
+          translateX: translateXInterpolate,
+        },
+        {
+          scale: scaleInterpolate,
+        },
+      ],
+    };
     /**
      * Replay mode
      */
@@ -214,7 +303,6 @@ export default class Viewer extends Component {
               tintColor="white"
             />
           </TouchableOpacity>
-          <PastPIP roomName={this.props.roomName}/>
           <FloatingHearts count={countHeart} />
         </View>
       );
@@ -224,7 +312,12 @@ export default class Viewer extends Component {
      */
     return (
       <View style={styles.container}>
-        {this.renderBackgroundColors()}
+        <Home navigation={this.props.navigation}/>
+        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+          <Animated.View
+            style={[{ width, height: videoHeight }, videoStyles]}
+            {...this._panResponder.panHandlers}
+          >
         {this.renderNodePlayerView()}
         {this.renderChatGroup()}
         {this.renderListMessages()}
@@ -235,8 +328,9 @@ export default class Viewer extends Component {
             tintColor="white"
           />
         </TouchableOpacity>
-        <PastPIP/>
         <FloatingHearts count={countHeart} />
+        </Animated.View>
+        </View>
       </View>
     );
   }
@@ -246,12 +340,14 @@ Viewer.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
   }),
+
   route: PropTypes.shape({}),
 };
 
 Viewer.defaultProps = {
   navigation: {
-    goBack: () => null,
+    goBack: () => {}
   },
+  //여기 props 넘어가는거 확인 
   route: {},
 };

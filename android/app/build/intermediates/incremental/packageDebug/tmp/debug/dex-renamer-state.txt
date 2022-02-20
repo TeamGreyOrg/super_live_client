@@ -1,4 +1,0 @@
-#Thu Feb 17 13:05:12 KST 2022
-base.0=/Users/toispre/Desktop/my_own_sword/super-live-client-eddie/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

@@ -11,7 +11,7 @@ class Input extends React.Component {
     const roomName = get(route, 'params.roomName');
     const userName = get(route, 'params.userName', '');
     this.state = {
-        enteredRoomName: '',
+        enteredRoomName: '1',
         enteredProductLink: '',
     };
     this.roomName = roomName;

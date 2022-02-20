@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     flexDirection: 'column',
-    position: 'absolute',
+    position: 'relative',
     bottom: 0,
     left: 0,
     right: 0,

@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
   },
   PIP: {
     bottom: 70,
+    left : 200,
     width: 200,
-    height: 200,
-    zIndex:2,
+    height: 100,
+    zIndex: 2,
   },
   btnPast:{
     position : 'absolute',
@@ -70,7 +71,38 @@ const styles = StyleSheet.create({
     width: 100,
     height: 50,
     zIndex: 2,
-  }
+  },
+
+  //add
+  scrollView: {
+    flex: 1,
+    backgroundColor: "#FFF",
+  },
+  title: {
+    fontSize: 28,
+  },
+  likeRow: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 15,
+  },
+  touchIcon: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconText: {
+    marginTop: 5,
+  },
+  padding: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+  },
+
+  playlistSubText: {
+    color: "#555",
+  },
+  
+
 });
 
 export default styles;
