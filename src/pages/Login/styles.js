@@ -5,7 +5,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#3498db',
+    alignContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'ChangaOne-Regular',
   },
   loginBtn: {
     backgroundColor: '#34495e',
@@ -17,6 +26,7 @@ const styles = StyleSheet.create({
   textButton: {
     color: 'white',
     fontSize: 25,
+    fontFamily: 'ChangaOne-Regular',
   },
   input: {
     color: 'black',
@@ -28,6 +38,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     fontSize: 23,
     fontWeight: '600',
+  },
+  bgimage: {
+    width: '100%',
+    height: '100%',
   },
 });
 
