@@ -22,16 +22,20 @@ export default class Viewer extends Component {
     const roomName = get(data, 'roomName');
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
     const userName = get(route, 'params.userName', '');
+    const countViewer = get(data, 'countViewer');
     this.state = {
       messages: [],
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
+      audioStatus: true,
+      audioIcon: require('../../assets/ico_soundon.png')
     };
     this.roomName = roomName;
     this.userName = userName;
     this.liveStatus = liveStatus;
     this.timeout = null;
+    this.countViewer = countViewer;
   }
 
   componentDidMount() {
@@ -150,6 +154,16 @@ export default class Viewer extends Component {
       navigation: { navigate },
     } = this.props;
     navigate('Comparison')
+  };
+
+  onPressSound = () => {
+    if (this.state.audioStatus) {
+      this.state.audioStatus = false;
+      this.setState({ audioIcon: require('../../assets/ico_soundoff.png')} );
+    } else {
+      this.state.audioStatus = true;
+      this.setState({ audioIcon: require('../../assets/ico_soundon.png')} );
+    }
   }
 
   renderBackgroundColors = () => {
@@ -182,6 +196,7 @@ export default class Viewer extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
+        audioEnable={this.state.audioStatus}
         autoplay
       />
     );
@@ -226,6 +241,7 @@ export default class Viewer extends Component {
         </View>
       );
     }
+
     /**
      * Viewer mode
      */
@@ -237,17 +253,22 @@ export default class Viewer extends Component {
         {this.renderListMessages()}
         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
           <Image
-            style={styles.icoClose}
-            source={require('../../assets/close.png')}
-            tintColor="white"
+            source={require('../../assets/ico_goback.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
           <Image
-              style={styles.icoCompare}
               source={require('../../assets/compare-icon.png')}
           />
         </TouchableOpacity>
+        <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+          <Image
+              source={this.state.audioIcon}
+          />
+        </TouchableOpacity>
+        <Text style={styles.roomName}>{this.roomName}</Text>
+        <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+        <Text style={styles.countViewer}>{this.countViewer}</Text>
         <PastPIP/>
         <FloatingHearts count={countHeart} />
       </View>

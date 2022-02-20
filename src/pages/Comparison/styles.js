@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   streamContainer: {
     flexDirection: "row",
-		marginTop: 50,
+		marginTop: 60,
   },
   streamOnePortrait: {
     marginLeft: 20,
@@ -54,14 +54,11 @@ const styles = StyleSheet.create({
 	btnClose: {
     position: 'absolute',
     top: 15,
-    left: 15,
-  },
-  icoClose: {
-    width: 20,
-    height: 20,
+    right: 20,
+    zIndex: 101
   },
 	cardsContainer: {
-		marginTop: 10,
+		marginTop: 20,
 		marginLeft: 20,
 		marginRight: 20,
     position: 'absolute',

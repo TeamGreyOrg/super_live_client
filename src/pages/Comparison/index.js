@@ -27,6 +27,7 @@ class Comparison extends React.Component {
 
     onPressClose = () => {
         const { navigation } = this.props;
+        console.log('pressed close!')
         navigation.pop(2);
       };
 
@@ -34,6 +35,13 @@ class Comparison extends React.Component {
         if (this.state.orientation === 'portrait') {
             return (
                 <View style={styles.container}>
+                    <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+                        <Image
+                            style={styles.icoClose}
+                            source={require('../../assets/ico_goback.png')}
+                            tintColor="white"
+                        />
+                    </TouchableOpacity>
                     <ScrollView style={styles.cardsContainer}  horizontal= {true}>
                         <StreamCard />
                         <StreamCard />
@@ -44,13 +52,6 @@ class Comparison extends React.Component {
                         <StreamCard />
                         <StreamCard />
                     </ScrollView>
-                    <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-                    <Image
-                        style={styles.icoClose}
-                        source={require('../../assets/close.png')}
-                        tintColor="white"
-                    />
-                    </TouchableOpacity>
                     <View style={styles.streamContainer}>
                         <View style={styles.streamOnePortrait}>
                             <Text style={styles.title}>Current livestream</Text>
@@ -67,7 +68,7 @@ class Comparison extends React.Component {
             <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image
                 style={styles.icoClose}
-                source={require('../../assets/close.png')}
+                source={require('../../assets/ico_goback.png')}
                 tintColor="white"
             />
             </TouchableOpacity>

@@ -35,17 +35,19 @@ const styles = StyleSheet.create({
   },
   btnClose: {
     position: 'absolute',
-    top: 55,
-    left: 15,
-  },
-  icoClose: {
-    width: 30,
-    height: 30,
+    top: 20,
+    right: 15,
+    zIndex: 100
   },
   btnCompare: {
     position: 'absolute',
-    top: 55,
-    right: 50,
+    top: 20,
+    right: 120,
+  },
+  btnSound: {
+    position: 'absolute',
+    top: 20,
+    right: 60,
   },
   PIP: {
     bottom: 70,
@@ -75,6 +77,25 @@ const styles = StyleSheet.create({
     width: 100,
     height: 50,
     zIndex: 2,
+  },
+  roomName: {
+    position : 'absolute',
+	  top : 20,
+	  left: 20,
+    color: 'white',
+    fontSize: 20,
+  },
+  countViewer: {
+    position : 'absolute',
+	  top : 60,
+	  left: 55,
+    color: 'white',
+    fontSize: 15,
+  },
+  viewerIcon: {
+    position : 'absolute',
+	  top : 62,
+	  left: 20,
   }
 });
 
