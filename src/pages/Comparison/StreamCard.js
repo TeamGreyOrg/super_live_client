@@ -2,26 +2,24 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   PanResponder,
-  Animated
+  Animated,
 } from "react-native";
 
 export default class StreamCard extends Component {
-  constructor() {
-    super();
+  	constructor() {
+    	super();
 
-    this.state = {
-      pan: new Animated.ValueXY(),
+		this.state = {
+			pan: new Animated.ValueXY(),
 			showDraggable: true,
-      dropAreaValues: null,
+			dropAreaValues: null,
 			opacity: new Animated.Value(1),
-			display : 'flex'
-    };
-  }
+			display : 'flex',
+		};
+  	}
 
-	componentWillMount() {
-		this._val = { x:0, y:0 }
-		this.state.pan.addListener((value) => this._val = value);
-		this.panResponder = PanResponder.create({
+	normalPanResponder() {
+		return PanResponder.create({
 			onStartShouldSetPanResponder: (e, gesture) => true,
 			onPanResponderGrant: (e, gesture) => {
 				this.state.pan.setOffset({
@@ -42,7 +40,7 @@ export default class StreamCard extends Component {
 						duration: 100
 					}).start(() =>
 						this.setState({
-							 	showDraggable: false,
+								 showDraggable: false,
 								display: 'none'
 						})
 					);
@@ -61,35 +59,41 @@ export default class StreamCard extends Component {
 					Animated.spring(this.state.pan, {
 						toValue: { x: 0, y: 0 },
 						friction: 5
-        	}).start();
+					}).start();
 				}
-      }
-	 	});
+				this.setState({panResponder: undefined})
+			}
+		});
+	}
+
+	componentWillMount() {
+		this._val = { x:0, y:0 }
+		this.state.pan.addListener((value) => this._val = value);
+
+		this.panResponder = this.normalPanResponder();
 	}
 
 	render() {
-    const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
-    }
-    return (
-			<>
-				<Animated.View
-					{...this.panResponder.panHandlers}
-					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
-				/>
-			</>
-    );
-  }
+		const panStyle = {
+			transform: this.state.pan.getTranslateTransform()
+		}
+		return (
+			<Animated.View
+				{...this.panResponder.panHandlers}
+				style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
+			/>
+		);
+  	}
 }
 
 let styles = StyleSheet.create({
-  streamCard: {
+  	streamCard: {
 		width: 130,
-    height: 220,
-    backgroundColor: 'black',
+    	height: 220,
+    	backgroundColor: 'black',
 		borderRadius: 10,
 		marginRight: 15,
 		marginTop: 2,
 		marginTop: 400
-  }
+  	}
 });

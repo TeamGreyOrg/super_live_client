@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
 		marginTop: 50,
   },
-  streamOne: {
+  streamOnePortrait: {
     marginLeft: 20,
     marginRight: 30,
     width: 170,
@@ -24,8 +24,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
 		borderRadius: 10,
   },
-  streamTwo: {
+  streamTwoPortrait: {
     width: 170,
+    height: 300,
+    backgroundColor: 'black',
+		borderRadius: 10,
+  },
+  streamOneLandscape: {
+    marginLeft: 50,
+    marginRight: 80,
+    width: 250,
+    height: 300,
+    backgroundColor: 'black',
+		borderRadius: 10,
+  },
+  streamTwoLandscape: {
+    width: 250,
     height: 300,
     backgroundColor: 'black',
 		borderRadius: 10,
@@ -54,13 +68,6 @@ const styles = StyleSheet.create({
     height: 1000,
     zIndex: 100,
 	},
-	streamCards: {
-		width: 130,
-    height: 220,
-    backgroundColor: 'black',
-		borderRadius: 10,
-		marginRight: 15
-	}
 });
 
 export default styles;
