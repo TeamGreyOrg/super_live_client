@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from 'react-native-splash-screen';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Streamer from './pages/Streamer';
@@ -14,7 +15,10 @@ const forFade = ({ current }) => ({
   },
 });
 class App extends Component {
-  componentDidMount() {}
+  async componentDidMount() {
+    setTimeout(() => SplashScreen.hide(), 200);
+    SplashScreen.hide();
+  }
 
   render() {
     return (

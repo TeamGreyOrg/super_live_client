@@ -39,7 +39,7 @@
 21-->[com.facebook.flipper:flipper:0.33.1] C:\Users\1\.gradle\caches\transforms-3\e9d5f0579afffcdc2ea645ea63126e8b\transformed\jetified-flipper-0.33.1\AndroidManifest.xml:16:22-73
 22
 23    <application
-23-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:13:5-32:19
+23-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:13:5-45:19
 24        android:name="com.livestreamexample.MainApplication"
 24-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:14:7-38
 25        android:allowBackup="false"
@@ -58,38 +58,56 @@
 32        android:usesCleartextTraffic="true" >
 32-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\debug\AndroidManifest.xml:7:18-53
 33        <activity
-33-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:20:7-30:18
-34            android:name="com.livestreamexample.MainActivity"
-34-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:21:9-37
-35            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-35-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:23:9-86
-36            android:label="@string/app_name"
-36-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:22:9-41
-37            android:launchMode="singleTask"
-37-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:24:9-40
-38            android:windowSoftInputMode="adjustResize" >
-38-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:25:9-51
-39            <intent-filter>
-39-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:26:9-29:25
-40                <action android:name="android.intent.action.MAIN" />
-40-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:13-65
-40-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:21-62
-41
-42                <category android:name="android.intent.category.LAUNCHER" />
-42-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:28:13-73
-42-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:28:23-70
-43            </intent-filter>
-44        </activity>
-45        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-45-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:31:7-84
-45-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:31:17-81
-46
-47        <meta-data
-47-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:11:9-13:43
-48            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
-48-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:12:13-84
-49            android:value="GlideModule" />
-49-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:13:13-40
-50    </application>
-51
-52</manifest>
+33-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:21:9-29:20
+34            android:name="com.livestreamexample.SplashActivity"
+34-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:22:11-41
+35            android:label="@string/app_name"
+35-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:24:11-43
+36            android:theme="@style/SplashTheme" >
+36-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:23:11-45
+37            <intent-filter>
+37-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:25:11-28:27
+38                <action android:name="android.intent.action.MAIN" />
+38-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:26:15-67
+38-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:26:23-64
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:15-75
+40-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:25-72
+41            </intent-filter>
+42        </activity>
+43        <activity
+43-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:31:7-43:18
+44            android:name="com.livestreamexample.MainActivity"
+44-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:32:9-37
+45            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+45-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:34:9-86
+46            android:exported="true"
+46-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:37:9-32
+47            android:label="@string/app_name"
+47-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:33:9-41
+48            android:launchMode="singleTask"
+48-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:35:9-40
+49            android:windowSoftInputMode="adjustResize" >
+49-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:36:9-51
+50
+51            <!--
+52        <intent-filter>
+53            <action android:name="android.intent.action.MAIN" />
+54            <category android:name="android.intent.category.LAUNCHER" />
+55        </intent-filter>
+56            -->
+57        </activity>
+58        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+58-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:44:7-84
+58-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:44:17-81
+59
+60        <meta-data
+60-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:11:9-13:43
+61            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+61-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:12:13-84
+62            android:value="GlideModule" />
+62-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:13:13-40
+63    </application>
+64
+65</manifest>

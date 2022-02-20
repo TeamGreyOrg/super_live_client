@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 200,
     // padding: 30,
-    padding:100
+    padding: 100,
   },
 });
 

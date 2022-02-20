@@ -104,12 +104,12 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\drawable-xxxhdpi-v4\\design_ic_visibility.png"
     },
     {
-        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
-        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_alert_select_dialog_singlechoice.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\layout\\mtrl_alert_select_dialog_singlechoice.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
+        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_mtrl_bottom_sheet_slide_in.xml.flat",
@@ -128,12 +128,12 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\drawable-v23\\mtrl_popupmenu_background_dark.xml"
     },
     {
-        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility_off.xml.flat",
-        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
-    },
-    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_picker_header_fullscreen.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\layout\\mtrl_picker_header_fullscreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility_off.xml.flat",
+        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -184,24 +184,24 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\layout\\text_view_with_theme_line_height.xml"
     },
     {
-        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_icon_color_selector.xml.flat",
-        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\color\\mtrl_tabs_icon_color_selector.xml"
-    },
-    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_checkbox_to_unchecked_icon_null_animation.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\anim\\btn_checkbox_to_unchecked_icon_null_animation.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_icon_color_selector.xml.flat",
+        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\color\\mtrl_tabs_icon_color_selector.xml"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_fab_ripple_color.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\color\\mtrl_fab_ripple_color.xml"
     },
     {
-        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml_standalone_badge_gravity_top_start.xml.flat",
-        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\xml\\standalone_badge_gravity_top_start.xml"
-    },
-    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-hdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml_standalone_badge_gravity_top_start.xml.flat",
+        "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\xml\\standalone_badge_gravity_top_start.xml"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_hide_motion_spec.xml.flat",
@@ -394,6 +394,10 @@
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_layout.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_splash.xml.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\drawable\\background_splash.xml"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_calendar_day_of_week.xml.flat",
@@ -728,6 +732,10 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\animator\\mtrl_fab_transformation_sheet_expand_spec.xml"
     },
     {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_splash_icon.png.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\splash_icon.png"
+    },
+    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_calendar_month_labeled.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\64faaaa21392e85cc0ac5c3ecd1dd4c2\\transformed\\material-1.1.0\\res\\layout\\mtrl_calendar_month_labeled.xml"
     },
@@ -782,6 +790,10 @@
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_splash_icon.png.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\mipmap-xhdpi\\splash_icon.png"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_calendar_month_navigation.xml.flat",
@@ -1036,6 +1048,10 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_splash_icon.png.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\mipmap-mdpi\\splash_icon.png"
+    },
+    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
@@ -1186,6 +1202,10 @@
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_textfield_search_material.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_splash_icon.png.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\splash_icon.png"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -1432,6 +1452,10 @@
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
     {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_splash_icon.png.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\mipmap-hdpi\\splash_icon.png"
+    },
+    {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\414b4d3cd31caedddc6114f361366965\\transformed\\core-1.1.0\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
     },
@@ -1586,6 +1610,10 @@
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_dialog_material_background.xml.flat",
         "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_launch_screen.xml.flat",
+        "source": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\src\\main\\res\\layout\\launch_screen.xml"
     },
     {
         "merged": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
