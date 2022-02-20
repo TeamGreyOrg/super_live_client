@@ -382,6 +382,21 @@ androidx/loader/R.java
  androidx.loader.R$string
  androidx.loader.R$style
  androidx.loader.R$styleable
+org/devio/rn/splashscreen/R.java
+ org.devio.rn.splashscreen.R
+ org.devio.rn.splashscreen.R$anim
+ org.devio.rn.splashscreen.R$attr
+ org.devio.rn.splashscreen.R$bool
+ org.devio.rn.splashscreen.R$color
+ org.devio.rn.splashscreen.R$dimen
+ org.devio.rn.splashscreen.R$drawable
+ org.devio.rn.splashscreen.R$id
+ org.devio.rn.splashscreen.R$integer
+ org.devio.rn.splashscreen.R$layout
+ org.devio.rn.splashscreen.R$string
+ org.devio.rn.splashscreen.R$style
+ org.devio.rn.splashscreen.R$styleable
+ org.devio.rn.splashscreen.R$xml
 com/facebook/flipper/R.java
  com.facebook.flipper.R
  com.facebook.flipper.R$anim
@@ -492,6 +507,8 @@ com/livestreamexample/R.java
  com.livestreamexample.R$style
  com.livestreamexample.R$styleable
  com.livestreamexample.R$xml
+com/livestreamexample/SplashActivity.java
+ com.livestreamexample.SplashActivity
 androidx/lifecycle/viewmodel/savedstate/R.java
  androidx.lifecycle.viewmodel.savedstate.R
 com/swmansion/gesturehandler/react/R.java

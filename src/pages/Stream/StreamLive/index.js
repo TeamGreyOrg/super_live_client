@@ -52,7 +52,6 @@ class StreamLive extends React.Component {
           contentContainerStyle={styles.flatList}
         />
       </Container>
-      // <Text style={{ color: 'black' }}>아무거나 보여줘</Text>
     );
   }
 }
