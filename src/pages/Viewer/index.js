@@ -36,6 +36,7 @@ export default class Viewer extends Component {
     const userName = get(route, 'params.userName', '');
     const goodsUrl = get(data, 'productLink');
     // const goodsUrl = 'https://bit.ly/34QamxY';
+    const countViewer = get(data, 'countViewer');
     this.state = {
       messages: [],
       countHeart: 0,
@@ -48,6 +49,8 @@ export default class Viewer extends Component {
       linkImg: undefined,
       requestOptions: {},
       isVisibleFooter: true,
+      audioStatus: true,
+      audioIcon: require('../../assets/ico_soundon.png')
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -55,6 +58,7 @@ export default class Viewer extends Component {
     this.liveStatus = liveStatus;
     this.timeout = null;
     this.getPreview(goodsUrl, this.state.requestOptions);
+    this.countViewer = countViewer;
   }
 
   componentDidMount() {
@@ -220,6 +224,22 @@ export default class Viewer extends Component {
     const { isVisibleFooter } = this.state;
     this.setState(() => ({ isVisibleFooter: !isVisibleFooter }));
   };
+  onPressCompare = () => {
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Comparison')
+  };
+
+  onPressSound = () => {
+    if (this.state.audioStatus) {
+      this.state.audioStatus = false;
+      this.setState({ audioIcon: require('../../assets/ico_soundoff.png')} );
+    } else {
+      this.state.audioStatus = true;
+      this.setState({ audioIcon: require('../../assets/ico_soundon.png')} );
+    }
+  }
 
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
@@ -251,6 +271,7 @@ export default class Viewer extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
+        audioEnable={this.state.audioStatus}
         autoplay
       />
     );
@@ -296,6 +317,7 @@ export default class Viewer extends Component {
         </View>
       );
     }
+
     /**
      * Viewer mode
      */
@@ -305,9 +327,17 @@ export default class Viewer extends Component {
         {this.renderNodePlayerView()}
         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
           <Image
-            style={styles.icoClose}
-            source={require('../../assets/close.png')}
-            tintColor="white"
+            source={require('../../assets/ico_goback.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+          <Image
+              source={require('../../assets/compare-icon.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+          <Image
+              source={this.state.audioIcon}
           />
         </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
@@ -319,6 +349,9 @@ export default class Viewer extends Component {
             {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}
           </View>
         </TouchableWithoutFeedback>
+        <Text style={styles.roomName}>{this.roomName}</Text>
+        <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+        <Text style={styles.countViewer}>{this.countViewer}</Text>
         <FloatingHearts count={countHeart} />
       </SafeAreaView>
     );

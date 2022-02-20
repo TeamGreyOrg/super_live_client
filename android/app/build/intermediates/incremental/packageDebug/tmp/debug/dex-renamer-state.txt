@@ -1,4 +1,4 @@
-#Sun Feb 20 22:13:46 KST 2022
-base.0=C\:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
-renamed.0=classes.dex
+#Mon Feb 21 00:31:43 KST 2022
+base.0=/Users/eddie/coding/super_live_client/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
+renamed.0=classes.dex

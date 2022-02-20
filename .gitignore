@@ -2,4 +2,8 @@ node_modules
 uploads
 *.log
 coverage
+<<<<<<< HEAD
 android/app/build
+=======
+android/app/build
+>>>>>>> eddie
