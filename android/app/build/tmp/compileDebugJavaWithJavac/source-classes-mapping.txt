@@ -30,6 +30,21 @@ androidx/lifecycle/livedata/core/R.java
  androidx.lifecycle.livedata.core.R
 com/facebook/imagepipeline/R.java
  com.facebook.imagepipeline.R
+com/reactnativepagerview/R.java
+ com.reactnativepagerview.R
+ com.reactnativepagerview.R$anim
+ com.reactnativepagerview.R$attr
+ com.reactnativepagerview.R$bool
+ com.reactnativepagerview.R$color
+ com.reactnativepagerview.R$dimen
+ com.reactnativepagerview.R$drawable
+ com.reactnativepagerview.R$id
+ com.reactnativepagerview.R$integer
+ com.reactnativepagerview.R$layout
+ com.reactnativepagerview.R$string
+ com.reactnativepagerview.R$style
+ com.reactnativepagerview.R$styleable
+ com.reactnativepagerview.R$xml
 androidx/appcompat/resources/R.java
  androidx.appcompat.resources.R
  androidx.appcompat.resources.R$attr
@@ -47,6 +62,11 @@ com/facebook/fresco/stetho/R.java
  com.facebook.fresco.stetho.R$attr
  com.facebook.fresco.stetho.R$id
  com.facebook.fresco.stetho.R$styleable
+com/facebook/drawee/backends/pipeline/R.java
+ com.facebook.drawee.backends.pipeline.R
+ com.facebook.drawee.backends.pipeline.R$attr
+ com.facebook.drawee.backends.pipeline.R$id
+ com.facebook.drawee.backends.pipeline.R$styleable
 com/th3rdwave/safeareacontext/R.java
  com.th3rdwave.safeareacontext.R
  com.th3rdwave.safeareacontext.R$anim
@@ -62,11 +82,6 @@ com/th3rdwave/safeareacontext/R.java
  com.th3rdwave.safeareacontext.R$style
  com.th3rdwave.safeareacontext.R$styleable
  com.th3rdwave.safeareacontext.R$xml
-com/facebook/drawee/backends/pipeline/R.java
- com.facebook.drawee.backends.pipeline.R
- com.facebook.drawee.backends.pipeline.R$attr
- com.facebook.drawee.backends.pipeline.R$id
- com.facebook.drawee.backends.pipeline.R$styleable
 androidx/arch/core/R.java
  androidx.arch.core.R
 androidx/fragment/R.java
@@ -210,6 +225,20 @@ androidx/lifecycle/viewmodel/R.java
  androidx.lifecycle.viewmodel.R
 com/livestreamexample/MainActivity.java
  com.livestreamexample.MainActivity
+com/bumptech/glide/R.java
+ com.bumptech.glide.R
+ com.bumptech.glide.R$attr
+ com.bumptech.glide.R$color
+ com.bumptech.glide.R$dimen
+ com.bumptech.glide.R$drawable
+ com.bumptech.glide.R$id
+ com.bumptech.glide.R$integer
+ com.bumptech.glide.R$layout
+ com.bumptech.glide.R$string
+ com.bumptech.glide.R$style
+ com.bumptech.glide.R$styleable
+com/bumptech/glide/gifdecoder/R.java
+ com.bumptech.glide.gifdecoder.R
 com/swmansion/rnscreens/R.java
  com.swmansion.rnscreens.R
  com.swmansion.rnscreens.R$anim
@@ -242,18 +271,6 @@ com/livestreamexample/ReactNativeFlipper.java
  com.livestreamexample.ReactNativeFlipper$1
  com.livestreamexample.ReactNativeFlipper$2
  com.livestreamexample.ReactNativeFlipper$2$1
-androidx/swiperefreshlayout/R.java
- androidx.swiperefreshlayout.R
- androidx.swiperefreshlayout.R$attr
- androidx.swiperefreshlayout.R$color
- androidx.swiperefreshlayout.R$dimen
- androidx.swiperefreshlayout.R$drawable
- androidx.swiperefreshlayout.R$id
- androidx.swiperefreshlayout.R$integer
- androidx.swiperefreshlayout.R$layout
- androidx.swiperefreshlayout.R$string
- androidx.swiperefreshlayout.R$style
- androidx.swiperefreshlayout.R$styleable
 androidx/coordinatorlayout/R.java
  androidx.coordinatorlayout.R
  androidx.coordinatorlayout.R$attr
@@ -266,8 +283,18 @@ androidx/coordinatorlayout/R.java
  androidx.coordinatorlayout.R$string
  androidx.coordinatorlayout.R$style
  androidx.coordinatorlayout.R$styleable
-androidx/lifecycle/livedata/R.java
- androidx.lifecycle.livedata.R
+androidx/swiperefreshlayout/R.java
+ androidx.swiperefreshlayout.R
+ androidx.swiperefreshlayout.R$attr
+ androidx.swiperefreshlayout.R$color
+ androidx.swiperefreshlayout.R$dimen
+ androidx.swiperefreshlayout.R$drawable
+ androidx.swiperefreshlayout.R$id
+ androidx.swiperefreshlayout.R$integer
+ androidx.swiperefreshlayout.R$layout
+ androidx.swiperefreshlayout.R$string
+ androidx.swiperefreshlayout.R$style
+ androidx.swiperefreshlayout.R$styleable
 androidx/appcompat/R.java
  androidx.appcompat.R
  androidx.appcompat.R$anim
@@ -283,6 +310,20 @@ androidx/appcompat/R.java
  androidx.appcompat.R$string
  androidx.appcompat.R$style
  androidx.appcompat.R$styleable
+androidx/lifecycle/livedata/R.java
+ androidx.lifecycle.livedata.R
+com/bumptech/glide/integration/okhttp/R.java
+ com.bumptech.glide.integration.okhttp.R
+ com.bumptech.glide.integration.okhttp.R$attr
+ com.bumptech.glide.integration.okhttp.R$color
+ com.bumptech.glide.integration.okhttp.R$dimen
+ com.bumptech.glide.integration.okhttp.R$drawable
+ com.bumptech.glide.integration.okhttp.R$id
+ com.bumptech.glide.integration.okhttp.R$integer
+ com.bumptech.glide.integration.okhttp.R$layout
+ com.bumptech.glide.integration.okhttp.R$string
+ com.bumptech.glide.integration.okhttp.R$style
+ com.bumptech.glide.integration.okhttp.R$styleable
 androidx/lifecycle/R.java
  androidx.lifecycle.R
 cn/nodemedia/react_native_nodemediaclient/R.java
@@ -312,6 +353,8 @@ androidx/customview/R.java
  androidx.customview.R$string
  androidx.customview.R$style
  androidx.customview.R$styleable
+androidx/exifinterface/R.java
+ androidx.exifinterface.R
 com/swmansion/reanimated/R.java
  com.swmansion.reanimated.R
  com.swmansion.reanimated.R$anim
@@ -339,6 +382,21 @@ androidx/loader/R.java
  androidx.loader.R$string
  androidx.loader.R$style
  androidx.loader.R$styleable
+com/facebook/flipper/R.java
+ com.facebook.flipper.R
+ com.facebook.flipper.R$anim
+ com.facebook.flipper.R$attr
+ com.facebook.flipper.R$bool
+ com.facebook.flipper.R$color
+ com.facebook.flipper.R$dimen
+ com.facebook.flipper.R$drawable
+ com.facebook.flipper.R$id
+ com.facebook.flipper.R$integer
+ com.facebook.flipper.R$interpolator
+ com.facebook.flipper.R$layout
+ com.facebook.flipper.R$string
+ com.facebook.flipper.R$style
+ com.facebook.flipper.R$styleable
 com/google/android/material/R.java
  com.google.android.material.R
  com.google.android.material.R$anim
@@ -357,21 +415,6 @@ com/google/android/material/R.java
  com.google.android.material.R$style
  com.google.android.material.R$styleable
  com.google.android.material.R$xml
-com/facebook/flipper/R.java
- com.facebook.flipper.R
- com.facebook.flipper.R$anim
- com.facebook.flipper.R$attr
- com.facebook.flipper.R$bool
- com.facebook.flipper.R$color
- com.facebook.flipper.R$dimen
- com.facebook.flipper.R$drawable
- com.facebook.flipper.R$id
- com.facebook.flipper.R$integer
- com.facebook.flipper.R$interpolator
- com.facebook.flipper.R$layout
- com.facebook.flipper.R$string
- com.facebook.flipper.R$style
- com.facebook.flipper.R$styleable
 com/facebook/fresco/flipper/R.java
  com.facebook.fresco.flipper.R
  com.facebook.fresco.flipper.R$attr
@@ -403,6 +446,21 @@ org/webkit/androidjsc/R.java
  org.webkit.androidjsc.R
 com/facebook/nativeimagetranscoder/R.java
  com.facebook.nativeimagetranscoder.R
+com/dylanvann/fastimage/R.java
+ com.dylanvann.fastimage.R
+ com.dylanvann.fastimage.R$anim
+ com.dylanvann.fastimage.R$attr
+ com.dylanvann.fastimage.R$bool
+ com.dylanvann.fastimage.R$color
+ com.dylanvann.fastimage.R$dimen
+ com.dylanvann.fastimage.R$drawable
+ com.dylanvann.fastimage.R$id
+ com.dylanvann.fastimage.R$integer
+ com.dylanvann.fastimage.R$layout
+ com.dylanvann.fastimage.R$string
+ com.dylanvann.fastimage.R$style
+ com.dylanvann.fastimage.R$styleable
+ com.dylanvann.fastimage.R$xml
 androidx/viewpager/R.java
  androidx.viewpager.R
  androidx.viewpager.R$attr
