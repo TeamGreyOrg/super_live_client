@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     fontWeight: 'bold',
+    fontFamily: 'ChangaOne-Regular',
     marginBottom: 30,
     textAlign: 'center',
     color: 'white',
-    fontFamily: 'ChangaOne-Regular',
   },
   loginBtn: {
     backgroundColor: '#34495e',

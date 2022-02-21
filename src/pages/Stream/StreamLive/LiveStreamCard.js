@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH / 2,
     height: '50%',
     flexDirection: 'row',
-    backgroundColor: '#F7F7F7',
+    backgroundColor: 'black',
     padding: 5,
     flexWrap: 'wrap',
   },

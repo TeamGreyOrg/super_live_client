@@ -50,7 +50,7 @@ export default class Viewer extends Component {
       requestOptions: {},
       isVisibleFooter: true,
       audioStatus: true,
-      audioIcon: require('../../assets/ico_soundon.png')
+      audioIcon: require('../../assets/ico_soundon.png'),
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -224,22 +224,23 @@ export default class Viewer extends Component {
     const { isVisibleFooter } = this.state;
     this.setState(() => ({ isVisibleFooter: !isVisibleFooter }));
   };
+
   onPressCompare = () => {
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Comparison')
+    navigate('Comparison');
   };
 
   onPressSound = () => {
     if (this.state.audioStatus) {
-      this.state.audioStatus = false;
-      this.setState({ audioIcon: require('../../assets/ico_soundoff.png')} );
+      this.setState({ audioStatus: false});
+      this.setState({ audioIcon: require('../../assets/ico_soundoff.png') });
     } else {
-      this.state.audioStatus = true;
-      this.setState({ audioIcon: require('../../assets/ico_soundon.png')} );
+       this.setState({ audioStatus: true});
+      this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
-  }
+  };
 
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
@@ -326,19 +327,13 @@ export default class Viewer extends Component {
         {this.renderBackgroundColors()}
         {this.renderNodePlayerView()}
         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-          <Image
-            source={require('../../assets/ico_goback.png')}
-          />
+          <Image source={require('../../assets/ico_goback.png')} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
-          <Image
-              source={require('../../assets/compare-icon.png')}
-          />
+          <Image source={require('../../assets/compare-icon.png')} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
-          <Image
-              source={this.state.audioIcon}
-          />
+          <Image source={this.state.audioIcon} />
         </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
           <View style={styles.footerBar}>

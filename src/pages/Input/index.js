@@ -3,7 +3,6 @@
 import React from 'react';
 import {
   Text,
-  TouchableOpacity,
   TouchableHighlight,
   SafeAreaView,
   TextInput,
@@ -12,7 +11,6 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import styles from './styles';
-import SocketManager from '../../socketManager';
 
 class Input extends React.Component {
   constructor(props) {
@@ -23,6 +21,7 @@ class Input extends React.Component {
     this.state = {
       enteredRoomName: '',
       enteredProductLink: '',
+      enteredProductPrice: '0',
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -36,8 +35,14 @@ class Input extends React.Component {
     } = this.props;
     const { enteredRoomName } = this.state;
     const { enteredProductLink } = this.state;
-
-    navigate('Streamer', { userName, roomName: userName, enteredRoomName, enteredProductLink });
+    const { enteredProductPrice } = this.state;
+    navigate('Streamer', {
+      userName,
+      roomName: userName,
+      enteredRoomName,
+      enteredProductLink,
+      enteredProductPrice,
+    });
   };
 
   render() {
@@ -50,18 +55,27 @@ class Input extends React.Component {
         <Text style={styles.inputHeader}>Room title</Text>
         <TextInput
           style={styles.input}
-          placeholder="방제목을 입력 해주세요"
+          placeholder="#방제목을 입력 해주세요"
           onChangeText={(enteredRoomName) => this.setState({ enteredRoomName })}
           value={this.state.enteredRoomName}
         />
         <Text style={styles.inputHeader}>Product link</Text>
         <TextInput
           style={styles.input}
-          placeholder="판매할 제품 링크를 입력 해주세요"
+          placeholder="#판매할 제품 링크를 입력 해주세요"
           onChangeText={(enteredProductLink) => this.setState({ enteredProductLink })}
           value={this.state.enteredProductLink}
         />
-        <TouchableHighlight style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}
+        <Text style={styles.inputHeader}>Product Price</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="#판매할 제품의 가격을 입력 해주세요"
+          onChangeText={(enteredProductPrice) => this.setState({ enteredProductPrice })}
+          value={this.state.enteredProductPrice}
+        />
+        <TouchableHighlight
+          style={styles.liveStreamButton}
+          onPress={this.onPressLiveStreamNow}
           activeOpacity={0.6}
           underlayColor="yellow"
         >

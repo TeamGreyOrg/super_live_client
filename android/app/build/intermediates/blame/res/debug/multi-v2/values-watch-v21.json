@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/eddie/coding/super_live_client/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "C:\\Users\\1\\Desktop\\JUNGLE\\my-weapon\\Team_Gray_my_weapon\\super_live_client\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v21\\values-watch-v21.xml",
             "map": [
                 {
-                    "source": "/Users/eddie/.gradle/caches/transforms-3/7dc151db95d6eb3b90152777f15def87/transformed/appcompat-1.1.0/res/values-watch-v21/values-watch-v21.xml",
+                    "source": "C:\\Users\\1\\.gradle\\caches\\transforms-3\\7dc151db95d6eb3b90152777f15def87\\transformed\\appcompat-1.1.0\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

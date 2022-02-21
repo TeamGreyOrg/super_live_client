@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import styled from 'styled-components';
 import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
-import LiveStreamCard from './LiveStreamCard';
+import LiveStreamCard from '../LiveStreamCard';
 
 class SavedLive extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class SavedLive extends React.Component {
       }
     }
     return (
-      <Container>
+      <Container style={styles.container}>
         <FlatList
           data={newListLiveStream}
           renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}

@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3498db',
+    backgroundColor: 'black',
   },
   welcomeText: {
+    fontFamily: 'ChangaOne-Regular',
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
