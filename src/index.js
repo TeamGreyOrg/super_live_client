@@ -8,8 +8,6 @@ import Viewer from './pages/Viewer';
 import Input from './pages/Input';
 
 const Stack = createStackNavigator();
-
-
 class App extends Component {
   componentDidMount() {}
 

@@ -325,9 +325,9 @@ export default class Viewer extends Component {
      */
     return (
       <View style={styles.container}>
-        <Home navigation={this.navigation}/>
+        <Home navigation={this.props.navigation} route={this.props.route}/>
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-        <Draggable disabled={!this.state.dragging}>
+        <Draggable renderColor='black' disabled={!this.state.dragging}>
           <Animated.View
             style={[{ width, height: videoHeight }, videoStyles]}
             {...this._panResponder.panHandlers}

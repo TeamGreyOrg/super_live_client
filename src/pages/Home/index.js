@@ -33,9 +33,9 @@ class Home extends React.Component {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     const {
-      navigation: { navigate },
+      navigation: { push },
     } = this.props;
-    navigate('Viewer', { userName, data });
+    push('Viewer', { userName, data });
   };
 
 
