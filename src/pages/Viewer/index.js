@@ -209,7 +209,6 @@ export default class Viewer extends Component {
     const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
     const { isVisibleFooter } = this.state;
     if (isVisibleFooter) {
-      console.log(this.goodsUrl);
       return (
         <BannerButton
           isUri={isUri}
