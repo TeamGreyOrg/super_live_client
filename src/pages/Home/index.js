@@ -5,15 +5,11 @@ import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import LiveStreamCard from './LiveStreamCard';
-import VideoModal from './Modal.js';
-
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listLiveStream: [],
-      //previousSteeam: '',
     };
   }
 
@@ -37,17 +33,15 @@ class Home extends React.Component {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     const {
-      navigation: { push },
+      navigation: { navigate },
     } = this.props;
-    push('Viewer', { userName, data });
+    navigate('Viewer', { userName, data });
   };
 
 
   render() {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
-    const previousShow = get(route, 'params.show')
-    const roomName = get(route, 'params.roomName')
     const { listLiveStream } = this.state;
 
     // Only include not cancelled live streams
@@ -70,7 +64,6 @@ class Home extends React.Component {
           keyExtractor={(item) => item._id}
         >
         </FlatList>
-        <VideoModal show={previousShow} roomName={roomName} />
         <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
           <Text style={styles.textButton}>LiveStream Now</Text>
         </TouchableOpacity>

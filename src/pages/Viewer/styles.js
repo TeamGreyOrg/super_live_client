@@ -101,7 +101,9 @@ const styles = StyleSheet.create({
   playlistSubText: {
     color: "#555",
   },
-  
+  onScreen: {
+    top: 650,
+   },
 
 });
 

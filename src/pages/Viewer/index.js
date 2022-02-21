@@ -5,7 +5,7 @@ import {
     View, 
     Image, 
     TouchableOpacity, 
-    SafeAreaView, 
+    AppRegistry, 
     Animated, 
     Alert,
     PanResponder,
@@ -22,11 +22,11 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import Draggable from 'react-native-draggable';
 
 export default class Viewer extends Component {
   constructor(props) {
     super(props);
-    this.Animation = new Animated.Value(0);
     const { route } = props;
     const data = get(route, 'params.data');
     const roomName = get(data, 'roomName');
@@ -37,52 +37,76 @@ export default class Viewer extends Component {
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
-      previousShow: true
+      previousShow: true,
+      dragging: false,
     };
     this.roomName = roomName;
     this.userName = userName;
     this.liveStatus = liveStatus;
     this.timeout = null;
   }
+  
   componentWillMount() {
     this._y = 0;
     this._animation = new Animated.Value(0);
     this._animation.addListener(({ value }) => {
       this._y = value;
+      console.log(value);
     })
-
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {
-          dy: this._animation,
-        },
-      ]), 
-
-      onPanResponderRelease: (e, gestureState) => {
-        if (gestureState.dy > 100) {
-          Animated.timing(this._animation, {
-            toValue: 300,
-            duration: 200,
-          }).start();
-          this._animation.setOffset(300);
-        } else{
-          this._animation.setOffset(0);
-          Animated.timing(this._animation, {
-            toValue: 0,
-            duration: 200,
-          }).start();
-        }
+      onMoveShouldSetPanResponder: () => {
+        if (this.state.dragging)
+          return false;
+        else
+          return true;
       },
-    });
+      onPanResponderMove: this.onResponderMove,
+      onPanResponderRelease: this.onResponderEnd,
+      });      
   }
+
+  onResponderMove = () => {
+    if (!this.state.dragging){
+      Animated.event([
+        null, 
+        {dy: this._animation}
+      ],
+      {useNativeDriver: true}
+      );
+    }   
+  };
+
+  onResponderEnd = (e, gestureState) => {
+    if (gestureState.dy > 100) {
+      Animated.timing(this._animation, {
+        toValue: 300,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+      this._animation.setOffset(100);
+      //this.state.dragging = true;
+      this.setState({
+        dragging: true, 
+      })
+      console.log(this.state.dragging);
+    } else if (!this.state.dragging) {
+      console.log(this.state.dragging);
+      this._animation.setOffset(0);
+      Animated.timing(this._animation, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+    }
+  }
+  
   handleOpen = () => {
     this._animation.setOffset(0);
     Animated.timing(this._animation, {
       toValue: 0,
       duration: 200,
+      useNativeDriver: true,
     }).start();
   }
 
@@ -141,8 +165,13 @@ export default class Viewer extends Component {
           { cancelable: false }
         );
       });
-      this.startBackgroundAnimation();
     }
+
+    /*
+    seriezable animation
+    */
+    
+   
   }
 
   componentWillUnmount() {
@@ -159,17 +188,6 @@ export default class Viewer extends Component {
     });
     clearTimeout(this.timeout);
   }
-
-  startBackgroundAnimation = () => {
-    this.Animation.setValue(0);
-    Animated.timing(this.Animation, {
-      toValue: 1,
-      duration: 15000,
-      useNativeDriver: false,
-    }).start(() => {
-      this.startBackgroundAnimation();
-    });
-  };
 
   onPressHeart = () => {
     SocketManager.instance.emitSendHeart({
@@ -199,22 +217,7 @@ export default class Viewer extends Component {
     navigate('Home', { show: true, roomName: this.roomName })
   };
 
-  renderBackgroundColors = () => {
-    const backgroundColor = this.Animation.interpolate({
-      inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
-      outputRange: ['red', '#3498db', '#9b59b6', '#34495e', '#f1c40f', 'red'],
-    });
-    if (this.liveStatus === LIVE_STATUS.FINISH) return null;
-    return (
-      <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
-        <SafeAreaView style={styles.wrapperCenterTitle}>
-         
-        </SafeAreaView>
-      </Animated.View>
-    );
-  };
-
-  renderNodePlayerView = () => {
+ renderNodePlayerView = () => {
     const { inputUrl } = this.state;
     if (!inputUrl) return null;
     return (
@@ -232,7 +235,8 @@ export default class Viewer extends Component {
     );
   };
 
-  renderChatGroup = () => {
+  renderChatGroup = (props) => {
+    if (!props.dragging){
     return (
       <ChatInputGroup
         onPressHeart={this.onPressHeart}
@@ -241,22 +245,29 @@ export default class Viewer extends Component {
         onEndEditing={this.onEndEditing}
       />
     );
+    }
   };
 
-  renderListMessages = () => {
+  renderListMessages = (props) => {
     const { messages, isVisibleMessages } = this.state;
-    if (!isVisibleMessages) return null;
-    return <MessagesList messages={messages} />;
+    if (!props.dragging){
+      if (!isVisibleMessages) return null;
+      return <MessagesList messages={messages} />;
+    };
   };
+
 
   render() {
     const { countHeart } = this.state;
+    const { navigation } = this.props;
+    
+
     const { width, height: screenHeight  } = Dimensions.get("window");
     const videoHeight = width * 2.05555;
     const padding = 5;
     const yOutput = ((screenHeight - videoHeight) + (( videoHeight * .8) / 2)) - padding;
     const xOutput = ((width * .5) / 2) - padding;
-
+    
     const translateYInterpolate = this._animation.interpolate({
       inputRange: [0, 300],
       outputRange: [0, yOutput],
@@ -288,6 +299,8 @@ export default class Viewer extends Component {
         },
       ],
     };
+
+   
     /**
      * Replay mode
      */
@@ -312,15 +325,18 @@ export default class Viewer extends Component {
      */
     return (
       <View style={styles.container}>
-        <Home navigation={this.props.navigation}/>
+        <Home navigation={this.navigation}/>
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+        <Draggable disabled={!this.state.dragging}>
           <Animated.View
             style={[{ width, height: videoHeight }, videoStyles]}
             {...this._panResponder.panHandlers}
           >
         {this.renderNodePlayerView()}
-        {this.renderChatGroup()}
-        {this.renderListMessages()}
+        <View style={styles.onScreen}>
+        {this.renderChatGroup(this.state.dragging)}
+        {this.renderListMessages(this.state.dragging)}
+        </View>
         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
           <Image
             style={styles.icoClose}
@@ -330,9 +346,11 @@ export default class Viewer extends Component {
         </TouchableOpacity>
         <FloatingHearts count={countHeart} />
         </Animated.View>
+        </Draggable>
         </View>
       </View>
     );
+    
   }
 }
 
@@ -351,3 +369,5 @@ Viewer.defaultProps = {
   //여기 props 넘어가는거 확인 
   route: {},
 };
+
+AppRegistry.registerComponent("Viewer", () => Viewer);
