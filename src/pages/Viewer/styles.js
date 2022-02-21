@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     right: 15,
-    zIndex: 100
+    zIndex: 100,
   },
   btnCompare: {
     position: 'absolute',
@@ -164,24 +164,24 @@ const styles = StyleSheet.create({
   },
   imageProps: { resizeMode: 'contain' },
   roomName: {
-    position : 'absolute',
-	  top : 20,
-	  left: 20,
+    position: 'absolute',
+    top: 20,
+    left: 20,
     color: 'white',
     fontSize: 20,
   },
   countViewer: {
-    position : 'absolute',
-	  top : 60,
-	  left: 55,
+    position: 'absolute',
+    top: 60,
+    left: 55,
     color: 'white',
     fontSize: 15,
   },
   viewerIcon: {
-    position : 'absolute',
-	  top : 62,
-	  left: 20,
-  }
+    position: 'absolute',
+    top: 62,
+    left: 20,
+  },
 });
 
 export default styles;

@@ -50,14 +50,15 @@ export default class Viewer extends Component {
       requestOptions: {},
       isVisibleFooter: true,
       audioStatus: true,
-      audioIcon: require('../../assets/ico_soundon.png')
+      audioIcon: require('../../assets/ico_soundon.png'),
     };
     this.roomName = roomName;
     this.userName = userName;
     this.goodsUrl = goodsUrl;
     this.liveStatus = liveStatus;
     this.timeout = null;
-    this.getPreview(goodsUrl, this.state.requestOptions);
+    const { requestOptions } = this.state;
+    this.getPreview(goodsUrl, requestOptions);
     this.countViewer = countViewer;
   }
 
@@ -207,7 +208,8 @@ export default class Viewer extends Component {
     // const { goodsUrl } = this.goodsUrl;
     const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
     const { isVisibleFooter } = this.state;
-    if (isVisibleFooter)
+    if (isVisibleFooter) {
+      console.log(this.goodsUrl);
       return (
         <BannerButton
           isUri={isUri}
@@ -218,28 +220,31 @@ export default class Viewer extends Component {
           linkDesc={linkDesc}
         />
       );
+    }
   };
 
   onPressVisible = () => {
     const { isVisibleFooter } = this.state;
     this.setState(() => ({ isVisibleFooter: !isVisibleFooter }));
   };
+
   onPressCompare = () => {
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Comparison')
+    navigate('Comparison');
   };
 
   onPressSound = () => {
-    if (this.state.audioStatus) {
+    const { audioStatus } = this.state;
+    if (audioStatus) {
       this.state.audioStatus = false;
-      this.setState({ audioIcon: require('../../assets/ico_soundoff.png')} );
+      this.setState({ audioIcon: require('../../assets/ico_soundoff.png') });
     } else {
       this.state.audioStatus = true;
-      this.setState({ audioIcon: require('../../assets/ico_soundon.png')} );
+      this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
-  }
+  };
 
   renderBackgroundColors = () => {
     const backgroundColor = this.Animation.interpolate({
@@ -259,6 +264,7 @@ export default class Viewer extends Component {
   };
 
   renderNodePlayerView = () => {
+    const { audioStatus } = this.state;
     const { inputUrl } = this.state;
     if (!inputUrl) return null;
     return (
@@ -271,7 +277,7 @@ export default class Viewer extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
-        audioEnable={this.state.audioStatus}
+        audioEnable={audioStatus}
         autoplay
       />
     );
@@ -296,8 +302,8 @@ export default class Viewer extends Component {
 
   render() {
     const { countHeart } = this.state;
-    const { roomName } = this.props;
     const { isVisibleFooter } = this.state;
+    const { audioIcon } = this.state;
     /**
      * Replay mode
      */
@@ -323,25 +329,26 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        {this.renderBackgroundColors()}
+        {/* {this.renderBackgroundColors()} */}
         {this.renderNodePlayerView()}
-        <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-          <Image
-            source={require('../../assets/ico_goback.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
-          <Image
-              source={require('../../assets/compare-icon.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
-          <Image
-              source={this.state.audioIcon}
-          />
-        </TouchableOpacity>
         <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
           <View style={styles.footerBar}>
+            {isVisibleFooter && (
+              <View>
+                <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+                  <Image source={require('../../assets/ico_goback.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+                  <Image source={require('../../assets/compare-icon.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+                  <Image source={audioIcon} />
+                </TouchableOpacity>
+                <Text style={styles.roomName}>{this.roomName}</Text>
+                <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+                <Text style={styles.countViewer}>{this.countViewer}</Text>
+              </View>
+            )}
             <View style={styles.head}>
               {this.onPressLinkButton()}
               {this.renderListMessages()}
@@ -349,9 +356,6 @@ export default class Viewer extends Component {
             {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}
           </View>
         </TouchableWithoutFeedback>
-        <Text style={styles.roomName}>{this.roomName}</Text>
-        <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
-        <Text style={styles.countViewer}>{this.countViewer}</Text>
         <FloatingHearts count={countHeart} />
       </SafeAreaView>
     );
@@ -366,7 +370,6 @@ Viewer.propTypes = {
   }),
   onLoad: PropTypes.func,
   onError: PropTypes.func,
-  roomName: PropTypes.string,
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
   }),
@@ -378,7 +381,6 @@ Viewer.defaultProps = {
   onError: () => {},
   // goodsUrl: null,
   requestOptions: {},
-  roomName: '',
   navigation: {
     goBack: () => null,
   },
