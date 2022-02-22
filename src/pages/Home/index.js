@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, FlatList } from 'react-native';
+import { StatusBar } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
 import StreamLive from '../Stream/StreamLive';
@@ -52,6 +52,7 @@ class Home extends React.Component {
     const { listLiveStream } = this.state;
     return (
       <>
+        <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <Header userName={userName} />
         {/* <Tab.Navigator
           tabBarOptions={{
@@ -74,9 +75,11 @@ class Home extends React.Component {
         >
           <Tab.Screen
             name="StreamLive"
-            component={StreamLive}
+            // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
-          />
+          >
+            {() => <StreamLive {...this.props} />}
+          </Tab.Screen>
           {/* <Tab.Screen
             name="UpcomLive"
             component={Empty}

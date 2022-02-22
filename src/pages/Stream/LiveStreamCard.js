@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import { LIVE_STATUS } from '../../utils/constants';
+import Theme from '../Theme/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
-    height: 150,
+    height: 200,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
     padding: 5,
     margin: 5,
     borderRadius: 8,
@@ -37,18 +38,22 @@ const styles = StyleSheet.create({
   streamInfo: {
     width: '100%',
     height: 50,
-    flexDirection: 'row',
-    backgroundColor: 'gray',
+    // flexDirection: 'row',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     padding: 5,
     margin: 5,
     borderRadius: 8,
   },
-  roomName: {
-    width: '80%',
-    height: 30,
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 15,
+  
+  priceTag: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: Theme.color.PrettyRed,
+  },
+  roomNameTag: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: 'gray',
   },
   liveStatus: {
     fontSize: 20,
@@ -58,6 +63,32 @@ const styles = StyleSheet.create({
   statusIcon: {
     width: 30,
     height: 30,
+  },
+  viewerIcon: {
+    width: 15,
+    height: 10,
+    left: 0,
+    marginRight: 5,
+  },
+  viewerContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    width: 45,
+    borderRadius: 16,
+    padding: 5,
+  },
+  streamerContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 10,
+    padding: 5,
+    marginTop:105,
+  },
+  streamerName: {
+    width: '80%',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   onLiveIcon: {
     width: 50,
@@ -74,6 +105,9 @@ const LiveStreamCard = ({ data, onPress }) => {
   const roomName = get(data, 'roomName', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   let statusIcon = null;
+  const viewerIcon = (
+    <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+  );
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
@@ -101,12 +135,25 @@ const LiveStreamCard = ({ data, onPress }) => {
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
           {statusIcon}
+          <View style={styles.viewerContainer}>
+            {viewerIcon}
+            <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>1</Text>
+          </View>
+          <View style={styles.streamerContainer}>
+            
+        <Text style={styles.streamerName} numberOfLines={1}>
+          판매자 : {roomName}
+        </Text>
+        </View>
         </ImageBackground>
       </TouchableOpacity>
 
       <View style={styles.streamInfo}>
-        <Text style={styles.roomName} numberOfLines={1}>
-          스트리머 : {roomName}
+        <Text style={styles.roomNameTag} numberOfLines={1}>
+          방제목 : 슈퍼슈퍼 운동화 팔아요
+        </Text>
+        <Text style={styles.priceTag} numberOfLines={1}>
+          Price :  1,000 원
         </Text>
       </View>
     </View>
