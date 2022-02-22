@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.livestreamexample"
+3    package="com.superlivecommerce"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -40,7 +40,7 @@
 22
 23    <application
 23-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:13:5-45:19
-24        android:name="com.livestreamexample.MainApplication"
+24        android:name="com.superlivecommerce.MainApplication"
 24-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:14:7-38
 25        android:allowBackup="false"
 25-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:18:7-34
@@ -59,7 +59,7 @@
 32-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\debug\AndroidManifest.xml:7:18-53
 33        <activity
 33-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:21:9-29:20
-34            android:name="com.livestreamexample.SplashActivity"
+34            android:name="com.superlivecommerce.SplashActivity"
 34-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:22:11-41
 35            android:label="@string/app_name"
 35-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:24:11-43
@@ -78,7 +78,7 @@
 42        </activity>
 43        <activity
 43-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:31:7-43:18
-44            android:name="com.livestreamexample.MainActivity"
+44            android:name="com.superlivecommerce.MainActivity"
 44-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:32:9-37
 45            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
 45-->C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:34:9-86

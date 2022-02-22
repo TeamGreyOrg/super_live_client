@@ -38,8 +38,8 @@ class Login extends React.Component {
         <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <View style={styles.container}>
           <Image
-            source={require('../../assets/ico_logo.png')}
-            style={{ width: 200, height: 100, marginLeft: 30 }}
+            source={require('../../assets/splash_icon.png')}
+            style={{ width: 200, height: 130, marginLeft: 10 }}
           />
           <Text style={styles.text}>WELCOME{'\n'}ON AIR SUPER LIVE</Text>
           <TextInput

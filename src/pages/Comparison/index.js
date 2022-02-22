@@ -45,7 +45,7 @@ class Comparison extends React.Component {
     if (this.state.orientation === 'portrait') {
       return (
         <View style={styles.container}>
-          <ImageBackground source={require('../../assets/com_back_2.gif')} style={{ flex: 1 }}>
+          <ImageBackground source={require('../../assets/com_back_5.gif')} style={{ flex: 1 }}>
             <Image
               source={require('../../assets/ico_logo.png')}
               style={{ width: 62, height: 36, margin: 10, position: 'absolute' }}
@@ -83,21 +83,27 @@ class Comparison extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+        <ImageBackground source={require('../../assets/com_back.gif')} style={{ flex: 1 }}>
           <Image
-            style={styles.icoClose}
-            source={require('../../assets/ico_goback.png')}
-            tintColor="white"
+            source={require('../../assets/ico_logo.png')}
+            style={{ width: 62, height: 36, margin: 10, position: 'absolute' }}
           />
-        </TouchableOpacity>
-        <View style={styles.streamContainer}>
-          <View style={styles.streamOneLandscape}>
-            <Text style={styles.title}>Current livestream</Text>
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            <Image
+              style={styles.icoClose}
+              source={require('../../assets/ico_goback.png')}
+              tintColor="white"
+            />
+          </TouchableOpacity>
+          <View style={styles.streamContainer}>
+            <View style={styles.streamOneLandscape}>
+              <Text style={styles.title}>Current livestream</Text>
+            </View>
+            <View style={styles.streamTwoLandscape}>
+              <Text style={styles.title}>Drag livestream here</Text>
+            </View>
           </View>
-          <View style={styles.streamTwoLandscape}>
-            <Text style={styles.title}>Drag livestream here</Text>
-          </View>
-        </View>
+        </ImageBackground>
       </View>
     );
   }

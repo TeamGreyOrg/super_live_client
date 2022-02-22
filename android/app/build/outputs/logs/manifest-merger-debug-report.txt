@@ -168,7 +168,7 @@ MERGED from [com.facebook.soloader:annotation:0.8.2] C:\Users\1\.gradle\caches\t
 	android:name
 		ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:14:7-38
 		ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:14:7-38
-activity#com.livestreamexample.SplashActivity
+activity#com.superlivecommerce.SplashActivity
 ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:21:9-29:20
 	android:label
 		ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:24:11-43
@@ -186,7 +186,7 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:15-75
 	android:name
 		ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:27:25-72
-activity#com.livestreamexample.MainActivity
+activity#com.superlivecommerce.MainActivity
 ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:31:7-43:18
 	android:label
 		ADDED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\main\AndroidManifest.xml:33:9-41

@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   title: {
@@ -10,11 +13,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
   },
   streamContainer: {
     flexDirection: 'row',
-    width:'100%',
+    width: '100%',
     marginTop: 60,
     marginRight: 20,
     justifyContent: 'space-between',
@@ -22,30 +25,30 @@ const styles = StyleSheet.create({
   },
   streamOnePortrait: {
     marginLeft: 15,
-    width: 170,
+    width: '43%',
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamTwoPortrait: {
-    marginRight: 15,
-    width: 170,
+    marginLeft: 15,
+    width: '43%',
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamOneLandscape: {
-    marginLeft: 50,
-    marginRight: 80,
-    width: 250,
-    height: 300,
-    // backgroundColor: 'black',
+    marginLeft: 20,
+    width: '45%',
+    height: windowHeight * 0.73,
+    backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamTwoLandscape: {
-    width: 250,
-    height: 300,
-    // backgroundColor: 'black',
+    marginRight: 30,
+    width: '45%',
+    height: windowHeight * 0.73,
+    backgroundColor: 'gray',
     borderRadius: 10,
   },
   header: {
@@ -63,11 +66,11 @@ const styles = StyleSheet.create({
   },
   cardsContainer: {
     flex: 1,
-    flexDirection:'row',
+    flexDirection: 'row',
     marginTop: 20,
     marginLeft: 20,
-    marginRight: 20,
     position: 'absolute',
+    marginRight: 20,
     height: 1000,
     zIndex: 100,
     // backgroundColor:'white',
