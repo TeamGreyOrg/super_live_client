@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert, ImageBackground,Image } from 'react-native';
 import styles from './styles';
 
 class Login extends React.Component {
@@ -25,19 +25,26 @@ class Login extends React.Component {
   render() {
     const { userName } = this.state;
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          placeholder="Please type any name"
-          placeholderTextColor="gray"
-          value={userName}
-          onChangeText={this.onChangeUserName}
-          autoCorrect={false}
-        />
-        <TouchableOpacity style={styles.loginBtn} onPress={this.onPressLogin}>
-          <Text style={styles.textButton}>Login</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground source={require('../../assets/login_bg.png')} style={styles.bgimage}>
+        <View style={styles.container}>
+          <Image
+            source={require('../../assets/ico_logo.png')}
+            style={{ width: 200, height: 100, marginLeft: 30}}
+          />
+          <Text style={styles.text}>WELCOME{'\n'}ON AIR SUPER LIVE</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Please type any name"
+            placeholderTextColor="gray"
+            value={userName}
+            onChangeText={this.onChangeUserName}
+            autoCorrect={false}
+          />
+          <TouchableOpacity style={styles.loginBtn} onPress={this.onPressLogin}>
+            <Text style={styles.textButton}>Login</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }

@@ -12,6 +12,13 @@ import {
 import KeyboardAccessory from 'react-native-sticky-keyboard-accessory';
 import styles from './styles';
 
+const imgArray = [
+  '../../assets/ico_heart.png',
+  '../../assets/ico_live.png',
+  '../../assets/ico_cancel.png',
+];
+const getRandomNumber = (min, max) => Math.random() * (max - min) + min;
+
 export default class ChatInputGroup extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +37,7 @@ export default class ChatInputGroup extends Component {
 
   onPressHeart = () => {
     const { onPressHeart } = this.props;
+    // console.log(imgArray[0]);
     onPressHeart();
   };
 

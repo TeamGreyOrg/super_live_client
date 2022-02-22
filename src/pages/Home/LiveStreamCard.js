@@ -1,25 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  View,
+  Dimensions,
+  ImageBackground,
+} from 'react-native';
 import get from 'lodash/get';
 import { LIVE_STATUS } from '../../utils/constants';
-import { sample } from 'lodash';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  card: {
-    flex: 1,
+  cardContainer: {
+    justifyContent: 'center',
+    width: SCREEN_WIDTH / 2,
+    height: '50%',
     flexDirection: 'row',
     backgroundColor: 'white',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 15,
-    paddingHorizontal: 25,
+    padding: 5,
+    flexWrap: 'wrap',
+  },
+  card: {
+    width: '100%',
+    height: 150,
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    padding: 5,
+    margin: 5,
     borderRadius: 8,
-    marginBottom: 15,
+    flexWrap: 'wrap',
+  },
+  streamInfo: {
+    width: '100%',
+    height: 30,
+    flexDirection: 'row',
+    backgroundColor: 'gray',
+    padding: 5,
+    margin: 5,
+    borderRadius: 8,
   },
   roomName: {
+    width: '80%',
+    height: 30,
+    color: 'white',
     fontWeight: '600',
-    fontSize: 22,
+    fontSize: 15,
   },
   liveStatus: {
     fontSize: 20,
@@ -27,33 +56,23 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   statusIcon: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
   },
   onLiveIcon: {
-    width: 100,
-    height: 64,
+    width: 50,
+    height: 32,
+  },
+  bgimage: {
+    width: '100%',
+    height: '100%',
   },
 });
 
 const LiveStreamCard = ({ data, onPress }) => {
+  // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
-  const roomImageName = get(data, 'roomImage', '');
-
-  let roomImage = null;
-  switch (roomImageName) {
-    case 'sample1.png':
-      roomImage = (
-        <Image source={require(`../../assets/sample1.png`)} />
-      );
-      break;
-    case 'sample2.png':
-      roomImage = (
-        <Image source={require(`../../assets/sample2.png`)} />
-      )
-  }
-
   let statusIcon = null;
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
@@ -66,11 +85,11 @@ const LiveStreamCard = ({ data, onPress }) => {
         <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
       break;
-    case LIVE_STATUS.FINISH:
-      statusIcon = (
-        <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
-      );
-      break;
+    // case LIVE_STATUS.FINISH:
+    //   statusIcon = (
+    //     <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
+    //   );
+    //   break;
     default:
       statusIcon = (
         <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
@@ -78,11 +97,19 @@ const LiveStreamCard = ({ data, onPress }) => {
       break;
   }
   return (
-    <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-      <Text style={styles.roomName}>Streamer by: {roomName}</Text>
-      {statusIcon}
-      {/* {roomImage} */}
-    </TouchableOpacity>
+    <View style={styles.cardContainer}>
+      <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
+        <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
+          {statusIcon}
+        </ImageBackground>
+      </TouchableOpacity>
+
+      <View style={styles.streamInfo}>
+        <Text style={styles.roomName} numberOfLines={1}>
+          스트리머 : {roomName}
+        </Text>
+      </View>
+    </View>
   );
 };
 
