@@ -109,20 +109,21 @@ export default class Streamer extends React.Component {
   onPressLiveStreamButton = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
+    const userName = get(route, 'params.roomName', '');
     const { currentLiveStatus } = this.state;
     if (Number(currentLiveStatus) === Number(LIVE_STATUS.PREPARE)) {
       /**
        * Waiting live stream
        */
-      SocketManager.instance.emitBeginLiveStream({ userName, roomName: userName });
-      SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
+      SocketManager.instance.emitBeginLiveStream({ userName, roomName });
+      SocketManager.instance.emitJoinRoom({ userName, roomName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();  
       NavigationContext;    
     } else if (Number(currentLiveStatus) === Number(LIVE_STATUS.ON_LIVE)) {
       /**
        * Finish live stream
        */
-      SocketManager.instance.emitFinishLiveStream({ userName, roomName: userName });
+      SocketManager.instance.emitFinishLiveStream({ userName, roomName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.stop();
       Alert.alert(
         'Alert ',
@@ -132,7 +133,7 @@ export default class Streamer extends React.Component {
             text: 'Okay',
             onPress: () => {
               navigation.pop(2);
-              SocketManager.instance.emitLeaveRoom({ userName, roomName: userName });
+              SocketManager.instance.emitLeaveRoom({ userName, roomName });
             },
           },
         ],
