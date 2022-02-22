@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.livestreamexample"
+    package="com.superlivecommerce"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="com.livestreamexample.MainApplication"
+        android:name="com.superlivecommerce.MainApplication"
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.livestreamexample.SplashActivity"
+            android:name="com.superlivecommerce.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme" >
             <intent-filter>
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.livestreamexample.MainActivity"
+            android:name="com.superlivecommerce.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:exported="true"
             android:label="@string/app_name"

@@ -147,8 +147,8 @@ com/facebook/flipper/plugins/fresco/R.java
  com.facebook.flipper.plugins.fresco.R$style
  com.facebook.flipper.plugins.fresco.R$styleable
 com/livestreamexample/MainApplication.java
- com.livestreamexample.MainApplication
- com.livestreamexample.MainApplication$1
+ com.superlivecommerce.MainApplication
+ com.superlivecommerce.MainApplication$1
 androidx/interpolator/R.java
  androidx.interpolator.R
 androidx/core/R.java
@@ -163,8 +163,6 @@ androidx/core/R.java
  androidx.core.R$string
  androidx.core.R$style
  androidx.core.R$styleable
-com/livestreamexample/BuildConfig.java
- com.livestreamexample.BuildConfig
 androidx/activity/R.java
  androidx.activity.R
  androidx.activity.R$attr
@@ -215,6 +213,25 @@ androidx/drawerlayout/R.java
  androidx.drawerlayout.R$string
  androidx.drawerlayout.R$style
  androidx.drawerlayout.R$styleable
+com/superlivecommerce/R.java
+ com.superlivecommerce.R
+ com.superlivecommerce.R$anim
+ com.superlivecommerce.R$animator
+ com.superlivecommerce.R$attr
+ com.superlivecommerce.R$bool
+ com.superlivecommerce.R$color
+ com.superlivecommerce.R$dimen
+ com.superlivecommerce.R$drawable
+ com.superlivecommerce.R$id
+ com.superlivecommerce.R$integer
+ com.superlivecommerce.R$interpolator
+ com.superlivecommerce.R$layout
+ com.superlivecommerce.R$mipmap
+ com.superlivecommerce.R$plurals
+ com.superlivecommerce.R$string
+ com.superlivecommerce.R$style
+ com.superlivecommerce.R$styleable
+ com.superlivecommerce.R$xml
 androidx/versionedparcelable/R.java
  androidx.versionedparcelable.R
 com/facebook/soloader/R.java
@@ -224,7 +241,7 @@ com/facebook/imagepipeline/backends/okhttp3/R.java
 androidx/lifecycle/viewmodel/R.java
  androidx.lifecycle.viewmodel.R
 com/livestreamexample/MainActivity.java
- com.livestreamexample.MainActivity
+ com.superlivecommerce.MainActivity
 com/bumptech/glide/R.java
  com.bumptech.glide.R
  com.bumptech.glide.R$attr
@@ -267,10 +284,10 @@ androidx/cardview/R.java
  androidx.cardview.R$style
  androidx.cardview.R$styleable
 com/livestreamexample/ReactNativeFlipper.java
- com.livestreamexample.ReactNativeFlipper
- com.livestreamexample.ReactNativeFlipper$1
- com.livestreamexample.ReactNativeFlipper$2
- com.livestreamexample.ReactNativeFlipper$2$1
+ com.superlivecommerce.ReactNativeFlipper
+ com.superlivecommerce.ReactNativeFlipper$1
+ com.superlivecommerce.ReactNativeFlipper$2
+ com.superlivecommerce.ReactNativeFlipper$2$1
 androidx/swiperefreshlayout/R.java
  androidx.swiperefreshlayout.R
  androidx.swiperefreshlayout.R$attr
@@ -488,27 +505,10 @@ androidx/viewpager/R.java
  androidx.viewpager.R$string
  androidx.viewpager.R$style
  androidx.viewpager.R$styleable
-com/livestreamexample/R.java
- com.livestreamexample.R
- com.livestreamexample.R$anim
- com.livestreamexample.R$animator
- com.livestreamexample.R$attr
- com.livestreamexample.R$bool
- com.livestreamexample.R$color
- com.livestreamexample.R$dimen
- com.livestreamexample.R$drawable
- com.livestreamexample.R$id
- com.livestreamexample.R$integer
- com.livestreamexample.R$interpolator
- com.livestreamexample.R$layout
- com.livestreamexample.R$mipmap
- com.livestreamexample.R$plurals
- com.livestreamexample.R$string
- com.livestreamexample.R$style
- com.livestreamexample.R$styleable
- com.livestreamexample.R$xml
 com/livestreamexample/SplashActivity.java
- com.livestreamexample.SplashActivity
+ com.superlivecommerce.SplashActivity
+com/superlivecommerce/BuildConfig.java
+ com.superlivecommerce.BuildConfig
 androidx/lifecycle/viewmodel/savedstate/R.java
  androidx.lifecycle.viewmodel.savedstate.R
 com/swmansion/gesturehandler/react/R.java

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "LiveStreamExample.app"
-               BlueprintName = "LiveStreamExample"
-               ReferencedContainer = "container:LiveStreamExample.xcodeproj">
+               BuildableName = "superlivecommerce.app"
+               BlueprintName = "superlivecommerce"
+               ReferencedContainer = "container:superlivecommerce.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "LiveStreamExampleTests.xctest"
-               BlueprintName = "LiveStreamExampleTests"
-               ReferencedContainer = "container:LiveStreamExample.xcodeproj">
+               BuildableName = "superlivecommerceTests.xctest"
+               BlueprintName = "superlivecommerceTests"
+               ReferencedContainer = "container:superlivecommerce.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "LiveStreamExample.app"
-            BlueprintName = "LiveStreamExample"
-            ReferencedContainer = "container:LiveStreamExample.xcodeproj">
+            BuildableName = "superlivecommerce.app"
+            BlueprintName = "superlivecommerce"
+            ReferencedContainer = "container:superlivecommerce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "LiveStreamExample.app"
-            BlueprintName = "LiveStreamExample"
-            ReferencedContainer = "container:LiveStreamExample.xcodeproj">
+            BuildableName = "superlivecommerce.app"
+            BlueprintName = "superlivecommerce"
+            ReferencedContainer = "container:superlivecommerce.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,4 +1,4 @@
-package com.livestreamexample;
+package com.superlivecommerce;
 import android.os.Bundle; // 추가!!
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;// 추가!!
@@ -11,7 +11,7 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected String getMainComponentName() {
-    return "LiveStreamExample";
+    return "superlivecommerce";
   }
 
   @Override

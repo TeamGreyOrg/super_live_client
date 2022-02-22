@@ -141,9 +141,9 @@ export default class Streamer extends React.Component {
       const granted = await PermissionsAndroid.requestMultiple(
         [PermissionsAndroid.PERMISSIONS.CAMERA, PermissionsAndroid.PERMISSIONS.RECORD_AUDIO],
         {
-          title: 'LiveStreamExample need Camera And Microphone Permission',
+          title: 'superlivecommerce need Camera And Microphone Permission',
           message:
-            'LiveStreamExample needs access to your camera so you can take awesome pictures.',
+            'superlivecommerce needs access to your camera so you can take awesome pictures.',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',

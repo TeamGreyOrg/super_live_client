@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface LiveStreamExampleTests : XCTestCase
+@interface superlivecommerceTests : XCTestCase
 
 @end
 
-@implementation LiveStreamExampleTests
+@implementation superlivecommerceTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
