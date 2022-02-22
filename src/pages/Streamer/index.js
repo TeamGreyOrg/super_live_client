@@ -101,7 +101,7 @@ export default class Streamer extends React.Component {
   onPressClose = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
-    SocketManager.instance.emitCancelLiveStream({ userName, roomName: userName })
+    SocketManager.instance.emitCancelLiveStream({ userName, roomName: userName });
     navigation.pop(2);
   };
 

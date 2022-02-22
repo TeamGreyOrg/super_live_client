@@ -125,6 +125,9 @@ const LiveStreamCard = ({ data, onPress }) => {
       streamIcon = (
         <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
       );
+      // streamIcon = (
+      //   <Image style={styles.statusIcon} source={require('../../assets/ico_dance.gif')} />
+      // );
       break;
     case LIVE_STATUS.FINISH:
       statusIcon = (
@@ -140,7 +143,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
+        <ImageBackground source={require('../../assets/ico_dance.gif')} style={styles.bgimage}>
           <View style={{ flexDirection: 'row' }}>
             {statusIcon}
             {streamIcon}

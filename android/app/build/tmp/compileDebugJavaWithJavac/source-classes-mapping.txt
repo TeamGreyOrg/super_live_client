@@ -189,6 +189,21 @@ androidx/recyclerview/R.java
  androidx.recyclerview.R$string
  androidx.recyclerview.R$style
  androidx.recyclerview.R$styleable
+com/oblador/vectoricons/R.java
+ com.oblador.vectoricons.R
+ com.oblador.vectoricons.R$anim
+ com.oblador.vectoricons.R$attr
+ com.oblador.vectoricons.R$bool
+ com.oblador.vectoricons.R$color
+ com.oblador.vectoricons.R$dimen
+ com.oblador.vectoricons.R$drawable
+ com.oblador.vectoricons.R$id
+ com.oblador.vectoricons.R$integer
+ com.oblador.vectoricons.R$layout
+ com.oblador.vectoricons.R$string
+ com.oblador.vectoricons.R$style
+ com.oblador.vectoricons.R$styleable
+ com.oblador.vectoricons.R$xml
 cn/nodemedia/R.java
  cn.nodemedia.R
  cn.nodemedia.R$anim
@@ -223,8 +238,18 @@ com/facebook/imagepipeline/backends/okhttp3/R.java
  com.facebook.imagepipeline.backends.okhttp3.R
 androidx/lifecycle/viewmodel/R.java
  androidx.lifecycle.viewmodel.R
-com/livestreamexample/MainActivity.java
- com.livestreamexample.MainActivity
+androidx/vectordrawable/animated/R.java
+ androidx.vectordrawable.animated.R
+ androidx.vectordrawable.animated.R$attr
+ androidx.vectordrawable.animated.R$color
+ androidx.vectordrawable.animated.R$dimen
+ androidx.vectordrawable.animated.R$drawable
+ androidx.vectordrawable.animated.R$id
+ androidx.vectordrawable.animated.R$integer
+ androidx.vectordrawable.animated.R$layout
+ androidx.vectordrawable.animated.R$string
+ androidx.vectordrawable.animated.R$style
+ androidx.vectordrawable.animated.R$styleable
 com/bumptech/glide/R.java
  com.bumptech.glide.R
  com.bumptech.glide.R$attr
@@ -529,8 +554,18 @@ com/livestreamexample/R.java
  com.livestreamexample.R$style
  com.livestreamexample.R$styleable
  com.livestreamexample.R$xml
-com/livestreamexample/SplashActivity.java
- com.livestreamexample.SplashActivity
+androidx/viewpager2/R.java
+ androidx.viewpager2.R
+ androidx.viewpager2.R$attr
+ androidx.viewpager2.R$color
+ androidx.viewpager2.R$dimen
+ androidx.viewpager2.R$drawable
+ androidx.viewpager2.R$id
+ androidx.viewpager2.R$integer
+ androidx.viewpager2.R$layout
+ androidx.viewpager2.R$string
+ androidx.viewpager2.R$style
+ androidx.viewpager2.R$styleable
 androidx/lifecycle/viewmodel/savedstate/R.java
  androidx.lifecycle.viewmodel.savedstate.R
 com/swmansion/gesturehandler/react/R.java
@@ -548,27 +583,7 @@ com/swmansion/gesturehandler/react/R.java
  com.swmansion.gesturehandler.react.R$style
  com.swmansion.gesturehandler.react.R$styleable
  com.swmansion.gesturehandler.react.R$xml
-androidx/vectordrawable/animated/R.java
- androidx.vectordrawable.animated.R
- androidx.vectordrawable.animated.R$attr
- androidx.vectordrawable.animated.R$color
- androidx.vectordrawable.animated.R$dimen
- androidx.vectordrawable.animated.R$drawable
- androidx.vectordrawable.animated.R$id
- androidx.vectordrawable.animated.R$integer
- androidx.vectordrawable.animated.R$layout
- androidx.vectordrawable.animated.R$string
- androidx.vectordrawable.animated.R$style
- androidx.vectordrawable.animated.R$styleable
-androidx/viewpager2/R.java
- androidx.viewpager2.R
- androidx.viewpager2.R$attr
- androidx.viewpager2.R$color
- androidx.viewpager2.R$dimen
- androidx.viewpager2.R$drawable
- androidx.viewpager2.R$id
- androidx.viewpager2.R$integer
- androidx.viewpager2.R$layout
- androidx.viewpager2.R$string
- androidx.viewpager2.R$style
- androidx.viewpager2.R$styleable
+com/livestreamexample/SplashActivity.java
+ com.livestreamexample.SplashActivity
+com/livestreamexample/MainActivity.java
+ com.livestreamexample.MainActivity
