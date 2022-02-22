@@ -24,20 +24,18 @@ export default class Streamer extends React.Component {
   constructor(props) {
     super(props);
     const { route } = props;
-    const roomName = get(route, 'params.roomName');
     const userName = get(route, 'params.userName', '');
-    const enteredRoomName = get(route, 'params.enteredRoomName');
-    const enteredProductLink = get(route, 'params.enteredProductLink');
+    const roomName = get(route, 'params.roomName');
+    const productLink = get(route, 'params.productLink');
     this.state = {
       currentLiveStatus: LIVE_STATUS.PREPARE,
       messages: [],
       countHeart: 0,
       isVisibleMessages: true,
     };
-    this.roomName = roomName;
     this.userName = userName;
-    this.enteredRoomName = enteredRoomName;
-    this.enteredProductLink = enteredProductLink;
+    this.roomName = roomName;
+    this.productLink = productLink;
   }
 
   componentDidMount() {
@@ -45,8 +43,7 @@ export default class Streamer extends React.Component {
     SocketManager.instance.emitPrepareLiveStream({
       userName: this.userName,
       roomName: this.roomName,
-      enteredRoomName: this.enteredRoomName,
-      enteredProductLink: this.enteredProductLink,
+      productLink: this.productLink,
     });
     SocketManager.instance.emitJoinRoom({
       userName: this.userName,
@@ -71,10 +68,10 @@ export default class Streamer extends React.Component {
 
   componentWillUnmount() {
     if (this.nodeCameraViewRef) this.nodeCameraViewRef.stop();
-    SocketManager.instance.emitLeaveRoom({
-      userName: this.userName,
-      roomName: this.roomName,
-    });
+    // SocketManager.instance.emitLeaveRoom({
+    //   userName: this.userName,
+    //   roomName: this.roomName,
+    // });
   }
 
   onPressHeart = () => {
@@ -101,7 +98,7 @@ export default class Streamer extends React.Component {
   onPressClose = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
-    SocketManager.instance.emitCancelLiveStream({ userName, roomName: userName })
+    SocketManager.instance.emitCancelLiveStream({ userName: userName, roomName: this.roomName })
     navigation.pop(2);
   };
 
@@ -113,14 +110,14 @@ export default class Streamer extends React.Component {
       /**
        * Waiting live stream
        */
-      SocketManager.instance.emitBeginLiveStream({ userName, roomName: userName });
-      SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
+      SocketManager.instance.emitBeginLiveStream({ userName: userName, roomName: this.roomName });
+      // SocketManager.instance.emitJoinRoom({ userName: userName, roomName: this.roomName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();
     } else if (Number(currentLiveStatus) === Number(LIVE_STATUS.ON_LIVE)) {
       /**
        * Finish live stream
        */
-      SocketManager.instance.emitFinishLiveStream({ userName, roomName: userName });
+      SocketManager.instance.emitFinishLiveStream({ userName: userName, roomName: this.roomName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.stop();
       Alert.alert(
         'Alert ',
@@ -130,7 +127,7 @@ export default class Streamer extends React.Component {
             text: 'Okay',
             onPress: () => {
               navigation.pop(2);
-              SocketManager.instance.emitLeaveRoom({ userName, roomName: userName });
+              SocketManager.instance.emitLeaveRoom({ userName: userName, roomName: this.roomName });
             },
           },
         ],

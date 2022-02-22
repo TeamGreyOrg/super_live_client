@@ -12,6 +12,7 @@ const EVENT_SEND_MESSAGE = 'send-message';
 const EVENT_PREPARE_LIVE_STREAM = 'prepare-live-stream';
 const EVENT_SEND_REPLAY = 'replay';
 const EVENT_CANCEL_LIVE_STREAM = 'cancel-live-stream';
+const EVENT_UPDATE_VIEWER_COUNT = 'update-viewer-count';
 
 class SocketManager {
   socket = null;
@@ -97,14 +98,21 @@ class SocketManager {
     });
   }
 
+  listenUpdateViewerCount(callback = () => null) {
+    this.socket.on(EVENT_UPDATE_VIEWER_COUNT, (data) => {
+      Logger.instance.log(`${EVENT_UPDATE_VIEWER_COUNT} :`, data);
+      return callback(data);
+    })
+  }
+
   //
   // ──────────────────────────────────────────────────────────── I ──────────
   //   :::::: E M I T   E V E N T : :  :   :    :     :        :          :
   // ──────────────────────────────────────────────────────────────────────
   //
 
-  emitPrepareLiveStream({ userName, roomName, enteredRoomName, enteredProductLink }) {
-    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, enteredRoomName, enteredProductLink });
+  emitPrepareLiveStream({ userName, roomName, productLink }) {
+    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, productLink });
   }
 
   emitJoinRoom({ userName, roomName }) {
