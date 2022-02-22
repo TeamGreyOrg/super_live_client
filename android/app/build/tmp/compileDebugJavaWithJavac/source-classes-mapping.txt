@@ -257,6 +257,11 @@ com/swmansion/rnscreens/R.java
  com.swmansion.rnscreens.R$style
  com.swmansion.rnscreens.R$styleable
  com.swmansion.rnscreens.R$xml
+com/facebook/animated/gif/R.java
+ com.facebook.animated.gif.R
+ com.facebook.animated.gif.R$attr
+ com.facebook.animated.gif.R$id
+ com.facebook.animated.gif.R$styleable
 androidx/cursoradapter/R.java
  androidx.cursoradapter.R
 androidx/cardview/R.java
@@ -324,6 +329,11 @@ com/bumptech/glide/integration/okhttp/R.java
  com.bumptech.glide.integration.okhttp.R$string
  com.bumptech.glide.integration.okhttp.R$style
  com.bumptech.glide.integration.okhttp.R$styleable
+com/facebook/animated/webp/R.java
+ com.facebook.animated.webp.R
+ com.facebook.animated.webp.R$attr
+ com.facebook.animated.webp.R$id
+ com.facebook.animated.webp.R$styleable
 androidx/lifecycle/R.java
  androidx.lifecycle.R
 cn/nodemedia/react_native_nodemediaclient/R.java
@@ -457,8 +467,15 @@ com/facebook/drawee/R.java
  com.facebook.drawee.R$attr
  com.facebook.drawee.R$id
  com.facebook.drawee.R$styleable
+com/facebook/webpsupport/R.java
+ com.facebook.webpsupport.R
 org/webkit/androidjsc/R.java
  org.webkit.androidjsc.R
+com/facebook/imagepipeline/animated/R.java
+ com.facebook.imagepipeline.animated.R
+ com.facebook.imagepipeline.animated.R$attr
+ com.facebook.imagepipeline.animated.R$id
+ com.facebook.imagepipeline.animated.R$styleable
 com/facebook/nativeimagetranscoder/R.java
  com.facebook.nativeimagetranscoder.R
 com/dylanvann/fastimage/R.java
@@ -476,6 +493,11 @@ com/dylanvann/fastimage/R.java
  com.dylanvann.fastimage.R$style
  com.dylanvann.fastimage.R$styleable
  com.dylanvann.fastimage.R$xml
+com/facebook/animated/drawable/R.java
+ com.facebook.animated.drawable.R
+ com.facebook.animated.drawable.R$attr
+ com.facebook.animated.drawable.R$id
+ com.facebook.animated.drawable.R$styleable
 androidx/viewpager/R.java
  androidx.viewpager.R
  androidx.viewpager.R$attr

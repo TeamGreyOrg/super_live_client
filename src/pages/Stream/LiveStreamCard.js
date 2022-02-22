@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 8,
   },
-  
+
   priceTag: {
     fontSize: 17,
     fontWeight: 'bold',
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   viewerIcon: {
     width: 15,
-    height: 10,
+    height: 12,
     left: 0,
     marginRight: 5,
   },
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderRadius: 10,
     padding: 5,
-    marginTop:105,
+    marginTop: 105,
   },
   streamerName: {
     width: '80%',
@@ -105,9 +105,13 @@ const LiveStreamCard = ({ data, onPress }) => {
   const roomName = get(data, 'roomName', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   let statusIcon = null;
+  let streamIcon = null;
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
+  // const streamIcon = (
+  //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
+  // );
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
@@ -117,6 +121,9 @@ const LiveStreamCard = ({ data, onPress }) => {
     case LIVE_STATUS.ON_LIVE:
       statusIcon = (
         <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+      );
+      streamIcon = (
+        <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
       );
       break;
     case LIVE_STATUS.FINISH:
@@ -134,17 +141,19 @@ const LiveStreamCard = ({ data, onPress }) => {
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
-          {statusIcon}
+          <View style={{ flexDirection: 'row' }}>
+            {statusIcon}
+            {streamIcon}
+          </View>
           <View style={styles.viewerContainer}>
             {viewerIcon}
             <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>1</Text>
           </View>
           <View style={styles.streamerContainer}>
-            
-        <Text style={styles.streamerName} numberOfLines={1}>
-          판매자 : {roomName}
-        </Text>
-        </View>
+            <Text style={styles.streamerName} numberOfLines={1}>
+              판매자 : {roomName}
+            </Text>
+          </View>
         </ImageBackground>
       </TouchableOpacity>
 
@@ -153,7 +162,7 @@ const LiveStreamCard = ({ data, onPress }) => {
           방제목 : 슈퍼슈퍼 운동화 팔아요
         </Text>
         <Text style={styles.priceTag} numberOfLines={1}>
-          Price :  1,000 원
+          Price : 1,000 원
         </Text>
       </View>
     </View>
