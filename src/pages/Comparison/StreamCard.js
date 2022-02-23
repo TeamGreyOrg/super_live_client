@@ -15,6 +15,7 @@ class NewStreamCard extends Component {
         
         const { data } = props;
         const roomName = get(data, 'roomName');
+		const userName = get(data, 'userName');
 
         this.state = {
             roomName: roomName,
@@ -56,11 +57,13 @@ onLongPressPanResponder() {
 						toValue: 0,
 						duration: 100, 
 						useNativeDriver: true, 
-					}).start(() =>
+					}).start(() => {
 						this.setState({
 							showDraggable: false,
 							display: 'none'
 						})
+					}
+
 					);
 				// If drag to right stream
 				} else if (gesture.moveX >= 250 && gesture.moveX <= 350 && gesture.moveY >= 110 && gesture.moveY <= 280) {
@@ -68,11 +71,14 @@ onLongPressPanResponder() {
 						toValue: 0,
 						duration: 100,
 						useNativeDriver: true,
-					}).start(() =>
+					}).start(() => {
 						this.setState({
 							 showDraggable: false,
 							 display: 'none'
 						})
+						this.props.handler(this.state.roomName);
+					}
+
 					);
 				} else {
 					Animated.spring(this.state.pan, {
@@ -114,6 +120,7 @@ onLongPressPanResponder() {
 	  }
 
     render() {
+		
 		this._val = { x:0, y:0 }
 		this.state.pan.addListener((value) => this._val = value);
 
