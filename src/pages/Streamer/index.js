@@ -106,6 +106,7 @@ export default class Streamer extends React.Component {
   onPressLiveStreamButton = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
+    const userName = get(route, 'params.roomName', '');
     const { currentLiveStatus } = this.state;
     if (Number(currentLiveStatus) === Number(LIVE_STATUS.PREPARE)) {
       /**
