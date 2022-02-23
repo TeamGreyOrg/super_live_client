@@ -1,30 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, useState, useRef } from 'react';
 import {
-  StyleSheet,
-  PanResponder,
-  Animated,
-} from "react-native";
+    Text,
+    StyleSheet,
+    View,
+    PanResponder,
+    Animated,
+} from 'react-native';
+import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 
-export default class StreamCard extends Component {
-  	constructor() {
-    	super();
+class NewStreamCard extends Component {
+    constructor(props) {
+        super(props);
+        
+        const { data } = props;
+        const roomName = get(data, 'roomName');
 
-		this.state = {
-			pan: new Animated.ValueXY(),
+        this.state = {
+            roomName: roomName,
+            pan: new Animated.ValueXY(),
 			showDraggable: true,
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
 			display : 'flex',
 			animation: ''
-		};
+        };
+
 		this.onLongPress = this.onLongPress.bind(this)
 		this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this)
 		this.normalPanResponder = this.normalPanResponder.bind(this)
     	this.longPressTimer = null
-  	}
+    }
 
-	onLongPressPanResponder() {
+onLongPressPanResponder() {
 		return PanResponder.create({
 			onStartShouldSetPanResponder: (e, gesture) => true,
 			onPanResponderGrant: (e, gesture) => {
@@ -35,10 +43,9 @@ export default class StreamCard extends Component {
 				this.state.pan.setValue({ x:0, y:0})
 			},
 			onPanResponderMove: Animated.event([
-					null, 
+					null,
 					{ dx: this.state.pan.x, dy: this.state.pan.y }
 				],
-				{useNativeDriver: true}
 			),
 
 			onPanResponderRelease: (e, gesture) => {
@@ -106,7 +113,7 @@ export default class StreamCard extends Component {
 		})
 	  }
 
-	render() {
+    render() {
 		this._val = { x:0, y:0 }
 		this.state.pan.addListener((value) => this._val = value);
 
@@ -119,27 +126,46 @@ export default class StreamCard extends Component {
 
 		const panStyle = {
 			transform: this.state.pan.getTranslateTransform()
-		}
+		}        
 
-		return (
+        return (
 			<Animatable.View animation={this.state.animation} >
-				<Animated.View
-					{...panHandlers}
-					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
-				/>
+				<Animated.View 					
+                    {...panHandlers}
+					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]
+                    }
+                >
+                <Text style={styles.roomName} >
+                    {this.state.roomName}
+                </Text>
+				</Animated.View>
 			</Animatable.View>
-
-		);
-  	}
+        )
+    }
 }
 
-let styles = StyleSheet.create({
-  	streamCard: {
-		width: 130,
-    	height: 220,
-    	backgroundColor: 'black',
-		borderRadius: 10,
-		marginRight: 15,
-		marginTop: 380,
-  	}
+const styles = StyleSheet.create({
+    cardContainer: {
+        backgroundColor: 'red',
+        height: 100
+    },
+    roomName: {
+        height: 30,
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 15,
+        marginTop: 50,
+        marginLeft: 50,
+        width: 100
+    },
+    streamCard: {
+        width: 130,
+        height: 150,
+        backgroundColor: 'black',
+        borderRadius: 10,
+        marginRight: 15,
+        marginTop: 380,
+    }
 });
+
+export default NewStreamCard;

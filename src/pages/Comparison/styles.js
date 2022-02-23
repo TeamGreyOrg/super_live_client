@@ -75,10 +75,9 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		marginLeft: 20,
 		marginRight: 20,
-    flexDirection: "row",
-    position: 'absolute',
-    height: 1000,
-    zIndex: 100,
+    // position: 'absolute',
+    // bottom: 100,
+    // zIndex: 100,
 	},
   scrollbar: {
     position: 'absolute',
@@ -113,6 +112,14 @@ const styles = StyleSheet.create({
     right: '45%',
     width: 50,
     height: 50
+  },
+  cardText: {
+    color: 'white',
+    fontSize: 30,
+    position: 'absolute',
+    top: 450,
+    left: 50,
+    zIndex: 900
   }
 });
 

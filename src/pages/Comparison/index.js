@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Button, Container, FlatList} from 'react-native';
 import styles from './styles';
 import StreamCard from "./StreamCard";
 import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import get from 'lodash/get';
+import SocketManager from '../../socketManager';
 
 var screenWidth = Dimensions.get('window').width;
 class Comparison extends React.Component {
     constructor(props) {
         super(props);
+
+        const { route } = props;
+        const userName = get(route, 'params.userName', '');
+        const roomName = get(route, 'params.roomName');
 
         const isPortrait = () => {
             const dim = Dimensions.get('screen');
@@ -19,6 +25,9 @@ class Comparison extends React.Component {
             orientation: isPortrait() ? 'portrait' : 'landscape',
             inputUrlFirst: null,
             inputUrlSecond: null,
+            streamOneName: userName,
+            streamTwoName: '',
+            streamCards: [],
         };
 
         Dimensions.addEventListener('change', () => {
@@ -26,17 +35,24 @@ class Comparison extends React.Component {
                 orientation: isPortrait() ? 'portrait' : 'landscape'
             });
         });
-        this.roomName = props.roomName;
-        this.userName = props.userName;
+        this.roomName = roomName;
+        this.userName = userName;
         console.log(props);
-        this.xOffset = 0;
+        // this.xOffset = 0;
+        this.scrollOffset = 0;
     };
 
     componentDidMount() {
+        SocketManager.instance.emitGetStreamCards();
+        SocketManager.instance.listenGetStreamCards((data) => {
+            console.log('data received:', data)
+            this.setState({ streamCards: data });
+        });
+
         this.setState({
-            inputUrlFirst: `${HTTP}/live/1.flv`,
+            inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
             // use HLS from trasporting in media server to Viewer
-            inputUrlSecond: `${HTTP}/live/2.flv`,
+            // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
           });
     }
 
@@ -47,6 +63,7 @@ class Comparison extends React.Component {
       };
 
     renderNodePlayerView = (inputUrl) => {
+        console.log('stream cards:', this.state.streamCards[0]);
         const { audioStatus } = this.props;
         console.log(inputUrl);
         console.log('inRender');
@@ -67,8 +84,15 @@ class Comparison extends React.Component {
         );
       };
 
+    goIndex = () => {
+        this.refs.flatListRef.scrollToIndex({animated: true,index:3});
+    };
+
     render() {
         if (this.state.orientation === 'portrait') {
+
+            const { streamCards } = this.state;
+
             return (
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
@@ -80,22 +104,40 @@ class Comparison extends React.Component {
                             />
                         </TouchableOpacity>
                     </View>
-                    <ScrollView style={styles.cardsContainer}  horizontal= {true} 
+                    {/* <ScrollView style={styles.cardsContainer}  horizontal= {true} 
                                 ref={(node) => this.scroll = node}
                                 onScroll={event => {
                                     this.xOffset = event.nativeEvent.contentOffset.x
                                     // console.log(this.xOffset)
                                   }}
                                 >
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                    </ScrollView>
+                        <View>
+                            <Text style={styles.cardText}>{streamCards.length && streamCards[0].userName}</Text>
+                            <StreamCard />
+                        </View>
+                        <View>
+                            <Text style={styles.cardText}>{streamCards.length && streamCards[1].userName}</Text>
+                            <StreamCard />
+                        </View>
+                        <View>
+                            <Text style={styles.cardText}>{streamCards.length && streamCards[3].userName}</Text>
+                            <StreamCard />
+                        </View>
+                    </ScrollView> */}
+
+                    <FlatList
+                        style={styles.cardsContainer}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal
+                        ref={(ref) => { this.flatListRef = ref; }}
+                        onScroll={e => {
+                            this.scrollOffset = e.nativeEvent.contentOffset.x;
+                        }}
+                        data={streamCards}
+                        renderItem={({ item }) => <StreamCard data={item} />}
+                        keyExtractor={(item) => item._id}
+                    />
+
                     <View style={styles.streamContainer}>
                         <View style={styles.streamOnePortrait}>
                             <View>
@@ -111,7 +153,7 @@ class Comparison extends React.Component {
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>진행중인 다른 LIVE</Text>
                     </View>
-                        <TouchableOpacity style={styles.buttonLeft} onPress={() => { this.scroll.scrollTo({ x: this.xOffset - screenWidth / 2 }) }}>
+                            <TouchableOpacity style={styles.buttonLeft} onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset - 134})}}>
                             <Image
                                 style={styles.icoLeft}
                                 source={require('../../assets/left-arrow.png')}
@@ -121,7 +163,7 @@ class Comparison extends React.Component {
                                 style={styles.icoCenter}
                                 source={require('../../assets/scroll.png')}
                         />
-                        <TouchableOpacity style={styles.buttonRight}  onPress={() => { this.scroll.scrollTo({ x: this.xOffset + screenWidth / 2 }) }}>
+                        <TouchableOpacity style={styles.buttonRight}  onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset + 134})}}>
                             <Image
                                 style={styles.icoRight}
                                 source={require('../../assets/right-arrow.png')}
