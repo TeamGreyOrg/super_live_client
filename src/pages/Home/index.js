@@ -39,7 +39,7 @@ class Home extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Input', { userName, roomName: userName });
+    navigate('Input', { userName });
   };
 
 
@@ -61,11 +61,22 @@ class Home extends React.Component {
             },
           }}
         >
-          <Tab.Screen
+        <Tab.Screen
             name="StreamLive"
-            component={StreamLive}
+            // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
+<<<<<<< HEAD
           />
+=======
+          >
+            {() => <StreamLive {...this.props} />}
+          </Tab.Screen>
+          {/* <Tab.Screen
+            name="UpcomLive"
+            component={Empty}
+            options={{ tabBarLabel: '다가오는 라이브' }}
+          /> */}
+>>>>>>> eddie
           <Tab.Screen
             name="SavedLive"
             component={SavedLive}

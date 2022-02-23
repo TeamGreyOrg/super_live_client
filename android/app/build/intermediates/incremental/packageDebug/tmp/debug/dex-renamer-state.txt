@@ -1,0 +1,4 @@
+#Tue Feb 22 21:59:40 KST 2022
+base.0=/Users/eddie/coding/super_live_client/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

@@ -18,13 +18,11 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     const { route } = props;
-    const roomName = get(route, 'params.roomName');
     const userName = get(route, 'params.userName', '');
     this.state = {
-      enteredRoomName: '',
-      enteredProductLink: '',
+      roomName: '',
+      productLink: '',
     };
-    this.roomName = roomName;
     this.userName = userName;
   }
 
@@ -34,10 +32,8 @@ class Input extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
-    const { enteredRoomName } = this.state;
-    const { enteredProductLink } = this.state;
 
-    navigate('Streamer', { userName, roomName: userName, enteredRoomName, enteredProductLink });
+    navigate('Streamer', { userName: userName, roomName: this.state.roomName, productLink: this.state.productLink });
   };
 
   render() {
@@ -51,15 +47,15 @@ class Input extends React.Component {
         <TextInput
           style={styles.input}
           placeholder="방제목을 입력 해주세요"
-          onChangeText={(enteredRoomName) => this.setState({ enteredRoomName })}
-          value={this.state.enteredRoomName}
+          onChangeText={(roomName) => this.setState({ roomName })}
+          value={this.state.roomName}
         />
         <Text style={styles.inputHeader}>Product link</Text>
         <TextInput
           style={styles.input}
           placeholder="판매할 제품 링크를 입력 해주세요"
-          onChangeText={(enteredProductLink) => this.setState({ enteredProductLink })}
-          value={this.state.enteredProductLink}
+          onChangeText={(productLink) => this.setState({ productLink })}
+          value={this.state.productLink}
         />
         <TouchableHighlight style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}
           activeOpacity={0.6}

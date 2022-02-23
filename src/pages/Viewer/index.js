@@ -39,7 +39,8 @@ export default class Viewer extends Component {
     const data = get(route, 'params.data');
     const roomName = get(data, 'roomName');
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
-    const userName = get(route, 'params.userName', '');
+    const userName = get(data, 'userName');
+    const viewerName = get(route, 'params.userName', '');
     const goodsUrl = get(data, 'productLink');
     const countViewer = get(data, 'countViewer');
     this.state = {
@@ -59,6 +60,7 @@ export default class Viewer extends Component {
       audioIcon: require('../../assets/ico_soundon.png'),
       roomName: roomName,
       userName: userName,
+      countViewer: countViewer,
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -68,6 +70,7 @@ export default class Viewer extends Component {
     const { requestOptions } = this.state;
     this.getPreview(goodsUrl, requestOptions);
     this.countViewer = countViewer;
+    this.viewerName = viewerName;
   }
   
   componentWillMount() {
@@ -159,6 +162,7 @@ export default class Viewer extends Component {
     } else {
       this.setState({
         inputUrl: `${HTTP}/live/${this.roomName}.flv`,
+        inputUrl: `${RTMP_SERVER}/live/${this.userName}`,
         // use HLS from trasporting in media server to Viewer
         messages: this.messages,
       });
@@ -168,6 +172,11 @@ export default class Viewer extends Component {
       });
       SocketManager.instance.listenSendHeart(() => {
         this.setState((prevState) => ({ countHeart: prevState.countHeart + 1 }));
+      });
+      SocketManager.instance.listenUpdateViewerCount((data) => {
+        const countViewer = get(data, 'countViewer');
+        console.log('viewer count:', countViewer)
+        this.setState({ countViewer });
       });
       SocketManager.instance.listenSendMessage((data) => {
         const messages = get(data, 'messages', []);
@@ -261,7 +270,7 @@ export default class Viewer extends Component {
   onPressSend = (message) => {
     SocketManager.instance.emitSendMessage({
       roomName: this.roomName,
-      userName: this.userName,
+      userName: this.viewerName,
       message,
     });
     this.setState({ isVisibleMessages: true });
@@ -311,10 +320,10 @@ export default class Viewer extends Component {
   onPressSound = () => {
     const { audioStatus } = this.state;
     if (audioStatus) {
-      this.state.audioStatus = false;
+      this.setState({ audioStatus: false});
       this.setState({ audioIcon: require('../../assets/ico_soundoff.png') });
     } else {
-      this.state.audioStatus = true;
+      this.setState({ audioStatus: true});
       this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
   };
@@ -502,6 +511,9 @@ export default class Viewer extends Component {
             {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}
           </View>
         </TouchableWithoutFeedback>
+        <Text style={styles.roomName}>{this.roomName}</Text>
+        <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+        <Text style={styles.countViewer}>{this.state.countViewer}</Text>
         <FloatingHearts count={countHeart} />
         </Animated.View>
         </Draggable>

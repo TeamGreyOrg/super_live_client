@@ -23,12 +23,10 @@ class SavedLive extends React.Component {
   }
 
   onPressCardItem = (data) => {
-    const { route } = this.props;
-    const userName = get(route, 'params.userName', '');
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Viewer', { userName, data });
+    navigate('Viewer', { data });
   };
 
   render() {

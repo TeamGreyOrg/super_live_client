@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Button } from 'react-native';
 import styles from './styles';
 import StreamCard from "./StreamCard";
 import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 
+var screenWidth = Dimensions.get('window').width;
 class Comparison extends React.Component {
     constructor(props) {
         super(props);
@@ -25,9 +26,13 @@ class Comparison extends React.Component {
                 orientation: isPortrait() ? 'portrait' : 'landscape'
             });
         });
+<<<<<<< HEAD
         this.roomName = props.roomName;
         this.userName = props.userName;
         console.log(props);
+=======
+        this.xOffset = 0;
+>>>>>>> eddie
     };
 
     componentDidMount() {
@@ -44,6 +49,7 @@ class Comparison extends React.Component {
         navigation.pop(2);
       };
 
+<<<<<<< HEAD
     renderNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
         console.log(inputUrl);
@@ -64,18 +70,29 @@ class Comparison extends React.Component {
           />
         );
       };
+=======
+
+>>>>>>> eddie
     render() {
         if (this.state.orientation === 'portrait') {
             return (
                 <View style={styles.container}>
-                    <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-                        <Image
-                            style={styles.icoClose}
-                            source={require('../../assets/ico_goback.png')}
-                            tintColor="white"
-                        />
-                    </TouchableOpacity>
-                    <ScrollView style={styles.cardsContainer}  horizontal= {true}>
+                    <View style={styles.topContainer}>
+                        <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+                            <Image
+                                style={styles.icoClose}
+                                source={require('../../assets/ico_goback.png')}
+                                tintColor="white"
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <ScrollView style={styles.cardsContainer}  horizontal= {true} 
+                                ref={(node) => this.scroll = node}
+                                onScroll={event => {
+                                    this.xOffset = event.nativeEvent.contentOffset.x
+                                    // console.log(this.xOffset)
+                                  }}
+                                >
                         <StreamCard />
                         <StreamCard />
                         <StreamCard />
@@ -97,7 +114,25 @@ class Comparison extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <Text style={styles.header}>진행중인 다른 LIVE</Text>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>진행중인 다른 LIVE</Text>
+                    </View>
+                        <TouchableOpacity style={styles.buttonLeft} onPress={() => { this.scroll.scrollTo({ x: this.xOffset - screenWidth / 2 }) }}>
+                            <Image
+                                style={styles.icoLeft}
+                                source={require('../../assets/left-arrow.png')}
+                            />
+                        </TouchableOpacity>
+                        <Image
+                                style={styles.icoCenter}
+                                source={require('../../assets/scroll.png')}
+                        />
+                        <TouchableOpacity style={styles.buttonRight}  onPress={() => { this.scroll.scrollTo({ x: this.xOffset + screenWidth / 2 }) }}>
+                            <Image
+                                style={styles.icoRight}
+                                source={require('../../assets/right-arrow.png')}
+                            />
+                        </TouchableOpacity>
                 </View>
             );
         } else {

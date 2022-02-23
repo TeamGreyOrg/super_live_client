@@ -12,6 +12,7 @@ class Login extends React.Component {
   }
 
   onPressLogin = () => {
+    console.log(this.state);
     const { userName } = this.state;
     if (userName === '') return Alert.alert('Please input userName');
     const {

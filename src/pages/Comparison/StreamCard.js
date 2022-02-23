@@ -4,6 +4,7 @@ import {
   PanResponder,
   Animated,
 } from "react-native";
+import * as Animatable from 'react-native-animatable';
 
 export default class StreamCard extends Component {
   	constructor() {
@@ -15,10 +16,15 @@ export default class StreamCard extends Component {
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
 			display : 'flex',
+			animation: ''
 		};
+		this.onLongPress = this.onLongPress.bind(this)
+		this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this)
+		this.normalPanResponder = this.normalPanResponder.bind(this)
+    	this.longPressTimer = null
   	}
 
-	normalPanResponder() {
+	onLongPressPanResponder() {
 		return PanResponder.create({
 			onStartShouldSetPanResponder: (e, gesture) => true,
 			onPanResponderGrant: (e, gesture) => {
@@ -41,8 +47,13 @@ export default class StreamCard extends Component {
 				if (gesture.moveX >= 75 && gesture.moveX <= 150 && gesture.moveY >= 110 && gesture.moveY <= 280) {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
+<<<<<<< HEAD
 						duration: 100, 
 						useNativeDriver: true, 
+=======
+						duration: 100,
+						useNativeDriver: true 
+>>>>>>> eddie
 					}).start(() =>
 						this.setState({
 							showDraggable: false,
@@ -54,7 +65,11 @@ export default class StreamCard extends Component {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
 						duration: 100,
+<<<<<<< HEAD
 						useNativeDriver: true,
+=======
+						useNativeDriver: true 
+>>>>>>> eddie
 					}).start(() =>
 						this.setState({
 							 showDraggable: false,
@@ -65,30 +80,68 @@ export default class StreamCard extends Component {
 					Animated.spring(this.state.pan, {
 						toValue: { x: 0, y: 0 },
 						friction: 5,
+<<<<<<< HEAD
 						useNativeDriver: true,
+=======
+						useNativeDriver: true 
+>>>>>>> eddie
 					}).start();
 				}
 				this.setState({panResponder: undefined})
+				this.setState({animation: ''})
 			}
 		});
 	}
 
-	componentWillMount() {
+	onLongPress() {
+		console.log('Long Pressed!')
+		this.setState({animation: 'bounceIn'})
+		this.setState({panResponder: this.onLongPressPanResponder()})
+	}
+
+	normalPanResponder(){
+		return PanResponder.create({
+		  onPanResponderTerminationRequest: () => false,
+		  onStartShouldSetPanResponderCapture: () => true,
+		  onPanResponderGrant: (e, gestureState) => {
+			this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
+			this.state.pan.setValue({x: 0, y: 0})
+			this.longPressTimer=setTimeout(this.onLongPress, 200)  // this is where you trigger the onlongpress panResponder handler
+		  },
+		  onPanResponderRelease: (e, {vx, vy}) => {
+			if (!this.state.panResponder) {
+				clearTimeout(this.longPressTimer);   // clean the timeout handler
+			}
+		  },
+		//   onShouldBlockNativeResponder: (e, gestureState) => {
+		// 	return false;
+		//   },
+		})
+	  }
+
+	render() {
 		this._val = { x:0, y:0 }
 		this.state.pan.addListener((value) => this._val = value);
 
-		this.panResponder = this.normalPanResponder();
-	}
+		let panHandlers = {}
+		if (this.state.panResponder){
+			panHandlers = this.state.panResponder.panHandlers
+		} else {
+			panHandlers = this.normalPanResponder().panHandlers
+		}
 
-	render() {
 		const panStyle = {
 			transform: this.state.pan.getTranslateTransform()
 		}
+
 		return (
-			<Animated.View
-				{...this.panResponder.panHandlers}
-				style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
-			/>
+			<Animatable.View animation={this.state.animation} >
+				<Animated.View
+					{...panHandlers}
+					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
+				/>
+			</Animatable.View>
+
 		);
   	}
 }
@@ -100,7 +153,6 @@ let styles = StyleSheet.create({
     	backgroundColor: 'black',
 		borderRadius: 10,
 		marginRight: 15,
-		marginTop: 2,
-		marginTop: 400
+		marginTop: 380,
   	}
 });

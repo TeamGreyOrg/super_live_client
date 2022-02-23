@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
   streamContainer: {
     flexDirection: "row",
 		marginTop: 60,
+    position: 'absolute',
+    zIndex: 200,
   },
   streamOnePortrait: {
     marginLeft: 20,
@@ -44,27 +46,74 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
 		borderRadius: 10,
   },
+  headerContainer: {
+		marginTop: 350,
+    position: 'absolute',
+    zIndex: 300,
+    width: '100%',
+    height: 70
+  },
   header: {
 		textAlign: 'center',
 		fontWeight: '700',
 		color: 'white',
 		fontSize: 20,
-		marginTop: 20,
+    marginTop: 15
+  },
+  topContainer: {
+    position: 'absolute',
+    zIndex: 300,
+    width: '100%',
+    height: 60
   },
 	btnClose: {
+    marginTop: 10,
     position: 'absolute',
-    top: 15,
-    right: 20,
-    zIndex: 101
+    right: 20
   },
 	cardsContainer: {
 		marginTop: 20,
 		marginLeft: 20,
 		marginRight: 20,
+    flexDirection: "row",
     position: 'absolute',
     height: 1000,
     zIndex: 100,
 	},
+  scrollbar: {
+    position: 'absolute',
+    bottom: -5,
+    left: 180,
+    width: 50,
+    height: 50,
+  },
+  icoRight: {
+    width: 30,
+    height: 30,
+  },
+  icoLeft: {
+    width: 30,
+    height: 30,
+  },
+  buttonLeft: {
+    position: 'absolute',
+    bottom: 5,
+    left: 50,
+    zIndex: 900
+  },
+  buttonRight: {
+    position: 'absolute',
+    bottom: 5,
+    right: 50,
+    zIndex: 900
+  },
+  icoCenter: {
+    position: 'absolute',
+    bottom: -5,
+    right: '45%',
+    width: 50,
+    height: 50
+  }
 });
 
 export default styles;

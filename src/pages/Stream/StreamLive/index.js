@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, Image } from 'react-native';
 import get from 'lodash/get';
 import styled from 'styled-components';
 import styles from '../../Home/styles';
