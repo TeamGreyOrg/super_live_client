@@ -101,14 +101,13 @@ const LiveStreamCard = ({ data, onPress }) => {
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         <ImageBackground source={require('../../assets/ico_logo.png')} style={styles.bgimage}>
           {statusIcon}
+          <Text style={styles.roomName} numberOfLines={1}>
+            방제목 : {roomName}
+          </Text>
         </ImageBackground>
       </TouchableOpacity>
 
-      <View style={styles.streamInfo}>
-        <Text style={styles.roomName} numberOfLines={1}>
-          스트리머 : {roomName}
-        </Text>
-      </View>
+      <View style={styles.streamInfo} />
     </View>
   );
 };

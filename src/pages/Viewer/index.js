@@ -466,6 +466,7 @@ export default class Viewer extends Component {
 
    
     const { isVisibleFooter } = this.state;
+    const { audioIcon } = this.state;
     /**
      * Replay mode
      */

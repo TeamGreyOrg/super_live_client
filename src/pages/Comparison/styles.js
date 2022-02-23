@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   title: {
@@ -10,41 +13,43 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#3498db',
+    // backgroundColor: 'black',
   },
   streamContainer: {
-    flexDirection: "row",
-		marginTop: 60,
-    position: 'absolute',
-    zIndex: 200,
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 60,
+    marginRight: 20,
+    justifyContent: 'space-between',
+    // backgroundColor:'white',
   },
   streamOnePortrait: {
-    marginLeft: 20,
-    marginRight: 30,
-    width: 170,
+    marginLeft: 15,
+    width: '43%',
     height: 300,
-    backgroundColor: 'black',
-		borderRadius: 10,
+    backgroundColor: 'gray',
+    borderRadius: 10,
   },
   streamTwoPortrait: {
-    width: 170,
+    marginRight: 15,
+    width: '43%',
     height: 300,
-    backgroundColor: 'black',
-		borderRadius: 10,
+    backgroundColor: 'gray',
+    borderRadius: 10,
   },
   streamOneLandscape: {
-    marginLeft: 50,
-    marginRight: 80,
-    width: 250,
-    height: 300,
-    backgroundColor: 'black',
-		borderRadius: 10,
+    marginLeft: 20,
+    width: '45%',
+    height: windowHeight * 0.73,
+    backgroundColor: 'gray',
+    borderRadius: 10,
   },
   streamTwoLandscape: {
-    width: 250,
-    height: 300,
-    backgroundColor: 'black',
-		borderRadius: 10,
+    marginRight: 30,
+    width: '45%',
+    height: windowHeight * 0.73,
+    backgroundColor: 'gray',
+    borderRadius: 10,
   },
   headerContainer: {
 		marginTop: 350,
@@ -54,29 +59,37 @@ const styles = StyleSheet.create({
     height: 70
   },
   header: {
-		textAlign: 'center',
-		fontWeight: '700',
-		color: 'white',
-		fontSize: 20,
-    marginTop: 15
+    textAlign: 'center',
+    fontWeight: '700',
+    color: 'white',
+    fontSize: 20,
+    marginTop: 20,
   },
   topContainer: {
     position: 'absolute',
     zIndex: 300,
     width: '100%',
-    height: 60
+    height: 60,
+    // backgroundColor: 'white',
   },
+  marginTop: 10,
 	btnClose: {
-    marginTop: 10,
     position: 'absolute',
     right: 20
   },
-	cardsContainer: {
-		marginTop: 20,
-		marginLeft: 20,
-		marginRight: 20,
-    flexDirection: "row",
+  btnClose: {
     position: 'absolute',
+    top: 15,
+    right: 20,
+    zIndex: 101,
+  },
+  cardsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 20,
+    marginLeft: 15,
+    position: 'absolute',
+    marginRight: 15,
     height: 1000,
     zIndex: 100,
 	},

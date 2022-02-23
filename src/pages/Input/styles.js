@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 20,
     paddingHorizontal: 20,
-    marginVertical: 20,
+    // paddingTop: Platform.OS === 'android' ? 25 : 0,
+    marginVertical: 5,
+    marginBottom: 0,
     marginHorizontal: 25,
     fontSize: 18,
     fontWeight: '600',
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 25,
     marginBottom: 15,
+    marginVertical: 10,
   },
   textButton: {
     color: 'white',
@@ -40,6 +43,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     marginLeft: 25,
+    marginTop: 20,
   },
   bgimage: {
     alignContent: 'center',

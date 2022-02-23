@@ -23,7 +23,7 @@ export default function Header({ userName }) {
           />
         </View>
         <View style={{ justifyContent: 'flex-end', margin: 5 }}>
-          <Text style={styles.welcomeText}>WelCome!! {userName}</Text>
+          <Text style={styles.welcomeText}>WelCome!! : {userName}</Text>
         </View>
       </View>
     </>

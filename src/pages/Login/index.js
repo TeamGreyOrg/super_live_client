@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, TextInput, Alert, ImageBackground,Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  ImageBackground,
+  Image,
+  StatusBar,
+} from 'react-native';
 import styles from './styles';
 
 class Login extends React.Component {
@@ -27,10 +36,11 @@ class Login extends React.Component {
     const { userName } = this.state;
     return (
       <ImageBackground source={require('../../assets/login_bg.png')} style={styles.bgimage}>
+        <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <View style={styles.container}>
           <Image
-            source={require('../../assets/ico_logo.png')}
-            style={{ width: 200, height: 100, marginLeft: 30}}
+            source={require('../../assets/splash_icon.png')}
+            style={{ width: 200, height: 130, marginLeft: 10 }}
           />
           <Text style={styles.text}>WELCOME{'\n'}ON AIR SUPER LIVE</Text>
           <TextInput

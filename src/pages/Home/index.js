@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StatusBar } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
 import SocketManager from '../../socketManager';
@@ -50,15 +51,18 @@ class Home extends React.Component {
     const { listLiveStream } = this.state;
     return (
       <>
+        <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <Header userName={userName} />
         <Tab.Navigator
           tabBarOptions={{
             activeTintColor: Theme.color.PrettyRed,
-            inactiveTintColor: Theme.color.DarkGray,
+            inactiveTintColor: Theme.color.LightGray,
             indicatorStyle: {
               borderBottomColor: Theme.color.PrettyRed,
-              borderBottomWidth: 2,
+              borderBottomWidth: 4,
             },
+            style: { backgroundColor: '#333' },
+            labelStyle: { fontSize: 16, fontWeight: 'bold' },
           }}
         >
         <Tab.Screen

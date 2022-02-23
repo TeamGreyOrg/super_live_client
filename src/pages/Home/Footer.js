@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import * as Animatable from 'react-native-animatable';
 import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
 import styles from './styles';
 import theme from '../Theme/theme';
 
 const Footer = ({ onPressLiveStreamNow, onPressLogout }) => {
+  const [ani, setani] = useState('');
+  const onClick = () => setani('bounceOut');
+
   return (
     <>
       <SafeAreaView style={{ backgroundColor: theme.color.Black }} />
@@ -22,9 +26,17 @@ const Footer = ({ onPressLiveStreamNow, onPressLogout }) => {
           <Text style={styles.textButton}>방송 시작</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.logoutButton} onPress={() => onPressLogout()}>
-          <Text style={styles.textButton}>로그아웃</Text>
-        </TouchableOpacity>
+        <Animatable.View animation={ani}>
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={() => {
+              onClick();
+              onPressLogout();
+            }}
+          >
+            <Text style={styles.textButton}>로그아웃</Text>
+          </TouchableOpacity>
+        </Animatable.View>
       </View>
     </>
   );

@@ -3,7 +3,6 @@
 import React from 'react';
 import {
   Text,
-  TouchableOpacity,
   TouchableHighlight,
   SafeAreaView,
   TextInput,
@@ -12,7 +11,6 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import styles from './styles';
-import SocketManager from '../../socketManager';
 
 class Input extends React.Component {
   constructor(props) {
@@ -22,6 +20,7 @@ class Input extends React.Component {
     this.state = {
       roomName: '',
       productLink: '',
+      productPrice:'0',
     };
     this.userName = userName;
   }
@@ -33,7 +32,7 @@ class Input extends React.Component {
       navigation: { navigate },
     } = this.props;
 
-    navigate('Streamer', { userName: userName, roomName: this.state.roomName, productLink: this.state.productLink });
+    navigate('Streamer', { userName: userName, roomName: this.state.roomName, productLink: this.state.productLink,productPrice:this.state.productPrice });
   };
 
   render() {
@@ -57,7 +56,16 @@ class Input extends React.Component {
           onChangeText={(productLink) => this.setState({ productLink })}
           value={this.state.productLink}
         />
-        <TouchableHighlight style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}
+        <Text style={styles.inputHeader}>Product Price</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="#판매할 제품의 가격을 입력 해주세요"
+          onChangeText={(productPrice) => this.setState({ productPrice })}
+          value={this.state.productPrice}
+        />
+        <TouchableHighlight
+          style={styles.liveStreamButton}
+          onPress={this.onPressLiveStreamNow}
           activeOpacity={0.6}
           underlayColor="yellow"
         >
