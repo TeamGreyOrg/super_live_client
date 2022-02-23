@@ -161,8 +161,7 @@ export default class Viewer extends Component {
       this.setState({ inputUrl });
     } else {
       this.setState({
-        inputUrl: `${HTTP}/live/${this.roomName}.flv`,
-        inputUrl: `${RTMP_SERVER}/live/${this.userName}`,
+        inputUrl: `${HTTP}/live/${this.userName}.flv`,
         // use HLS from trasporting in media server to Viewer
         messages: this.messages,
       });

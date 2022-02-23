@@ -47,13 +47,8 @@ export default class StreamCard extends Component {
 				if (gesture.moveX >= 75 && gesture.moveX <= 150 && gesture.moveY >= 110 && gesture.moveY <= 280) {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
-<<<<<<< HEAD
 						duration: 100, 
 						useNativeDriver: true, 
-=======
-						duration: 100,
-						useNativeDriver: true 
->>>>>>> eddie
 					}).start(() =>
 						this.setState({
 							showDraggable: false,
@@ -65,11 +60,7 @@ export default class StreamCard extends Component {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
 						duration: 100,
-<<<<<<< HEAD
 						useNativeDriver: true,
-=======
-						useNativeDriver: true 
->>>>>>> eddie
 					}).start(() =>
 						this.setState({
 							 showDraggable: false,
@@ -80,11 +71,7 @@ export default class StreamCard extends Component {
 					Animated.spring(this.state.pan, {
 						toValue: { x: 0, y: 0 },
 						friction: 5,
-<<<<<<< HEAD
 						useNativeDriver: true,
-=======
-						useNativeDriver: true 
->>>>>>> eddie
 					}).start();
 				}
 				this.setState({panResponder: undefined})

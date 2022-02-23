@@ -26,13 +26,10 @@ class Comparison extends React.Component {
                 orientation: isPortrait() ? 'portrait' : 'landscape'
             });
         });
-<<<<<<< HEAD
         this.roomName = props.roomName;
         this.userName = props.userName;
         console.log(props);
-=======
         this.xOffset = 0;
->>>>>>> eddie
     };
 
     componentDidMount() {
@@ -49,7 +46,6 @@ class Comparison extends React.Component {
         navigation.pop(2);
       };
 
-<<<<<<< HEAD
     renderNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
         console.log(inputUrl);
@@ -70,9 +66,7 @@ class Comparison extends React.Component {
           />
         );
       };
-=======
 
->>>>>>> eddie
     render() {
         if (this.state.orientation === 'portrait') {
             return (

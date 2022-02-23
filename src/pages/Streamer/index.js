@@ -106,15 +106,14 @@ export default class Streamer extends React.Component {
   onPressLiveStreamButton = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
-    const userName = get(route, 'params.roomName', '');
     const { currentLiveStatus } = this.state;
     if (Number(currentLiveStatus) === Number(LIVE_STATUS.PREPARE)) {
       /**
        * Waiting live stream
        */
-      SocketManager.instance.emitBeginLiveStream({ userName, roomName: userName });
+      SocketManager.instance.emitBeginLiveStream({ userName: userName, roomName: this.roomName });
       // SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
-      if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();  
+      if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();
       NavigationContext;
     } else if (Number(currentLiveStatus) === Number(LIVE_STATUS.ON_LIVE)) {
       /**

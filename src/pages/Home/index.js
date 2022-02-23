@@ -65,9 +65,6 @@ class Home extends React.Component {
             name="StreamLive"
             // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
-<<<<<<< HEAD
-          />
-=======
           >
             {() => <StreamLive {...this.props} />}
           </Tab.Screen>
@@ -76,7 +73,6 @@ class Home extends React.Component {
             component={Empty}
             options={{ tabBarLabel: '다가오는 라이브' }}
           /> */}
->>>>>>> eddie
           <Tab.Screen
             name="SavedLive"
             component={SavedLive}

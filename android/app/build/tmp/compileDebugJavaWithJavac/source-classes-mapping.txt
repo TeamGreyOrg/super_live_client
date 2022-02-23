@@ -1,3 +1,8 @@
+com/superlivecommerce/ReactNativeFlipper.java
+ com.superlivecommerce.ReactNativeFlipper
+ com.superlivecommerce.ReactNativeFlipper$1
+ com.superlivecommerce.ReactNativeFlipper$2
+ com.superlivecommerce.ReactNativeFlipper$2$1
 androidx/transition/R.java
  androidx.transition.R
  androidx.transition.R$attr
@@ -99,6 +104,9 @@ androidx/fragment/R.java
  androidx.fragment.R$styleable
 androidx/savedstate/R.java
  androidx.savedstate.R
+com/superlivecommerce/MainApplication.java
+ com.superlivecommerce.MainApplication
+ com.superlivecommerce.MainApplication$1
 com/facebook/react/R.java
  com.facebook.react.R
  com.facebook.react.R$anim
@@ -131,6 +139,8 @@ org/reactnative/maskedview/R.java
  org.reactnative.maskedview.R$style
  org.reactnative.maskedview.R$styleable
  org.reactnative.maskedview.R$xml
+com/superlivecommerce/MainActivity.java
+ com.superlivecommerce.MainActivity
 com/facebook/flipper/plugins/fresco/R.java
  com.facebook.flipper.plugins.fresco.R
  com.facebook.flipper.plugins.fresco.R$anim
@@ -146,9 +156,6 @@ com/facebook/flipper/plugins/fresco/R.java
  com.facebook.flipper.plugins.fresco.R$string
  com.facebook.flipper.plugins.fresco.R$style
  com.facebook.flipper.plugins.fresco.R$styleable
-com/livestreamexample/MainApplication.java
- com.superlivecommerce.MainApplication
- com.superlivecommerce.MainApplication$1
 androidx/interpolator/R.java
  androidx.interpolator.R
 androidx/core/R.java
@@ -187,6 +194,21 @@ androidx/recyclerview/R.java
  androidx.recyclerview.R$string
  androidx.recyclerview.R$style
  androidx.recyclerview.R$styleable
+com/oblador/vectoricons/R.java
+ com.oblador.vectoricons.R
+ com.oblador.vectoricons.R$anim
+ com.oblador.vectoricons.R$attr
+ com.oblador.vectoricons.R$bool
+ com.oblador.vectoricons.R$color
+ com.oblador.vectoricons.R$dimen
+ com.oblador.vectoricons.R$drawable
+ com.oblador.vectoricons.R$id
+ com.oblador.vectoricons.R$integer
+ com.oblador.vectoricons.R$layout
+ com.oblador.vectoricons.R$string
+ com.oblador.vectoricons.R$style
+ com.oblador.vectoricons.R$styleable
+ com.oblador.vectoricons.R$xml
 cn/nodemedia/R.java
  cn.nodemedia.R
  cn.nodemedia.R$anim
@@ -240,8 +262,6 @@ com/facebook/imagepipeline/backends/okhttp3/R.java
  com.facebook.imagepipeline.backends.okhttp3.R
 androidx/lifecycle/viewmodel/R.java
  androidx.lifecycle.viewmodel.R
-com/livestreamexample/MainActivity.java
- com.superlivecommerce.MainActivity
 com/bumptech/glide/R.java
  com.bumptech.glide.R
  com.bumptech.glide.R$attr
@@ -283,11 +303,6 @@ androidx/cardview/R.java
  androidx.cardview.R$dimen
  androidx.cardview.R$style
  androidx.cardview.R$styleable
-com/livestreamexample/ReactNativeFlipper.java
- com.superlivecommerce.ReactNativeFlipper
- com.superlivecommerce.ReactNativeFlipper$1
- com.superlivecommerce.ReactNativeFlipper$2
- com.superlivecommerce.ReactNativeFlipper$2$1
 androidx/swiperefreshlayout/R.java
  androidx.swiperefreshlayout.R
  androidx.swiperefreshlayout.R$attr
@@ -505,7 +520,7 @@ androidx/viewpager/R.java
  androidx.viewpager.R$string
  androidx.viewpager.R$style
  androidx.viewpager.R$styleable
-com/livestreamexample/SplashActivity.java
+com/superlivecommerce/SplashActivity.java
  com.superlivecommerce.SplashActivity
 com/superlivecommerce/BuildConfig.java
  com.superlivecommerce.BuildConfig

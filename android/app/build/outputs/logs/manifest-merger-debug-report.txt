@@ -8,6 +8,7 @@ MERGED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidMa
 MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:8:1-15:12
+MERGED from [:react-native-vector-icons] /Users/eddie/coding/super_live_client/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-community_masked-view] /Users/eddie/coding/super_live_client/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-fast-image] /Users/eddie/coding/super_live_client/node_modules/react-native-fast-image/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-gesture-handler] /Users/eddie/coding/super_live_client/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
@@ -208,6 +209,8 @@ MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.g
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-vector-icons] /Users/eddie/coding/super_live_client/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /Users/eddie/coding/super_live_client/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-community_masked-view] /Users/eddie/coding/super_live_client/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /Users/eddie/coding/super_live_client/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-fast-image] /Users/eddie/coding/super_live_client/node_modules/react-native-fast-image/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
