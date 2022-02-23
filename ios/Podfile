@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'SuperLiveCommerce' do
-  # Pods for SuperLiveCommerce
+target 'superlivecommerce' do
+  # Pods for superlivecommerce
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"

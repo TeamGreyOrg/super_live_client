@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>SuperLiveCommerce</string>
+	<string>superlivecommerce</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -54,9 +54,9 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>SuperLiveCommerce requires access to your phone’s camera.</string>
+	<string>superlivecommerce requires access to your phone’s camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>SuperLiveCommerce requires access to your phone’s Microphone.</string>
+	<string>superlivecommerce requires access to your phone’s Microphone.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Anton-Regular.ttf</string>
