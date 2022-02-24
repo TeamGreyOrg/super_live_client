@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
+import { HTTP } from '../../config';
+import { NodePlayerView } from 'react-native-nodemediaclient';
 
 class NewStreamCard extends Component {
     constructor(props) {
@@ -24,7 +26,8 @@ class NewStreamCard extends Component {
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
 			display : 'flex',
-			animation: ''
+			animation: '',
+			inputUrl: `${HTTP}/live/${roomName}.flv`,
         };
 
 		this.onLongPress = this.onLongPress.bind(this)
@@ -32,6 +35,25 @@ class NewStreamCard extends Component {
 		this.normalPanResponder = this.normalPanResponder.bind(this)
     	this.longPressTimer = null
     }
+
+renderNodePlayerView = (inputUrl) => {
+        console.log(inputUrl);
+        console.log('inRender');
+        if (!inputUrl) return null;
+        return (
+          <NodePlayerView
+            style={styles.streamCard}
+            ref={(vb) => {
+              this.nodePlayerView = vb;
+            }}
+            inputUrl={inputUrl}
+            scaleMode="ScaleAspectFit"
+            bufferTime={300}
+            maxBufferTime={1000}
+            autoplay
+          />
+        );
+    };
 
 onLongPressPanResponder() {
 		return PanResponder.create({
@@ -140,12 +162,12 @@ onLongPressPanResponder() {
 			<Animatable.View animation={this.state.animation} >
 				<Animated.View 					
                     {...panHandlers}
-					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]
+					style={[panStyle, {opacity:this.state.opacity, display: this.state.display}]
                     }
                 >
-                <Text style={styles.roomName} >
-                    {this.state.roomName}
-                </Text>
+				<View>
+					{this.renderNodePlayerView(this.state.inputUrl)}
+				</View>
 				</Animated.View>
 			</Animatable.View>
         )
