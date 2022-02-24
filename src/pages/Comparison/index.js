@@ -28,7 +28,7 @@ class Comparison extends React.Component {
             orientation: isPortrait() ? 'portrait' : 'landscape',
             inputUrlFirst: null,
             inputUrlSecond: null,
-            streamOneName: userName,
+            streamOneName: roomName,
             streamTwoName: '',
             streamCards: [],
         };
@@ -44,19 +44,19 @@ class Comparison extends React.Component {
         this.scrollOffset = 0;
     };
 
-    streamTwoHandler(arg) {
-        console.log('Passed argument from Child to Parent: ' + arg);
+    streamTwoHandler(roomName) {
+        console.log('Passed argument from Child to Parent: ' + roomName);
         // this.setState({streamTwoName: arg}) 
         this.setState({inputUrlSecond: null})
-        this.setState({inputUrlSecond: `${HTTP}/live/${arg}.flv`})
+        this.setState({inputUrlSecond: `${HTTP}/live/${roomName}.flv`})
         console.log('stream two url:', this.state.inputUrlSecond);
     }
 
-    streamOneHandler(arg) {
-        console.log('Passed argument from Child to Parent: ' + arg);
+    streamOneHandler(roomName) {
+        console.log('Passed argument from Child to Parent: ' + roomName);
         // this.setState({streamTwoName: arg}) 
         this.setState({inputUrlFirst: null})
-        this.setState({inputUrlFirst: `${HTTP}/live/${arg}.flv`})
+        this.setState({inputUrlFirst: `${HTTP}/live/${roomName}.flv`})
         console.log('stream one url:', this.state.inputUrlFirst);
     }
 
@@ -80,7 +80,7 @@ class Comparison extends React.Component {
         navigation.pop(2);
       };
 
-    renderNodePlayerView = (inputUrl) => {
+    renderPortraitNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
         console.log(inputUrl);
         console.log('inRender');
@@ -99,7 +99,28 @@ class Comparison extends React.Component {
             autoplay
           />
         );
-      };
+    };
+
+    renderLandscapeNodePlayerView = (inputUrl) => {
+        const { audioStatus } = this.props;
+        console.log(inputUrl);
+        console.log('inRender');
+        if (!inputUrl) return null;
+        return (
+          <NodePlayerView
+            style={styles.streamOneLandscape}
+            ref={(vb) => {
+              this.nodePlayerView = vb;
+            }}
+            inputUrl={inputUrl}
+            scaleMode="ScaleAspectFit"
+            bufferTime={300}
+            maxBufferTime={1000}
+            audioEnable={audioStatus}
+            autoplay
+          />
+        );
+    };
 
     render() {
 
@@ -158,12 +179,12 @@ class Comparison extends React.Component {
                     <View style={styles.streamContainer}>
                         <View style={styles.streamOnePortrait}>
                             <View>
-                            {this.renderNodePlayerView(this.state.inputUrlFirst)}
+                            {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
                             </View>
                         </View>
                         <View style={styles.streamTwoPortrait}>
                             <View>
-                            {this.renderNodePlayerView(this.state.inputUrlSecond)}
+                            {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
                             </View>
                         </View>
                     </View>
@@ -198,11 +219,11 @@ class Comparison extends React.Component {
             />
             </TouchableOpacity>
             <View style={styles.streamContainer}>
-                <View style={styles.streamOneLandscape}>
-                    <Text style={styles.title}>Current livestream</Text>
+                <View>
+                    {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
                 </View>
-                <View style={styles.streamTwoLandscape}>
-                    <Text style={styles.title}>Drag livestream here</Text>
+                <View>
+                    {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
                 </View>
             </View>
         </View>
