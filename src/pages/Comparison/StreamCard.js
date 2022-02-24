@@ -62,6 +62,7 @@ onLongPressPanResponder() {
 							showDraggable: false,
 							display: 'none'
 						})
+						this.props.streamOneHandler(this.state.roomName);
 					}
 
 					);
@@ -76,7 +77,7 @@ onLongPressPanResponder() {
 							 showDraggable: false,
 							 display: 'none'
 						})
-						this.props.handler(this.state.roomName);
+						this.props.streamTwoHandler(this.state.roomName);
 					}
 
 					);

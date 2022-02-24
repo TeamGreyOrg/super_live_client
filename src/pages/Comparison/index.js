@@ -16,7 +16,8 @@ class Comparison extends React.Component {
         const userName = get(route, 'params.userName', '');
         const roomName = get(route, 'params.roomName');
 
-        var handler = this.handler.bind(this)
+        const streamTwoHandler = this.streamTwoHandler.bind(this)
+        const streamOneHandler = this.streamOneHandler.bind(this)
 
         const isPortrait = () => {
             const dim = Dimensions.get('screen');
@@ -39,17 +40,24 @@ class Comparison extends React.Component {
         });
         this.roomName = roomName;
         this.userName = userName;
-        console.log(props);
         // this.xOffset = 0;
         this.scrollOffset = 0;
     };
 
-    handler(arg) {
+    streamTwoHandler(arg) {
         console.log('Passed argument from Child to Parent: ' + arg);
         // this.setState({streamTwoName: arg}) 
+        this.setState({inputUrlSecond: null})
         this.setState({inputUrlSecond: `${HTTP}/live/${arg}.flv`})
-        console.log('stream two name:', this.state.streamTwoName);
         console.log('stream two url:', this.state.inputUrlSecond);
+    }
+
+    streamOneHandler(arg) {
+        console.log('Passed argument from Child to Parent: ' + arg);
+        // this.setState({streamTwoName: arg}) 
+        this.setState({inputUrlFirst: null})
+        this.setState({inputUrlFirst: `${HTTP}/live/${arg}.flv`})
+        console.log('stream one url:', this.state.inputUrlFirst);
     }
 
     componentDidMount() {
@@ -93,13 +101,10 @@ class Comparison extends React.Component {
         );
       };
 
-    goIndex = () => {
-        this.refs.flatListRef.scrollToIndex({animated: true,index:3});
-    };
-
     render() {
 
-        var handler = this.handler;
+        const streamTwoHandler = this.streamTwoHandler;
+        const streamOneHandler = this.streamOneHandler;
 
         if (this.state.orientation === 'portrait') {
 
@@ -146,7 +151,7 @@ class Comparison extends React.Component {
                             this.scrollOffset = e.nativeEvent.contentOffset.x;
                         }}
                         data={streamCards}
-                        renderItem={({ item }) => <StreamCard data={item} handler = {handler.bind(this)}/>}
+                        renderItem={({ item }) => <StreamCard data={item} streamTwoHandler = {streamTwoHandler.bind(this)} streamOneHandler = {streamOneHandler.bind(this)}/>}
                         keyExtractor={(item) => item._id}
                     />
 
