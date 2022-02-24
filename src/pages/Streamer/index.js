@@ -188,6 +188,7 @@ export default class Streamer extends React.Component {
   render() {
     const { route } = this.props;
     const { currentLiveStatus, countHeart } = this.state;
+    const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const outputUrl = `${RTMP_SERVER}/live/${roomName}`;
     return (

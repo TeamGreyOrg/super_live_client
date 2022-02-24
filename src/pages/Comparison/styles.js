@@ -92,6 +92,13 @@ const styles = StyleSheet.create({
     marginRight: 15,
     height: 1000,
     zIndex: 100,
+	// cardsContainer: {
+	// 	marginTop: 20,
+	// 	marginLeft: 20,
+	// 	marginRight: 20,
+  //   // position: 'absolute',
+  //   // bottom: 100,
+  //   // zIndex: 100,
 	},
   scrollbar: {
     position: 'absolute',
@@ -126,6 +133,14 @@ const styles = StyleSheet.create({
     right: '45%',
     width: 50,
     height: 50
+  },
+  cardText: {
+    color: 'white',
+    fontSize: 30,
+    position: 'absolute',
+    top: 450,
+    left: 50,
+    zIndex: 900
   }
 });
 
