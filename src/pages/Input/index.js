@@ -20,10 +20,12 @@ class Input extends React.Component {
     this.state = {
       roomName: '',
       productLink: '',
-      productPrice:'0',
+      productPrice: 0,
     };
     this.userName = userName;
   }
+
+  // Get all DB data
 
   onPressLiveStreamNow = () => {
     const { route } = this.props;
@@ -32,7 +34,10 @@ class Input extends React.Component {
       navigation: { navigate },
     } = this.props;
 
-    navigate('Streamer', { userName: userName, roomName: this.state.roomName, productLink: this.state.productLink,productPrice:this.state.productPrice });
+    // Lopp over livestreams
+      // Alert if username or roomname is duplicated
+
+    navigate('Streamer', { userName: userName, roomName: this.state.roomName, productLink: this.state.productLink, productPrice: this.state.productPrice });
   };
 
   render() {
@@ -59,7 +64,7 @@ class Input extends React.Component {
         <Text style={styles.inputHeader}>Product Price</Text>
         <TextInput
           style={styles.input}
-          placeholder="#판매할 제품의 가격을 입력 해주세요"
+          placeholder="판매할 제품의 가격을 입력 해주세요"
           onChangeText={(productPrice) => this.setState({ productPrice })}
           value={this.state.productPrice}
         />

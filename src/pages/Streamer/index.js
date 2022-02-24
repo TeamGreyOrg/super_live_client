@@ -28,6 +28,7 @@ export default class Streamer extends React.Component {
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const productLink = get(route, 'params.productLink');
+    const productPrice = get(route, 'params.productPrice')
     this.state = {
       currentLiveStatus: LIVE_STATUS.PREPARE,
       messages: [],
@@ -37,6 +38,7 @@ export default class Streamer extends React.Component {
     this.userName = userName;
     this.roomName = roomName;
     this.productLink = productLink;
+    this.productPrice = productPrice;
   }
 
   componentDidMount() {
@@ -45,6 +47,7 @@ export default class Streamer extends React.Component {
       userName: this.userName,
       roomName: this.roomName,
       productLink: this.productLink,
+      productPrice: this.productPrice,
     });
     SocketManager.instance.emitJoinRoom({
       userName: this.userName,

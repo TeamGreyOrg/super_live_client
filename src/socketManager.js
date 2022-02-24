@@ -119,8 +119,8 @@ class SocketManager {
   // ──────────────────────────────────────────────────────────────────────
   //
 
-  emitPrepareLiveStream({ userName, roomName, productLink }) {
-    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, productLink });
+  emitPrepareLiveStream({ userName, roomName, productLink, productPrice }) {
+    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, productLink, productPrice });
   }
 
   emitJoinRoom({ userName, roomName }) {

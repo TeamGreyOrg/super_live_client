@@ -105,9 +105,9 @@ const LiveStreamCard = ({ data, onPress }) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
-  const productPrice = get(data, 'productPrice', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   const countViewer = get(data, 'countViewer');
+  const productPrice = get(data, 'productPrice');
   let statusIcon = null;
   let streamIcon = null;
   const viewerIcon = (
