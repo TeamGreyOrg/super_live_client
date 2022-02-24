@@ -211,18 +211,6 @@ com/oblador/vectoricons/R.java
  com.oblador.vectoricons.R$xml
 cn/nodemedia/R.java
  cn.nodemedia.R
- cn.nodemedia.R$anim
- cn.nodemedia.R$attr
- cn.nodemedia.R$bool
- cn.nodemedia.R$color
- cn.nodemedia.R$dimen
- cn.nodemedia.R$drawable
- cn.nodemedia.R$id
- cn.nodemedia.R$integer
- cn.nodemedia.R$layout
- cn.nodemedia.R$string
- cn.nodemedia.R$style
- cn.nodemedia.R$styleable
 androidx/drawerlayout/R.java
  androidx.drawerlayout.R
  androidx.drawerlayout.R$attr

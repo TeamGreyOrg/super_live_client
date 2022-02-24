@@ -37,7 +37,6 @@ MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\1\.gradle
 MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\1\.gradle\caches\transforms-3\110eec159c2cd61130ee288f79fc1248\transformed\imagepipeline-base-2.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\1\.gradle\caches\transforms-3\2e286b1736973bf310e5aa3fa8e2f521\transformed\jetified-fbcore-2.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.soloader:soloader:0.8.2] C:\Users\1\.gradle\caches\transforms-3\75ef5f3cbe092e78a439500bc88d158d\transformed\soloader-0.8.2\AndroidManifest.xml:2:1-13:12
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] C:\Users\1\.gradle\caches\transforms-3\14999be4ddd4c8202c55853d26ccf123\transformed\jetified-NodeMediaClient-Android-2.7.2\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\1\.gradle\caches\transforms-3\64faaaa21392e85cc0ac5c3ecd1dd4c2\transformed\material-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\1\.gradle\caches\transforms-3\7dc151db95d6eb3b90152777f15def87\transformed\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\1\.gradle\caches\transforms-3\c4289db212502eb3c71e53814a5dcab2\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:2:1-16:12
@@ -69,6 +68,7 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\1\.gradle\caches\tra
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\1\.gradle\caches\transforms-3\36764ca8c94770770507f3169eaee714\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\1\.gradle\caches\transforms-3\85ede6e3c70c3aefde6bbd8e9889d673\transformed\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\1\.gradle\caches\transforms-3\148cabbeb9b07f3d35142d25fb34ddfb\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] C:\Users\1\.gradle\caches\transforms-3\55071b984c7c0d96e85c1cfa4241397f\transformed\NodeMediaClient-Android-2.9.16\AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.soloader:annotation:0.8.2] C:\Users\1\.gradle\caches\transforms-3\f805513f31a454fc592f5e567ecaaec7\transformed\annotation-0.8.0\AndroidManifest.xml:2:1-13:12
 INJECTED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\debug\AndroidManifest.xml:2:1-8:12
 INJECTED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\debug\AndroidManifest.xml:2:1-8:12
@@ -272,8 +272,6 @@ MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\1\.gradle\caches\transfo
 MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\1\.gradle\caches\transforms-3\2e286b1736973bf310e5aa3fa8e2f521\transformed\jetified-fbcore-2.0.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.soloader:soloader:0.8.2] C:\Users\1\.gradle\caches\transforms-3\75ef5f3cbe092e78a439500bc88d158d\transformed\soloader-0.8.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:soloader:0.8.2] C:\Users\1\.gradle\caches\transforms-3\75ef5f3cbe092e78a439500bc88d158d\transformed\soloader-0.8.2\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] C:\Users\1\.gradle\caches\transforms-3\14999be4ddd4c8202c55853d26ccf123\transformed\jetified-NodeMediaClient-Android-2.7.2\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] C:\Users\1\.gradle\caches\transforms-3\14999be4ddd4c8202c55853d26ccf123\transformed\jetified-NodeMediaClient-Android-2.7.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\1\.gradle\caches\transforms-3\64faaaa21392e85cc0ac5c3ecd1dd4c2\transformed\material-1.1.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\1\.gradle\caches\transforms-3\64faaaa21392e85cc0ac5c3ecd1dd4c2\transformed\material-1.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\1\.gradle\caches\transforms-3\7dc151db95d6eb3b90152777f15def87\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -336,6 +334,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\1\.gradl
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\1\.gradle\caches\transforms-3\85ede6e3c70c3aefde6bbd8e9889d673\transformed\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\1\.gradle\caches\transforms-3\148cabbeb9b07f3d35142d25fb34ddfb\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\1\.gradle\caches\transforms-3\148cabbeb9b07f3d35142d25fb34ddfb\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] C:\Users\1\.gradle\caches\transforms-3\55071b984c7c0d96e85c1cfa4241397f\transformed\NodeMediaClient-Android-2.9.16\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] C:\Users\1\.gradle\caches\transforms-3\55071b984c7c0d96e85c1cfa4241397f\transformed\NodeMediaClient-Android-2.9.16\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:annotation:0.8.2] C:\Users\1\.gradle\caches\transforms-3\f805513f31a454fc592f5e567ecaaec7\transformed\annotation-0.8.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:annotation:0.8.2] C:\Users\1\.gradle\caches\transforms-3\f805513f31a454fc592f5e567ecaaec7\transformed\annotation-0.8.0\AndroidManifest.xml:7:5-9:41
 INJECTED from C:\Users\1\Desktop\JUNGLE\my-weapon\Team_Gray_my_weapon\super_live_client\android\app\src\debug\AndroidManifest.xml

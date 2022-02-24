@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Text, Image } from 'react-native';
+import { FlatList, ImageBackground } from 'react-native';
 import get from 'lodash/get';
 import styled from 'styled-components';
 import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
 import LiveStreamCard from '../LiveStreamCard';
+import LiveStreamCardtest from '../LiveStreamCardtest';
 
 class StreamLive extends React.Component {
   constructor(props) {
@@ -43,15 +44,18 @@ class StreamLive extends React.Component {
     }
 
     return (
-      <Container style={styles.container}>
-        <FlatList
-          data={newListLiveStream}
-          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-          keyExtractor={(item) => item._id}
-          numColumns={2}
-          contentContainerStyle={styles.flatList}
-        />
-      </Container>
+      <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.container}>
+        <Container style={styles.container}>
+          <FlatList
+            data={newListLiveStream}
+            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+            keyExtractor={(item) => item._id}
+            numColumns={2}
+            contentContainerStyle={styles.flatList}
+          />
+          {/* <LiveStreamCardtest/> */}
+        </Container>
+     </ImageBackground>
     );
   }
 }

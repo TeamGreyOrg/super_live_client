@@ -1,21 +1,17 @@
 import React from 'react';
-import { View, SafeAreaView, Image, Text } from 'react-native';
+import { View, SafeAreaView, Image, Text, ImageBackground } from 'react-native';
 import styles from './styles';
 import theme from '../Theme/theme';
 
 export default function Header({ userName }) {
   return (
     <>
-      <SafeAreaView style={{ backgroundColor: theme.color.Black }} />
-      <View
-        style={{
-          flexDirection: 'row',
+      {/* <SafeAreaView style={{ backgroundColor: theme.color.Black }} /> */}
+      <ImageBackground source={require('../../assets/com_back_5.gif')} style={{height:50, flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: 50,
-          backgroundColor: theme.color.Black,
-        }}
-      >
+          height: 50,}} >
+       
         <View style={{ justifyContent: 'flex-start' }}>
           <Image
             source={require('../../assets/ico_logo.png')}
@@ -25,7 +21,7 @@ export default function Header({ userName }) {
         <View style={{ justifyContent: 'flex-end', margin: 5 }}>
           <Text style={styles.welcomeText}>WelCome!! : {userName}</Text>
         </View>
-      </View>
+      </ImageBackground>
     </>
   );
 }

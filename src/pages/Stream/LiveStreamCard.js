@@ -14,20 +14,20 @@ import { LIVE_STATUS } from '../../utils/constants';
 import Theme from '../Theme/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const styles = StyleSheet.create({
   cardContainer: {
     justifyContent: 'center',
     width: SCREEN_WIDTH / 2,
     height: '50%',
     flexDirection: 'row',
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     padding: 5,
     flexWrap: 'wrap',
   },
   card: {
     width: '100%',
-    height: 200,
+    height: SCREEN_HEIGHT / 3.5,
     flexDirection: 'row',
     backgroundColor: 'gray',
     padding: 5,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     // flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'rgba(rgba(0,0,0,0.5)',
     padding: 5,
     margin: 5,
     borderRadius: 8,
@@ -78,11 +78,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   streamerContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
+    alignContent: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderRadius: 10,
     padding: 5,
-    marginTop: 105,
+    // marginTop: 105,
   },
   streamerName: {
     width: '100%',
@@ -151,10 +152,12 @@ const LiveStreamCard = ({ data, onPress }) => {
             {viewerIcon}
             <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>1</Text>
           </View>
-          <View style={styles.streamerContainer}>
-            <Text style={styles.streamerName} numberOfLines={1}>
-              스트리머ID : {userName}
-            </Text>
+          <View style={{ height: '70%',justifyContent:'flex-end' }}>
+            <View style={styles.streamerContainer}>
+              <Text style={styles.streamerName} numberOfLines={1}>
+                스트리머ID : {userName}
+              </Text>
+            </View>
           </View>
         </ImageBackground>
       </TouchableOpacity>

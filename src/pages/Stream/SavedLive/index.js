@@ -1,11 +1,13 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable no-plusplus */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, ImageBackground } from 'react-native';
 import get from 'lodash/get';
 import styled from 'styled-components';
 import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
-import LiveStreamCard from '../LiveStreamCard';
+import LiveStreamCard from './LiveStreamCard';
 
 class SavedLive extends React.Component {
   constructor(props) {
@@ -39,15 +41,17 @@ class SavedLive extends React.Component {
       }
     }
     return (
-      <Container style={styles.container}>
-        <FlatList
-          data={newListLiveStream}
-          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-          keyExtractor={(item) => item._id}
-          numColumns={2}
-          contentContainerStyle={styles.flatList}
-        />
-      </Container>
+      <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.container}>
+        <Container style={styles.container}>
+          <FlatList
+            data={newListLiveStream}
+            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+            keyExtractor={(item) => item._id}
+            numColumns={2}
+            contentContainerStyle={styles.flatList}
+          />
+        </Container>
+       </ImageBackground>
     );
   }
 }
