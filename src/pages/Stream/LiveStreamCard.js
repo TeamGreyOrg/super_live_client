@@ -107,6 +107,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   const userName = get(data, 'userName', '');
   const productPrice = get(data, 'productPrice', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
+  const countViewer = get(data, 'countViewer');
   let statusIcon = null;
   let streamIcon = null;
   const viewerIcon = (
@@ -150,7 +151,7 @@ const LiveStreamCard = ({ data, onPress }) => {
           </View>
           <View style={styles.viewerContainer}>
             {viewerIcon}
-            <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>1</Text>
+            <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>{countViewer}</Text>
           </View>
           <View style={{ height: '70%',justifyContent:'flex-end' }}>
             <View style={styles.streamerContainer}>
