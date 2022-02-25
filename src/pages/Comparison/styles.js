@@ -30,13 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     borderRadius: 10,
   },
-  streamOnePortraitBackground: {
-    marginLeft: 15,
-    width: windowWidth * 0.43,
-    height: 300,
-    backgroundColor: 'gray',
-    borderRadius: 10,
-  },
   streamTwoPortrait: {
     marginRight: 15,
     width: windowWidth * 0.43,

@@ -23,7 +23,7 @@ class StreamCard extends Component {
 			showDraggable: true,
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
-			display : 'flex',
+			cardOpacity : 0,
       // streamDisplay: 'none',
 			animation: '',
 			inputUrl: `${HTTP}/live/${roomName}.flv`,
@@ -34,9 +34,15 @@ class StreamCard extends Component {
     	this.longPressTimer = null
     }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({cardOpacity: 1})
+    }, 0)
+  }
+
 renderNodePlayerView = (inputUrl) => {
-        console.log(inputUrl);
-        console.log('inRender');
+        // console.log(inputUrl);
+        // console.log('inRender');
         if (!inputUrl) return null;
         return (
           <NodePlayerView
@@ -142,10 +148,6 @@ onLongPressPanResponder() {
 
   render() {
 
-    // setTimeout(() => {
-    //   this.setState({streamDisplay: 'flex'})
-    // }, 1500)
-
     this._val = { x: 0, y: 0 };
     this.state.pan.addListener((value) => (this._val = value));
 
@@ -159,15 +161,14 @@ onLongPressPanResponder() {
 		const panStyle = {
 			transform: this.state.pan.getTranslateTransform()
 		}
-
         return (
-			<Animatable.View animation={this.state.animation} >
+			<Animatable.View animation={this.state.animation}>
 				<Animated.View
                     {...panHandlers}
 					style={[panStyle, {opacity:this.state.opacity, display: this.state.display}]
                     }
                 >
-				<View style={styles.streamCard, {display: this.state.streamDisplay}}>
+				<View style={{opacity: this.state.cardOpacity}}>
           <View>
 					  {this.renderNodePlayerView(this.state.inputUrl)}
           </View>
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     streamCard: {
       width: 130,
       height: 220,
-      backgroundColor: 'gray',
+      backgroundColor: 'transparent',
       borderRadius: 10,
       marginRight: 15,
       marginTop: 400,

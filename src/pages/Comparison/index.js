@@ -50,7 +50,6 @@ class Comparison extends React.Component {
     };
 
     streamTwoHandler(roomName) {
-        console.log('Passed argument from Child to Parent: ' + roomName);
         this.setState({opacityTwo: 0})
         setTimeout(() => {
             this.setState({opacityTwo: 1})
@@ -62,12 +61,11 @@ class Comparison extends React.Component {
     }
 
     streamOneHandler(roomName) {
-        console.log('Passed argument from Child to Parent: ' + roomName);
         this.setState({opacityOne: 0})
         setTimeout(() => {
             this.setState({opacityOne: 1})
         }, 2000)
-        // this.setState({streamTwoName: arg}) 
+        // this.setState({streamTwoName: arg})
         this.setState({inputUrlFirst: null})
         this.setState({inputUrlFirst: `${HTTP}/live/${roomName}.flv`})
         console.log('stream one url:', this.state.inputUrlFirst);
@@ -93,8 +91,8 @@ class Comparison extends React.Component {
 
     renderPortraitNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
-        console.log(inputUrl);
-        console.log('inRender');
+        // console.log(inputUrl);
+        // console.log('inRender');
         if (!inputUrl) return null;
         return (
           <NodePlayerView
@@ -114,8 +112,8 @@ class Comparison extends React.Component {
 
     renderLandscapeNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
-        console.log(inputUrl);
-        console.log('inRender');
+        // console.log(inputUrl);
+        // console.log('inRender');
         if (!inputUrl) return null;
         return (
           <NodePlayerView
@@ -178,15 +176,17 @@ class Comparison extends React.Component {
                     />
 
                     <View style={styles.streamContainer}>
-                        <View style={[styles.streamOnePortrait]}>
+                        <View style={styles.streamOnePortrait}>
                             <View style={{opacity: this.state.opacityOne}}>
                                 {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
                             </View>
                         </View>
                         <View style={styles.streamTwoPortrait}>
+                        <ImageBackground source={require('../../assets/ico_logo.png')} style={{width:'100%',height:'100%'}}>
                             <View style={{opacity: this.state.opacityTwo}}>
-                            {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
+                                {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
                             </View>
+                        </ImageBackground>
                         </View>
                     </View>
                     <View style={styles.headerContainer}>
@@ -213,7 +213,7 @@ class Comparison extends React.Component {
             );
         } else {
             return (<View style={styles.container}>
-              <ImageBackground source={require('../../assets/com_back.gif')} style={{ flex: 1 }}>
+              {/* <ImageBackground source={require('../../assets/com_back.gif')} style={{ flex: 1 }}> */}
             <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image
                 style={styles.icoClose}
@@ -229,7 +229,7 @@ class Comparison extends React.Component {
                     {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
                 </View>
             </View>
-          </ImageBackground>
+          {/* </ImageBackground> */}
         </View>
       );
     }
