@@ -12,23 +12,22 @@ import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 class StreamCard extends Component {
     constructor(props) {
-        super(props);
+      super(props);
 
-        const { data } = props;
-        const roomName = get(data, 'roomName');
-		const userName = get(data, 'userName');
+      const { data } = props;
+      const roomName = get(data, 'roomName');
 
-        this.state = {
-            roomName: roomName,
-            pan: new Animated.ValueXY(),
+      this.state = {
+          roomName: roomName,
+          pan: new Animated.ValueXY(),
 			showDraggable: true,
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
 			display : 'flex',
+      // streamDisplay: 'none',
 			animation: '',
 			inputUrl: `${HTTP}/live/${roomName}.flv`,
         };
-
 		this.onLongPress = this.onLongPress.bind(this)
 		this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this)
 		this.normalPanResponder = this.normalPanResponder.bind(this)
@@ -76,8 +75,8 @@ onLongPressPanResponder() {
 				if (gesture.moveX >= 75 && gesture.moveX <= 150 && gesture.moveY >= 110 && gesture.moveY <= 280) {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
-						duration: 100, 
-						useNativeDriver: true, 
+						duration: 100,
+						useNativeDriver: true,
 					}).start(() => {
 						this.setState({
 							showDraggable: false,
@@ -142,6 +141,11 @@ onLongPressPanResponder() {
   }
 
   render() {
+
+    // setTimeout(() => {
+    //   this.setState({streamDisplay: 'flex'})
+    // }, 1500)
+
     this._val = { x: 0, y: 0 };
     this.state.pan.addListener((value) => (this._val = value));
 
@@ -154,17 +158,19 @@ onLongPressPanResponder() {
 
 		const panStyle = {
 			transform: this.state.pan.getTranslateTransform()
-		}        
+		}
 
         return (
 			<Animatable.View animation={this.state.animation} >
-				<Animated.View 					
+				<Animated.View
                     {...panHandlers}
 					style={[panStyle, {opacity:this.state.opacity, display: this.state.display}]
                     }
                 >
-				<View>
-					{this.renderNodePlayerView(this.state.inputUrl)}
+				<View style={styles.streamCard, {display: this.state.streamDisplay}}>
+          <View>
+					  {this.renderNodePlayerView(this.state.inputUrl)}
+          </View>
 				</View>
 				</Animated.View>
 			</Animatable.View>

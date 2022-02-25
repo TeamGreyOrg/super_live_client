@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, FlatList, ImageBackground} from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, FlatList, ImageBackground, Animated} from 'react-native';
 import styles from './styles';
 import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
@@ -33,6 +33,9 @@ class Comparison extends React.Component {
             streamOneName: roomName,
             streamTwoName: '',
             streamCards: [],
+            loader: new Animated.Value(0),
+            opacityOne: 0,
+            opacityTwo: 0,
         };
 
         Dimensions.addEventListener('change', () => {
@@ -48,7 +51,11 @@ class Comparison extends React.Component {
 
     streamTwoHandler(roomName) {
         console.log('Passed argument from Child to Parent: ' + roomName);
-        // this.setState({streamTwoName: arg}) 
+        this.setState({opacityTwo: 0})
+        setTimeout(() => {
+            this.setState({opacityTwo: 1})
+        }, 2000)
+        // this.setState({streamTwoName: arg})
         this.setState({inputUrlSecond: null})
         this.setState({inputUrlSecond: `${HTTP}/live/${roomName}.flv`})
         console.log('stream two url:', this.state.inputUrlSecond);
@@ -56,6 +63,10 @@ class Comparison extends React.Component {
 
     streamOneHandler(roomName) {
         console.log('Passed argument from Child to Parent: ' + roomName);
+        this.setState({opacityOne: 0})
+        setTimeout(() => {
+            this.setState({opacityOne: 1})
+        }, 2000)
         // this.setState({streamTwoName: arg}) 
         this.setState({inputUrlFirst: null})
         this.setState({inputUrlFirst: `${HTTP}/live/${roomName}.flv`})
@@ -74,6 +85,10 @@ class Comparison extends React.Component {
             // use HLS from trasporting in media server to Viewer
             // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
         });
+
+        setTimeout(() => {
+            this.setState({opacityOne: 1})
+        }, 2000)
     }
 
     renderPortraitNodePlayerView = (inputUrl) => {
@@ -88,7 +103,7 @@ class Comparison extends React.Component {
               this.nodePlayerView = vb;
             }}
             inputUrl={inputUrl}
-            scaleMode="ScaleAspectFit"
+            // scaleMode="ScaleAspectFit"
             bufferTime={300}
             maxBufferTime={1000}
             audioEnable={audioStatus}
@@ -126,10 +141,20 @@ class Comparison extends React.Component {
         if (this.state.orientation === 'portrait') {
 
             const { streamCards } = this.state;
+            console.log("stream cards!!:", streamCards);
+
+            // For testing lazy loading
+            // const testroomName = 'Teststream';
+            // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // ]
 
             return (
                 <View style={styles.container}>
-                  <ImageBackground source={require('../../assets/com_back_5.gif')} style={{ flex: 1 }}>
+                  {/* <ImageBackground source={require('../../assets/com_back_5.gif')} style={{ flex: 1 }}> */}
                     <View style={styles.topContainer}>
                         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
                             <Image
@@ -153,13 +178,13 @@ class Comparison extends React.Component {
                     />
 
                     <View style={styles.streamContainer}>
-                        <View style={styles.streamOnePortrait}>
-                            <View>
-                            {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
+                        <View style={[styles.streamOnePortrait]}>
+                            <View style={{opacity: this.state.opacityOne}}>
+                                {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
                             </View>
                         </View>
                         <View style={styles.streamTwoPortrait}>
-                            <View>
+                            <View style={{opacity: this.state.opacityTwo}}>
                             {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
                             </View>
                         </View>
@@ -167,23 +192,23 @@ class Comparison extends React.Component {
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>진행중인 다른 LIVE</Text>
                     </View>
-                            <TouchableOpacity style={styles.buttonLeft} onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset - 134})}}>
+                        <TouchableOpacity style={styles.buttonLeft} onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset - 134})}}>
                             <Image
                                 style={styles.icoLeft}
                                 source={require('../../assets/left-arrow.png')}
                             />
                         </TouchableOpacity>
-                        <Image
+                        {/* <Image
                                 style={styles.icoCenter}
                                 source={require('../../assets/scroll.png')}
-                        />
+                        /> */}
                         <TouchableOpacity style={styles.buttonRight}  onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset + 134})}}>
                             <Image
                                 style={styles.icoRight}
                                 source={require('../../assets/right-arrow.png')}
                             />
                         </TouchableOpacity>
-                    </ImageBackground>
+                    {/* </ImageBackground> */}
                 </View>
             );
         } else {

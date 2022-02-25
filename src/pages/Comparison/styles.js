@@ -25,14 +25,21 @@ const styles = StyleSheet.create({
   },
   streamOnePortrait: {
     marginLeft: 15,
-    width: '43%',
+    width: windowWidth * 0.43,
+    height: 300,
+    backgroundColor: 'gray',
+    borderRadius: 10,
+  },
+  streamOnePortraitBackground: {
+    marginLeft: 15,
+    width: windowWidth * 0.43,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamTwoPortrait: {
     marginRight: 15,
-    width: '43%',
+    width: windowWidth * 0.43,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
@@ -54,7 +61,7 @@ const styles = StyleSheet.create({
   headerContainer: {
 		marginTop: 350,
     position: 'absolute',
-    zIndex: 300,
+    zIndex: 1000,
     width: '100%',
     height: 70
   },
@@ -90,8 +97,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     position: 'absolute',
     marginRight: 15,
-    height: 1000,
-    zIndex: 100,
+    bottom: 50,
+    // height: 1000,
+    zIndex: 1000,
 	// cardsContainer: {
 	// 	marginTop: 20,
 	// 	marginLeft: 20,
@@ -119,13 +127,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     left: 50,
-    zIndex: 900
+    zIndex: 902
   },
   buttonRight: {
     position: 'absolute',
     bottom: 5,
     right: 50,
-    zIndex: 900
+    zIndex: 901,
   },
   icoCenter: {
     position: 'absolute',
