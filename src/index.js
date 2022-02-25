@@ -30,6 +30,7 @@ class App extends Component {
             cardStyleInterpolator: forFade,
           }}
         >
+          {/* <Stack.Screen name="Comparison" component={Comparison} /> */}
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Input" component={Input} />

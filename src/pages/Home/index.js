@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StatusBar } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import StreamLive from '../Stream/StreamLive';
 import SavedLive from '../Stream/SavedLive';
-import Header from './Header'
-import Footer from './Footer'
-import Theme from '../Theme/theme'
+import Header from './Header';
+import Footer from './Footer';
+import Theme from '../Theme/theme';
 
 class Home extends React.Component {
   constructor(props) {
@@ -42,7 +43,6 @@ class Home extends React.Component {
     navigate('Input', { userName });
   };
 
-
   render() {
     const Tab = createMaterialTopTabNavigator();
     const { route } = this.props;
@@ -50,18 +50,21 @@ class Home extends React.Component {
     const { listLiveStream } = this.state;
     return (
       <>
+        <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <Header userName={userName} />
         <Tab.Navigator
           tabBarOptions={{
             activeTintColor: Theme.color.PrettyRed,
-            inactiveTintColor: Theme.color.DarkGray,
+            inactiveTintColor: Theme.color.LightGray,
             indicatorStyle: {
               borderBottomColor: Theme.color.PrettyRed,
-              borderBottomWidth: 2,
+              borderBottomWidth: 4,
             },
+            style: { backgroundColor: '#333' },
+            labelStyle: { fontSize: 16, fontWeight: 'bold' },
           }}
         >
-        <Tab.Screen
+          <Tab.Screen
             name="StreamLive"
             // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
@@ -88,12 +91,11 @@ class Home extends React.Component {
   }
 }
 
-
 Home.propTypes = {
   route: PropTypes.shape({}),
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
-  }).isRequired, 
+  }).isRequired,
 };
 
 Home.defaultProps = {

@@ -5,8 +5,6 @@ INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/Android
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml:1:1-47:12
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml:1:1-47:12
 MERGED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml:1:1-47:12
-MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:8:1-18:12
-MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:8:1-15:12
 MERGED from [:react-native-vector-icons] /Users/eddie/coding/super_live_client/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-community_masked-view] /Users/eddie/coding/super_live_client/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -19,19 +17,26 @@ MERGED from [:react-native-safe-area-context] /Users/eddie/coding/super_live_cli
 MERGED from [:react-native-screens] /Users/eddie/coding/super_live_client/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-splash-screen] /Users/eddie/coding/super_live_client/node_modules/react-native-splash-screen/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.62.2] /Users/eddie/.gradle/caches/transforms-3/8453cfe31bfe29a6530da0d414ea08e6/transformed/jetified-react-native-0.62.2/AndroidManifest.xml:2:1-13:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.fresco:flipper:2.0.0] /Users/eddie/.gradle/caches/transforms-3/a3722d9a1f81a28086920a07f9c7ef7d/transformed/flipper-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.0.0] /Users/eddie/.gradle/caches/transforms-3/f3e34f74730eed4466cfa36e321f85e7/transformed/stetho-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/eddie/.gradle/caches/transforms-3/23c1bd73732239cf2e87dda78311b279/transformed/fresco-2.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:animated-gif:1.14.2] /Users/eddie/.gradle/caches/transforms-3/b10f1fa0cf8602f297823c5e0556bd79/transformed/animated-gif-1.14.2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:animated-webp:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef13f513988ac213503bdea03e34b006/transformed/animated-webp-1.14.2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:webpsupport:1.14.2] /Users/eddie/.gradle/caches/transforms-3/58c28c80f60aadff9322d1de93b80ad3/transformed/webpsupport-1.14.2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:8:1-18:12
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:8:1-15:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.fresco:animated-base:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef74520d0a38be7d640aea321e266a97/transformed/animated-base-1.14.2/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/eddie/.gradle/caches/transforms-3/e3138c8d67dc9c42565a8cc4ad3b365f/transformed/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:animated-drawable:1.14.2] /Users/eddie/.gradle/caches/transforms-3/3d07542bdfae630f475b121c7b7b02fd/transformed/animated-drawable-1.14.2/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/eddie/.gradle/caches/transforms-3/7086505aaa12356b94de227b98d413ca/transformed/drawee-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/eddie/.gradle/caches/transforms-3/70c067b08c0a4779e6a90b4e4e797e51/transformed/nativeimagefilters-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Users/eddie/.gradle/caches/transforms-3/16e287f1f2a6fdef50290788061b4317/transformed/imagepipeline-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/eddie/.gradle/caches/transforms-3/53f0efeb6779ad308d535a97c7d314f3/transformed/nativeimagetranscoder-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/eddie/.gradle/caches/transforms-3/110eec159c2cd61130ee288f79fc1248/transformed/imagepipeline-base-2.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/eddie/.gradle/caches/transforms-3/75ef5f3cbe092e78a439500bc88d158d/transformed/soloader-0.8.2/AndroidManifest.xml:2:1-13:12
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] /Users/eddie/.gradle/caches/transforms-3/80c9ebaa6b49a9a62f54adadd7a7eff1/transformed/jetified-NodeMediaClient-Android-2.7.2/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.1.0] /Users/eddie/.gradle/caches/transforms-3/64faaaa21392e85cc0ac5c3ecd1dd4c2/transformed/material-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/eddie/.gradle/caches/transforms-3/7dc151db95d6eb3b90152777f15def87/transformed/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/eddie/.gradle/caches/transforms-3/c4289db212502eb3c71e53814a5dcab2/transformed/okhttp3-integration-4.12.0/AndroidManifest.xml:2:1-16:12
@@ -63,8 +68,8 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/eddie/.gradle/caches/t
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/eddie/.gradle/caches/transforms-3/36764ca8c94770770507f3169eaee714/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/eddie/.gradle/caches/transforms-3/85ede6e3c70c3aefde6bbd8e9889d673/transformed/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/eddie/.gradle/caches/transforms-3/148cabbeb9b07f3d35142d25fb34ddfb/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] /Users/eddie/.gradle/caches/transforms-3/55071b984c7c0d96e85c1cfa4241397f/transformed/NodeMediaClient-Android-2.9.16/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/eddie/.gradle/caches/transforms-3/f805513f31a454fc592f5e567ecaaec7/transformed/annotation-0.8.0/AndroidManifest.xml:2:1-13:12
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:2:1-9:12
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/debug/AndroidManifest.xml:2:1-8:12
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/debug/AndroidManifest.xml:2:1-8:12
@@ -203,10 +208,6 @@ uses-sdk
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/main/AndroidManifest.xml
-MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:11:5-13:41
-MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:11:5-13:41
-MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
-MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/c86709bb966571b0fa28306bfb0d7b0b/transformed/flipper-fresco-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
 MERGED from [:react-native-vector-icons] /Users/eddie/coding/super_live_client/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
@@ -231,18 +232,32 @@ MERGED from [:react-native-splash-screen] /Users/eddie/coding/super_live_client/
 MERGED from [:react-native-splash-screen] /Users/eddie/coding/super_live_client/node_modules/react-native-splash-screen/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.62.2] /Users/eddie/.gradle/caches/transforms-3/8453cfe31bfe29a6530da0d414ea08e6/transformed/jetified-react-native-0.62.2/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.62.2] /Users/eddie/.gradle/caches/transforms-3/8453cfe31bfe29a6530da0d414ea08e6/transformed/jetified-react-native-0.62.2/AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
-MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:flipper:2.0.0] /Users/eddie/.gradle/caches/transforms-3/a3722d9a1f81a28086920a07f9c7ef7d/transformed/flipper-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.0.0] /Users/eddie/.gradle/caches/transforms-3/a3722d9a1f81a28086920a07f9c7ef7d/transformed/flipper-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.0.0] /Users/eddie/.gradle/caches/transforms-3/f3e34f74730eed4466cfa36e321f85e7/transformed/stetho-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.0.0] /Users/eddie/.gradle/caches/transforms-3/f3e34f74730eed4466cfa36e321f85e7/transformed/stetho-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/eddie/.gradle/caches/transforms-3/23c1bd73732239cf2e87dda78311b279/transformed/fresco-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fresco:2.0.0] /Users/eddie/.gradle/caches/transforms-3/23c1bd73732239cf2e87dda78311b279/transformed/fresco-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-gif:1.14.2] /Users/eddie/.gradle/caches/transforms-3/b10f1fa0cf8602f297823c5e0556bd79/transformed/animated-gif-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-gif:1.14.2] /Users/eddie/.gradle/caches/transforms-3/b10f1fa0cf8602f297823c5e0556bd79/transformed/animated-gif-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-webp:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef13f513988ac213503bdea03e34b006/transformed/animated-webp-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-webp:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef13f513988ac213503bdea03e34b006/transformed/animated-webp-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:webpsupport:1.14.2] /Users/eddie/.gradle/caches/transforms-3/58c28c80f60aadff9322d1de93b80ad3/transformed/webpsupport-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:webpsupport:1.14.2] /Users/eddie/.gradle/caches/transforms-3/58c28c80f60aadff9322d1de93b80ad3/transformed/webpsupport-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper:0.33.1] /Users/eddie/.gradle/caches/transforms-3/6080dcabbab0cdc6f0a03923a86435ed/transformed/jetified-flipper-0.33.1/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.33.1] /Users/eddie/.gradle/caches/transforms-3/49135841af06fd599df0aa1087df45fe/transformed/flipper-network-plugin-0.33.1/AndroidManifest.xml:11:5-13:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/eddie/.gradle/caches/transforms-3/c44758c10b985cd7b42c558d9309704c/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] /Users/eddie/.gradle/caches/transforms-3/d928ba24f312957a5d2dfd5b4a790d16/transformed/android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:animated-base:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef74520d0a38be7d640aea321e266a97/transformed/animated-base-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-base:1.14.2] /Users/eddie/.gradle/caches/transforms-3/ef74520d0a38be7d640aea321e266a97/transformed/animated-base-1.14.2/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/eddie/.gradle/caches/transforms-3/e3138c8d67dc9c42565a8cc4ad3b365f/transformed/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Users/eddie/.gradle/caches/transforms-3/e3138c8d67dc9c42565a8cc4ad3b365f/transformed/imagepipeline-okhttp3-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-drawable:1.14.2] /Users/eddie/.gradle/caches/transforms-3/3d07542bdfae630f475b121c7b7b02fd/transformed/animated-drawable-1.14.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-drawable:1.14.2] /Users/eddie/.gradle/caches/transforms-3/3d07542bdfae630f475b121c7b7b02fd/transformed/animated-drawable-1.14.2/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/eddie/.gradle/caches/transforms-3/7086505aaa12356b94de227b98d413ca/transformed/drawee-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:drawee:2.0.0] /Users/eddie/.gradle/caches/transforms-3/7086505aaa12356b94de227b98d413ca/transformed/drawee-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Users/eddie/.gradle/caches/transforms-3/70c067b08c0a4779e6a90b4e4e797e51/transformed/nativeimagefilters-2.0.0/AndroidManifest.xml:5:5-7:41
@@ -253,10 +268,10 @@ MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/eddie/.grad
 MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Users/eddie/.gradle/caches/transforms-3/53f0efeb6779ad308d535a97c7d314f3/transformed/nativeimagetranscoder-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/eddie/.gradle/caches/transforms-3/110eec159c2cd61130ee288f79fc1248/transformed/imagepipeline-base-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Users/eddie/.gradle/caches/transforms-3/110eec159c2cd61130ee288f79fc1248/transformed/imagepipeline-base-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/eddie/.gradle/caches/transforms-3/75ef5f3cbe092e78a439500bc88d158d/transformed/soloader-0.8.2/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/eddie/.gradle/caches/transforms-3/75ef5f3cbe092e78a439500bc88d158d/transformed/soloader-0.8.2/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] /Users/eddie/.gradle/caches/transforms-3/80c9ebaa6b49a9a62f54adadd7a7eff1/transformed/jetified-NodeMediaClient-Android-2.7.2/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.7.2] /Users/eddie/.gradle/caches/transforms-3/80c9ebaa6b49a9a62f54adadd7a7eff1/transformed/jetified-NodeMediaClient-Android-2.7.2/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.material:material:1.1.0] /Users/eddie/.gradle/caches/transforms-3/64faaaa21392e85cc0ac5c3ecd1dd4c2/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.1.0] /Users/eddie/.gradle/caches/transforms-3/64faaaa21392e85cc0ac5c3ecd1dd4c2/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/eddie/.gradle/caches/transforms-3/7dc151db95d6eb3b90152777f15def87/transformed/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -319,10 +334,10 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/eddie/.gra
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /Users/eddie/.gradle/caches/transforms-3/85ede6e3c70c3aefde6bbd8e9889d673/transformed/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/eddie/.gradle/caches/transforms-3/148cabbeb9b07f3d35142d25fb34ddfb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/eddie/.gradle/caches/transforms-3/148cabbeb9b07f3d35142d25fb34ddfb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] /Users/eddie/.gradle/caches/transforms-3/55071b984c7c0d96e85c1cfa4241397f/transformed/NodeMediaClient-Android-2.9.16/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.NodeMedia:NodeMediaClient-Android:2.9.16] /Users/eddie/.gradle/caches/transforms-3/55071b984c7c0d96e85c1cfa4241397f/transformed/NodeMediaClient-Android-2.9.16/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/eddie/.gradle/caches/transforms-3/f805513f31a454fc592f5e567ecaaec7/transformed/annotation-0.8.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/eddie/.gradle/caches/transforms-3/f805513f31a454fc592f5e567ecaaec7/transformed/annotation-0.8.0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/eddie/.gradle/caches/transforms-3/ae9352b511f94ba2696b00ca2bbad64a/transformed/jetified-fbcore-2.0.0/AndroidManifest.xml:5:5-7:41
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/eddie/coding/super_live_client/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion

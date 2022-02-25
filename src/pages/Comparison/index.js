@@ -1,14 +1,25 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Dimensions, FlatList, ImageBackground, Animated} from 'react-native';
 import styles from './styles';
-import StreamCard from "./StreamCard";
+import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import get from 'lodash/get';
+import SocketManager from '../../socketManager';
 
-var screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width;
 class Comparison extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+
+        const { route } = props;
+        const userName = get(route, 'params.userName', '');
+        const roomName = get(route, 'params.roomName');
+
+        const streamTwoHandler = this.streamTwoHandler.bind(this)
+        const streamOneHandler = this.streamOneHandler.bind(this)
 
         const isPortrait = () => {
             const dim = Dimensions.get('screen');
@@ -19,6 +30,12 @@ class Comparison extends React.Component {
             orientation: isPortrait() ? 'portrait' : 'landscape',
             inputUrlFirst: null,
             inputUrlSecond: null,
+            streamOneName: roomName,
+            streamTwoName: '',
+            streamCards: [],
+            loader: new Animated.Value(0),
+            opacityOne: 0,
+            opacityTwo: 0,
         };
 
         Dimensions.addEventListener('change', () => {
@@ -26,34 +43,81 @@ class Comparison extends React.Component {
                 orientation: isPortrait() ? 'portrait' : 'landscape'
             });
         });
-        this.roomName = props.roomName;
-        this.userName = props.userName;
-        console.log(props);
-        this.xOffset = 0;
+        this.roomName = roomName;
+        this.userName = userName;
+        // this.xOffset = 0;
+        this.scrollOffset = 0;
     };
 
-    componentDidMount() {
-        this.setState({
-            inputUrlFirst: `${HTTP}/live/1.flv`,
-            // use HLS from trasporting in media server to Viewer
-            inputUrlSecond: `${HTTP}/live/2.flv`,
-          });
+    streamTwoHandler(roomName) {
+        this.setState({opacityTwo: 0})
+        setTimeout(() => {
+            this.setState({opacityTwo: 1})
+        }, 2000)
+        // this.setState({streamTwoName: arg})
+        this.setState({inputUrlSecond: null})
+        this.setState({inputUrlSecond: `${HTTP}/live/${roomName}.flv`})
+        console.log('stream two url:', this.state.inputUrlSecond);
     }
 
-    onPressClose = () => {
-        const { navigation } = this.props;
-        console.log('pressed close!')
-        navigation.pop(2);
-      };
+    streamOneHandler(roomName) {
+        this.setState({opacityOne: 0})
+        setTimeout(() => {
+            this.setState({opacityOne: 1})
+        }, 2000)
+        // this.setState({streamTwoName: arg})
+        this.setState({inputUrlFirst: null})
+        this.setState({inputUrlFirst: `${HTTP}/live/${roomName}.flv`})
+        console.log('stream one url:', this.state.inputUrlFirst);
+    }
 
-    renderNodePlayerView = (inputUrl) => {
+    componentDidMount() {
+        SocketManager.instance.emitGetStreamCards();
+        SocketManager.instance.listenGetStreamCards((data) => {
+            console.log('data received:', data)
+            this.setState({ streamCards: data });
+        });
+
+        this.setState({
+            inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
+            // use HLS from trasporting in media server to Viewer
+            // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
+        });
+
+        setTimeout(() => {
+            this.setState({opacityOne: 1})
+        }, 2000)
+    }
+
+    renderPortraitNodePlayerView = (inputUrl) => {
         const { audioStatus } = this.props;
-        console.log(inputUrl);
-        console.log('inRender');
+        // console.log(inputUrl);
+        // console.log('inRender');
         if (!inputUrl) return null;
         return (
           <NodePlayerView
             style={styles.streamOnePortrait}
+            ref={(vb) => {
+              this.nodePlayerView = vb;
+            }}
+            inputUrl={inputUrl}
+            // scaleMode="ScaleAspectFit"
+            bufferTime={300}
+            maxBufferTime={1000}
+            audioEnable={audioStatus}
+            autoplay
+          />
+        );
+    };
+
+    renderLandscapeNodePlayerView = (inputUrl) => {
+        const { audioStatus } = this.props;
+        // console.log(inputUrl);
+        // console.log('inRender');
+        if (!inputUrl) return null;
+        return (
+          <NodePlayerView
+            style={styles.streamOneLandscape}
             ref={(vb) => {
               this.nodePlayerView = vb;
             }}
@@ -65,12 +129,30 @@ class Comparison extends React.Component {
             autoplay
           />
         );
-      };
+    };
 
     render() {
+
+        const streamTwoHandler = this.streamTwoHandler;
+        const streamOneHandler = this.streamOneHandler;
+
         if (this.state.orientation === 'portrait') {
+
+            const { streamCards } = this.state;
+            console.log("stream cards!!:", streamCards);
+
+            // For testing lazy loading
+            // const testroomName = 'Teststream';
+            // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName}, 
+            // ]
+
             return (
                 <View style={styles.container}>
+                  {/* <ImageBackground source={require('../../assets/com_back_5.gif')} style={{ flex: 1 }}> */}
                     <View style={styles.topContainer}>
                         <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
                             <Image
@@ -80,57 +162,58 @@ class Comparison extends React.Component {
                             />
                         </TouchableOpacity>
                     </View>
-                    <ScrollView style={styles.cardsContainer}  horizontal= {true} 
-                                ref={(node) => this.scroll = node}
-                                onScroll={event => {
-                                    this.xOffset = event.nativeEvent.contentOffset.x
-                                    // console.log(this.xOffset)
-                                  }}
-                                >
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                        <StreamCard />
-                    </ScrollView>
+                    <FlatList
+                        style={styles.cardsContainer}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal
+                        ref={(ref) => { this.flatListRef = ref; }}
+                        onScroll={e => {
+                            this.scrollOffset = e.nativeEvent.contentOffset.x;
+                        }}
+                        data={streamCards}
+                        renderItem={({ item }) => <StreamCard data={item} streamTwoHandler = {streamTwoHandler.bind(this)} streamOneHandler = {streamOneHandler.bind(this)}/>}
+                        keyExtractor={(item) => item._id}
+                    />
+
                     <View style={styles.streamContainer}>
                         <View style={styles.streamOnePortrait}>
-                            <View>
-                            {this.renderNodePlayerView(this.state.inputUrlFirst)}
+                            <View style={{opacity: this.state.opacityOne}}>
+                                {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
                             </View>
                         </View>
                         <View style={styles.streamTwoPortrait}>
-                            <View>
-                            {this.renderNodePlayerView(this.state.inputUrlSecond)}
+                        <ImageBackground source={require('../../assets/ico_logo.png')} style={{width:'100%',height:'100%'}}>
+                            <View style={{opacity: this.state.opacityTwo}}>
+                                {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
                             </View>
+                        </ImageBackground>
                         </View>
                     </View>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>진행중인 다른 LIVE</Text>
                     </View>
-                        <TouchableOpacity style={styles.buttonLeft} onPress={() => { this.scroll.scrollTo({ x: this.xOffset - screenWidth / 2 }) }}>
+                        <TouchableOpacity style={styles.buttonLeft} onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset - 134})}}>
                             <Image
                                 style={styles.icoLeft}
                                 source={require('../../assets/left-arrow.png')}
                             />
                         </TouchableOpacity>
-                        <Image
+                        {/* <Image
                                 style={styles.icoCenter}
                                 source={require('../../assets/scroll.png')}
-                        />
-                        <TouchableOpacity style={styles.buttonRight}  onPress={() => { this.scroll.scrollTo({ x: this.xOffset + screenWidth / 2 }) }}>
+                        /> */}
+                        <TouchableOpacity style={styles.buttonRight}  onPress={() => {this.flatListRef.scrollToOffset({animated: true, offset: this.scrollOffset + 134})}}>
                             <Image
                                 style={styles.icoRight}
                                 source={require('../../assets/right-arrow.png')}
                             />
                         </TouchableOpacity>
+                    {/* </ImageBackground> */}
                 </View>
             );
         } else {
-            return <View style={styles.container}>
+            return (<View style={styles.container}>
+              {/* <ImageBackground source={require('../../assets/com_back.gif')} style={{ flex: 1 }}> */}
             <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image
                 style={styles.icoClose}
@@ -139,20 +222,18 @@ class Comparison extends React.Component {
             />
             </TouchableOpacity>
             <View style={styles.streamContainer}>
-                <View style={styles.streamOneLandscape}>
-                    <Text style={styles.title}>Current livestream</Text>
+                <View>
+                    {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
                 </View>
-                <View style={styles.streamTwoLandscape}>
-                    <Text style={styles.title}>Drag livestream here</Text>
+                <View>
+                    {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
                 </View>
             </View>
+          {/* </ImageBackground> */}
         </View>
-        }
-
+      );
     }
+  }
 }
 
 export default Comparison;
-
-
-

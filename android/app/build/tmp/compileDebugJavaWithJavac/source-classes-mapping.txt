@@ -211,18 +211,6 @@ com/oblador/vectoricons/R.java
  com.oblador.vectoricons.R$xml
 cn/nodemedia/R.java
  cn.nodemedia.R
- cn.nodemedia.R$anim
- cn.nodemedia.R$attr
- cn.nodemedia.R$bool
- cn.nodemedia.R$color
- cn.nodemedia.R$dimen
- cn.nodemedia.R$drawable
- cn.nodemedia.R$id
- cn.nodemedia.R$integer
- cn.nodemedia.R$layout
- cn.nodemedia.R$string
- cn.nodemedia.R$style
- cn.nodemedia.R$styleable
 androidx/drawerlayout/R.java
  androidx.drawerlayout.R
  androidx.drawerlayout.R$attr
@@ -294,6 +282,11 @@ com/swmansion/rnscreens/R.java
  com.swmansion.rnscreens.R$xml
 com/bumptech/glide/gifdecoder/R.java
  com.bumptech.glide.gifdecoder.R
+com/facebook/animated/gif/R.java
+ com.facebook.animated.gif.R
+ com.facebook.animated.gif.R$attr
+ com.facebook.animated.gif.R$id
+ com.facebook.animated.gif.R$styleable
 androidx/cursoradapter/R.java
  androidx.cursoradapter.R
 androidx/cardview/R.java
@@ -344,6 +337,11 @@ androidx/appcompat/R.java
  androidx.appcompat.R$string
  androidx.appcompat.R$style
  androidx.appcompat.R$styleable
+com/facebook/animated/webp/R.java
+ com.facebook.animated.webp.R
+ com.facebook.animated.webp.R$attr
+ com.facebook.animated.webp.R$id
+ com.facebook.animated.webp.R$styleable
 com/bumptech/glide/integration/okhttp/R.java
  com.bumptech.glide.integration.okhttp.R
  com.bumptech.glide.integration.okhttp.R$attr
@@ -484,6 +482,8 @@ com/facebook/flipper/plugins/network/R.java
  com.facebook.flipper.plugins.network.R$styleable
 com/facebook/react/PackageList.java
  com.facebook.react.PackageList
+com/facebook/webpsupport/R.java
+ com.facebook.webpsupport.R
 com/facebook/drawee/R.java
  com.facebook.drawee.R
  com.facebook.drawee.R$attr
@@ -491,6 +491,11 @@ com/facebook/drawee/R.java
  com.facebook.drawee.R$styleable
 org/webkit/androidjsc/R.java
  org.webkit.androidjsc.R
+com/facebook/imagepipeline/animated/R.java
+ com.facebook.imagepipeline.animated.R
+ com.facebook.imagepipeline.animated.R$attr
+ com.facebook.imagepipeline.animated.R$id
+ com.facebook.imagepipeline.animated.R$styleable
 com/facebook/nativeimagetranscoder/R.java
  com.facebook.nativeimagetranscoder.R
 com/dylanvann/fastimage/R.java
@@ -508,6 +513,11 @@ com/dylanvann/fastimage/R.java
  com.dylanvann.fastimage.R$style
  com.dylanvann.fastimage.R$styleable
  com.dylanvann.fastimage.R$xml
+com/facebook/animated/drawable/R.java
+ com.facebook.animated.drawable.R
+ com.facebook.animated.drawable.R$attr
+ com.facebook.animated.drawable.R$id
+ com.facebook.animated.drawable.R$styleable
 androidx/viewpager/R.java
  androidx.viewpager.R
  androidx.viewpager.R$attr

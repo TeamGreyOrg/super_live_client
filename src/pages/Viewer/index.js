@@ -1,3 +1,5 @@
+/* eslint-disable react/sort-comp */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -404,14 +406,6 @@ export default class Viewer extends Component {
             <Image source={require('../../assets/compare-icon.png')} />
           </TouchableOpacity>
         </View>
-
-        {/*
-                <View>
-                <TouchableOpacity onPress={this.onPressCompare}>
-                  <Icon name={iconName}/>
-                </TouchableOpacity>
-                </View>
-                */}
         <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
           <Image source={audioIcon} />
         </TouchableOpacity>
@@ -469,6 +463,7 @@ export default class Viewer extends Component {
     };
 
     const { isVisibleFooter } = this.state;
+    const { audioIcon } = this.state;
     /**
      * Replay mode
      */

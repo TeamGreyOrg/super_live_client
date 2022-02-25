@@ -22,6 +22,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'no-underscore-dangle': 0,
     'react/jsx-props-no-spreading': 0,
+    "no-console": "off"
   },
   plugins: ['prettier'],
 };

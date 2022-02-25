@@ -1,30 +1,65 @@
-import React, { Component } from "react";
+import React, { Component, useState, useRef } from 'react';
 import {
-  StyleSheet,
-  PanResponder,
-  Animated,
-} from "react-native";
+    Text,
+    StyleSheet,
+    View,
+    PanResponder,
+    Animated,
+} from 'react-native';
+import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
+import { HTTP } from '../../config';
+import { NodePlayerView } from 'react-native-nodemediaclient';
+class StreamCard extends Component {
+    constructor(props) {
+      super(props);
 
-export default class StreamCard extends Component {
-  	constructor() {
-    	super();
+      const { data } = props;
+      const roomName = get(data, 'roomName');
 
-		this.state = {
-			pan: new Animated.ValueXY(),
+      this.state = {
+          roomName: roomName,
+          pan: new Animated.ValueXY(),
 			showDraggable: true,
 			dropAreaValues: null,
 			opacity: new Animated.Value(1),
-			display : 'flex',
-			animation: ''
-		};
+			cardOpacity : 0,
+      // streamDisplay: 'none',
+			animation: '',
+			inputUrl: `${HTTP}/live/${roomName}.flv`,
+        };
 		this.onLongPress = this.onLongPress.bind(this)
 		this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this)
 		this.normalPanResponder = this.normalPanResponder.bind(this)
     	this.longPressTimer = null
-  	}
+    }
 
-	onLongPressPanResponder() {
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({cardOpacity: 1})
+    }, 0)
+  }
+
+renderNodePlayerView = (inputUrl) => {
+        // console.log(inputUrl);
+        // console.log('inRender');
+        if (!inputUrl) return null;
+        return (
+          <NodePlayerView
+            style={styles.streamCard}
+            ref={(vb) => {
+              this.nodePlayerView = vb;
+            }}
+            inputUrl={inputUrl}
+            scaleMode="ScaleAspectFit"
+            bufferTime={300}
+            maxBufferTime={1000}
+            autoplay
+          />
+        );
+    };
+
+onLongPressPanResponder() {
 		return PanResponder.create({
 			onStartShouldSetPanResponder: (e, gesture) => true,
 			onPanResponderGrant: (e, gesture) => {
@@ -35,10 +70,9 @@ export default class StreamCard extends Component {
 				this.state.pan.setValue({ x:0, y:0})
 			},
 			onPanResponderMove: Animated.event([
-					null, 
+					null,
 					{ dx: this.state.pan.x, dy: this.state.pan.y }
 				],
-				{useNativeDriver: true}
 			),
 
 			onPanResponderRelease: (e, gesture) => {
@@ -47,13 +81,16 @@ export default class StreamCard extends Component {
 				if (gesture.moveX >= 75 && gesture.moveX <= 150 && gesture.moveY >= 110 && gesture.moveY <= 280) {
 					Animated.timing(this.state.opacity, {
 						toValue: 0,
-						duration: 100, 
-						useNativeDriver: true, 
-					}).start(() =>
+						duration: 100,
+						useNativeDriver: true,
+					}).start(() => {
 						this.setState({
 							showDraggable: false,
 							display: 'none'
 						})
+						this.props.streamOneHandler(this.state.roomName);
+					}
+
 					);
 				// If drag to right stream
 				} else if (gesture.moveX >= 250 && gesture.moveX <= 350 && gesture.moveY >= 110 && gesture.moveY <= 280) {
@@ -61,11 +98,14 @@ export default class StreamCard extends Component {
 						toValue: 0,
 						duration: 100,
 						useNativeDriver: true,
-					}).start(() =>
+					}).start(() => {
 						this.setState({
 							 showDraggable: false,
 							 display: 'none'
 						})
+						this.props.streamTwoHandler(this.state.roomName);
+					}
+
 					);
 				} else {
 					Animated.spring(this.state.pan, {
@@ -80,66 +120,87 @@ export default class StreamCard extends Component {
 		});
 	}
 
-	onLongPress() {
-		console.log('Long Pressed!')
-		this.setState({animation: 'bounceIn'})
-		this.setState({panResponder: this.onLongPressPanResponder()})
-	}
+  onLongPress() {
+    console.log('Long Pressed!');
+    this.setState({ animation: 'bounceIn' });
+    this.setState({ panResponder: this.onLongPressPanResponder() });
+  }
 
-	normalPanResponder(){
-		return PanResponder.create({
-		  onPanResponderTerminationRequest: () => false,
-		  onStartShouldSetPanResponderCapture: () => true,
-		  onPanResponderGrant: (e, gestureState) => {
-			this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
-			this.state.pan.setValue({x: 0, y: 0})
-			this.longPressTimer=setTimeout(this.onLongPress, 200)  // this is where you trigger the onlongpress panResponder handler
-		  },
-		  onPanResponderRelease: (e, {vx, vy}) => {
-			if (!this.state.panResponder) {
-				clearTimeout(this.longPressTimer);   // clean the timeout handler
-			}
-		  },
-		//   onShouldBlockNativeResponder: (e, gestureState) => {
-		// 	return false;
-		//   },
-		})
-	  }
+  normalPanResponder() {
+    return PanResponder.create({
+      onPanResponderTerminationRequest: () => false,
+      onStartShouldSetPanResponderCapture: () => true,
+      onPanResponderGrant: (e, gestureState) => {
+        this.state.pan.setOffset({ x: this.state.pan.x._value, y: this.state.pan.y._value });
+        this.state.pan.setValue({ x: 0, y: 0 });
+        this.longPressTimer = setTimeout(this.onLongPress, 200); // this is where you trigger the onlongpress panResponder handler
+      },
+      onPanResponderRelease: (e, { vx, vy }) => {
+        if (!this.state.panResponder) {
+          clearTimeout(this.longPressTimer); // clean the timeout handler
+        }
+      },
+      //   onShouldBlockNativeResponder: (e, gestureState) => {
+      // 	return false;
+      //   },
+    });
+  }
 
-	render() {
-		this._val = { x:0, y:0 }
-		this.state.pan.addListener((value) => this._val = value);
+  render() {
 
-		let panHandlers = {}
-		if (this.state.panResponder){
-			panHandlers = this.state.panResponder.panHandlers
-		} else {
-			panHandlers = this.normalPanResponder().panHandlers
-		}
+    this._val = { x: 0, y: 0 };
+    this.state.pan.addListener((value) => (this._val = value));
+
+    let panHandlers = {};
+    if (this.state.panResponder) {
+      panHandlers = this.state.panResponder.panHandlers;
+    } else {
+      panHandlers = this.normalPanResponder().panHandlers;
+    }
 
 		const panStyle = {
 			transform: this.state.pan.getTranslateTransform()
 		}
-
-		return (
-			<Animatable.View animation={this.state.animation} >
+        return (
+			<Animatable.View animation={this.state.animation}>
 				<Animated.View
-					{...panHandlers}
-					style={[panStyle, styles.streamCard, {opacity:this.state.opacity, display: this.state.display}]}
-				/>
+                    {...panHandlers}
+					style={[panStyle, {opacity:this.state.opacity, display: this.state.display}]
+                    }
+                >
+				<View style={{opacity: this.state.cardOpacity}}>
+          <View>
+					  {this.renderNodePlayerView(this.state.inputUrl)}
+          </View>
+				</View>
+				</Animated.View>
 			</Animatable.View>
-
-		);
-  	}
+        )
+    }
 }
 
-let styles = StyleSheet.create({
-  	streamCard: {
-		width: 130,
-    	height: 220,
-    	backgroundColor: 'black',
-		borderRadius: 10,
-		marginRight: 15,
-		marginTop: 380,
-  	}
+const styles = StyleSheet.create({
+    cardContainer: {
+        backgroundColor: 'red',
+        height: 100
+    },
+    roomName: {
+        height: 30,
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 15,
+        marginTop: 50,
+        marginLeft: 50,
+        width: 100
+    },
+    streamCard: {
+      width: 130,
+      height: 220,
+      backgroundColor: 'transparent',
+      borderRadius: 10,
+      marginRight: 15,
+      marginTop: 400,
+    },
 });
+
+export default StreamCard;

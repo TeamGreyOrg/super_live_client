@@ -13,6 +13,7 @@ const EVENT_PREPARE_LIVE_STREAM = 'prepare-live-stream';
 const EVENT_SEND_REPLAY = 'replay';
 const EVENT_CANCEL_LIVE_STREAM = 'cancel-live-stream';
 const EVENT_UPDATE_VIEWER_COUNT = 'update-viewer-count';
+const EVENT_GET_STREAM_CARDS = 'get-stream-cards';
 
 class SocketManager {
   socket = null;
@@ -105,14 +106,21 @@ class SocketManager {
     })
   }
 
+  listenGetStreamCards(callback = () => null) {
+    this.socket.on(EVENT_GET_STREAM_CARDS, (data) => {
+      Logger.instance.log(`${EVENT_GET_STREAM_CARDS} :`, data);
+      return callback(data);
+    })
+  }
+
   //
   // ──────────────────────────────────────────────────────────── I ──────────
   //   :::::: E M I T   E V E N T : :  :   :    :     :        :          :
   // ──────────────────────────────────────────────────────────────────────
   //
 
-  emitPrepareLiveStream({ userName, roomName, productLink }) {
-    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, productLink });
+  emitPrepareLiveStream({ userName, roomName, productLink, productPrice }) {
+    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, productLink, productPrice });
   }
 
   emitJoinRoom({ userName, roomName }) {
@@ -149,6 +157,10 @@ class SocketManager {
 
   emitCancelLiveStream({ userName, roomName }) {
     this.socket.emit(EVENT_CANCEL_LIVE_STREAM, { userName, roomName });
+  }
+
+  emitGetStreamCards() {
+    this.socket.emit(EVENT_GET_STREAM_CARDS)
   }
 }
 
