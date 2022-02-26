@@ -15,6 +15,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       listLiveStream: [],
+      preview: true,
     };
   }
 
@@ -24,6 +25,18 @@ class Home extends React.Component {
       this.setState({ listLiveStream: data });
     });
   }
+  onPreviewON = () => {
+    this.setState({
+      preview: true,
+    });
+    console.log(this.state.preview);
+  }
+
+  onPreviewOFF = () => {
+    this.state.preview = false;
+    console.log(this.state.preview);
+  }
+
 
   onPressLogout = () => {
     const { route } = this.props;
@@ -31,6 +44,7 @@ class Home extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
+    this.onPreviewOFF();
     navigate('Login', { userName });
   };
 
@@ -40,6 +54,7 @@ class Home extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
+    this.onPreviewOFF();
     navigate('Input', { userName });
   };
 
@@ -70,7 +85,7 @@ class Home extends React.Component {
             // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
           >
-            {() => <StreamLive {...this.props} />}
+            {() => <StreamLive preview={this.state.preview} onPreviewON={this.onPreviewON} onPreviewOFF={this.onPreviewOFF} {...this.props} />}
           </Tab.Screen>
           {/* <Tab.Screen
             name="UpcomLive"
@@ -97,12 +112,12 @@ Home.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
-  previewOFF: PropTypes.bool,
+  preview: PropTypes.bool,
 };
 
 Home.defaultProps = {
   route: null,
-  previewOFF: false,
+  preview: true,
 };
 
 export default Home;

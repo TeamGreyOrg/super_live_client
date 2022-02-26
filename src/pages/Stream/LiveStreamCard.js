@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   streamInfo: {
     width: '100%',
     height: 50,
-    // flexDirection: 'row',
     backgroundColor: 'rgba(rgba(0,0,0,0.5)',
     padding: 5,
     margin: 5,
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LiveStreamCard = ({ data, onPress, onPreviewOFF, previewOFF}) => {
+const LiveStreamCard = ({ data, onPress, preview}) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
@@ -111,7 +110,7 @@ const LiveStreamCard = ({ data, onPress, onPreviewOFF, previewOFF}) => {
   const productPrice = get(data, 'productPrice');
   let statusIcon = null;
   let streamIcon = null;
-  let preview = null;
+  let previewVideo = null;
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
@@ -125,8 +124,8 @@ const LiveStreamCard = ({ data, onPress, onPreviewOFF, previewOFF}) => {
       );
       break;
     case LIVE_STATUS.ON_LIVE:
-      preview = (
-        <PreviewComponent data={data} previewOFF={previewOFF}/>
+      previewVideo = (
+        <PreviewComponent data={data} preview={preview}/>
       );
       statusIcon = (
         <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
@@ -149,9 +148,9 @@ const LiveStreamCard = ({ data, onPress, onPreviewOFF, previewOFF}) => {
   }
   return (
     <View style={styles.cardContainer}>
-      <TouchableOpacity style={styles.card} onPress={() => onPress(data, onPreviewOFF)}>
+      <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         <ImageBackground source={require('../../assets/ico_dance.gif')} style={styles.bgimage}>
-          {preview}
+          {previewVideo}
           <View style={{ flexDirection: 'row', position: 'absolute'}}>
             {statusIcon}
             {streamIcon}

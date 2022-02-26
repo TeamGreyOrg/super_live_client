@@ -66,7 +66,6 @@ class StreamCard extends Component {
       onPanResponderMove: Animated.event([null, { dx: this.state.pan.x, dy: this.state.pan.y }]),
 
       onPanResponderRelease: (e, gesture) => {
-        console.log(gesture);
         // If drag to left stream
         if (
           gesture.moveX >= 75 &&

@@ -15,13 +15,12 @@ const styles = StyleSheet.create ({
 const PreviewComponent = props => {
     const roomName = props.data.roomName;
     let inputUrl  = `${HTTP}/live/${roomName}.flv`;
-    console.log(props);
-    if (props.previewOFF)
+    if (!props.preview)
       inputUrl = null;
+      console.log(inputUrl);
     if (!inputUrl) {
       return null;
     }
-    console.log(inputUrl);
     return (
       <View>
         <NodePlayerView

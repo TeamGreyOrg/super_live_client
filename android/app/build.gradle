@@ -190,9 +190,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(':react-native-vector-icons')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
@@ -213,7 +211,6 @@ dependencies {
         implementation jscFlavor
     }
     compile 'com.facebook.fresco:fresco:1.+'
-
     // For animated GIF support
     compile 'com.facebook.fresco:animated-gif:1.+'
 
@@ -230,7 +227,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'Entypo.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'Entypo.ttf',  'Feather.ttf', 'AntDesign.ttf' ] // Name of the font files you want to copy
 ]
 
 

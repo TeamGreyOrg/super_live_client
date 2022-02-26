@@ -22,7 +22,8 @@ import { NodePlayerView } from 'react-native-nodemediaclient';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
-import Icon from 'react-native-vector-icons/Entypo';
+import Icon1 from 'react-native-vector-icons/Entypo';
+import Icon2 from 'react-native-vector-icons/AntDesign';
 import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -45,6 +46,8 @@ export default class Viewer extends Component {
     const viewerName = get(route, 'params.userName', '');
     const goodsUrl = get(data, 'productLink');
     const countViewer = get(data, 'countViewer');
+    const onPreviewOFF = get(route, 'params.onPreviewOFF');
+    const onPreviewON = get(route, 'params.onPreviewON');
     this.state = {
       messages: [],
       countHeart: 0,
@@ -71,6 +74,8 @@ export default class Viewer extends Component {
     this.timeout = null;
     const { requestOptions } = this.state;
     this.getPreview(goodsUrl, requestOptions);
+    this.onPreviewOFF = onPreviewOFF;
+    this.onPreviewON = onPreviewON;
     this.countViewer = countViewer;
     this.viewerName = viewerName;
   }
@@ -100,13 +105,13 @@ export default class Viewer extends Component {
 
   onResponderEnd = (e, gestureState) => {
     if (gestureState.dy > 100) {
+      this.onPreviewON();
       Animated.timing(this._animation, {
         toValue: 300,
         duration: 200,
         useNativeDriver: true,
       }).start();
       this._animation.setOffset(100);
-      // this.state.dragging = true;
       this.setState({
         dragging: true,
       });
@@ -169,7 +174,6 @@ export default class Viewer extends Component {
       });
       SocketManager.instance.listenUpdateViewerCount((data) => {
         const countViewer = get(data, 'countViewer');
-        console.log('viewer count:', countViewer);
         this.setState({ countViewer });
       });
       SocketManager.instance.listenSendMessage((data) => {
@@ -210,17 +214,6 @@ export default class Viewer extends Component {
     });
     clearTimeout(this.timeout);
   }
-
-  startBackgroundAnimation = () => {
-    this.Animation.setValue(0);
-    Animated.timing(this.Animation, {
-      toValue: 1,
-      duration: 15000,
-      useNativeDriver: false,
-    }).start(() => {
-      this.startBackgroundAnimation();
-    });
-  };
 
   getPreview = (text, options) => {
     const { onError, onLoad } = this.props;
@@ -320,22 +313,18 @@ export default class Viewer extends Component {
     }
   };
 
-  renderBackgroundColors = () => {
-    const backgroundColor = this.Animation.interpolate({
-      inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
-      outputRange: ['#1abc9c', '#3498db', '#9b59b6', '#34495e', '#f1c40f', '#1abc9c'],
+  handleOpen = () => {
+    this._animation.setOffset(0);
+    Animated.timing(this._animation, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+    this.setState({
+      dragging: false
     });
-    if (this.liveStatus === LIVE_STATUS.FINISH) return null;
-    return (
-      <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
-        <SafeAreaView style={styles.wrapperCenterTitle}>
-          <Text style={styles.titleText}>
-            Stay here and wait until start live stream you will get 30% discount
-          </Text>
-        </SafeAreaView>
-      </Animated.View>
-    );
-  };
+    this.onPreviewOFF();
+  }
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
@@ -378,23 +367,40 @@ export default class Viewer extends Component {
     }
   };
 
+              //<Image source={require('../../assets/compare-icon.png')} >
   renderTransParencyObject = () => {
     const { audioIcon } = this.state;
     return (
       <View>
-        <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-          <Image source={require('../../assets/ico_goback.png')} />
-        </TouchableOpacity>
-
-        <View>
-          <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+        
+          <View>
+            <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            {!this.state.dragging && (
+              <Image source={require('../../assets/ico_goback.png')} />)}
+            {this.state.dragging && (
+              <Icon2 name="close" size={40} color="white" />)}
+            </TouchableOpacity>
+          </View>
+        
+        
+        {!this.state.dragging && (
+          <View>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
             <Image source={require('../../assets/compare-icon.png')} />
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
+        )}
+        {this.state.dragging && (
+          <View>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
+              <Icon1 name="resize-full-screen" size={40} color="white"/>
+            </TouchableOpacity>
+          </View>    
+        )}
         <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
           <Image source={audioIcon} />
         </TouchableOpacity>
-
+        
         {!this.state.dragging && (
           <View>
             <Text style={styles.roomName}>{this.roomName}</Text>
@@ -474,9 +480,9 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        <Home previewOFF navigation={this.props.navigation} route={this.props.route} />
+        <Home preview={false} navigation={this.props.navigation} route={this.props.route} />
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-          <Draggable disabled={!this.state.dragging}>
+          <Draggable color="black" disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
@@ -487,10 +493,9 @@ export default class Viewer extends Component {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
-
                     <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
                     <View style={styles.footer}>
-                      {this.onPressLinkButton()}
+                      {!this.state.dragging && this.onPressLinkButton()}
                       {isVisible && this.renderChatGroup()}
                     </View>
                   </View>
