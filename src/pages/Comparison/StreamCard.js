@@ -31,7 +31,7 @@ class StreamCard extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
-    }, 0);
+    }, 2500);
   }
 
   renderNodePlayerView = (inputUrl) => {
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   streamCard: {
     width: 130,
     height: 220,
-    backgroundColor: 'transparent',
+    backgroundColor: 'grey',
     borderRadius: 10,
     marginRight: 15,
     marginTop: 400,

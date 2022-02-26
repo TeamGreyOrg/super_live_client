@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'black',
+    backgroundColor: '#78609c',
   },
   header: {
     flex: 0.1,
@@ -16,10 +16,16 @@ const styles = StyleSheet.create({
     right: 20,
     top: 15,
   },
-  streamContainer: {
+  streamContainerPortrait: {
     flex: 0.4,
     flexDirection: 'row',
     marginTop: -15,
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  streamContainerLandscape: {
+    flex: 0.9,
+    flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
   },
@@ -45,19 +51,25 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.43,
     height: 300,
   },
-  streamOneLandscape: {
+  streamOneLandscapeBackground: {
     marginLeft: 20,
-    width: '45%',
-    height: windowHeight * 0.73,
+    marginTop: 60,
+    width: windowWidth * 0.43,
+    backgroundColor: 'gray',
+    borderRadius: 10,
+  },
+  streamOneLandscape: {
+    width: windowWidth * 0.43,
+  },
+  streamTwoLandscapeBackground: {
+    marginRight: 20,
+    marginTop: 60,
+    width: windowWidth * 0.43,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamTwoLandscape: {
-    marginRight: 30,
-    width: '45%',
-    height: windowHeight * 0.73,
-    backgroundColor: 'gray',
-    borderRadius: 10,
+    width: windowWidth * 0.43,
   },
   cardsHeader: {
     flex: 0.1,
@@ -67,18 +79,30 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'white',
     fontSize: 20,
-    marginTop: 30,
+    marginTop: 40,
   },
   cardsContainer: {
     flex: 0.3,
+  },
+  flatList: {
     marginLeft: 15,
     position: 'absolute',
     marginRight: 15,
-    bottom: 60,
-    zIndex: 100,
+    bottom: -20,
+    zIndex: 10,
   },
   footer: {
     flex: 0.1,
+  },
+  buttonLeft: {
+    position: 'absolute',
+    bottom: 5,
+    left: 50,
+  },
+  buttonRight: {
+    position: 'absolute',
+    bottom: 5,
+    right: 50,
   },
   icoRight: {
     width: 30,
@@ -87,25 +111,6 @@ const styles = StyleSheet.create({
   icoLeft: {
     width: 30,
     height: 30,
-  },
-  buttonLeft: {
-    position: 'absolute',
-    bottom: 5,
-    left: 50,
-    zIndex: 902,
-  },
-  buttonRight: {
-    position: 'absolute',
-    bottom: 5,
-    right: 50,
-    zIndex: 901,
-  },
-  icoCenter: {
-    position: 'absolute',
-    bottom: -5,
-    right: '45%',
-    width: 50,
-    height: 50,
   },
 });
 

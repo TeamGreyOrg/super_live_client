@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { NodeCameraView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
+import { NavigationContext } from '@react-navigation/native';
 import { LIVE_STATUS, videoConfig, audioConfig } from '../../utils/constants';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -19,7 +20,6 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import FloatingHearts from '../../components/FloatingHearts';
 import { RTMP_SERVER } from '../../config';
 import Logger from '../../utils/logger';
-import { NavigationContext } from '@react-navigation/native';
 
 export default class Streamer extends React.Component {
   constructor(props) {
@@ -114,7 +114,7 @@ export default class Streamer extends React.Component {
       /**
        * Waiting live stream
        */
-      SocketManager.instance.emitBeginLiveStream({ userName: userName, roomName: this.roomName });
+      SocketManager.instance.emitBeginLiveStream({ userName, roomName: this.roomName });
       // SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();
       NavigationContext;
@@ -122,7 +122,7 @@ export default class Streamer extends React.Component {
       /**
        * Finish live stream
        */
-      SocketManager.instance.emitFinishLiveStream({ userName: userName, roomName: this.roomName });
+      SocketManager.instance.emitFinishLiveStream({ userName, roomName: this.roomName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.stop();
       Alert.alert(
         'Alert ',
@@ -132,7 +132,7 @@ export default class Streamer extends React.Component {
             text: 'Okay',
             onPress: () => {
               navigation.pop(2);
-              SocketManager.instance.emitLeaveRoom({ userName: userName, roomName: this.roomName });
+              SocketManager.instance.emitLeaveRoom({ userName, roomName: this.roomName });
             },
           },
         ],

@@ -101,8 +101,6 @@ class Comparison extends React.Component {
 
   renderPortraitNodePlayerView = (inputUrl) => {
     const { audioStatus } = this.props;
-    // console.log(inputUrl);
-    // console.log('inRender');
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -111,7 +109,7 @@ class Comparison extends React.Component {
           this.nodePlayerView = vb;
         }}
         inputUrl={inputUrl}
-        scaleMode="ScaleAspectFill"
+        scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
         audioEnable={audioStatus}
@@ -122,8 +120,6 @@ class Comparison extends React.Component {
 
   renderLandscapeNodePlayerView = (inputUrl) => {
     const { audioStatus } = this.props;
-    // console.log(inputUrl);
-    // console.log('inRender');
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -132,7 +128,7 @@ class Comparison extends React.Component {
           this.nodePlayerView = vb;
         }}
         inputUrl={inputUrl}
-        scaleMode="ScaleAspectFill"
+        scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
         audioEnable={audioStatus}
@@ -150,7 +146,7 @@ class Comparison extends React.Component {
       console.log('stream cards!!:', streamCards);
 
       // For testing lazy loading
-      // const testroomName = 'Teststream';
+      // const testroomName = '345';
       // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
       // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
       // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
@@ -160,41 +156,39 @@ class Comparison extends React.Component {
 
       return (
         <View style={styles.container}>
-          <ImageBackground source={require('../../assets/com_back_5.gif')} style={{ flex: 1 }}>
-            <View style={styles.header}>
-              <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-                <Image
-                  source={require('../../assets/ico_goback.png')}
-                />
-              </TouchableOpacity>
+          <View style={styles.header}>
+            <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+              <Image source={require('../../assets/ico_goback.png')} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.streamContainerPortrait}>
+            <View style={styles.streamOnePortraitBackground}>
+              <ImageBackground
+                source={require('../../assets/ico_logo.png')}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <View style={{ opacity: this.state.opacityOne }}>
+                  {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
+                </View>
+              </ImageBackground>
             </View>
-            <View style={styles.streamContainer}>
-              <View style={styles.streamOnePortraitBackground}>
-                <ImageBackground
-                  source={require('../../assets/ico_logo.png')}
-                  style={{ width: '100%', height: '100%' }}
-                >
-                  <View style={{ opacity: this.state.opacityOne }}>
-                    {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
-                  </View>
-                </ImageBackground>
-              </View>
-              <View style={styles.streamTwoPortraitBackground}>
-                <ImageBackground
-                  source={require('../../assets/ico_logo.png')}
-                  style={{ width: '100%', height: '100%' }}
-                >
-                  <View style={{ opacity: this.state.opacityTwo }}>
-                    {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
-                  </View>
-                </ImageBackground>
-              </View>
+            <View style={styles.streamTwoPortraitBackground}>
+              <ImageBackground
+                source={require('../../assets/ico_logo.png')}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <View style={{ opacity: this.state.opacityTwo }}>
+                  {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
+                </View>
+              </ImageBackground>
             </View>
-            <View style={styles.cardsHeader}>
-              <Text style={styles.cardsHeaderText}>진행중인 다른 LIVE</Text>
-            </View>
-						<FlatList
-              style={styles.cardsContainer}
+          </View>
+          <View style={styles.cardsHeader}>
+            <Text style={styles.cardsHeaderText}>진행중인 다른 LIVE</Text>
+          </View>
+          <View style={styles.cardsContainer}>
+            <FlatList
+              style={styles.flatList}
               showsHorizontalScrollIndicator={false}
               horizontal
               ref={(ref) => {
@@ -213,37 +207,37 @@ class Comparison extends React.Component {
               )}
               keyExtractor={(item) => item._id}
             />
-						<View style={styles.footer}>
-							<TouchableOpacity
-								style={styles.buttonLeft}
-								onPress={() => {
-									this.flatListRef.scrollToOffset({
-										animated: true,
-										offset: this.scrollOffset - 134,
-									});
-								}}
-							>
-								<Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.buttonRight}
-								onPress={() => {
-									this.flatListRef.scrollToOffset({
-										animated: true,
-										offset: this.scrollOffset + 134,
-									});
-								}}
-							>
-								<Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
-							</TouchableOpacity>
-						</View>
-          </ImageBackground>
+          </View>
+
+          <View style={styles.footer}>
+            <TouchableOpacity
+              style={styles.buttonLeft}
+              onPress={() => {
+                this.flatListRef.scrollToOffset({
+                  animated: true,
+                  offset: this.scrollOffset - 134,
+                });
+              }}
+            >
+              <Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonRight}
+              onPress={() => {
+                this.flatListRef.scrollToOffset({
+                  animated: true,
+                  offset: this.scrollOffset + 134,
+                });
+              }}
+            >
+              <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
       );
     } else {
       return (
         <View style={styles.container}>
-          {/* <ImageBackground source={require('../../assets/com_back.gif')} style={{ flex: 1 }}> */}
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image
               style={styles.icoClose}
@@ -251,11 +245,12 @@ class Comparison extends React.Component {
               tintColor="white"
             />
           </TouchableOpacity>
-          <View style={styles.streamContainer}>
-            <View>{this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}</View>
-            <View>{this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}</View>
-          </View>
-          {/* </ImageBackground> */}
+          <View style={styles.streamContainerLandscape}>
+            <View style={styles.streamOneLandscapeBackground}>
+							{this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}</View>
+            <View style={styles.streamTwoLandscapeBackground}>
+							{this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}</View>
+          	</View>
         </View>
       );
     }

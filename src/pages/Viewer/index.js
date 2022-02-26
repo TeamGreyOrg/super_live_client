@@ -15,6 +15,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   Text,
+  KeyboardAvoidingView,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -56,7 +57,7 @@ export default class Viewer extends Component {
       linkFavicon: undefined,
       linkImg: undefined,
       requestOptions: {},
-      isvisible: true,
+      isVisible: true,
       audioStatus: true,
       audioIcon: require('../../assets/ico_soundon.png'),
       roomName,
@@ -210,6 +211,17 @@ export default class Viewer extends Component {
     clearTimeout(this.timeout);
   }
 
+  startBackgroundAnimation = () => {
+    this.Animation.setValue(0);
+    Animated.timing(this.Animation, {
+      toValue: 1,
+      duration: 15000,
+      useNativeDriver: false,
+    }).start(() => {
+      this.startBackgroundAnimation();
+    });
+  };
+
   getPreview = (text, options) => {
     const { onError, onLoad } = this.props;
     getLinkPreview(text, options)
@@ -269,7 +281,8 @@ export default class Viewer extends Component {
 
   onPressLinkButton = () => {
     const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
-    if (!this.state.dragging) {
+    const { isVisible } = this.state;
+    if (isVisible) {
       return (
         <BannerButton
           isUri={isUri}
@@ -284,9 +297,8 @@ export default class Viewer extends Component {
   };
 
   onPressVisible = () => {
-    const { isvisible } = this.state;
-    this.setState(() => ({ isvisible: !isvisible }));
-    console.log(isvisible);
+    const { isVisible } = this.state;
+    this.setState(() => ({ isVisible: !isVisible }));
   };
 
   onPressCompare = () => {
@@ -306,6 +318,23 @@ export default class Viewer extends Component {
       this.setState({ audioStatus: true });
       this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
+  };
+
+  renderBackgroundColors = () => {
+    const backgroundColor = this.Animation.interpolate({
+      inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
+      outputRange: ['#1abc9c', '#3498db', '#9b59b6', '#34495e', '#f1c40f', '#1abc9c'],
+    });
+    if (this.liveStatus === LIVE_STATUS.FINISH) return null;
+    return (
+      <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
+        <SafeAreaView style={styles.wrapperCenterTitle}>
+          <Text style={styles.titleText}>
+            Stay here and wait until start live stream you will get 30% discount
+          </Text>
+        </SafeAreaView>
+      </Animated.View>
+    );
   };
 
   renderNodePlayerView = () => {
@@ -418,7 +447,7 @@ export default class Viewer extends Component {
       ],
     };
 
-    const { isvisible } = this.state;
+    const { isVisible } = this.state;
     const { audioIcon } = this.state;
     /**
      * Replay mode
@@ -445,32 +474,32 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        <Home previewOFF={true} navigation={this.props.navigation} route={this.props.route} />
-        {/* <View style={[StyleSheet.absoluteFill, styles.videoContainer]} pointerEvents="box-none"> */}
-        {/* <Draggable disabled={!this.state.dragging}>
+        <Home previewOFF navigation={this.props.navigation} route={this.props.route} />
+        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+          <Draggable disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
-            > */}
-        {this.renderNodePlayerView()}
+            >
+              {this.renderNodePlayerView()}
 
-        <TouchableWithoutFeedback onPress={this.onPressVisible}>
-          <View>
-            {isvisible && this.renderTransParencyObject()}
-            {isvisible && (
-              <View>
-                {this.onPressLinkButton()}
-                {this.renderChatGroup()}
-                {this.renderListMessages()}
-              </View>
-            )}
-          </View>
-        </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={this.onPressVisible}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+                  <View style={styles.contentWrapper}>
+                    {isVisible && this.renderTransParencyObject()}
 
-        <FloatingHearts count={countHeart} />
-        {/* </Animated.View>
-          </Draggable> */}
-        {/* </View> */}
+                    <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
+                    <View style={styles.footer}>
+                      {this.onPressLinkButton()}
+                      {isVisible && this.renderChatGroup()}
+                    </View>
+                  </View>
+                </KeyboardAvoidingView>
+              </TouchableWithoutFeedback>
+              <FloatingHearts count={countHeart} />
+            </Animated.View>
+          </Draggable>
+        </View>
       </SafeAreaView>
     );
   }

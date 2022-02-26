@@ -5,7 +5,7 @@ const { width: screenWidth } = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapListMessages: {
     position: 'absolute',
-    bottom: 100,
+    bottom: 0,
     left: 0,
     right: 0,
     height: screenWidth / 1.5,
