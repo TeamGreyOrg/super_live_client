@@ -30,7 +30,7 @@ class App extends Component {
             cardStyleInterpolator: forFade,
           }}
         >
-          {/* <Stack.Screen name="Comparison" component={Comparison} /> */}
+          <Stack.Screen name="Comparison" component={Comparison} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Input" component={Input} />
@@ -39,7 +39,7 @@ class App extends Component {
 
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
-          <Stack.Screen name="Comparison" component={Comparison} />
+          {/* <Stack.Screen name="Comparison" component={Comparison} /> */}
 
         </Stack.Navigator>
       </NavigationContainer>

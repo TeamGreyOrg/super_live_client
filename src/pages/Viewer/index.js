@@ -210,7 +210,6 @@ export default class Viewer extends Component {
     clearTimeout(this.timeout);
   }
 
-
   getPreview = (text, options) => {
     const { onError, onLoad } = this.props;
     getLinkPreview(text, options)
@@ -308,7 +307,6 @@ export default class Viewer extends Component {
       this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
   };
-
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
@@ -432,7 +430,7 @@ export default class Viewer extends Component {
           {this.renderListMessages()}
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image
-              style={{width:30,height:30}}
+              style={{ width: 30, height: 30 }}
               source={require('../../assets/close.png')}
               tintColor="white"
             />
@@ -448,30 +446,31 @@ export default class Viewer extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Home previewOFF={true} navigation={this.props.navigation} route={this.props.route} />
-        <View style={[StyleSheet.absoluteFill, styles.videoContainer]} pointerEvents="box-none">
-          <Draggable disabled={!this.state.dragging}>
+        {/* <View style={[StyleSheet.absoluteFill, styles.videoContainer]} pointerEvents="box-none"> */}
+        {/* <Draggable disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
-            >
-              {this.renderNodePlayerView()}
-              
-              <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
-                <View>
-                  {isvisible && this.renderTransParencyObject()}
-                    {isvisible && 
-                    <View>
-                      {this.onPressLinkButton()}
-                      {this.renderChatGroup()}
-                      {this.renderListMessages()}
-                  </View>}
-                </View>
-              </TouchableWithoutFeedback>
-              
-              <FloatingHearts count={countHeart} />
-            </Animated.View>
-          </Draggable>
-        </View>
+            > */}
+        {this.renderNodePlayerView()}
+
+        <TouchableWithoutFeedback onPress={this.onPressVisible}>
+          <View>
+            {isvisible && this.renderTransParencyObject()}
+            {isvisible && (
+              <View>
+                {this.onPressLinkButton()}
+                {this.renderChatGroup()}
+                {this.renderListMessages()}
+              </View>
+            )}
+          </View>
+        </TouchableWithoutFeedback>
+
+        <FloatingHearts count={countHeart} />
+        {/* </Animated.View>
+          </Draggable> */}
+        {/* </View> */}
       </SafeAreaView>
     );
   }

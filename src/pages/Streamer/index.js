@@ -28,7 +28,7 @@ export default class Streamer extends React.Component {
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const productLink = get(route, 'params.productLink');
-    const productPrice = get(route, 'params.productPrice')
+    const productPrice = get(route, 'params.productPrice');
     this.state = {
       currentLiveStatus: LIVE_STATUS.PREPARE,
       messages: [],
@@ -102,7 +102,7 @@ export default class Streamer extends React.Component {
   onPressClose = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
-    SocketManager.instance.emitCancelLiveStream({ userName: userName, roomName: this.roomName })
+    SocketManager.instance.emitCancelLiveStream({ userName: userName, roomName: this.roomName });
     navigation.pop(2);
   };
 

@@ -4,38 +4,46 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 25,
-    color: 'white',
-    fontWeight: '700',
-    marginVertical: 25,
-    marginLeft: 30,
-  },
   container: {
     flex: 1,
     // backgroundColor: 'black',
   },
-  streamContainer: {
-    flexDirection: 'row',
-    width: '100%',
-    marginTop: 60,
-    marginRight: 20,
-    justifyContent: 'space-between',
-    // backgroundColor:'white',
+  header: {
+    flex: 0.1,
   },
-  streamOnePortrait: {
+  btnClose: {
+    position: 'absolute',
+    right: 20,
+    top: 15,
+  },
+  streamContainer: {
+    flex: 0.4,
+    flexDirection: 'row',
+    marginTop: -15,
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  streamOnePortraitBackground: {
     marginLeft: 15,
     width: windowWidth * 0.43,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
-  streamTwoPortrait: {
+  streamOnePortrait: {
+    width: windowWidth * 0.43,
+    height: 300,
+  },
+  streamTwoPortraitBackground: {
     marginRight: 15,
     width: windowWidth * 0.43,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
+  },
+  streamTwoPortrait: {
+    width: windowWidth * 0.43,
+    height: 300,
   },
   streamOneLandscape: {
     marginLeft: 20,
@@ -51,62 +59,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     borderRadius: 10,
   },
-  headerContainer: {
-		marginTop: 350,
-    position: 'absolute',
-    zIndex: 1000,
-    width: '100%',
-    height: 70
+  cardsHeader: {
+    flex: 0.1,
   },
-  header: {
+  cardsHeaderText: {
     textAlign: 'center',
     fontWeight: '700',
     color: 'white',
     fontSize: 20,
-    marginTop: 20,
-  },
-  topContainer: {
-    position: 'absolute',
-    zIndex: 300,
-    width: '100%',
-    height: 60,
-    // backgroundColor: 'white',
-  },
-  marginTop: 10,
-	btnClose: {
-    position: 'absolute',
-    right: 20
-  },
-  btnClose: {
-    position: 'absolute',
-    top: 15,
-    right: 20,
-    zIndex: 101,
+    marginTop: 30,
   },
   cardsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 20,
+    flex: 0.3,
     marginLeft: 15,
     position: 'absolute',
     marginRight: 15,
-    bottom: 50,
-    // height: 1000,
-    zIndex: 1000,
-	// cardsContainer: {
-	// 	marginTop: 20,
-	// 	marginLeft: 20,
-	// 	marginRight: 20,
-  //   // position: 'absolute',
-  //   // bottom: 100,
-  //   // zIndex: 100,
-	},
-  scrollbar: {
-    position: 'absolute',
-    bottom: -5,
-    left: 180,
-    width: 50,
-    height: 50,
+    bottom: 60,
+    zIndex: 100,
+  },
+  footer: {
+    flex: 0.1,
   },
   icoRight: {
     width: 30,
@@ -120,7 +92,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     left: 50,
-    zIndex: 902
+    zIndex: 902,
   },
   buttonRight: {
     position: 'absolute',
@@ -133,16 +105,8 @@ const styles = StyleSheet.create({
     bottom: -5,
     right: '45%',
     width: 50,
-    height: 50
+    height: 50,
   },
-  cardText: {
-    color: 'white',
-    fontSize: 30,
-    position: 'absolute',
-    top: 450,
-    left: 50,
-    zIndex: 900
-  }
 });
 
 export default styles;
