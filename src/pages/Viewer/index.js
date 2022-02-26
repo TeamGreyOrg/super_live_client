@@ -56,7 +56,7 @@ export default class Viewer extends Component {
       linkFavicon: undefined,
       linkImg: undefined,
       requestOptions: {},
-      isVisibleFooter: true,
+      isvisible: true,
       audioStatus: true,
       audioIcon: require('../../assets/ico_soundon.png'),
       roomName,
@@ -210,16 +210,6 @@ export default class Viewer extends Component {
     clearTimeout(this.timeout);
   }
 
-  startBackgroundAnimation = () => {
-    this.Animation.setValue(0);
-    Animated.timing(this.Animation, {
-      toValue: 1,
-      duration: 15000,
-      useNativeDriver: false,
-    }).start(() => {
-      this.startBackgroundAnimation();
-    });
-  };
 
   getPreview = (text, options) => {
     const { onError, onLoad } = this.props;
@@ -280,8 +270,7 @@ export default class Viewer extends Component {
 
   onPressLinkButton = () => {
     const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
-    const { isVisibleFooter } = this.state;
-    if (isVisibleFooter) {
+    if (!this.state.dragging) {
       return (
         <BannerButton
           isUri={isUri}
@@ -296,8 +285,9 @@ export default class Viewer extends Component {
   };
 
   onPressVisible = () => {
-    const { isVisibleFooter } = this.state;
-    this.setState(() => ({ isVisibleFooter: !isVisibleFooter }));
+    const { isvisible } = this.state;
+    this.setState(() => ({ isvisible: !isvisible }));
+    console.log(isvisible);
   };
 
   onPressCompare = () => {
@@ -319,22 +309,6 @@ export default class Viewer extends Component {
     }
   };
 
-  renderBackgroundColors = () => {
-    const backgroundColor = this.Animation.interpolate({
-      inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
-      outputRange: ['#1abc9c', '#3498db', '#9b59b6', '#34495e', '#f1c40f', '#1abc9c'],
-    });
-    if (this.liveStatus === LIVE_STATUS.FINISH) return null;
-    return (
-      <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
-        <SafeAreaView style={styles.wrapperCenterTitle}>
-          <Text style={styles.titleText}>
-            Stay here and wait until start live stream you will get 30% discount
-          </Text>
-        </SafeAreaView>
-      </Animated.View>
-    );
-  };
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
@@ -347,7 +321,7 @@ export default class Viewer extends Component {
           this.nodePlayerView = vb;
         }}
         inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
+        scaleMode="ScaleAspectFill"
         bufferTime={300}
         maxBufferTime={1000}
         audioEnable={audioStatus}
@@ -446,7 +420,7 @@ export default class Viewer extends Component {
       ],
     };
 
-    const { isVisibleFooter } = this.state;
+    const { isvisible } = this.state;
     const { audioIcon } = this.state;
     /**
      * Replay mode
@@ -473,27 +447,27 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        <Home navigation={this.props.navigation} route={this.props.route} />
-        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+        <Home previewOFF={true} navigation={this.props.navigation} route={this.props.route} />
+        <View style={[StyleSheet.absoluteFill, styles.videoContainer]} pointerEvents="box-none">
           <Draggable disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
+              
               <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
-                <View style={styles.footerBar}>
-                  {isVisibleFooter && this.renderTransParencyObject()}
-                  <View style={styles.head}>
-                    {this.renderChatGroup()}
-                    {this.renderListMessages()}
-                  </View>
-                  {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}
+                <View>
+                  {isvisible && this.renderTransParencyObject()}
+                    {isvisible && 
+                    <View>
+                      {this.onPressLinkButton()}
+                      {this.renderChatGroup()}
+                      {this.renderListMessages()}
+                  </View>}
                 </View>
               </TouchableWithoutFeedback>
-              <Text style={styles.roomName}>{this.roomName}</Text>
-              <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
-              <Text style={styles.countViewer}>{this.state.countViewer}</Text>
+              
               <FloatingHearts count={countHeart} />
             </Animated.View>
           </Draggable>
