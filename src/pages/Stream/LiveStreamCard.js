@@ -12,6 +12,7 @@ import {
 import get from 'lodash/get';
 import { LIVE_STATUS } from '../../utils/constants';
 import Theme from '../Theme/theme';
+import PreviewComponent from './PreviewComponent';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LiveStreamCard = ({ data, onPress }) => {
+const LiveStreamCard = ({ data, onPress, onPreviewOFF, previewOFF}) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
@@ -110,6 +111,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   const productPrice = get(data, 'productPrice');
   let statusIcon = null;
   let streamIcon = null;
+  let preview = null;
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
@@ -123,6 +125,9 @@ const LiveStreamCard = ({ data, onPress }) => {
       );
       break;
     case LIVE_STATUS.ON_LIVE:
+      preview = (
+        <PreviewComponent data={data} previewOFF={previewOFF}/>
+      );
       statusIcon = (
         <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
@@ -136,6 +141,7 @@ const LiveStreamCard = ({ data, onPress }) => {
       );
       break;
     default:
+      preview;
       statusIcon = (
         <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
@@ -143,9 +149,10 @@ const LiveStreamCard = ({ data, onPress }) => {
   }
   return (
     <View style={styles.cardContainer}>
-      <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
+      <TouchableOpacity style={styles.card} onPress={() => onPress(data, onPreviewOFF)}>
         <ImageBackground source={require('../../assets/ico_dance.gif')} style={styles.bgimage}>
-          <View style={{ flexDirection: 'row' }}>
+          {preview}
+          <View style={{ flexDirection: 'row', position: 'absolute'}}>
             {statusIcon}
             {streamIcon}
           </View>

@@ -14,9 +14,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   row: {
-    flex: 1,
     flexDirection: 'row',
-    marginBottom: 10,
   },
   col: {
     flex: 1,

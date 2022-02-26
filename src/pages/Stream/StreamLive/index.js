@@ -13,7 +13,9 @@ class StreamLive extends React.Component {
     super(props);
     this.state = {
       listLiveStream: [],
+      previewOFF: null,
     };
+    this.state.previewOFF = props.previewOFF;
   }
 
   componentDidMount() {
@@ -23,14 +25,21 @@ class StreamLive extends React.Component {
     });
   }
 
-  onPressCardItem = (data) => {
+  onPressCardItem = (data, onPreviewOFF) => {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
+    onPreviewOFF();
     const {
       navigation: { push },
     } = this.props;
     push('Viewer', { userName, data });
   };
+
+  onPreviewOFF = () => {
+    this.setState({
+      previewOFF: true,
+    });
+  }
 
   render() {
     const { listLiveStream } = this.state;
@@ -48,7 +57,7 @@ class StreamLive extends React.Component {
         <Container style={styles.container}>
           <FlatList
             data={newListLiveStream}
-            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} onPreviewOFF={this.onPreviewOFF} previewOFF={this.state.previewOFF} />}
             keyExtractor={(item) => item._id}
             numColumns={2}
             contentContainerStyle={styles.flatList}

@@ -100,6 +100,7 @@ Home.propTypes = {
 
 Home.defaultProps = {
   route: null,
+  previewOFF: false,
 };
 
 export default Home;
