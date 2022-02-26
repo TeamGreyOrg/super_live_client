@@ -47,6 +47,7 @@ class Home extends React.Component {
     const Tab = createMaterialTopTabNavigator();
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
+    // eslint-disable-next-line no-unused-vars
     const { listLiveStream } = this.state;
     return (
       <>
@@ -96,6 +97,7 @@ Home.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
+  previewOFF: PropTypes.bool,
 };
 
 Home.defaultProps = {

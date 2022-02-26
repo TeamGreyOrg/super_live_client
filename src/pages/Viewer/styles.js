@@ -4,6 +4,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'black',
   },
   blackContainer: {
@@ -48,10 +49,24 @@ const styles = StyleSheet.create({
     top: 20,
     right: 60,
   },
+  PIP: {
+    bottom: 70,
+    left : 200,
+    width: 200,
+    height: 100,
+    zIndex: 2,
+  },
   btnPast: {
     position: 'absolute',
     bottom: 70,
     left: 5,
+    zIndex: 3,
+  },
+  ModalContainer: {
+    flex: 3,
+    zIndex: 2,
+  },
+  PIPContainer: {
     zIndex: 3,
   },
   MultiText: {
@@ -63,22 +78,26 @@ const styles = StyleSheet.create({
     height: 50,
     zIndex: 2,
   },
+  
   title: {
     fontSize: 28,
   },
   
-  contentWrapper: 
-  { 
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  onScreen: {
+    top: 650,
    },
-   
-   header: {  flex: 0.1, justifyContent: 'space-around', flexDirection: 'row' },
-   footer: {  flex: 0.1 },
-   center: {  flex: 0.8 },
-  footerBarURL: {  
-    flex: 1, flexDirection: 'row' 
+
+  contentWrapper: { flex: 0.95 },
+  body: {
+    flex: 0.7,
   },
+  footer: { 
+  flex: 0.3,
+  backgroundColor: 'black',
+  flexDirection: 'column', 
+},
+  footerBar: { flex: 1 },
+  footerBarURL: { flex: 1, flexDirection: 'row' },
   btnImage: {
     flex: 0.3,
     borderRadius: 8,
@@ -120,6 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 70,
     flex: 0.5,
+    marginLeft: 15,
   },
   imageStyle: {
     justifyContent: 'flex-start',
@@ -171,13 +191,6 @@ const styles = StyleSheet.create({
     top: 62,
     left: 20,
   },
-  videoContainer: {
-    zIndex: 2,
-  },  
-  nestedHome: {
-    zIndex: 1,
-  },  
-  
 });
 
 export default styles;

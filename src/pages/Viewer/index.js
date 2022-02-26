@@ -15,6 +15,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   Text,
+  KeyboardAvoidingView,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -22,8 +23,6 @@ import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
 import Icon from 'react-native-vector-icons/Entypo';
-import VideoPlayer from 'react-native-video-controls';
-import Video from 'react-native-video';
 import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -31,7 +30,7 @@ import FloatingHearts from '../../components/FloatingHearts';
 import ChatInputGroup from '../../components/ChatInputGroup';
 import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
-import { HTTP, RTMP_SERVER } from '../../config';
+import { HTTP } from '../../config';
 import Home from '../Home/index';
 
 export default class Viewer extends Component {
@@ -58,13 +57,12 @@ export default class Viewer extends Component {
       linkFavicon: undefined,
       linkImg: undefined,
       requestOptions: {},
-      isvisible: true,
+      isVisible: true,
       audioStatus: true,
       audioIcon: require('../../assets/ico_soundon.png'),
       roomName,
       userName,
       countViewer,
-      true: true,
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -154,8 +152,7 @@ export default class Viewer extends Component {
           })(i, this);
         }
       });
-      // const inputUrl = `${RTMP_SERVER}/live/${this.roomName}/replayFor${this.userName}`;
-      const inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${this.userName}/index.m3u8`;
+      const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
       this.setState({ inputUrl });
     } else {
       this.setState({
@@ -214,6 +211,16 @@ export default class Viewer extends Component {
     clearTimeout(this.timeout);
   }
 
+  startBackgroundAnimation = () => {
+    this.Animation.setValue(0);
+    Animated.timing(this.Animation, {
+      toValue: 1,
+      duration: 15000,
+      useNativeDriver: false,
+    }).start(() => {
+      this.startBackgroundAnimation();
+    });
+  };
 
   getPreview = (text, options) => {
     const { onError, onLoad } = this.props;
@@ -274,7 +281,8 @@ export default class Viewer extends Component {
 
   onPressLinkButton = () => {
     const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
-    if (!this.state.dragging) {
+    const { isVisible } = this.state;
+    if (isVisible) {
       return (
         <BannerButton
           isUri={isUri}
@@ -289,9 +297,8 @@ export default class Viewer extends Component {
   };
 
   onPressVisible = () => {
-    const { isvisible } = this.state;
-    this.setState(() => ({ isvisible: !isvisible }));
-    console.log(isvisible);
+    const { isVisible } = this.state;
+    this.setState(() => ({ isVisible: !isVisible }));
   };
 
   onPressCompare = () => {
@@ -313,6 +320,22 @@ export default class Viewer extends Component {
     }
   };
 
+  renderBackgroundColors = () => {
+    const backgroundColor = this.Animation.interpolate({
+      inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
+      outputRange: ['#1abc9c', '#3498db', '#9b59b6', '#34495e', '#f1c40f', '#1abc9c'],
+    });
+    if (this.liveStatus === LIVE_STATUS.FINISH) return null;
+    return (
+      <Animated.View style={[styles.backgroundContainer, { backgroundColor }]}>
+        <SafeAreaView style={styles.wrapperCenterTitle}>
+          <Text style={styles.titleText}>
+            Stay here and wait until start live stream you will get 30% discount
+          </Text>
+        </SafeAreaView>
+      </Animated.View>
+    );
+  };
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
@@ -332,18 +355,6 @@ export default class Viewer extends Component {
         autoplay
       />
     );
-  };
-
-  // renderVideoPlayerView = () => {
-  //   const { inputUrl } = this.state;
-  //   if (!inputUrl) return null;
-  //   return <Video source={{ uri: inputUrl }} controls={this.state.true} />;
-  // };
-  renderVideoPlayerView = () => {
-    const { inputUrl } = this.state;
-    const { navigation } = this.props;
-    if (!inputUrl) return null;
-    return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
   };
 
   renderChatGroup = () => {
@@ -436,7 +447,7 @@ export default class Viewer extends Component {
       ],
     };
 
-    const { isvisible } = this.state;
+    const { isVisible } = this.state;
     const { audioIcon } = this.state;
     /**
      * Replay mode
@@ -444,8 +455,15 @@ export default class Viewer extends Component {
     if (this.liveStatus === LIVE_STATUS.FINISH) {
       return (
         <View style={styles.blackContainer}>
-          {this.renderVideoPlayerView()}
+          {this.renderNodePlayerView()}
           {this.renderListMessages()}
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require('../../assets/close.png')}
+              tintColor="white"
+            />
+          </TouchableOpacity>
           <FloatingHearts count={countHeart} />
         </View>
       );
@@ -456,27 +474,28 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        <Home previewOFF={true} navigation={this.props.navigation} route={this.props.route} />
-        <View style={[StyleSheet.absoluteFill, styles.videoContainer]} pointerEvents="box-none">
+        <Home previewOFF navigation={this.props.navigation} route={this.props.route} />
+        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
           <Draggable disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
-              
-              <TouchableWithoutFeedback style={styles.contentWrapper} onPress={this.onPressVisible}>
-                <View>
-                  {isvisible && this.renderTransParencyObject()}
-                    {isvisible && 
-                    <View>
+
+              <TouchableWithoutFeedback onPress={this.onPressVisible}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+                  <View style={styles.contentWrapper}>
+                    {isVisible && this.enderTransParencyObject()}
+
+                    <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
+                    <View style={styles.footer}>
                       {this.onPressLinkButton()}
-                      {this.renderChatGroup()}
-                      {this.renderListMessages()}
-                  </View>}
-                </View>
+                      {isVisible && this.renderChatGroup()}
+                    </View>
+                  </View>
+                </KeyboardAvoidingView>
               </TouchableWithoutFeedback>
-              
               <FloatingHearts count={countHeart} />
             </Animated.View>
           </Draggable>
