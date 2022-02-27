@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
 import LiveStreamCard from '../LiveStreamCard';
-import LiveStreamCardtest from '../LiveStreamCardtest';
 
 class StreamLive extends React.Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class StreamLive extends React.Component {
     this.state = {
       listLiveStream: [],
     };
-
   }
 
   componentDidMount() {
@@ -26,13 +24,13 @@ class StreamLive extends React.Component {
 
   onPressCardItem = (data) => {
     const { route } = this.props;
-    const { onPreviewON, onPreviewOFF } = this.props; 
+    const { onPreviewON, onPreviewOFF } = this.props;
     const userName = get(route, 'params.userName', '');
     this.props.onPreviewOFF();
     const {
       navigation: { push },
     } = this.props;
-    push('Viewer', { userName, data, onPreviewON, onPreviewOFF});
+    push('Viewer', { userName, data, onPreviewON, onPreviewOFF });
   };
 
   render() {
@@ -51,14 +49,19 @@ class StreamLive extends React.Component {
         <Container style={styles.container}>
           <FlatList
             data={newListLiveStream}
-            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} preview={this.props.preview} />}
+            renderItem={({ item }) => (
+              <LiveStreamCard
+                data={item}
+                onPress={this.onPressCardItem}
+                preview={this.props.preview}
+              />
+            )}
             keyExtractor={(item) => item._id}
             numColumns={2}
             contentContainerStyle={styles.flatList}
           />
-          {/* <LiveStreamCardtest/> */}
         </Container>
-     </ImageBackground>
+      </ImageBackground>
     );
   }
 }

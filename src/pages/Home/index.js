@@ -25,18 +25,17 @@ class Home extends React.Component {
       this.setState({ listLiveStream: data });
     });
   }
+
   onPreviewON = () => {
     this.setState({
       preview: true,
     });
-    console.log(this.state.preview);
-  }
+  };
 
   onPreviewOFF = () => {
     this.state.preview = false;
-    console.log(this.state.preview);
-  }
 
+  };
 
   onPressLogout = () => {
     const { route } = this.props;
@@ -85,7 +84,14 @@ class Home extends React.Component {
             // component={StreamLive}
             options={{ tabBarLabel: '진행중인 라이브' }}
           >
-            {() => <StreamLive preview={this.state.preview} onPreviewON={this.onPreviewON} onPreviewOFF={this.onPreviewOFF} {...this.props} />}
+            {() => (
+              <StreamLive
+                preview={this.state.preview}
+                onPreviewON={this.onPreviewON}
+                onPreviewOFF={this.onPreviewOFF}
+                {...this.props}
+              />
+            )}
           </Tab.Screen>
           {/* <Tab.Screen
             name="UpcomLive"
