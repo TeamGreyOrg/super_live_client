@@ -13,7 +13,7 @@ export default class PastPIP extends Component {
 
   _onPressItem() {
     this.setState((previousState) => {
-      console.log(previousState.show);
+      // console.log(previousState.show);
       return {
         show: !previousState.show,
       };

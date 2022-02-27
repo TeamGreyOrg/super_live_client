@@ -20,8 +20,15 @@ class Login extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log('여기는 로그인페이지!!!!!!!!!!!!!!');
+  }
+
+  componentWillUnmount() {
+    console.log('!!!!!!!!!!!!!!!!!!로그인페이지아웃');
+  }
+
   onPressLogin = () => {
-    console.log(this.state);
     const { userName } = this.state;
     if (userName === '') return Alert.alert('Please input userName');
     const {

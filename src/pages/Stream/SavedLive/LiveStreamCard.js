@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 const LiveStreamCard = ({ data, onPress }) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
@@ -107,7 +108,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   const productPrice = get(data, 'productPrice', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   let statusIcon = null;
-  let streamIcon = null;
+  const streamIcon = null;
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../../assets/ico_viewer.png')} />
   );
@@ -115,19 +116,6 @@ const LiveStreamCard = ({ data, onPress }) => {
   //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
   // );
   switch (liveStatus) {
-    case LIVE_STATUS.PREPARE:
-      statusIcon = (
-        <Image source={require(`../../../assets/ico_wait.png`)} style={styles.statusIcon} />
-      );
-      break;
-    case LIVE_STATUS.ON_LIVE:
-      statusIcon = (
-        <Image source={require(`../../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-      );
-      streamIcon = (
-        <Image style={styles.statusIcon} source={require('../../../assets/ico_stream_3.gif')} />
-      );
-      break;
     case LIVE_STATUS.FINISH:
       statusIcon = (
         <Image source={require(`../../../assets/ico_replay.png`)} style={styles.statusIcon} />
@@ -142,7 +130,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.bgimage}>
+        <ImageBackground source={require('../../../assets/Animation3.gif')} style={styles.bgimage}>
           <View style={{ flexDirection: 'row' }}>
             {statusIcon}
             {streamIcon}

@@ -168,7 +168,7 @@ export default class Viewer extends Component {
       });
       SocketManager.instance.listenUpdateViewerCount((data) => {
         const countViewer = get(data, 'countViewer');
-        console.log('viewer count:', countViewer);
+        // console.log('viewer count:', countViewer);
         this.setState({ countViewer });
       });
       SocketManager.instance.listenSendMessage((data) => {
@@ -485,7 +485,7 @@ export default class Viewer extends Component {
                 <View style={styles.footerBar}>
                   {isVisibleFooter && this.renderTransParencyObject()}
                   <View style={styles.head}>
-                    {this.renderChatGroup()}
+                    {this.onPressLinkButton()}
                     {this.renderListMessages()}
                   </View>
                   {isVisibleFooter && <View style={styles.body}>{this.renderChatGroup()}</View>}

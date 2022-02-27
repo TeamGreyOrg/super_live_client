@@ -8,7 +8,7 @@ class Logger {
   }
 
   log(mess, data = '') {
-    console.log(mess, data);
+    // console.log(mess, data);
   }
 }
 

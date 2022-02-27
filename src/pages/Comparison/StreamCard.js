@@ -1,125 +1,125 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-use-before-define */
 import React, { Component, useState, useRef } from 'react';
-import {
-    Text,
-    StyleSheet,
-    View,
-    PanResponder,
-    Animated,
-} from 'react-native';
+import { Text, StyleSheet, View, PanResponder, Animated } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
-import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import { HTTP } from '../../config';
+
 class StreamCard extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        const { data } = props;
-        const roomName = get(data, 'roomName');
-		const userName = get(data, 'userName');
+    const { data } = props;
+    const roomName = get(data, 'roomName');
+    const userName = get(data, 'userName');
 
-        this.state = {
-            roomName: roomName,
-            pan: new Animated.ValueXY(),
-			showDraggable: true,
-			dropAreaValues: null,
-			opacity: new Animated.Value(1),
-			display : 'flex',
-			animation: '',
-			inputUrl: `${HTTP}/live/${roomName}.flv`,
-        };
-
-		this.onLongPress = this.onLongPress.bind(this)
-		this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this)
-		this.normalPanResponder = this.normalPanResponder.bind(this)
-    	this.longPressTimer = null
-    }
-
-renderNodePlayerView = (inputUrl) => {
-        console.log(inputUrl);
-        console.log('inRender');
-        if (!inputUrl) return null;
-        return (
-          <NodePlayerView
-            style={styles.streamCard}
-            ref={(vb) => {
-              this.nodePlayerView = vb;
-            }}
-            inputUrl={inputUrl}
-            scaleMode="ScaleAspectFit"
-            bufferTime={300}
-            maxBufferTime={1000}
-            autoplay
-          />
-        );
+    this.state = {
+      roomName,
+      pan: new Animated.ValueXY(),
+      showDraggable: true,
+      dropAreaValues: null,
+      opacity: new Animated.Value(1),
+      display: 'flex',
+      animation: '',
+      inputUrl: `${HTTP}/live/${roomName}.flv`,
     };
 
-onLongPressPanResponder() {
-		return PanResponder.create({
-			onStartShouldSetPanResponder: (e, gesture) => true,
-			onPanResponderGrant: (e, gesture) => {
-				this.state.pan.setOffset({
-					x: this._val.x,
-					y: this._val.y
-				})
-				this.state.pan.setValue({ x:0, y:0})
-			},
-			onPanResponderMove: Animated.event([
-					null,
-					{ dx: this.state.pan.x, dy: this.state.pan.y }
-				],
-			),
+    this.onLongPress = this.onLongPress.bind(this);
+    this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this);
+    this.normalPanResponder = this.normalPanResponder.bind(this);
+    this.longPressTimer = null;
+  }
 
-			onPanResponderRelease: (e, gesture) => {
-				console.log(gesture)
-				// If drag to left stream
-				if (gesture.moveX >= 75 && gesture.moveX <= 150 && gesture.moveY >= 110 && gesture.moveY <= 280) {
-					Animated.timing(this.state.opacity, {
-						toValue: 0,
-						duration: 100, 
-						useNativeDriver: true, 
-					}).start(() => {
-						this.setState({
-							showDraggable: false,
-							display: 'none'
-						})
-						this.props.streamOneHandler(this.state.roomName);
-					}
+  onLongPressPanResponder() {
+    return PanResponder.create({
+      onStartShouldSetPanResponder: (e, gesture) => true,
+      onPanResponderGrant: (e, gesture) => {
+        this.state.pan.setOffset({
+          x: this._val.x,
+          y: this._val.y,
+        });
+        this.state.pan.setValue({ x: 0, y: 0 });
+      },
+      onPanResponderMove: Animated.event([null, { dx: this.state.pan.x, dy: this.state.pan.y }]),
 
-					);
-				// If drag to right stream
-				} else if (gesture.moveX >= 250 && gesture.moveX <= 350 && gesture.moveY >= 110 && gesture.moveY <= 280) {
-					Animated.timing(this.state.opacity, {
-						toValue: 0,
-						duration: 100,
-						useNativeDriver: true,
-					}).start(() => {
-						this.setState({
-							 showDraggable: false,
-							 display: 'none'
-						})
-						this.props.streamTwoHandler(this.state.roomName);
-					}
-
-					);
-				} else {
-					Animated.spring(this.state.pan, {
-						toValue: { x: 0, y: 0 },
-						friction: 5,
-						useNativeDriver: true,
-					}).start();
-				}
-				this.setState({panResponder: undefined})
-				this.setState({animation: ''})
-			}
-		});
-	}
+      onPanResponderRelease: (e, gesture) => {
+        // console.log(gesture);
+        // If drag to left stream
+        if (
+          gesture.moveX >= 75 &&
+          gesture.moveX <= 150 &&
+          gesture.moveY >= 110 &&
+          gesture.moveY <= 280
+        ) {
+          Animated.timing(this.state.opacity, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: true,
+          }).start(() => {
+            this.setState({
+              showDraggable: false,
+              display: 'none',
+            });
+            this.props.streamOneHandler(this.state.roomName);
+          });
+          // If drag to right stream
+        } else if (
+          gesture.moveX >= 250 &&
+          gesture.moveX <= 350 &&
+          gesture.moveY >= 110 &&
+          gesture.moveY <= 280
+        ) {
+          Animated.timing(this.state.opacity, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: true,
+          }).start(() => {
+            this.setState({
+              showDraggable: false,
+              display: 'none',
+            });
+            this.props.streamTwoHandler(this.state.roomName);
+          });
+        } else {
+          Animated.spring(this.state.pan, {
+            toValue: { x: 0, y: 0 },
+            friction: 5,
+            useNativeDriver: true,
+          }).start();
+        }
+        this.setState({ panResponder: undefined });
+        this.setState({ animation: '' });
+      },
+    });
+  }
 
   onLongPress() {
-    console.log('Long Pressed!');
+    // console.log('Long Pressed!');
     this.setState({ animation: 'bounceIn' });
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
+
+  renderNodePlayerView = (inputUrl) => {
+    // console.log(inputUrl);
+    // console.log('inRender');
+    if (!inputUrl) return null;
+    return (
+      <NodePlayerView
+        style={styles.streamCard}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        autoplay
+      />
+    );
+  };
 
   normalPanResponder() {
     return PanResponder.create({
@@ -152,48 +152,45 @@ onLongPressPanResponder() {
       panHandlers = this.normalPanResponder().panHandlers;
     }
 
-		const panStyle = {
-			transform: this.state.pan.getTranslateTransform()
-		}        
+    const panStyle = {
+      transform: this.state.pan.getTranslateTransform(),
+    };
 
-        return (
-			<Animatable.View animation={this.state.animation} >
-				<Animated.View 					
-                    {...panHandlers}
-					style={[panStyle, {opacity:this.state.opacity, display: this.state.display}]
-                    }
-                >
-				<View>
-					{this.renderNodePlayerView(this.state.inputUrl)}
-				</View>
-				</Animated.View>
-			</Animatable.View>
-        )
-    }
+    return (
+      <Animatable.View animation={this.state.animation}>
+        <Animated.View
+          {...panHandlers}
+          style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
+        >
+          <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+        </Animated.View>
+      </Animatable.View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    cardContainer: {
-        backgroundColor: 'red',
-        height: 100
-    },
-    roomName: {
-        height: 30,
-        color: 'white',
-        fontWeight: '600',
-        fontSize: 15,
-        marginTop: 50,
-        marginLeft: 50,
-        width: 100
-    },
-    streamCard: {
-      width: 130,
-      height: 220,
-      backgroundColor: 'gray',
-      borderRadius: 10,
-      marginRight: 15,
-      marginTop: 400,
-    },
+  cardContainer: {
+    backgroundColor: 'red',
+    height: 100,
+  },
+  roomName: {
+    height: 30,
+    color: 'white',
+    fontWeight: '600',
+    fontSize: 15,
+    marginTop: 50,
+    marginLeft: 50,
+    width: 100,
+  },
+  streamCard: {
+    width: 130,
+    height: 220,
+    backgroundColor: 'gray',
+    borderRadius: 10,
+    marginRight: 15,
+    marginTop: 400,
+  },
 });
 
 export default StreamCard;
