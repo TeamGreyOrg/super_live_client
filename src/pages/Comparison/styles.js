@@ -86,10 +86,9 @@ const styles = StyleSheet.create({
   },
   flatList: {
     marginLeft: 15,
-    position: 'absolute',
+    position: 'absolute', // do not delete
     marginRight: 15,
-    bottom: -20,
-    zIndex: 10,
+    height: 700, // do not delete
   },
   footer: {
     flex: 0.1,
@@ -98,11 +97,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     left: 50,
+    zIndex: 100,
   },
   buttonRight: {
     position: 'absolute',
     bottom: 5,
     right: 50,
+    zIndex: 100,
   },
   icoRight: {
     width: 30,

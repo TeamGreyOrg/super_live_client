@@ -186,28 +186,27 @@ class Comparison extends React.Component {
           <View style={styles.cardsHeader}>
             <Text style={styles.cardsHeaderText}>진행중인 다른 LIVE</Text>
           </View>
-          <View style={styles.cardsContainer}>
-            <FlatList
-              style={styles.flatList}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              ref={(ref) => {
-                this.flatListRef = ref;
-              }}
-              onScroll={(e) => {
-                this.scrollOffset = e.nativeEvent.contentOffset.x;
-              }}
-              data={streamCards}
-              renderItem={({ item }) => (
-                <StreamCard
-                  data={item}
-                  streamTwoHandler={streamTwoHandler.bind(this)}
-                  streamOneHandler={streamOneHandler.bind(this)}
-                />
-              )}
-              keyExtractor={(item) => item._id}
-            />
-          </View>
+          <FlatList
+            style={styles.flatList}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            ref={(ref) => {
+              this.flatListRef = ref;
+            }}
+            onScroll={(e) => {
+              this.scrollOffset = e.nativeEvent.contentOffset.x;
+            }}
+            data={streamCards}
+            renderItem={({ item }) => (
+              <StreamCard
+                data={item}
+                streamTwoHandler={streamTwoHandler.bind(this)}
+                streamOneHandler={streamOneHandler.bind(this)}
+              />
+            )}
+            keyExtractor={(item) => item._id}
+          />
+          <View style={styles.cardsContainer}></View>
 
           <View style={styles.footer}>
             <TouchableOpacity
@@ -247,10 +246,12 @@ class Comparison extends React.Component {
           </TouchableOpacity>
           <View style={styles.streamContainerLandscape}>
             <View style={styles.streamOneLandscapeBackground}>
-							{this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}</View>
+              {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
+            </View>
             <View style={styles.streamTwoLandscapeBackground}>
-							{this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}</View>
-          	</View>
+              {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
+            </View>
+          </View>
         </View>
       );
     }
