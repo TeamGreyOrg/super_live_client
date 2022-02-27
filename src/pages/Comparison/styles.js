@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 15,
+    zIndex: 100,
   },
   streamContainerPortrait: {
     flex: 0.4,
@@ -86,10 +87,11 @@ const styles = StyleSheet.create({
   },
   flatList: {
     marginLeft: 15,
-    position: 'absolute',
+    position: 'absolute', // do not delete
+    top: windowHeight * 0.15, // do not delete
     marginRight: 15,
-    bottom: -20,
-    zIndex: 10,
+    height: windowHeight * 0.75, // do not delete
+    zIndex: 1,
   },
   footer: {
     flex: 0.1,
@@ -98,11 +100,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     left: 50,
+    zIndex: 100,
   },
   buttonRight: {
     position: 'absolute',
     bottom: 5,
     right: 50,
+    zIndex: 100,
   },
   icoRight: {
     width: 30,
@@ -111,6 +115,33 @@ const styles = StyleSheet.create({
   icoLeft: {
     width: 30,
     height: 30,
+  },
+  buttonMaximize: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 100,
+  },
+  icoMaximize: {
+    width: 25,
+    height: 25,
+  },
+  btnAudio: {
+    position: 'absolute',
+    top: 5,
+    right: 40,
+    zIndex: 100,
+  },
+  icoAudio: {
+    width: 30,
+    height: 25,
+  },
+  onLiveIcon: {
+    position: 'absolute',
+    width: 50,
+    height: 40,
+    left: 5,
+    zIndex: 100,
   },
 });
 

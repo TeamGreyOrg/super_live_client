@@ -91,10 +91,10 @@ const styles = StyleSheet.create({
   body: {
     flex: 0.7,
   },
-  footer: { 
-  flex: 0.3,
-  flexDirection: 'column', 
-},
+  footer: {
+    flex: 0.3,
+    flexDirection: 'column',
+  },
   footerBar: { flex: 1 },
   footerBarURL: { flex: 1, flexDirection: 'row' },
   btnImage: {

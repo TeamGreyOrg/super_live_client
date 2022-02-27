@@ -1,8 +1,8 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-use-before-define */
-import React, { Component, useState, useRef } from 'react';
-import { Text, StyleSheet, View, PanResponder, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, PanResponder, Animated, ImageBackground } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -20,7 +20,6 @@ class StreamCard extends Component {
       dropAreaValues: null,
       opacity: new Animated.Value(1),
       cardOpacity: 0,
-      // streamDisplay: 'none',
       animation: '',
       inputUrl: `${HTTP}/live/${roomName}.flv`,
     };
@@ -33,12 +32,10 @@ class StreamCard extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
-    }, 2500);
+    }, 2000);
   }
 
   renderNodePlayerView = (inputUrl) => {
-    // console.log(inputUrl);
-    // console.log('inRender');
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -182,8 +179,15 @@ class StreamCard extends Component {
           {...panHandlers}
           style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
         >
-          <View style={{ opacity: this.state.cardOpacity }}>
-            <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+          <View style={styles.streamCardBackground}>
+            <ImageBackground
+              source={require('../../assets/logoBW_icon.png')}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <View style={{ opacity: this.state.cardOpacity }}>
+                <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+              </View>
+            </ImageBackground>
           </View>
         </Animated.View>
       </Animatable.View>
@@ -192,26 +196,19 @@ class StreamCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    backgroundColor: 'red',
-    height: 100,
-  },
-  roomName: {
-    height: 30,
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 15,
-    marginTop: 50,
-    marginLeft: 50,
-    width: 100,
-  },
   streamCard: {
+    width: 130,
+    height: 220,
+    position: 'relative',
+    zIndex: 200,
+  },
+  streamCardBackground: {
     width: 130,
     height: 220,
     backgroundColor: 'grey',
     borderRadius: 10,
     marginRight: 15,
-    marginTop: 400,
+    marginTop: 320, // do not delete
   },
 });
 
