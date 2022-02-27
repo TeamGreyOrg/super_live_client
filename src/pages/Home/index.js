@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StatusBar } from 'react-native';
@@ -34,7 +35,6 @@ class Home extends React.Component {
 
   onPreviewOFF = () => {
     this.state.preview = false;
-
   };
 
   onPressLogout = () => {
@@ -68,13 +68,20 @@ class Home extends React.Component {
         <StatusBar barStyle="light-content" animated backgroundColor="black" />
         <Header userName={userName} />
         <Tab.Navigator
+          lazy={true}
+          optimizationsEnabled={true}
+          removeClippedSubviews={true}
+          lazyPreloadDistance={0}
           tabBarOptions={{
+            // unmountOnBlur: true,
             activeTintColor: Theme.color.PrettyRed,
             inactiveTintColor: Theme.color.LightGray,
             indicatorStyle: {
               borderBottomColor: Theme.color.PrettyRed,
               borderBottomWidth: 4,
             },
+            lazyPreloadDistance: 1,
+            // lazyPlaceholder:{() => <Text>Loading</Text>},
             style: { backgroundColor: '#333' },
             labelStyle: { fontSize: 16, fontWeight: 'bold' },
           }}
@@ -93,16 +100,16 @@ class Home extends React.Component {
               />
             )}
           </Tab.Screen>
-          {/* <Tab.Screen
-            name="UpcomLive"
-            component={Empty}
-            options={{ tabBarLabel: '다가오는 라이브' }}
-          /> */}
           <Tab.Screen
             name="SavedLive"
             component={SavedLive}
             options={{ tabBarLabel: '지나간 라이브' }}
           />
+          {/* <Tab.Screen
+            name="UpcomLive"
+            component={Empty}
+            options={{ tabBarLabel: '다가오는 라이브' }}
+          /> */}
         </Tab.Navigator>
         <Footer
           onPressLiveStreamNow={this.onPressLiveStreamNow}

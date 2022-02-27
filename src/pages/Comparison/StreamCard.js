@@ -1,8 +1,10 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-use-before-define */
 import React, { Component, useState, useRef } from 'react';
 import { Text, StyleSheet, View, PanResponder, Animated } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
-import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 class StreamCard extends Component {
   constructor(props) {
@@ -116,10 +118,29 @@ class StreamCard extends Component {
   }
 
   onLongPress() {
-    console.log('Long Pressed!');
+    // console.log('Long Pressed!');
     this.setState({ animation: 'bounceIn' });
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
+
+  renderNodePlayerView = (inputUrl) => {
+    // console.log(inputUrl);
+    // console.log('inRender');
+    if (!inputUrl) return null;
+    return (
+      <NodePlayerView
+        style={styles.streamCard}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        autoplay
+      />
+    );
+  };
 
   normalPanResponder() {
     return PanResponder.create({

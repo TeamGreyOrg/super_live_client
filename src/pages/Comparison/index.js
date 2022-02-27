@@ -10,13 +10,12 @@ import {
   Dimensions,
   FlatList,
   ImageBackground,
-  Animated,
 } from 'react-native';
+import { NodePlayerView } from 'react-native-nodemediaclient';
+import get from 'lodash/get';
 import styles from './styles';
 import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
-import { NodePlayerView } from 'react-native-nodemediaclient';
-import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 
 const screenWidth = Dimensions.get('window').width;
@@ -59,6 +58,24 @@ class Comparison extends React.Component {
     this.scrollOffset = 0;
   }
 
+  componentDidMount() {
+    SocketManager.instance.emitGetStreamCards();
+    SocketManager.instance.listenGetStreamCards((data) => {
+      console.log('data received:', data);
+      this.setState({ streamCards: data });
+    });
+
+    this.setState({
+      inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
+      // use HLS from trasporting in media server to Viewer
+      // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
+    });
+
+    setTimeout(() => {
+      this.setState({ opacityOne: 1 });
+    }, 2000);
+  }
+
   streamTwoHandler(roomName) {
     this.setState({ opacityTwo: 0 });
     setTimeout(() => {
@@ -79,24 +96,6 @@ class Comparison extends React.Component {
     this.setState({ inputUrlFirst: null });
     this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
     console.log('stream one url:', this.state.inputUrlFirst);
-  }
-
-  componentDidMount() {
-    SocketManager.instance.emitGetStreamCards();
-    SocketManager.instance.listenGetStreamCards((data) => {
-      console.log('data received:', data);
-      this.setState({ streamCards: data });
-    });
-
-    this.setState({
-      inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
-      // use HLS from trasporting in media server to Viewer
-      // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
-    });
-
-    setTimeout(() => {
-      this.setState({ opacityOne: 1 });
-    }, 2000);
   }
 
   renderPortraitNodePlayerView = (inputUrl) => {
@@ -138,8 +137,8 @@ class Comparison extends React.Component {
   };
 
   render() {
-    const streamTwoHandler = this.streamTwoHandler;
-    const streamOneHandler = this.streamOneHandler;
+    const { streamTwoHandler } = this;
+    const { streamOneHandler } = this;
 
     if (this.state.orientation === 'portrait') {
       const { streamCards } = this.state;
@@ -235,25 +234,26 @@ class Comparison extends React.Component {
           </View>
         </View>
       );
-    } else {
-      return (
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            <Image
-              style={styles.icoClose}
-              source={require('../../assets/ico_goback.png')}
-              tintColor="white"
-            />
-          </TouchableOpacity>
-          <View style={styles.streamContainerLandscape}>
-            <View style={styles.streamOneLandscapeBackground}>
-							{this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}</View>
-            <View style={styles.streamTwoLandscapeBackground}>
-							{this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}</View>
-          	</View>
-        </View>
-      );
     }
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+          <Image
+            style={styles.icoClose}
+            source={require('../../assets/ico_goback.png')}
+            tintColor="white"
+          />
+        </TouchableOpacity>
+        <View style={styles.streamContainerLandscape}>
+          <View style={styles.streamOneLandscapeBackground}>
+            {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
+          </View>
+          <View style={styles.streamTwoLandscapeBackground}>
+            {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
+          </View>
+        </View>
+      </View>
+    );
   }
 }
 

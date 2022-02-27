@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   PIP: {
     bottom: 70,
-    left : 200,
+    left: 200,
     width: 200,
     height: 100,
     zIndex: 2,
@@ -78,14 +78,14 @@ const styles = StyleSheet.create({
     height: 50,
     zIndex: 2,
   },
-  
+
   title: {
     fontSize: 28,
   },
-  
+
   onScreen: {
     top: 650,
-   },
+  },
 
   contentWrapper: { flex: 0.95 },
   body: {
