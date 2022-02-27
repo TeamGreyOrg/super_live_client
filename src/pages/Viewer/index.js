@@ -303,10 +303,11 @@ export default class Viewer extends Component {
 
   onPressCompare = () => {
     const { roomName, userName, audioStatus } = this.state;
+    let viewerName = this.viewerName;
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Comparison', { roomName, userName, audioStatus });
+    navigate('Comparison', { roomName, userName, viewerName, audioStatus });
   };
 
   onPressSound = () => {

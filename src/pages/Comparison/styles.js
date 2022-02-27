@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 15,
+    zIndex: 100,
   },
   streamContainerPortrait: {
     flex: 0.4,
@@ -87,8 +88,10 @@ const styles = StyleSheet.create({
   flatList: {
     marginLeft: 15,
     position: 'absolute', // do not delete
+    top: windowHeight * 0.15, // do not delete
     marginRight: 15,
-    height: 700, // do not delete
+    height: windowHeight * 0.75, // do not delete
+    zIndex: 1,
   },
   footer: {
     flex: 0.1,
@@ -112,6 +115,16 @@ const styles = StyleSheet.create({
   icoLeft: {
     width: 30,
     height: 30,
+  },
+  buttonMaximize: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 100,
+  },
+  icoMaximize: {
+    width: 25,
+    height: 25,
   },
 });
 

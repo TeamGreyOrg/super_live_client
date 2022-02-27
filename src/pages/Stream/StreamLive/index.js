@@ -39,7 +39,7 @@ class StreamLive extends React.Component {
     this.setState({
       previewOFF: true,
     });
-  }
+  };
 
   render() {
     const { listLiveStream } = this.state;
@@ -57,14 +57,21 @@ class StreamLive extends React.Component {
         <Container style={styles.container}>
           <FlatList
             data={newListLiveStream}
-            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} onPreviewOFF={this.onPreviewOFF} previewOFF={this.state.previewOFF} />}
+            renderItem={({ item }) => (
+              <LiveStreamCard
+                data={item}
+                onPress={this.onPressCardItem}
+                onPreviewOFF={this.onPreviewOFF}
+                previewOFF={this.state.previewOFF}
+              />
+            )}
             keyExtractor={(item) => item._id}
             numColumns={2}
             contentContainerStyle={styles.flatList}
           />
           {/* <LiveStreamCardtest/> */}
         </Container>
-     </ImageBackground>
+      </ImageBackground>
     );
   }
 }

@@ -6,7 +6,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ScrollView,
   Dimensions,
   FlatList,
   ImageBackground,
@@ -27,6 +26,7 @@ class Comparison extends React.Component {
     const { route } = props;
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
+    const viewerName = get(route, 'params.viewerName');
 
     const streamTwoHandler = this.streamTwoHandler.bind(this);
     const streamOneHandler = this.streamOneHandler.bind(this);
@@ -43,6 +43,7 @@ class Comparison extends React.Component {
       streamOneName: roomName,
       streamTwoName: '',
       streamCards: [],
+      streamCardsFull: [],
       loader: new Animated.Value(0),
       opacityOne: 0,
       opacityTwo: 0,
@@ -55,7 +56,7 @@ class Comparison extends React.Component {
     });
     this.roomName = roomName;
     this.userName = userName;
-    // this.xOffset = 0;
+    this.viewerName = viewerName;
     this.scrollOffset = 0;
   }
 
@@ -64,7 +65,7 @@ class Comparison extends React.Component {
     setTimeout(() => {
       this.setState({ opacityTwo: 1 });
     }, 2000);
-    // this.setState({streamTwoName: arg})
+    this.setState({ streamTwoName: roomName });
     this.setState({ inputUrlSecond: null });
     this.setState({ inputUrlSecond: `${HTTP}/live/${roomName}.flv` });
     console.log('stream two url:', this.state.inputUrlSecond);
@@ -75,7 +76,7 @@ class Comparison extends React.Component {
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
     }, 2000);
-    // this.setState({streamTwoName: arg})
+    this.setState({ streamOneName: roomName });
     this.setState({ inputUrlFirst: null });
     this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
     console.log('stream one url:', this.state.inputUrlFirst);
@@ -86,6 +87,11 @@ class Comparison extends React.Component {
     SocketManager.instance.listenGetStreamCards((data) => {
       console.log('data received:', data);
       this.setState({ streamCards: data });
+    });
+
+    SocketManager.instance.emitListLiveStream();
+    SocketManager.instance.listenListLiveStream((data) => {
+      this.setState({ streamCardsFull: data });
     });
 
     this.setState({
@@ -137,13 +143,56 @@ class Comparison extends React.Component {
     );
   };
 
+  onPressClose = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  };
+
+  onPressMaximizeStreamOne = () => {
+    const {
+      navigation: { push },
+    } = this.props;
+
+    const { streamCardsFull } = this.state;
+
+    let data = {};
+    for (let i = 0; i < streamCardsFull.length; i++) {
+      if (streamCardsFull[i].roomName === this.state.streamOneName) {
+        data = streamCardsFull[i];
+      }
+    }
+
+    const userName = this.viewerName;
+
+    push('Viewer', { userName, data });
+  };
+
+  onPressMaximizeStreamTwo = () => {
+    const {
+      navigation: { push },
+    } = this.props;
+
+    const { streamCardsFull } = this.state;
+
+    let data = {};
+    for (let i = 0; i < streamCardsFull.length; i++) {
+      if (streamCardsFull[i].roomName === this.state.streamTwoName) {
+        data = streamCardsFull[i];
+      }
+    }
+
+    const userName = this.viewerName;
+
+    push('Viewer', { userName, data });
+  };
+
   render() {
     const streamTwoHandler = this.streamTwoHandler;
     const streamOneHandler = this.streamOneHandler;
 
     if (this.state.orientation === 'portrait') {
       const { streamCards } = this.state;
-      console.log('stream cards!!:', streamCards);
+      console.log('stream cards:', streamCards);
 
       // For testing lazy loading
       // const testroomName = '345';
@@ -168,6 +217,15 @@ class Comparison extends React.Component {
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityOne }}>
+                  <TouchableOpacity
+                    style={styles.buttonMaximize}
+                    onPress={this.onPressMaximizeStreamOne}
+                  >
+                    <Image
+                      source={require('../../assets/ico_maximize.png')}
+                      style={styles.icoMaximize}
+                    />
+                  </TouchableOpacity>
                   {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
                 </View>
               </ImageBackground>
@@ -178,6 +236,15 @@ class Comparison extends React.Component {
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityTwo }}>
+                  <TouchableOpacity
+                    style={styles.buttonMaximize}
+                    onPress={this.onPressMaximizeStreamTwo}
+                  >
+                    <Image
+                      source={require('../../assets/ico_maximize.png')}
+                      style={styles.icoMaximize}
+                    />
+                  </TouchableOpacity>
                   {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
                 </View>
               </ImageBackground>

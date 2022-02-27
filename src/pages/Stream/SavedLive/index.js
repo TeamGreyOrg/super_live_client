@@ -51,7 +51,7 @@ class SavedLive extends React.Component {
             contentContainerStyle={styles.flatList}
           />
         </Container>
-       </ImageBackground>
+      </ImageBackground>
     );
   }
 }

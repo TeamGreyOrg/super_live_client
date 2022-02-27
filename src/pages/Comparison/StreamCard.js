@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     borderRadius: 10,
     marginRight: 15,
-    marginTop: 440, // do not delete
+    marginTop: 320, // do not delete
   },
 });
 
