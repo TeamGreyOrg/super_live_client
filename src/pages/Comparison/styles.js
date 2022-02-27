@@ -126,6 +126,16 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  btnAudio: {
+    position: 'absolute',
+    top: 5,
+    right: 40,
+    zIndex: 100,
+  },
+  icoAudio: {
+    width: 30,
+    height: 25,
+  },
 });
 
 export default styles;

@@ -161,7 +161,7 @@ class StreamCard extends Component {
         >
           <View style={styles.streamCardBackground}>
             <ImageBackground
-              source={require('../../assets/ico_logo.png')}
+              source={require('../../assets/logoBW_icon.png')}
               style={{ width: '100%', height: '100%' }}
             >
               <View style={{ opacity: this.state.cardOpacity }}>

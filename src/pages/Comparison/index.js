@@ -27,6 +27,7 @@ class Comparison extends React.Component {
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const viewerName = get(route, 'params.viewerName');
+    let audioStatusOne = get(route, 'params.audioStatus');
 
     const streamTwoHandler = this.streamTwoHandler.bind(this);
     const streamOneHandler = this.streamOneHandler.bind(this);
@@ -47,6 +48,10 @@ class Comparison extends React.Component {
       loader: new Animated.Value(0),
       opacityOne: 0,
       opacityTwo: 0,
+      audioStatusOne: audioStatusOne,
+      audioStatusTwo: true,
+      audioIconOne: require('../../assets/ico_soundon.png'),
+      audioIconTwo: require('../../assets/ico_soundon.png'),
     };
 
     Dimensions.addEventListener('change', () => {
@@ -105,8 +110,7 @@ class Comparison extends React.Component {
     }, 2000);
   }
 
-  renderPortraitNodePlayerView = (inputUrl) => {
-    const { audioStatus } = this.props;
+  renderPortraitNodePlayerViewOne = (inputUrl) => {
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -118,7 +122,25 @@ class Comparison extends React.Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
-        audioEnable={audioStatus}
+        audioEnable={this.state.audioStatusOne}
+        autoplay
+      />
+    );
+  };
+
+  renderPortraitNodePlayerViewTwo = (inputUrl) => {
+    if (!inputUrl) return null;
+    return (
+      <NodePlayerView
+        style={styles.streamOnePortrait}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={this.state.audioStatusTwo}
         autoplay
       />
     );
@@ -137,7 +159,7 @@ class Comparison extends React.Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
-        audioEnable={audioStatus}
+        // audioEnable={audioStatus}
         autoplay
       />
     );
@@ -186,6 +208,28 @@ class Comparison extends React.Component {
     push('Viewer', { userName, data });
   };
 
+  onPressAudioOne = () => {
+    const { audioStatusOne } = this.state;
+    if (audioStatusOne) {
+      this.setState({ audioStatusOne: false });
+      this.setState({ audioIconOne: require('../../assets/ico_soundoff.png') });
+    } else {
+      this.setState({ audioStatusOne: true });
+      this.setState({ audioIconOne: require('../../assets/ico_soundon.png') });
+    }
+  };
+
+  onPressAudioTwo = () => {
+    const { audioStatusTwo } = this.state;
+    if (audioStatusTwo) {
+      this.setState({ audioStatusTwo: false });
+      this.setState({ audioIconTwo: require('../../assets/ico_soundoff.png') });
+    } else {
+      this.setState({ audioStatusTwo: true });
+      this.setState({ audioIconTwo: require('../../assets/ico_soundon.png') });
+    }
+  };
+
   render() {
     const streamTwoHandler = this.streamTwoHandler;
     const streamOneHandler = this.streamOneHandler;
@@ -203,6 +247,9 @@ class Comparison extends React.Component {
       // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
       // ]
 
+      const { audioIconOne } = this.state;
+      const { audioIconTwo } = this.state;
+
       return (
         <View style={styles.container}>
           <View style={styles.header}>
@@ -213,7 +260,7 @@ class Comparison extends React.Component {
           <View style={styles.streamContainerPortrait}>
             <View style={styles.streamOnePortraitBackground}>
               <ImageBackground
-                source={require('../../assets/ico_logo.png')}
+                source={require('../../assets/logoBW_icon.png')}
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityOne }}>
@@ -226,13 +273,16 @@ class Comparison extends React.Component {
                       style={styles.icoMaximize}
                     />
                   </TouchableOpacity>
-                  {this.renderPortraitNodePlayerView(this.state.inputUrlFirst)}
+                  <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
+                    <Image style={styles.icoAudio} source={audioIconOne} />
+                  </TouchableOpacity>
+                  {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
                 </View>
               </ImageBackground>
             </View>
             <View style={styles.streamTwoPortraitBackground}>
               <ImageBackground
-                source={require('../../assets/ico_logo.png')}
+                source={require('../../assets/logoBW_icon.png')}
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityTwo }}>
@@ -245,7 +295,10 @@ class Comparison extends React.Component {
                       style={styles.icoMaximize}
                     />
                   </TouchableOpacity>
-                  {this.renderPortraitNodePlayerView(this.state.inputUrlSecond)}
+                  <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
+                    <Image style={styles.icoAudio} source={audioIconTwo} />
+                  </TouchableOpacity>
+                  {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
                 </View>
               </ImageBackground>
             </View>
