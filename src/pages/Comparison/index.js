@@ -264,6 +264,7 @@ class Comparison extends React.Component {
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityOne }}>
+                  <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
                   <TouchableOpacity
                     style={styles.buttonMaximize}
                     onPress={this.onPressMaximizeStreamOne}
@@ -286,6 +287,7 @@ class Comparison extends React.Component {
                 style={{ width: '100%', height: '100%' }}
               >
                 <View style={{ opacity: this.state.opacityTwo }}>
+                  <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
                   <TouchableOpacity
                     style={styles.buttonMaximize}
                     onPress={this.onPressMaximizeStreamTwo}

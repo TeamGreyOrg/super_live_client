@@ -136,6 +136,13 @@ const styles = StyleSheet.create({
     width: 30,
     height: 25,
   },
+  onLiveIcon: {
+    position: 'absolute',
+    width: 50,
+    height: 40,
+    left: 5,
+    zIndex: 100,
+  },
 });
 
 export default styles;
