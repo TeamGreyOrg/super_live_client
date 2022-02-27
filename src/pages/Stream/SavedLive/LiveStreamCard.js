@@ -130,7 +130,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        <ImageBackground source={require('../../../assets/Animation3.gif')} style={styles.bgimage}>
+        <ImageBackground source={require('../../../assets/com_back_4.gif')} style={styles.bgimage}>
           <View style={{ flexDirection: 'row' }}>
             {statusIcon}
             {streamIcon}

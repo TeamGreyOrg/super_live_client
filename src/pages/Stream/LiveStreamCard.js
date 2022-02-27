@@ -83,6 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderRadius: 10,
     padding: 5,
+    // marginLeft:3,
+    width: '174%',
     // marginTop: 105,
   },
   streamerName: {
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LiveStreamCard = ({ data, onPress, preview}) => {
+const LiveStreamCard = ({ data, onPress, preview }) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
@@ -124,9 +126,7 @@ const LiveStreamCard = ({ data, onPress, preview}) => {
       );
       break;
     case LIVE_STATUS.ON_LIVE:
-      previewVideo = (
-        <PreviewComponent data={data} preview={preview}/>
-      );
+      previewVideo = <PreviewComponent data={data} preview={preview} />;
       statusIcon = (
         <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
@@ -151,19 +151,21 @@ const LiveStreamCard = ({ data, onPress, preview}) => {
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         <ImageBackground source={require('../../assets/ico_dance.gif')} style={styles.bgimage}>
           {previewVideo}
-          <View style={{ flexDirection: 'row', position: 'absolute'}}>
-            {statusIcon}
-            {streamIcon}
-          </View>
-          <View style={styles.viewerContainer}>
-            {viewerIcon}
-            <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>{countViewer}</Text>
-          </View>
-          <View style={{ height: '70%',justifyContent:'flex-end' }}>
-            <View style={styles.streamerContainer}>
-              <Text style={styles.streamerName} numberOfLines={1}>
-                스트리머ID : {userName}
-              </Text>
+          <View style={{ position: 'absolute' }}>
+            <View style={{ flexDirection: 'row' }}>
+              {statusIcon}
+              {streamIcon}
+            </View>
+            <View style={styles.viewerContainer}>
+              {viewerIcon}
+              <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>{countViewer}</Text>
+            </View>
+            <View style={{ height: '179.8%', justifyContent: 'flex-end' }}>
+              <View style={styles.streamerContainer}>
+                <Text style={styles.streamerName} numberOfLines={1}>
+                  스트리머ID : {userName}
+                </Text>
+              </View>
             </View>
           </View>
         </ImageBackground>

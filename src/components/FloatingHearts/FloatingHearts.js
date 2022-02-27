@@ -14,7 +14,7 @@ class FloatingHearts extends Component {
   createHeart(index) {
     return {
       id: index,
-      right: getRandomNumber(130, 150),
+      right: getRandomNumber(0, 50),//heart position
     };
   }
 
@@ -104,7 +104,7 @@ class AnimatedShape extends Component {
 
   componentDidMount() {
     Animated.timing(this.state.position, {
-      duration: 3500,
+      duration: 5000,//heart가 올라오는 속도
       useNativeDriver: true,
       toValue: this.props.height * -1,
     }).start(this.props.onComplete);
