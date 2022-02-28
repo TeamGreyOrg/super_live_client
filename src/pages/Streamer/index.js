@@ -102,7 +102,7 @@ export default class Streamer extends React.Component {
   onPressClose = () => {
     const { navigation, route } = this.props;
     const userName = get(route, 'params.userName', '');
-    SocketManager.instance.emitCancelLiveStream({ userName: userName, roomName: this.roomName });
+    SocketManager.instance.emitCancelLiveStream({ userName, roomName: this.roomName });
     navigation.pop(2);
   };
 
@@ -220,11 +220,8 @@ export default class Streamer extends React.Component {
               onPress={this.onPressLiveStreamButton}
             />
           </View>
-          <View style={styles.center} />
-          <View style={styles.footer}>
-            {this.renderChatGroup()}
-            {this.renderListMessages()}
-          </View>
+          <View style={styles.center}>{this.renderListMessages()}</View>
+          <View style={styles.footer}>{this.renderChatGroup()}</View>
         </SafeAreaView>
         <FloatingHearts count={countHeart} />
       </SafeAreaView>

@@ -19,6 +19,8 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import VideoPlayer from 'react-native-video-controls';
+import Video from 'react-native-video';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
@@ -157,7 +159,8 @@ export default class Viewer extends Component {
           })(i, this);
         }
       });
-      const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
+      // const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
+      const inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${this.roomName}/index.m3u8`;
       this.setState({ inputUrl });
     } else {
       this.setState({
@@ -346,6 +349,13 @@ export default class Viewer extends Component {
     );
   };
 
+  renderVideoPlayerView = () => {
+    const { inputUrl } = this.state;
+    const { navigation } = this.props;
+    if (!inputUrl) return null;
+    return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
+  };
+
   renderChatGroup = () => {
     if (!this.state.dragging) {
       return (
@@ -457,15 +467,8 @@ export default class Viewer extends Component {
     if (this.liveStatus === LIVE_STATUS.FINISH) {
       return (
         <View style={styles.blackContainer}>
-          {this.renderNodePlayerView()}
+          {this.renderVideoPlayerView()}
           {this.renderListMessages()}
-          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            <Image
-              style={{ width: 30, height: 30 }}
-              source={require('../../assets/close.png')}
-              tintColor="white"
-            />
-          </TouchableOpacity>
           <FloatingHearts count={countHeart} />
         </View>
       );

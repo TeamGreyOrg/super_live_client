@@ -177,6 +177,9 @@ const styles = StyleSheet.create({
     left: 20,
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowRadius: 10,
   },
   countViewer: {
     position: 'absolute',

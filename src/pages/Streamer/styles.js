@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#3498db',
   },
   contentWrapper: { flex: 1 },
-  header: {  zIndex : 3, flex: 0.1, justifyContent: 'space-around', flexDirection: 'row' },
-  footer: {  zIndex: 3, flex: 0.1 },
-  center: {  flex: 0.8 },
+  header: { zIndex: 3, flex: 0.1, justifyContent: 'space-around', flexDirection: 'row' },
+  footer: { zIndex: 3, flex: 0.1 },
+  center: { flex: 0.8 },
   streamerView: {
     position: 'absolute',
     top: 0,
