@@ -20,13 +20,13 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log('여기는 로그인페이지!!!!!!!!!!!!!!');
-  }
+  // componentDidMount() {
+  //   console.log('여기는 로그인페이지!!!!!!!!!!!!!!');
+  // }
 
-  componentWillUnmount() {
-    console.log('!!!!!!!!!!!!!!!!!!로그인페이지아웃');
-  }
+  // componentWillUnmount() {
+  //   console.log('!!!!!!!!!!!!!!!!!!로그인페이지아웃');
+  // }
 
   onPressLogin = () => {
     const { userName } = this.state;

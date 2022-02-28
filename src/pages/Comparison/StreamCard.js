@@ -48,6 +48,7 @@ class StreamCard extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
+        audioEnable={false}
         autoplay
       />
     );
@@ -116,14 +117,11 @@ class StreamCard extends Component {
   }
 
   onLongPress() {
-    // console.log('Long Pressed!');
     this.setState({ animation: 'bounceIn' });
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
 
   renderNodePlayerView = (inputUrl) => {
-    // console.log(inputUrl);
-    // console.log('inRender');
     if (!inputUrl) return null;
     return (
       <NodePlayerView

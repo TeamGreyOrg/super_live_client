@@ -36,6 +36,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import VideoPlayer from 'react-native-video-controls';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -160,7 +161,7 @@ export default class Viewer extends Component {
           })(i, this);
         }
       });
-      const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
+      const inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${this.roomName}/index.m3u8`;
       this.setState({ inputUrl });
     } else {
       this.setState({
@@ -303,6 +304,9 @@ export default class Viewer extends Component {
     const {
       navigation: { navigate },
     } = this.props;
+
+    this.setState({ inputUrl: null });
+
     navigate('Comparison', { roomName, userName, viewerName, audioStatus });
   };
 
@@ -348,6 +352,13 @@ export default class Viewer extends Component {
         autoplay
       />
     );
+  };
+
+  renderVideoPlayerView = () => {
+    const { inputUrl } = this.state;
+    const { navigation } = this.props;
+    if (!inputUrl) return null;
+    return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
   };
 
   renderChatGroup = () => {
@@ -461,7 +472,7 @@ export default class Viewer extends Component {
     if (this.liveStatus === LIVE_STATUS.FINISH) {
       return (
         <View style={styles.blackContainer}>
-          {this.renderNodePlayerView()}
+          {this.renderVideoPlayerView()}
           {this.renderListMessages()}
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             <Image

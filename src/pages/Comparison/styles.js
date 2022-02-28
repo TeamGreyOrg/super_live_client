@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   //   backgroundColor: 'gray',
   //   borderRadius: 10,
   // },
-  bannerOne: {
+  banner: {
     width: 170,
     height: 50,
     marginTop: 15,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     top: windowHeight * 0.15, // do not delete
     marginRight: 15,
     height: windowHeight * 0.75, // do not delete
-    zIndex: 1,
+    elevation: 1,
   },
   footer: {
     flex: 0.1,
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
   },
   buttonMaximize: {
     position: 'absolute',
-    top: 5,
-    right: 5,
+    top: 10,
+    right: 10,
     zIndex: 100,
   },
   icoMaximize: {
@@ -163,8 +163,8 @@ const styles = StyleSheet.create({
   },
   btnAudio: {
     position: 'absolute',
-    top: 5,
-    right: 40,
+    top: 10,
+    right: 45,
     zIndex: 100,
   },
   icoAudio: {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 50,
     height: 40,
-    left: 5,
+    left: 10,
     zIndex: 100,
   },
 });

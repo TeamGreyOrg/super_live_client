@@ -11,11 +11,10 @@ import LiveStreamCard from '../LiveStreamCard';
 class StreamLive extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       listLiveStream: [],
     };
-    
   }
 
   componentDidMount() {

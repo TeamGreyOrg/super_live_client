@@ -65,7 +65,6 @@ class Comparison extends React.Component {
   componentDidMount() {
     SocketManager.instance.emitGetStreamCards();
     SocketManager.instance.listenGetStreamCards((data) => {
-      console.log('data received:', data);
       this.setState({ streamCards: data });
     });
 
@@ -88,7 +87,6 @@ class Comparison extends React.Component {
     this.setState({ streamTwoName: roomName });
     this.setState({ inputUrlSecond: null });
     this.setState({ inputUrlSecond: `${HTTP}/live/${roomName}.flv` });
-    console.log('stream two url:', this.state.inputUrlSecond);
   }
 
   streamOneHandler(roomName) {
@@ -99,13 +97,11 @@ class Comparison extends React.Component {
     this.setState({ streamOneName: roomName });
     this.setState({ inputUrlFirst: null });
     this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
-    console.log('stream one url:', this.state.inputUrlFirst);
   }
 
   componentDidMount() {
     SocketManager.instance.emitGetStreamCards();
     SocketManager.instance.listenGetStreamCards((data) => {
-      console.log('data received:', data);
       this.setState({ streamCards: data });
     });
 
@@ -245,6 +241,20 @@ class Comparison extends React.Component {
     }
   };
 
+  scrollLeft = () => {
+    this.flatListRef.scrollToOffset({
+      animated: true,
+      offset: this.scrollOffset - 134,
+    });
+  };
+
+  scrollRight = () => {
+    this.flatListRef.scrollToOffset({
+      animated: true,
+      offset: this.scrollOffset + 134,
+    });
+  };
+
   render() {
     const { streamTwoHandler } = this;
     const { streamOneHandler } = this;
@@ -262,6 +272,57 @@ class Comparison extends React.Component {
     // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
     // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
     // ]
+
+    let bannerOne = null;
+    let bannerTwo = null;
+
+    switch (this.state.streamOneName) {
+      case 'room1':
+        bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        break;
+      case 'room2':
+        bannerOne = <Image source={require('../../assets/002.png')} style={styles.banner} />;
+        break;
+      case 'room3':
+        bannerOne = <Image source={require('../../assets/003.png')} style={styles.banner} />;
+        break;
+      case 'room4':
+        bannerOne = <Image source={require('../../assets/004.png')} style={styles.banner} />;
+        break;
+      case 'room5':
+        bannerOne = <Image source={require('../../assets/005.png')} style={styles.banner} />;
+        break;
+      case 'room6':
+        bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+        break;
+      default:
+        bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        break;
+    }
+
+    switch (this.state.streamTwoName) {
+      case 'room1':
+        bannerTwo = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        break;
+      case 'room2':
+        bannerTwo = <Image source={require('../../assets/002.png')} style={styles.banner} />;
+        break;
+      case 'room3':
+        bannerTwo = <Image source={require('../../assets/003.png')} style={styles.banner} />;
+        break;
+      case 'room4':
+        bannerTwo = <Image source={require('../../assets/004.png')} style={styles.banner} />;
+        break;
+      case 'room5':
+        bannerTwo = <Image source={require('../../assets/005.png')} style={styles.banner} />;
+        break;
+      case 'room6':
+        bannerTwo = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+        break;
+      default:
+        bannerTwo = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        break;
+    }
 
     const { audioIconOne } = this.state;
     const { audioIconTwo } = this.state;
@@ -303,7 +364,7 @@ class Comparison extends React.Component {
                 <Image style={styles.icoAudio} source={audioIconOne} />
               </TouchableOpacity>
               {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
-              <Image source={require('../../assets/001.png')} style={styles.bannerOne} />
+              {bannerOne}
             </View>
           </View>
           <View style={styles.streamTwoPortraitBackground}>
@@ -334,7 +395,7 @@ class Comparison extends React.Component {
                 <Image style={styles.icoAudio} source={audioIconTwo} />
               </TouchableOpacity>
               {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
-              <Image source={require('../../assets/002.png')} style={styles.bannerOne} />
+              {bannerTwo}
             </View>
           </View>
         </View>
@@ -372,26 +433,10 @@ class Comparison extends React.Component {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>위로 드래그 해서 시청하세요</Text>
-          <TouchableOpacity
-            style={styles.buttonLeft}
-            onPress={() => {
-              this.flatListRef.scrollToOffset({
-                animated: true,
-                offset: this.scrollOffset - 134,
-              });
-            }}
-          >
+          <TouchableOpacity style={styles.buttonLeft} onPress={this.scrollLeft}>
             <Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonRight}
-            onPress={() => {
-              this.flatListRef.scrollToOffset({
-                animated: true,
-                offset: this.scrollOffset + 134,
-              });
-            }}
-          >
+          <TouchableOpacity style={styles.buttonRight} onPress={this.scrollRight}>
             <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
           </TouchableOpacity>
         </View>
