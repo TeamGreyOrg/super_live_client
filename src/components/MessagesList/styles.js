@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'yellow',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
   },
   content: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'white',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
   },
 });
