@@ -68,14 +68,15 @@ export default class ChatInputGroup extends Component {
           autoCorrect={false}
           onEndEditing={this.onEndEditing}
           onFocus={this.onFocus}
+          onSubmitEditing={this.onPressSend}
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.wrapIconSend}
           onPress={this.onPressSend}
           activeOpacity={0.6}
         >
           <Image source={require('../../assets/ico_send.png')} style={styles.iconSend} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.wrapIconHeart}
           onPress={this.onPressHeart}
