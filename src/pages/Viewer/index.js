@@ -1,3 +1,6 @@
+/* eslint-disable react/no-deprecated */
+/* eslint-disable react/prop-types */
+/* eslint-disable consistent-return */
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
@@ -35,6 +38,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import VideoPlayer from 'react-native-video-controls';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -299,10 +303,14 @@ export default class Viewer extends Component {
 
   onPressCompare = () => {
     const { roomName, userName, audioStatus } = this.state;
+    let viewerName = this.viewerName;
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Comparison', { roomName, userName, audioStatus });
+
+    this.setState({ inputUrl: null });
+
+    navigate('Comparison', { roomName, userName, viewerName, audioStatus });
   };
 
   onPressSound = () => {

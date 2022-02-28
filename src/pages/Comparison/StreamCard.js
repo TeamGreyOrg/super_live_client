@@ -1,9 +1,12 @@
-import React, { Component, useState, useRef } from 'react';
-import { Text, StyleSheet, View, PanResponder, Animated } from 'react-native';
+/* eslint-disable no-return-assign */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-use-before-define */
+import React, { Component } from 'react';
+import { StyleSheet, View, PanResponder, Animated, ImageBackground } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
-import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import { HTTP } from '../../config';
 class StreamCard extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,6 @@ class StreamCard extends Component {
       dropAreaValues: null,
       opacity: new Animated.Value(1),
       cardOpacity: 0,
-      // streamDisplay: 'none',
       animation: '',
       inputUrl: `${HTTP}/live/${roomName}.flv`,
     };
@@ -31,12 +33,10 @@ class StreamCard extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
-    }, 2500);
+    }, 2000);
   }
 
   renderNodePlayerView = (inputUrl) => {
-    // console.log(inputUrl);
-    // console.log('inRender');
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -48,6 +48,7 @@ class StreamCard extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
+        audioEnable={false}
         autoplay
       />
     );
@@ -116,10 +117,26 @@ class StreamCard extends Component {
   }
 
   onLongPress() {
-    console.log('Long Pressed!');
     this.setState({ animation: 'bounceIn' });
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
+
+  renderNodePlayerView = (inputUrl) => {
+    if (!inputUrl) return null;
+    return (
+      <NodePlayerView
+        style={styles.streamCard}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        autoplay
+      />
+    );
+  };
 
   normalPanResponder() {
     return PanResponder.create({
@@ -161,8 +178,22 @@ class StreamCard extends Component {
           {...panHandlers}
           style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
         >
-          <View style={{ opacity: this.state.cardOpacity }}>
-            <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+          <View style={styles.streamCardBackground}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <ImageBackground
+                source={require('../../assets/logoBW_icon.png')}
+                style={styles.streamCardBackgroundLogo}
+              />
+            </View>
+            <View style={{ opacity: this.state.cardOpacity }}>
+              <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+            </View>
           </View>
         </Animated.View>
       </Animatable.View>
@@ -171,26 +202,26 @@ class StreamCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    backgroundColor: 'red',
-    height: 100,
-  },
-  roomName: {
-    height: 30,
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 15,
-    marginTop: 50,
-    marginLeft: 50,
-    width: 100,
-  },
   streamCard: {
-    width: 130,
-    height: 220,
+    width: 90,
+    height: 150,
+    marginBottom: 5,
+    marginLeft: 5,
+    position: 'relative',
+    zIndex: 200,
+  },
+  streamCardBackground: {
+    width: 100,
+    height: 160,
     backgroundColor: 'grey',
     borderRadius: 10,
     marginRight: 15,
-    marginTop: 400,
+    marginTop: 390, // do not delete
+  },
+  streamCardBackgroundLogo: {
+    width: 80,
+    height: 80,
+    marginTop: 150,
   },
 });
 

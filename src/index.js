@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { StackActions, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
 import Login from './pages/Login';
@@ -32,15 +32,14 @@ class App extends Component {
         >
           {/* <Stack.Screen name="Comparison" component={Comparison} /> */}
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Input" component={Input} />
+          <Stack.Screen name="Home" component={Home} />
 
           {/* <Stack.Screen name="Login" component={Login} />  */}
 
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
           <Stack.Screen name="Comparison" component={Comparison} />
-
         </Stack.Navigator>
       </NavigationContainer>
     );

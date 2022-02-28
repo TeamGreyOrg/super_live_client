@@ -26,7 +26,7 @@
     "react-native-draggable": "^3.3.0",
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "^1.6.1",
-    "react-native-nodemediaclient": "^0.2.18",
+    "react-native-nodemediaclient": "0.2.18",
     "react-native-pager-view": "^5.4.11",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
