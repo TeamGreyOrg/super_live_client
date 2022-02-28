@@ -321,10 +321,10 @@ export default class Viewer extends Component {
       useNativeDriver: true,
     }).start();
     this.setState({
-      dragging: false
+      dragging: false,
     });
     this.onPreviewOFF();
-  }
+  };
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
@@ -367,40 +367,36 @@ export default class Viewer extends Component {
     }
   };
 
-              //<Image source={require('../../assets/compare-icon.png')} >
+  // <Image source={require('../../assets/compare-icon.png')} >
   renderTransParencyObject = () => {
     const { audioIcon } = this.state;
     return (
       <View>
-        
-          <View>
-            <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            {!this.state.dragging && (
-              <Image source={require('../../assets/ico_goback.png')} />)}
-            {this.state.dragging && (
-              <Icon2 name="close" size={40} color="white" />)}
-            </TouchableOpacity>
-          </View>
-        
-        
+        <View>
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            {!this.state.dragging && <Image source={require('../../assets/ico_goback.png')} />}
+            {this.state.dragging && <Icon2 name="close" size={40} color="white" />}
+          </TouchableOpacity>
+        </View>
+
         {!this.state.dragging && (
           <View>
             <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
-            <Image source={require('../../assets/compare-icon.png')} />
+              <Image source={require('../../assets/compare-icon.png')} />
             </TouchableOpacity>
           </View>
         )}
         {this.state.dragging && (
           <View>
             <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
-              <Icon1 name="resize-full-screen" size={40} color="white"/>
+              <Icon1 name="resize-full-screen" size={40} color="white" />
             </TouchableOpacity>
-          </View>    
+          </View>
         )}
         <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
           <Image source={audioIcon} />
         </TouchableOpacity>
-        
+
         {!this.state.dragging && (
           <View>
             <Text style={styles.roomName}>{this.roomName}</Text>

@@ -7,9 +7,6 @@ const MessageItem = ({ data }) => {
   const { userName, message } = data;
   return (
     <View style={styles.chatItem}>
-      <View>
-        <Image source={require('../../assets/avatar_1.png')} style={styles.avatar} />
-      </View>
       <View style={styles.messageItem}>
         <Text style={styles.name}>{userName}</Text>
         <Text style={styles.content}>{message}</Text>
