@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
-  streamContainerLandscape: {
-    flex: 0.9,
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
+  // streamContainerLandscape: {
+  //   flex: 0.9,
+  //   flexDirection: 'row',
+  //   width: '100%',
+  //   justifyContent: 'space-between',
+  // },
   streamOnePortraitBackground: {
     marginLeft: 15,
     width: 170,
@@ -63,35 +63,41 @@ const styles = StyleSheet.create({
     width: 160,
     height: 290,
   },
-  streamOneLandscapeBackground: {
-    marginLeft: 20,
-    marginTop: 60,
-    width: windowWidth * 0.43,
-    backgroundColor: 'gray',
-    borderRadius: 10,
+  // streamOneLandscapeBackground: {
+  //   marginLeft: 20,
+  //   marginTop: 60,
+  //   width: windowWidth * 0.43,
+  //   backgroundColor: 'gray',
+  //   borderRadius: 10,
+  // },
+  streamCardOneBackground: {
+    width: 100,
+    height: 100,
+    marginTop: 300,
   },
-  streamCardBackground: {
-    width: '100%',
-    height: '100%',
+  streamCardTwoBackground: {
+    width: 100,
+    height: 100,
+    marginTop: 300,
   },
-  streamOneLandscape: {
-    width: windowWidth * 0.43,
-  },
-  streamTwoLandscapeBackground: {
-    marginRight: 20,
-    marginTop: 60,
-    width: windowWidth * 0.43,
-    backgroundColor: 'gray',
-    borderRadius: 10,
-  },
+  // streamOneLandscape: {
+  //   width: windowWidth * 0.43,
+  // },
+  // streamTwoLandscapeBackground: {
+  //   marginRight: 20,
+  //   marginTop: 60,
+  //   width: windowWidth * 0.43,
+  //   backgroundColor: 'gray',
+  //   borderRadius: 10,
+  // },
   bannerOne: {
     width: 170,
     height: 50,
     marginTop: 15,
   },
-  streamTwoLandscape: {
-    width: windowWidth * 0.43,
-  },
+  // streamTwoLandscape: {
+  //   width: windowWidth * 0.43,
+  // },
   cardsHeader: {
     flex: 0.1,
   },

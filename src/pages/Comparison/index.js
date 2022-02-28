@@ -144,10 +144,10 @@ class Comparison extends React.Component {
   };
 
   renderPortraitNodePlayerViewTwo = (inputUrl) => {
-    if (!inputUrl) return null;
+    if (!inputUrl) return <View style={styles.streamTwoPortrait}></View>;
     return (
       <NodePlayerView
-        style={styles.streamOnePortrait}
+        style={styles.streamTwoPortrait}
         ref={(vb) => {
           this.nodePlayerView = vb;
         }}
@@ -276,59 +276,73 @@ class Comparison extends React.Component {
         </View>
         <View style={styles.streamContainerPortrait}>
           <View style={styles.streamOnePortraitBackground}>
-            <ImageBackground
-              source={require('../../assets/logoBW_icon.png')}
-              style={styles.streamCardBackground}
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              <View style={{ opacity: this.state.opacityOne }}>
-                <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-                <TouchableOpacity
-                  style={styles.buttonMaximize}
-                  onPress={this.onPressMaximizeStreamOne}
-                >
-                  <Image
-                    source={require('../../assets/ico_maximize.png')}
-                    style={styles.icoMaximize}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
-                  <Image style={styles.icoAudio} source={audioIconOne} />
-                </TouchableOpacity>
-                {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
-                <Image source={require('../../assets/001.png')} style={styles.bannerOne} />
-              </View>
-            </ImageBackground>
+              <ImageBackground
+                source={require('../../assets/logoBW_icon.png')}
+                style={styles.streamCardOneBackground}
+              />
+            </View>
+            <View style={{ opacity: this.state.opacityOne }}>
+              <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+              <TouchableOpacity
+                style={styles.buttonMaximize}
+                onPress={this.onPressMaximizeStreamOne}
+              >
+                <Image
+                  source={require('../../assets/ico_maximize.png')}
+                  style={styles.icoMaximize}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
+                <Image style={styles.icoAudio} source={audioIconOne} />
+              </TouchableOpacity>
+              {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
+              <Image source={require('../../assets/001.png')} style={styles.bannerOne} />
+            </View>
           </View>
           <View style={styles.streamTwoPortraitBackground}>
-            <ImageBackground
-              source={require('../../assets/logoBW_icon.png')}
-              style={styles.streamCardBackground}
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              <View style={{ opacity: this.state.opacityTwo }}>
-                <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-                <TouchableOpacity
-                  style={styles.buttonMaximize}
-                  onPress={this.onPressMaximizeStreamTwo}
-                >
-                  <Image
-                    source={require('../../assets/ico_maximize.png')}
-                    style={styles.icoMaximize}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
-                  <Image style={styles.icoAudio} source={audioIconTwo} />
-                </TouchableOpacity>
-                {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
-                <Image source={require('../../assets/002.png')} style={styles.bannerOne} />
-              </View>
-            </ImageBackground>
+              <ImageBackground
+                source={require('../../assets/logoBW_icon.png')}
+                style={styles.streamCardTwoBackground}
+              />
+            </View>
+            <View style={{ opacity: this.state.opacityTwo }}>
+              <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+              <TouchableOpacity
+                style={styles.buttonMaximize}
+                onPress={this.onPressMaximizeStreamOne}
+              >
+                <Image
+                  source={require('../../assets/ico_maximize.png')}
+                  style={styles.icoMaximize}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
+                <Image style={styles.icoAudio} source={audioIconTwo} />
+              </TouchableOpacity>
+              {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
+              <Image source={require('../../assets/002.png')} style={styles.bannerOne} />
+            </View>
           </View>
         </View>
         <View style={styles.cardsHeader}>
           <View
             style={{
               borderBottomColor: 'rgba(255, 255, 255, 0.2)',
-              borderBottomWidth: 0.5,
+              borderBottomWidth: 0.8,
               marginTop: 90,
             }}
           />
@@ -381,7 +395,6 @@ class Comparison extends React.Component {
             <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
           </TouchableOpacity>
         </View>
-        {/* </ImageBackground> */}
       </View>
     );
     // }

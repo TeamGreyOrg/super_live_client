@@ -181,14 +181,21 @@ class StreamCard extends Component {
           style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
         >
           <View style={styles.streamCardBackground}>
-            <ImageBackground
-              source={require('../../assets/logoBW_icon.png')}
-              style={{ width: '100%', height: '100%' }}
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              <View style={{ opacity: this.state.cardOpacity }}>
-                <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
-              </View>
-            </ImageBackground>
+              <ImageBackground
+                source={require('../../assets/logoBW_icon.png')}
+                style={styles.streamCardBackgroundLogo}
+              />
+            </View>
+            <View style={{ opacity: this.state.cardOpacity }}>
+              <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+            </View>
           </View>
         </Animated.View>
       </Animatable.View>
@@ -200,7 +207,7 @@ const styles = StyleSheet.create({
   streamCard: {
     width: 90,
     height: 150,
-    marginTop: 5,
+    marginBottom: 5,
     marginLeft: 5,
     position: 'relative',
     zIndex: 200,
@@ -212,6 +219,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 15,
     marginTop: 390, // do not delete
+  },
+  streamCardBackgroundLogo: {
+    width: 80,
+    height: 80,
+    marginTop: 150,
   },
 });
 
