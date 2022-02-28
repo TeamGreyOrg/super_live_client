@@ -6,10 +6,17 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#78609c',
+    backgroundColor: 'black',
   },
   header: {
     flex: 0.1,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    color: 'white',
+    fontSize: 20,
+    marginTop: 20,
   },
   btnClose: {
     position: 'absolute',
@@ -32,25 +39,29 @@ const styles = StyleSheet.create({
   },
   streamOnePortraitBackground: {
     marginLeft: 15,
-    width: windowWidth * 0.43,
+    width: 170,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamOnePortrait: {
-    width: windowWidth * 0.43,
-    height: 300,
+    marginLeft: 5,
+    marginTop: 5,
+    width: 160,
+    height: 290,
   },
   streamTwoPortraitBackground: {
     marginRight: 15,
-    width: windowWidth * 0.43,
+    width: 170,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   streamTwoPortrait: {
-    width: windowWidth * 0.43,
-    height: 300,
+    marginLeft: 5,
+    marginTop: 5,
+    width: 160,
+    height: 290,
   },
   streamOneLandscapeBackground: {
     marginLeft: 20,
@@ -58,6 +69,10 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.43,
     backgroundColor: 'gray',
     borderRadius: 10,
+  },
+  streamCardBackground: {
+    width: '100%',
+    height: '100%',
   },
   streamOneLandscape: {
     width: windowWidth * 0.43,
@@ -68,6 +83,11 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.43,
     backgroundColor: 'gray',
     borderRadius: 10,
+  },
+  bannerOne: {
+    width: 170,
+    height: 50,
+    marginTop: 15,
   },
   streamTwoLandscape: {
     width: windowWidth * 0.43,
@@ -80,7 +100,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'white',
     fontSize: 20,
-    marginTop: 40,
+    marginTop: 15,
+  },
+  footerText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    color: 'white',
+    fontSize: 15,
+    marginTop: 45,
   },
   cardsContainer: {
     flex: 0.3,
@@ -111,10 +138,12 @@ const styles = StyleSheet.create({
   icoRight: {
     width: 30,
     height: 30,
+    tintColor: 'white',
   },
   icoLeft: {
     width: 30,
     height: 30,
+    tintColor: 'white',
   },
   buttonMaximize: {
     position: 'absolute',

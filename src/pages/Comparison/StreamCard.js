@@ -6,6 +6,7 @@ import { StyleSheet, View, PanResponder, Animated, ImageBackground } from 'react
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import { HTTP } from '../../config';
 class StreamCard extends Component {
   constructor(props) {
     super(props);
@@ -197,18 +198,20 @@ class StreamCard extends Component {
 
 const styles = StyleSheet.create({
   streamCard: {
-    width: 130,
-    height: 220,
+    width: 90,
+    height: 150,
+    marginTop: 5,
+    marginLeft: 5,
     position: 'relative',
     zIndex: 200,
   },
   streamCardBackground: {
-    width: 130,
-    height: 220,
+    width: 100,
+    height: 160,
     backgroundColor: 'grey',
     borderRadius: 10,
     marginRight: 15,
-    marginTop: 320, // do not delete
+    marginTop: 390, // do not delete
   },
 });
 

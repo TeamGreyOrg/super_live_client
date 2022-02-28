@@ -17,7 +17,6 @@ import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
 
-const screenWidth = Dimensions.get('window').width;
 class Comparison extends React.Component {
   constructor(props) {
     super(props);
@@ -31,20 +30,19 @@ class Comparison extends React.Component {
     const streamTwoHandler = this.streamTwoHandler.bind(this);
     const streamOneHandler = this.streamOneHandler.bind(this);
 
-    const isPortrait = () => {
-      const dim = Dimensions.get('screen');
-      return dim.height >= dim.width;
-    };
+    // const isPortrait = () => {
+    //   const dim = Dimensions.get('screen');
+    //   return dim.height >= dim.width;
+    // };
 
     this.state = {
-      orientation: isPortrait() ? 'portrait' : 'landscape',
+      // orientation: isPortrait() ? 'portrait' : 'landscape',
       inputUrlFirst: null,
       inputUrlSecond: null,
       streamOneName: roomName,
       streamTwoName: '',
       streamCards: [],
       streamCardsFull: [],
-      loader: new Animated.Value(0),
       opacityOne: 0,
       opacityTwo: 0,
       audioStatusOne: audioStatusOne,
@@ -53,11 +51,11 @@ class Comparison extends React.Component {
       audioIconTwo: require('../../assets/ico_soundon.png'),
     };
 
-    Dimensions.addEventListener('change', () => {
-      this.setState({
-        orientation: isPortrait() ? 'portrait' : 'landscape',
-      });
-    });
+    // Dimensions.addEventListener('change', () => {
+    //   this.setState({
+    //     orientation: isPortrait() ? 'portrait' : 'landscape',
+    //   });
+    // });
     this.roomName = roomName;
     this.userName = userName;
     this.viewerName = viewerName;
@@ -163,24 +161,24 @@ class Comparison extends React.Component {
     );
   };
 
-  renderLandscapeNodePlayerView = (inputUrl) => {
-    const { audioStatus } = this.props;
-    if (!inputUrl) return null;
-    return (
-      <NodePlayerView
-        style={styles.streamOneLandscape}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
-        bufferTime={300}
-        maxBufferTime={1000}
-        // audioEnable={audioStatus}
-        autoplay
-      />
-    );
-  };
+  // renderLandscapeNodePlayerView = (inputUrl) => {
+  //   const { audioStatus } = this.props;
+  //   if (!inputUrl) return null;
+  //   return (
+  //     <NodePlayerView
+  //       style={styles.streamOneLandscape}
+  //       ref={(vb) => {
+  //         this.nodePlayerView = vb;
+  //       }}
+  //       inputUrl={inputUrl}
+  //       scaleMode="ScaleAspectFit"
+  //       bufferTime={300}
+  //       maxBufferTime={1000}
+  //       // audioEnable={audioStatus}
+  //       autoplay
+  //     />
+  //   );
+  // };
 
   onPressClose = () => {
     const { navigation } = this.props;
@@ -250,150 +248,164 @@ class Comparison extends React.Component {
   render() {
     const { streamTwoHandler } = this;
     const { streamOneHandler } = this;
+    const { streamCards } = this.state;
 
-    if (this.state.orientation === 'portrait') {
-      const { streamCards } = this.state;
-      console.log('stream cards:', streamCards);
+    // if (this.state.orientation === 'portrait') {
+    //   const { streamCards } = this.state;
+    //   console.log('stream cards:', streamCards);
 
-      // For testing lazy loading
-      // const testroomName = '345';
-      // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-      // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-      // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-      // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-      // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-      // ]
+    // For testing lazy loading
+    // const testroomName = '345';
+    // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
+    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
+    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
+    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
+    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
+    // ]
 
-      const { audioIconOne } = this.state;
-      const { audioIconTwo } = this.state;
+    const { audioIconOne } = this.state;
+    const { audioIconTwo } = this.state;
 
-      return (
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-              <Image source={require('../../assets/ico_goback.png')} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.streamContainerPortrait}>
-            <View style={styles.streamOnePortraitBackground}>
-              <ImageBackground
-                source={require('../../assets/logoBW_icon.png')}
-                style={{ width: '100%', height: '100%' }}
-              >
-                <View style={{ opacity: this.state.opacityOne }}>
-                  <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-                  <TouchableOpacity
-                    style={styles.buttonMaximize}
-                    onPress={this.onPressMaximizeStreamOne}
-                  >
-                    <Image
-                      source={require('../../assets/ico_maximize.png')}
-                      style={styles.icoMaximize}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
-                    <Image style={styles.icoAudio} source={audioIconOne} />
-                  </TouchableOpacity>
-                  {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
-                </View>
-              </ImageBackground>
-            </View>
-            <View style={styles.streamTwoPortraitBackground}>
-              <ImageBackground
-                source={require('../../assets/logoBW_icon.png')}
-                style={{ width: '100%', height: '100%' }}
-              >
-                <View style={{ opacity: this.state.opacityTwo }}>
-                  <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-                  <TouchableOpacity
-                    style={styles.buttonMaximize}
-                    onPress={this.onPressMaximizeStreamTwo}
-                  >
-                    <Image
-                      source={require('../../assets/ico_maximize.png')}
-                      style={styles.icoMaximize}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
-                    <Image style={styles.icoAudio} source={audioIconTwo} />
-                  </TouchableOpacity>
-                  {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
-                </View>
-              </ImageBackground>
-            </View>
-          </View>
-          <View style={styles.cardsHeader}>
-            <Text style={styles.cardsHeaderText}>진행중인 다른 LIVE</Text>
-          </View>
-          <FlatList
-            style={styles.flatList}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            ref={(ref) => {
-              this.flatListRef = ref;
-            }}
-            onScroll={(e) => {
-              this.scrollOffset = e.nativeEvent.contentOffset.x;
-            }}
-            data={streamCards}
-            renderItem={({ item }) => (
-              <StreamCard
-                data={item}
-                streamTwoHandler={streamTwoHandler.bind(this)}
-                streamOneHandler={streamOneHandler.bind(this)}
-              />
-            )}
-            keyExtractor={(item) => item._id}
-          />
-          <View style={styles.cardsContainer}></View>
-
-          <View style={styles.footer}>
-            <TouchableOpacity
-              style={styles.buttonLeft}
-              onPress={() => {
-                this.flatListRef.scrollToOffset({
-                  animated: true,
-                  offset: this.scrollOffset - 134,
-                });
-              }}
-            >
-              <Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonRight}
-              onPress={() => {
-                this.flatListRef.scrollToOffset({
-                  animated: true,
-                  offset: this.scrollOffset + 134,
-                });
-              }}
-            >
-              <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>시청중인 라이브</Text>
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            <Image
-              style={styles.icoClose}
-              source={require('../../assets/ico_goback.png')}
-              tintColor="white"
-            />
+            <Image source={require('../../assets/ico_goback.png')} />
           </TouchableOpacity>
-          <View style={styles.streamContainerLandscape}>
-            <View style={styles.streamOneLandscapeBackground}>
-              {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
-            </View>
-            <View style={styles.streamTwoLandscapeBackground}>
-              {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
-            </View>
+        </View>
+        <View style={styles.streamContainerPortrait}>
+          <View style={styles.streamOnePortraitBackground}>
+            <ImageBackground
+              source={require('../../assets/logoBW_icon.png')}
+              style={styles.streamCardBackground}
+            >
+              <View style={{ opacity: this.state.opacityOne }}>
+                <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+                <TouchableOpacity
+                  style={styles.buttonMaximize}
+                  onPress={this.onPressMaximizeStreamOne}
+                >
+                  <Image
+                    source={require('../../assets/ico_maximize.png')}
+                    style={styles.icoMaximize}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
+                  <Image style={styles.icoAudio} source={audioIconOne} />
+                </TouchableOpacity>
+                {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
+                <Image source={require('../../assets/001.png')} style={styles.bannerOne} />
+              </View>
+            </ImageBackground>
+          </View>
+          <View style={styles.streamTwoPortraitBackground}>
+            <ImageBackground
+              source={require('../../assets/logoBW_icon.png')}
+              style={styles.streamCardBackground}
+            >
+              <View style={{ opacity: this.state.opacityTwo }}>
+                <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+                <TouchableOpacity
+                  style={styles.buttonMaximize}
+                  onPress={this.onPressMaximizeStreamTwo}
+                >
+                  <Image
+                    source={require('../../assets/ico_maximize.png')}
+                    style={styles.icoMaximize}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
+                  <Image style={styles.icoAudio} source={audioIconTwo} />
+                </TouchableOpacity>
+                {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
+                <Image source={require('../../assets/002.png')} style={styles.bannerOne} />
+              </View>
+            </ImageBackground>
           </View>
         </View>
-      );
-    }
+        <View style={styles.cardsHeader}>
+          <View
+            style={{
+              borderBottomColor: 'rgba(255, 255, 255, 0.2)',
+              borderBottomWidth: 0.5,
+              marginTop: 90,
+            }}
+          />
+          <Text style={styles.cardsHeaderText}>진행중인 다른 라이브</Text>
+        </View>
+        <FlatList
+          style={styles.flatList}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          ref={(ref) => {
+            this.flatListRef = ref;
+          }}
+          onScroll={(e) => {
+            this.scrollOffset = e.nativeEvent.contentOffset.x;
+          }}
+          data={streamCards}
+          renderItem={({ item }) => (
+            <StreamCard
+              data={item}
+              streamTwoHandler={streamTwoHandler.bind(this)}
+              streamOneHandler={streamOneHandler.bind(this)}
+            />
+          )}
+          keyExtractor={(item) => item._id}
+        />
+        <View style={styles.cardsContainer}></View>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>위로 드래그 해서 시청하세요</Text>
+          <TouchableOpacity
+            style={styles.buttonLeft}
+            onPress={() => {
+              this.flatListRef.scrollToOffset({
+                animated: true,
+                offset: this.scrollOffset - 134,
+              });
+            }}
+          >
+            <Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonRight}
+            onPress={() => {
+              this.flatListRef.scrollToOffset({
+                animated: true,
+                offset: this.scrollOffset + 134,
+              });
+            }}
+          >
+            <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
+          </TouchableOpacity>
+        </View>
+        {/* </ImageBackground> */}
+      </View>
+    );
+    // }
+    // else {
+    //   return (
+    //     <View style={styles.container}>
+    //       <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+    //         <Image
+    //           style={styles.icoClose}
+    //           source={require('../../assets/ico_goback.png')}
+    //           tintColor="white"
+    //         />
+    //       </TouchableOpacity>
+    //       <View style={styles.streamContainerLandscape}>
+    //         <View style={styles.streamOneLandscapeBackground}>
+    //           {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
+    //         </View>
+    //         <View style={styles.streamTwoLandscapeBackground}>
+    //           {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
+    //         </View>
+    //       </View>
+    //     </View>
+    //   );
+    // }
   }
 }
 
