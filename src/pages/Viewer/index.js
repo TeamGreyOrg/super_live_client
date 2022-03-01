@@ -51,8 +51,9 @@ export default class Viewer extends Component {
     const countViewer = get(data, 'countViewer');
     const onPreviewOFF = get(route, 'params.onPreviewOFF');
     const onPreviewON = get(route, 'params.onPreviewON');
+    const messages = get(data, 'messages');
     this.state = {
-      messages: [],
+      messages: messages,
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
@@ -170,7 +171,7 @@ export default class Viewer extends Component {
       this.setState({
         inputUrl: `${HTTP}/live/${this.roomName}.flv`,
         // use HLS from trasporting in media server to Viewer
-        messages: this.messages,
+        // messages: this.messages,
       });
       SocketManager.instance.emitJoinRoom({
         userName: this.userName,
@@ -389,6 +390,7 @@ export default class Viewer extends Component {
 
   renderListMessages = () => {
     const { messages, isVisibleMessages } = this.state;
+    console.log('message!!', this.state.messages);
     if (!this.state.dragging) {
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;
