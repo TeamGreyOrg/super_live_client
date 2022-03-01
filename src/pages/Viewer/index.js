@@ -260,7 +260,7 @@ export default class Viewer extends Component {
       userName: this.viewerName,
       message,
     });
-    this.setState({ isVisibleMessages: true });
+    // this.setState({ isVisibleMessages: true });
   };
 
   onEndEditing = () => this.setState({ isVisibleMessages: true });
@@ -361,7 +361,7 @@ export default class Viewer extends Component {
         <ChatInputGroup
           onPressHeart={this.onPressHeart}
           onPressSend={this.onPressSend}
-          onFocus={this.onFocusChatGroup}
+          // onFocus={this.onFocusChatGroup}
           onEndEditing={this.onEndEditing}
         />
       );
@@ -490,11 +490,13 @@ export default class Viewer extends Component {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
+
                     <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
-                    <View style={styles.footer}>
+
+                    <View style={styles.footer1}>
                       {!this.state.dragging && this.onPressLinkButton()}
-                      {isVisible && this.renderChatGroup()}
                     </View>
+                    <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                   </View>
                 </KeyboardAvoidingView>
               </TouchableWithoutFeedback>

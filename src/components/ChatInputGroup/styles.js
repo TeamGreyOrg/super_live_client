@@ -10,9 +10,6 @@ const styles = StyleSheet.create({
     right: 0,
     marginHorizontal: 15,
   },
-  flex1: {
-    flex: 1,
-  },
   row: {
     flexDirection: 'row',
   },

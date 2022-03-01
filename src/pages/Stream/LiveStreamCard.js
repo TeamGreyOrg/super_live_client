@@ -98,13 +98,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderRadius: 7,
     padding: 5,
-<<<<<<< HEAD
-    // marginLeft:3,
-    width: '174%',
-=======
     marginLeft: 3,
     width: 'auto',
->>>>>>> Sangwoo
     // marginTop: 105,
   },
   streamerName: {

@@ -89,11 +89,19 @@ const styles = StyleSheet.create({
 
   contentWrapper: { flex: 0.95 },
   body: {
-    flex: 0.7,
+    flex: 1,
+    // backgroundColor:'gray',
   },
-  footer: {
-    flex: 0.3,
-    flexDirection: 'column',
+  footer1: {
+    flex: 0.15,
+    flexDirection:'column',
+    // backgroundColor: 'gray',
+    alignContent: 'space-between',
+    // alignItems:'flex-end',
+  },
+  footer2: {
+    flex: 0.1,
+    // backgroundColor: 'yellow',
   },
   footerBar: { flex: 1 },
   footerBarURL: { flex: 1, flexDirection: 'row' },

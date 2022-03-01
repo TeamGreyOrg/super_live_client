@@ -57,6 +57,8 @@ export default class ChatInputGroup extends Component {
   renderContent() {
     const { message } = this.state;
     return (
+      <>
+       {/* <Image source={require('../../assets/001.png')} style={{width:200, height:50}} /> */}
       <View style={styles.row}>
         <TextInput
           style={styles.textInput}
@@ -86,7 +88,8 @@ export default class ChatInputGroup extends Component {
         >
           <Image source={require('../../assets/ico_heart.png')} style={styles.iconHeart} />
         </TouchableOpacity>
-      </View>
+        </View>
+        </>
     );
   }
 
@@ -96,7 +99,7 @@ export default class ChatInputGroup extends Component {
     }
     return (
       <SafeAreaView style={styles.wrapper}>
-        <View style={styles.flex1}>
+        <View style={{flex:1}}>
           <KeyboardAccessory backgroundColor="transparent">
             {this.renderContent()}
           </KeyboardAccessory>
