@@ -491,7 +491,9 @@ export default class Viewer extends Component {
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
 
-                    <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
+                    <View style={styles.body}>
+                      {isVisible && this.renderListMessages()}
+                    </View>
 
                     <View style={styles.footer1}>
                       {!this.state.dragging && this.onPressLinkButton()}

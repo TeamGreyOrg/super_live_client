@@ -7,11 +7,15 @@ import MessageItem from './MessageItem';
 export default class MessagesList extends Component {
   renderItem = ({ item }) => <MessageItem data={item} />;
 
+  onContentSizeChange = () => {
+    this.scrollToEnd({ animated: false });
+  };
+
   render() {
     const { messages } = this.props;
     return (
       <View style={styles.wrapListMessages}>
-        <FlatList data={messages} renderItem={this.renderItem} inverted />
+        <FlatList data={messages.reverse()} renderItem={this.renderItem} inverted />
       </View>
     );
   }
