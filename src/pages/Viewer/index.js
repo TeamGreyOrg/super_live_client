@@ -441,9 +441,17 @@ export default class Viewer extends Component {
       <Animatable.View animation="fadeInLeft">
         <View style={{ opacity: this.state.opacity }}>
           <View style={styles.viewerNotificationBackground}>
-            <Text style={styles.viewerNotificationText}>
-              {' '}
-              {this.state.enteredViewerName}님이 들어왔습니다.
+            <Text style={styles.viewerNotificationText}> {this.state.enteredViewerName}</Text>
+            <Text
+              style={{
+                color: 'white',
+                textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                textShadowOffset: { width: -1, height: 1 },
+                textShadowRadius: 10,
+                opacity: 1,
+              }}
+            >
+              님이 들어왔습니다.
             </Text>
           </View>
         </View>
