@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList } from 'react-native';
+import { View } from 'react-native';
+import ReversedFlatList from 'react-native-reversed-flat-list';
 import styles from './styles';
 import MessageItem from './MessageItem';
 
@@ -15,7 +16,7 @@ export default class MessagesList extends Component {
     const { messages } = this.props;
     return (
       <View style={styles.wrapListMessages}>
-        <FlatList data={messages.reverse()} renderItem={this.renderItem} inverted />
+        <ReversedFlatList data={messages} renderItem={this.renderItem} />
       </View>
     );
   }
