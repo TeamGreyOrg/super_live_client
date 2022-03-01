@@ -22,7 +22,6 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
-import VideoPlayer from 'react-native-video-controls';
 import Video from 'react-native-video';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
