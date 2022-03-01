@@ -29,6 +29,7 @@
     "react-native-nodemediaclient": "0.2.18",
     "react-native-pager-view": "^5.4.11",
     "react-native-reanimated": "^1.8.0",
+    "react-native-reversed-flat-list": "^1.0.2",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.5.0",
     "react-native-splash-screen": "^3.3.0",
