@@ -23,12 +23,10 @@ class SavedLive extends React.Component {
     SocketManager.instance.listenListLiveStream((data) => {
       this.setState({ listLiveStream: data });
     });
-    console.log('나는 지나간 라이브 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
   }
 
-  componentWillUnmount() {
-    console.log('Component 지나간 라이브 UNMOUNT!');
-  }
+
 
   onPressCardItem = (data) => {
     const {
@@ -53,7 +51,7 @@ class SavedLive extends React.Component {
     // );
     return (
       // <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.container}>
-      <ImageBackground source={require('../../../assets/ico_logo.png')} style={{ flex: 1 }}>
+       <ImageBackground source={require('../../../assets/logoBW_icon.png')} style={{ flex: 1, backgroundColor:'black' }}>
         <Container style={styles.container}>
           <FlatList
             data={newListLiveStream}

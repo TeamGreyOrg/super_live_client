@@ -60,7 +60,7 @@ export default class ChatInputGroup extends Component {
       <View style={styles.row}>
         <TextInput
           style={styles.textInput}
-          placeholder="Comment input"
+          placeholder="메시지를 입력해주세요"
           underlineColorAndroid="transparent"
           onChangeText={this.onChangeMessageText}
           value={message}
@@ -68,14 +68,17 @@ export default class ChatInputGroup extends Component {
           autoCorrect={false}
           onEndEditing={this.onEndEditing}
           onFocus={this.onFocus}
+          onSubmitEditing={this.onPressSend}
+          multiline={false}
+          returnKeyType="done"
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.wrapIconSend}
           onPress={this.onPressSend}
           activeOpacity={0.6}
         >
           <Image source={require('../../assets/ico_send.png')} style={styles.iconSend} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.wrapIconHeart}
           onPress={this.onPressHeart}

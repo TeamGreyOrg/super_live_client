@@ -3,14 +3,14 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(1,1,1,0.8)',
   },
   welcomeText: {
     fontFamily: 'ChangaOne-Regular',
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
-    margin: 0,
+    marginLeft: 0,
   },
   // --------main card list-----------
   flatList: {

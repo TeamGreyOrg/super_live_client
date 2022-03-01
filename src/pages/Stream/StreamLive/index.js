@@ -11,11 +11,10 @@ import LiveStreamCard from '../LiveStreamCard';
 class StreamLive extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       listLiveStream: [],
     };
-    
   }
 
   componentDidMount() {
@@ -23,14 +22,6 @@ class StreamLive extends React.Component {
     SocketManager.instance.listenListLiveStream((data) => {
       this.setState({ listLiveStream: data });
     });
-    console.log('여기는 진행중인 라이브! !!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  }
-
-  componentDidUpdate() {
-    console.log('Component WILL UPDATE!');
-  }
-  componentWillUnmount() {
-    console.log('Component 진행중 UNMOUNT!');
   }
 
   onPressCardItem = (data) => {
@@ -57,8 +48,10 @@ class StreamLive extends React.Component {
     }
 
     return (
-      // <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.container}>
-      <ImageBackground source={require('../../../assets/ico_logo.png')} style={{ flex: 1 }}>
+      <ImageBackground
+        source={require('../../../assets/logoBW_icon.png')}
+        style={{ flex: 1, backgroundColor: 'black' }}
+      >
         <Container style={styles.container}>
           <FlatList
             initialNumToRender={4}

@@ -91,10 +91,10 @@ const styles = StyleSheet.create({
   body: {
     flex: 0.7,
   },
-  footer: { 
-  flex: 0.3,
-  flexDirection: 'column', 
-},
+  footer: {
+    flex: 0.3,
+    flexDirection: 'column',
+  },
   footerBar: { flex: 1 },
   footerBarURL: { flex: 1, flexDirection: 'row' },
   btnImage: {
@@ -177,6 +177,9 @@ const styles = StyleSheet.create({
     left: 20,
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowRadius: 10,
   },
   countViewer: {
     position: 'absolute',
@@ -187,7 +190,9 @@ const styles = StyleSheet.create({
   },
   viewerIcon: {
     position: 'absolute',
-    top: 62,
+    width: 30,
+    height: 30,
+    top: 55,
     left: 20,
   },
 });
