@@ -35,6 +35,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import * as Animatable from 'react-native-animatable';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -437,14 +438,16 @@ export default class Viewer extends Component {
 
   renderViewerNotification = () => {
     return (
-      <View style={{ opacity: this.state.opacity }}>
-        <View style={styles.viewerNotificationBackground}>
-          <Text style={styles.viewerNotificationText}>
-            {' '}
-            {this.state.enteredViewerName}님이 들어왔습니다.
-          </Text>
+      <Animatable.View animation="fadeInLeft">
+        <View style={{ opacity: this.state.opacity }}>
+          <View style={styles.viewerNotificationBackground}>
+            <Text style={styles.viewerNotificationText}>
+              {' '}
+              {this.state.enteredViewerName}님이 들어왔습니다.
+            </Text>
+          </View>
         </View>
-      </View>
+      </Animatable.View>
     );
   };
 

@@ -106,12 +106,13 @@ const styles = StyleSheet.create({
   viewerNotificationBackground: {
     backgroundColor: 'green',
     width: 180,
-    height: 20,
+    height: 25,
     borderRadius: 8,
     marginLeft: 20,
     marginBottom: 5,
     opacity: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   viewerNotificationText: {
     fontWeight: '500',
