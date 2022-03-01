@@ -14,6 +14,7 @@ import { LIVE_STATUS } from '../../../utils/constants';
 import Theme from '../../Theme/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -27,22 +28,33 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
-    height: 200,
+    height: SCREEN_HEIGHT / 3,
     flexDirection: 'row',
-    backgroundColor: 'gray',
-    padding: 5,
-    margin: 5,
+    backgroundColor: 'rgba(rgba(255,255,255,0.5)',
+    padding: 3,
+    // margin: 5,
     borderRadius: 8,
     flexWrap: 'wrap',
   },
   streamInfo: {
-    width: '100%',
+    width: '95%',
     height: 50,
     // flexDirection: 'row',
+    //  backgroundColor: 'rgba(225,225,225,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     padding: 5,
     margin: 5,
     borderRadius: 8,
+  },
+  streamInfo2: {
+    width: '100%',
+    height: 50,
+    // backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingLeft: 5,
+    marginTop: 3,
+    borderRadius: 8,
+    // justifyContent: 'flex-end'
   },
 
   priceTag: {
@@ -51,9 +63,11 @@ const styles = StyleSheet.create({
     color: Theme.color.PrettyRed,
   },
   roomNameTag: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: 'bold',
-    color: 'gray',
+    width: SCREEN_WIDTH / 2.6,
+    // color: 'rgba(255,255,255,0.8)',
+    color: Theme.color.PrettyRed,
   },
   liveStatus: {
     fontSize: 20,
@@ -78,17 +92,23 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   streamerContainer: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 10,
+    // flexDirection: 'row',
+    alignContent: 'flex-end',
+    backgroundColor: 'transparent',
+    borderRadius: 7,
     padding: 5,
-    marginTop: 105,
+    marginLeft: 3,
+    width: 'auto',
+    // marginTop: 105,
   },
   streamerName: {
     width: '100%',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
   onLiveIcon: {
     width: 50,
@@ -100,7 +120,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const LiveStreamCard = ({ data, onPress }) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
@@ -108,6 +127,7 @@ const LiveStreamCard = ({ data, onPress }) => {
   const productPrice = get(data, 'productPrice', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   let statusIcon = null;
+  let banner = null;
   const streamIcon = null;
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../../assets/ico_viewer.png')} />
@@ -127,33 +147,102 @@ const LiveStreamCard = ({ data, onPress }) => {
       );
       break;
   }
+
+  switch (roomName) {
+    case 'room1':
+      banner = (
+        <Image
+          source={require('../../../assets/001.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case 'room2':
+      banner = (
+        <Image
+          source={require('../../../assets/002.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case 'room3':
+      banner = (
+        <Image
+          source={require('../../../assets/003.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case 'room4':
+      banner = (
+        <Image
+          source={require('../../../assets/004.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case 'room5':
+      banner = (
+        <Image
+          source={require('../../../assets/005.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case 'room6':
+      banner = (
+        <Image
+          source={require('../../../assets/006.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    default:
+      banner = (
+        <Image
+          source={require('../../../assets/001.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+  }
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        <ImageBackground source={require('../../../assets/Animation3.gif')} style={styles.bgimage}>
-          <View style={{ flexDirection: 'row' }}>
-            {statusIcon}
-            {streamIcon}
+        <ImageBackground source={require('../../../assets/com_back_4.gif')} style={styles.bgimage}>
+          <View style={{ flexDirection: 'row', margin: 6 }}>{statusIcon}</View>
+
+          <View
+            style={{
+              // height: SCREEN_HEIGHT / 4,
+              width: SCREEN_WIDTH / 2.4,
+              justifyContent: 'flex-end',
+            }}
+          >
+            <View style={styles.streamerContainer}>
+              <Text style={styles.streamerName} numberOfLines={1}>
+                {userName}
+              </Text>
+            </View>
           </View>
-          <View style={styles.viewerContainer}>
-            {viewerIcon}
-            <Text style={{ fontWeight: 'bold', fontSize: 9, color: 'white' }}>1</Text>
-          </View>
-          <View style={styles.streamerContainer}>
-            <Text style={styles.streamerName} numberOfLines={1}>
-              스트리머ID : {userName}
-            </Text>
+          <View style={{ height: SCREEN_HEIGHT / 4.2, justifyContent: 'flex-end' }}>
+            <View style={styles.streamInfo}>
+              <Text style={styles.roomNameTag} numberOfLines={2}>
+                {roomName}
+              </Text>
+            </View>
           </View>
         </ImageBackground>
       </TouchableOpacity>
 
-      <View style={styles.streamInfo}>
-        <Text style={styles.roomNameTag} numberOfLines={1}>
+      <View style={styles.streamInfo2}>
+        {banner}
+        {/* <Text style={styles.roomNameTag} numberOfLines={1}>
           방제목 : {roomName}
         </Text>
         <Text style={styles.priceTag} numberOfLines={1}>
           Price : {productPrice} 원
-        </Text>
+        </Text> */}
       </View>
     </View>
   );

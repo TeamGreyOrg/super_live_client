@@ -190,7 +190,9 @@ const styles = StyleSheet.create({
   },
   viewerIcon: {
     position: 'absolute',
-    top: 62,
+    width: 30,
+    height: 30,
+    top: 55,
     left: 20,
   },
 });
