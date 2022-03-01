@@ -12,6 +12,11 @@ import {
 } from 'react-native';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+// action-undo,volume-off,volume-2
+import Feather from 'react-native-vector-icons/Feather';
+// maximize-2
+
 import styles from './styles';
 import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
@@ -25,7 +30,7 @@ class Comparison extends React.Component {
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const viewerName = get(route, 'params.viewerName');
-    let audioStatusOne = get(route, 'params.audioStatus');
+    const audioStatusOne = get(route, 'params.audioStatus');
 
     const streamTwoHandler = this.streamTwoHandler.bind(this);
     const streamOneHandler = this.streamOneHandler.bind(this);
@@ -45,10 +50,8 @@ class Comparison extends React.Component {
       streamCardsFull: [],
       opacityOne: 0,
       opacityTwo: 0,
-      audioStatusOne: audioStatusOne,
+      audioStatusOne,
       audioStatusTwo: true,
-      audioIconOne: require('../../assets/ico_soundon.png'),
-      audioIconTwo: require('../../assets/ico_soundon.png'),
     };
 
     // Dimensions.addEventListener('change', () => {
@@ -140,7 +143,7 @@ class Comparison extends React.Component {
   };
 
   renderPortraitNodePlayerViewTwo = (inputUrl) => {
-    if (!inputUrl) return <View style={styles.streamTwoPortrait}></View>;
+    if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
     return (
       <NodePlayerView
         style={styles.streamTwoPortrait}
@@ -223,10 +226,8 @@ class Comparison extends React.Component {
     const { audioStatusOne } = this.state;
     if (audioStatusOne) {
       this.setState({ audioStatusOne: false });
-      this.setState({ audioIconOne: require('../../assets/ico_soundoff.png') });
     } else {
       this.setState({ audioStatusOne: true });
-      this.setState({ audioIconOne: require('../../assets/ico_soundon.png') });
     }
   };
 
@@ -234,10 +235,8 @@ class Comparison extends React.Component {
     const { audioStatusTwo } = this.state;
     if (audioStatusTwo) {
       this.setState({ audioStatusTwo: false });
-      this.setState({ audioIconTwo: require('../../assets/ico_soundoff.png') });
     } else {
       this.setState({ audioStatusTwo: true });
-      this.setState({ audioIconTwo: require('../../assets/ico_soundon.png') });
     }
   };
 
@@ -324,15 +323,15 @@ class Comparison extends React.Component {
         break;
     }
 
-    const { audioIconOne } = this.state;
-    const { audioIconTwo } = this.state;
+    const { audioStatusOne } = this.state;
+    const { audioStatusTwo } = this.state;
 
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>시청중인 라이브</Text>
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            <Image source={require('../../assets/ico_goback.png')} />
+            <SimpleLineIcons name="action-undo" size={30} color="white" />
           </TouchableOpacity>
         </View>
         <View style={styles.streamContainerPortrait}>
@@ -355,13 +354,11 @@ class Comparison extends React.Component {
                 style={styles.buttonMaximize}
                 onPress={this.onPressMaximizeStreamOne}
               >
-                <Image
-                  source={require('../../assets/ico_maximize.png')}
-                  style={styles.icoMaximize}
-                />
+                <Feather name="maximize-2" size={30} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioOne}>
-                <Image style={styles.icoAudio} source={audioIconOne} />
+                {!audioStatusOne && <SimpleLineIcons name="volume-off" size={30} color="white" />}
+                {audioStatusOne && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
               {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
               {bannerOne}
@@ -392,7 +389,8 @@ class Comparison extends React.Component {
                 />
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
-                <Image style={styles.icoAudio} source={audioIconTwo} />
+                {!audioStatusTwo && <SimpleLineIcons name="volume-off" size={30} color="white" />}
+                {audioStatusTwo && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
               {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
               {bannerTwo}
@@ -409,6 +407,7 @@ class Comparison extends React.Component {
           />
           <Text style={styles.cardsHeaderText}>진행중인 다른 라이브</Text>
         </View>
+
         <FlatList
           style={styles.flatList}
           showsHorizontalScrollIndicator={false}
@@ -429,15 +428,15 @@ class Comparison extends React.Component {
           )}
           keyExtractor={(item) => item._id}
         />
-        <View style={styles.cardsContainer}></View>
+        {/* <View style={styles.cardsContainer} /> */}
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>위로 드래그 해서 시청하세요</Text>
           <TouchableOpacity style={styles.buttonLeft} onPress={this.scrollLeft}>
-            <Image style={styles.icoLeft} source={require('../../assets/left-arrow.png')} />
+            <Feather name="chevron-left" size={50} color="white" />
           </TouchableOpacity>
+          <Text style={styles.footerText}>위로 드래그 해서 시청하세요</Text>
           <TouchableOpacity style={styles.buttonRight} onPress={this.scrollRight}>
-            <Image style={styles.icoRight} source={require('../../assets/right-arrow.png')} />
+            <Feather name="chevron-right" size={50} color="white" />
           </TouchableOpacity>
         </View>
       </View>

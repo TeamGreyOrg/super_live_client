@@ -6,7 +6,6 @@ buildscript {
         minSdkVersion = 16
         compileSdkVersion = 28
         targetSdkVersion = 28
-    }
     repositories {
         google()
         jcenter()
@@ -18,7 +17,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+}
 allprojects {
     repositories {
         mavenLocal()

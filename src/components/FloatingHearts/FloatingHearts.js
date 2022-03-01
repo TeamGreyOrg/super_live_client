@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Animated, StyleSheet, ViewPropTypes } from 'react-native';
 
+
 import HeartShape from './HeartShape';
 
 class FloatingHearts extends Component {
@@ -134,32 +135,32 @@ class AnimatedShape extends Component {
     this.rendered = true;
 
     const height = Math.ceil(this.props.height);
-    const negativeHeight = height * -1;
+    const negativeHeight = height/2 * -1;
     const shapeHeight = e.nativeEvent.layout.height;
 
     this.yAnimation = this.state.position.interpolate({
       inputRange: [negativeHeight, 0],
-      outputRange: [height, 0],
+      outputRange: [height/2, 0],
     });
 
     this.opacityAnimation = this.yAnimation.interpolate({
-      inputRange: [0, height - shapeHeight],
+      inputRange: [0, height/2 - shapeHeight],
       outputRange: [1, 0],
     });
 
     this.scaleAnimation = this.yAnimation.interpolate({
-      inputRange: [0, 15, 30, height],
+      inputRange: [0, 15, 30, height/2],
       outputRange: [0, 1.2, 1, 1],
     });
 
     this.xAnimation = this.yAnimation.interpolate({
-      inputRange: [0, height / 2, height],
-      outputRange: [0, 15, 0],
+      inputRange: [0, height / 6, height/3,height/2,height],
+      outputRange: [0, 25, 15,0,10],
     });
 
     this.rotateAnimation = this.yAnimation.interpolate({
-      inputRange: [0, height / 4, height / 3, height / 2, height],
-      outputRange: ['0deg', '-2deg', '0deg', '2deg', '0deg'],
+      inputRange: [100, height / 4, height / 3, height / 2, height],
+      outputRange: ['0deg', '-10deg', '0deg', '10deg', '0deg'],
     });
 
     setTimeout(() => this.setState({ animationsReady: true }), 16);
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    bottom: 70,
     position: 'absolute',
   },
 

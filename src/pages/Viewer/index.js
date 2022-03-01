@@ -16,6 +16,7 @@ import {
   TouchableWithoutFeedback,
   Text,
   KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -25,6 +26,11 @@ import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// compare
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+// action-undo,volume-off,volume-2
+
 import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -63,7 +69,6 @@ export default class Viewer extends Component {
       requestOptions: {},
       isVisible: true,
       audioStatus: true,
-      audioIcon: require('../../assets/ico_soundon.png'),
       roomName,
       userName,
       countViewer,
@@ -306,12 +311,15 @@ export default class Viewer extends Component {
 
   onPressSound = () => {
     const { audioStatus } = this.state;
+   
     if (audioStatus) {
       this.setState({ audioStatus: false });
-      this.setState({ audioIcon: require('../../assets/ico_soundoff.png') });
+
+
     } else {
       this.setState({ audioStatus: true });
-      this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
+
+      
     }
   };
 
@@ -361,7 +369,6 @@ export default class Viewer extends Component {
         <ChatInputGroup
           onPressHeart={this.onPressHeart}
           onPressSend={this.onPressSend}
-          // onFocus={this.onFocusChatGroup}
           onEndEditing={this.onEndEditing}
         />
       );
@@ -376,36 +383,37 @@ export default class Viewer extends Component {
     }
   };
 
-  // <Image source={require('../../assets/compare-icon.png')} >
   renderTransParencyObject = () => {
-    const { audioIcon } = this.state;
+    const { audioStatus } = this.state;
     return (
       <View>
         <View>
           <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-            {!this.state.dragging && <Image source={require('../../assets/ico_goback.png')} />}
-            {this.state.dragging && <Icon2 name="close" size={40} color="white" />}
+            {!this.state.dragging && <SimpleLineIcons name="action-undo" size={30} color="white" />}
+            {this.state.dragging && <Icon2 name="close" size={100} color="white" />}
           </TouchableOpacity>
         </View>
 
         {!this.state.dragging && (
           <View>
             <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
-              <Image source={require('../../assets/compare-icon.png')} />
+              <MaterialCommunityIcons name="compare" size={30} color="white"/>
             </TouchableOpacity>
           </View>
         )}
         {this.state.dragging && (
           <View>
             <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
-              <Icon1 name="resize-full-screen" size={40} color="white" />
+              <Icon1 name="resize-full-screen" size={100} color="white" />
             </TouchableOpacity>
           </View>
         )}
-        <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
-          <Image source={audioIcon} />
-        </TouchableOpacity>
-
+        {!this.state.dragging && (
+          <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+            {!audioStatus && <SimpleLineIcons name="volume-off" size={30} color="white" />}
+            {audioStatus&&<SimpleLineIcons name="volume-2" size={30} color="white" />}
+          </TouchableOpacity>
+        )}
         {!this.state.dragging && (
           <View>
             <Text style={styles.roomName}>{this.roomName}</Text>
@@ -459,7 +467,7 @@ export default class Viewer extends Component {
     };
 
     const { isVisible } = this.state;
-    const { audioIcon } = this.state;
+    const {  } = this.state;
     /**
      * Replay mode
      */
@@ -477,34 +485,36 @@ export default class Viewer extends Component {
      * Viewer mode
      */
     return (
-      <SafeAreaView style={styles.container}>
-        <Home preview={false} navigation={this.props.navigation} route={this.props.route} />
-        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-          <Draggable color="black" disabled={!this.state.dragging}>
-            <Animated.View
-              style={[{ width, height: videoHeight }, videoStyles]}
-              {...this._panResponder.panHandlers}
-            >
-              {this.renderNodePlayerView()}
-              <TouchableWithoutFeedback onPress={this.onPressVisible}>
-                <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
-                  <View style={styles.contentWrapper}>
-                    {isVisible && this.renderTransParencyObject()}
+      <ImageBackground source={require('../../assets/logoBW_icon.png')} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <Home preview={false} navigation={this.props.navigation} route={this.props.route} />
+          <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
+            <Draggable color="white" disabled={!this.state.dragging}>
+              <Animated.View
+                style={[{ width, height: videoHeight }, videoStyles]}
+                {...this._panResponder.panHandlers}
+              >
+                {this.renderNodePlayerView()}
+                <TouchableWithoutFeedback onPress={this.onPressVisible}>
+                  <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+                    <View style={styles.contentWrapper}>
+                      {isVisible && this.renderTransParencyObject()}
 
-                    <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
+                      <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
 
-                    <View style={styles.footer1}>
-                      {!this.state.dragging && this.onPressLinkButton()}
+                      <View style={styles.footer1}>
+                        {!this.state.dragging && this.onPressLinkButton()}
+                      </View>
+                      <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                     </View>
-                    <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
-                  </View>
-                </KeyboardAvoidingView>
-              </TouchableWithoutFeedback>
-              <FloatingHearts count={countHeart} />
-            </Animated.View>
-          </Draggable>
-        </View>
-      </SafeAreaView>
+                  </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+                <FloatingHearts count={countHeart} />
+              </Animated.View>
+            </Draggable>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     );
   }
 }

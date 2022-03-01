@@ -11,7 +11,7 @@ export default class MessagesList extends Component {
     const { messages } = this.props;
     return (
       <View style={styles.wrapListMessages}>
-        <FlatList data={messages} renderItem={this.renderItem} inverted />
+        <FlatList data={messages} renderItem={this.renderItem}/>
       </View>
     );
   }

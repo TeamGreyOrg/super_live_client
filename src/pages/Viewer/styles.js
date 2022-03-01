@@ -1,25 +1,24 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: 'rgba(0,0,0,0.75)',
     backgroundColor: 'black',
   },
   blackContainer: {
     flex: 1,
     backgroundColor: 'black',
   },
-  backgroundContainer: {
-    flex: 0.1,
-  },
   playerView: {
     position: 'absolute',
     top: 0,
     left: 0,
-    height,
-    width,
+    height:SCREEN_HEIGHT,
+    width:SCREEN_WIDTH,
   },
   wrapperCenterTitle: {
     flex: 1,
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
   btnCompare: {
     position: 'absolute',
     top: 20,
-    right: 120,
+    right: 110,
   },
   btnSound: {
     position: 'absolute',
@@ -83,46 +82,32 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
 
-  onScreen: {
-    top: 650,
-  },
-
   contentWrapper: { flex: 0.95 },
   body: {
     flex: 1,
     // backgroundColor:'gray',
   },
   footer1: {
-    flex: 0.15,
+    width:SCREEN_WIDTH,
+    height: SCREEN_HEIGHT/10,
+    // flex: 0.15,
     flexDirection:'column',
     // backgroundColor: 'gray',
     alignContent: 'space-between',
     // alignItems:'flex-end',
   },
   footer2: {
-    flex: 0.1,
+    // flex: 0.1,
+    width:SCREEN_WIDTH,
+    height: SCREEN_HEIGHT/13,
     // backgroundColor: 'yellow',
   },
-  footerBar: { flex: 1 },
   footerBarURL: { flex: 1, flexDirection: 'row' },
   btnImage: {
     flex: 0.3,
     borderRadius: 8,
     width: 70,
     height: 70,
-  },
-  linkTop: {
-    flex: 0.8,
-  },
-  linkBottom: {
-    flex: 0.8,
-  },
-  btnLinkText: {
-    flex: 0.7,
-    fontSize: 17,
-    paddingHorizontal: 10,
-    fontWeight: '600',
-    color: 'black',
   },
   beginLiveStreamText: {
     fontSize: 20,

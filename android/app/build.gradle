@@ -227,7 +227,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'Entypo.ttf',  'Feather.ttf', 'AntDesign.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'Entypo.ttf',  'Feather.ttf', 'AntDesign.ttf', 'SimpleLineIcons.ttf','MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
 ]
 
 
