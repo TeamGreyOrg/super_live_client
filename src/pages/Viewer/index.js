@@ -68,6 +68,9 @@ export default class Viewer extends Component {
       roomName,
       userName,
       countViewer,
+      viewerName: viewerName,
+      enteredViewerName: viewerName,
+      opacity: 1,
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -183,6 +186,17 @@ export default class Viewer extends Component {
         const messages = get(data, 'messages', []);
         this.setState({ messages });
       });
+      SocketManager.instance.emitJoinNotification({
+        enteredViewerName: this.state.enteredViewerName,
+        roomName: this.roomName,
+      });
+      SocketManager.instance.listenJoinNotification((data) => {
+        this.setState({ opacity: 1 });
+        setTimeout(() => {
+          this.setState({ opacity: 0 });
+        }, 3000);
+        this.setState({ enteredViewerName: data });
+      });
       SocketManager.instance.listenFinishLiveStream(() => {
         Alert.alert(
           'Alert ',
@@ -196,6 +210,9 @@ export default class Viewer extends Component {
           { cancelable: false }
         );
       });
+      setTimeout(() => {
+        this.setState({ opacity: 0 });
+      }, 3000);
     }
 
     /*
@@ -411,9 +428,22 @@ export default class Viewer extends Component {
           <View>
             <Text style={styles.roomName}>{this.roomName}</Text>
             <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
-            <Text style={styles.countViewer}>{this.countViewer}</Text>
+            <Text style={styles.countViewer}>{this.state.countViewer}</Text>
           </View>
         )}
+      </View>
+    );
+  };
+
+  renderViewerNotification = () => {
+    return (
+      <View style={{ opacity: this.state.opacity }}>
+        <View style={styles.viewerNotificationBackground}>
+          <Text style={styles.viewerNotificationText}>
+            {' '}
+            {this.state.enteredViewerName}님이 들어왔습니다.
+          </Text>
+        </View>
       </View>
     );
   };
@@ -493,7 +523,7 @@ export default class Viewer extends Component {
                     {isVisible && this.renderTransParencyObject()}
 
                     <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
-
+                    {isVisible && this.renderViewerNotification()}
                     <View style={styles.footer1}>
                       {!this.state.dragging && this.onPressLinkButton()}
                     </View>
