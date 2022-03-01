@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   chatItem: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     marginHorizontal: 15,
     marginVertical: 5,
   },
