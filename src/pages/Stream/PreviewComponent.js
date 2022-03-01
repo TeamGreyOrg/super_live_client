@@ -15,7 +15,7 @@ const PreviewComponent = (props) => {
   const { roomName } = props.data;
   let inputUrl = `${HTTP}/live/${roomName}.flv`;
   if (!props.preview) inputUrl = null;
-  console.log(inputUrl);
+  // console.log(inputUrl);
   if (!inputUrl) {
     return null;
   }

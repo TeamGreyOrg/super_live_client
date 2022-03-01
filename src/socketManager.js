@@ -14,6 +14,7 @@ const EVENT_SEND_REPLAY = 'replay';
 const EVENT_CANCEL_LIVE_STREAM = 'cancel-live-stream';
 const EVENT_UPDATE_VIEWER_COUNT = 'update-viewer-count';
 const EVENT_GET_STREAM_CARDS = 'get-stream-cards';
+const EVENT_JOIN_NOTIFICATION = 'join-notification';
 
 class SocketManager {
   socket = null;
@@ -103,14 +104,21 @@ class SocketManager {
     this.socket.on(EVENT_UPDATE_VIEWER_COUNT, (data) => {
       Logger.instance.log(`${EVENT_UPDATE_VIEWER_COUNT} :`, data);
       return callback(data);
-    })
+    });
   }
 
   listenGetStreamCards(callback = () => null) {
     this.socket.on(EVENT_GET_STREAM_CARDS, (data) => {
       Logger.instance.log(`${EVENT_GET_STREAM_CARDS} :`, data);
       return callback(data);
-    })
+    });
+  }
+
+  listenJoinNotification(callback = () => null) {
+    this.socket.on(EVENT_JOIN_NOTIFICATION, (data) => {
+      Logger.instance.log(`${EVENT_JOIN_NOTIFICATION} :`, data);
+      return callback(data);
+    });
   }
 
   //
@@ -160,7 +168,11 @@ class SocketManager {
   }
 
   emitGetStreamCards() {
-    this.socket.emit(EVENT_GET_STREAM_CARDS)
+    this.socket.emit(EVENT_GET_STREAM_CARDS);
+  }
+
+  emitJoinNotification({ enteredViewerName, roomName }) {
+    this.socket.emit(EVENT_JOIN_NOTIFICATION, { enteredViewerName, roomName });
   }
 }
 

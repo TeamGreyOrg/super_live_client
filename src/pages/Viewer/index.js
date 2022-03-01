@@ -20,6 +20,7 @@ import {
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import VideoPlayer from 'react-native-video-controls';
+import Video from 'react-native-video';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
@@ -34,6 +35,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import * as Animatable from 'react-native-animatable';
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -49,8 +51,9 @@ export default class Viewer extends Component {
     const countViewer = get(data, 'countViewer');
     const onPreviewOFF = get(route, 'params.onPreviewOFF');
     const onPreviewON = get(route, 'params.onPreviewON');
+    const messages = get(data, 'messages');
     this.state = {
-      messages: [],
+      messages: messages,
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
@@ -67,6 +70,9 @@ export default class Viewer extends Component {
       roomName,
       userName,
       countViewer,
+      viewerName: viewerName,
+      enteredViewerName: viewerName,
+      opacity: 1,
     };
     this.roomName = roomName;
     this.userName = userName;
@@ -165,7 +171,7 @@ export default class Viewer extends Component {
       this.setState({
         inputUrl: `${HTTP}/live/${this.roomName}.flv`,
         // use HLS from trasporting in media server to Viewer
-        messages: this.messages,
+        // messages: this.messages,
       });
       SocketManager.instance.emitJoinRoom({
         userName: this.userName,
@@ -182,6 +188,17 @@ export default class Viewer extends Component {
         const messages = get(data, 'messages', []);
         this.setState({ messages });
       });
+      SocketManager.instance.emitJoinNotification({
+        enteredViewerName: this.state.enteredViewerName,
+        roomName: this.roomName,
+      });
+      SocketManager.instance.listenJoinNotification((data) => {
+        this.setState({ opacity: 1 });
+        setTimeout(() => {
+          this.setState({ opacity: 0 });
+        }, 3000);
+        this.setState({ enteredViewerName: data });
+      });
       SocketManager.instance.listenFinishLiveStream(() => {
         Alert.alert(
           'Alert ',
@@ -195,6 +212,9 @@ export default class Viewer extends Component {
           { cancelable: false }
         );
       });
+      setTimeout(() => {
+        this.setState({ opacity: 0 });
+      }, 3000);
     }
 
     /*
@@ -370,6 +390,7 @@ export default class Viewer extends Component {
 
   renderListMessages = () => {
     const { messages, isVisibleMessages } = this.state;
+    console.log('message!!', this.state.messages);
     if (!this.state.dragging) {
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;
@@ -410,10 +431,33 @@ export default class Viewer extends Component {
           <View>
             <Text style={styles.roomName}>{this.roomName}</Text>
             <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
-            <Text style={styles.countViewer}>{this.countViewer}</Text>
+            <Text style={styles.countViewer}>{this.state.countViewer}</Text>
           </View>
         )}
       </View>
+    );
+  };
+
+  renderViewerNotification = () => {
+    return (
+      <Animatable.View animation="fadeInLeft">
+        <View style={{ opacity: this.state.opacity }}>
+          <View style={styles.viewerNotificationBackground}>
+            <Text style={styles.viewerNotificationText}> {this.state.enteredViewerName}</Text>
+            <Text
+              style={{
+                color: 'white',
+                textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                textShadowOffset: { width: -1, height: 1 },
+                textShadowRadius: 10,
+                opacity: 1,
+              }}
+            >
+              님이 들어왔습니다.
+            </Text>
+          </View>
+        </View>
+      </Animatable.View>
     );
   };
 
@@ -491,10 +535,8 @@ export default class Viewer extends Component {
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
 
-                    <View style={styles.body}>
-                      {isVisible && this.renderListMessages()}
-                    </View>
-
+                    <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
+                    {isVisible && this.renderViewerNotification()}
                     <View style={styles.footer1}>
                       {!this.state.dragging && this.onPressLinkButton()}
                     </View>
