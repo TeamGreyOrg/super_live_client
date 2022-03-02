@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
 
-  contentWrapper: { flex: 0.95 },
+  contentWrapper: { flex: 1 },
   body: {
-    flex: 1,
+    flex: 0.9,
     // backgroundColor:'gray',
   },
   footer1: {
