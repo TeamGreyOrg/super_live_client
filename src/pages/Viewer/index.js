@@ -526,7 +526,9 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-        <Home preview={false} navigation={this.props.navigation} route={this.props.route} />
+        {this.state.dragging && (
+          <Home preview={true} navigation={this.props.navigation} route={this.props.route} />
+        )}
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
           <Draggable color="black" disabled={!this.state.dragging}>
             <Animated.View

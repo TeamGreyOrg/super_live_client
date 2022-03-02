@@ -16,7 +16,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 // action-undo,volume-off,volume-2
 import Feather from 'react-native-vector-icons/Feather';
 // maximize-2
-
+import FastImage from 'react-native-fast-image';
 import styles from './styles';
 import StreamCard from './StreamCard';
 import { HTTP } from '../../config';
@@ -260,52 +260,61 @@ class Comparison extends React.Component {
 
     switch (this.state.streamOneName) {
       case '페루산 애플망고 당일출고':
-        bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/001.png')} style={styles.banner} />;
         break;
       case '국산 무농약 작두콩차':
-        bannerOne = <Image source={require('../../assets/002.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/002.png')} style={styles.banner} />;
         break;
       case '안다르 레깅스':
-        bannerOne = <Image source={require('../../assets/003.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/003.png')} style={styles.banner} />;
         break;
       case '모니터 받침대 끝판왕':
-        bannerOne = <Image source={require('../../assets/004.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/004.png')} style={styles.banner} />;
         break;
       case '새학기 노트북 구매하세요':
-        bannerOne = <Image source={require('../../assets/005.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/005.png')} style={styles.banner} />;
         break;
       case '페퍼민트티 25개 할인':
-        bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
-      case '페퍼민트티 25개 할인':
-        bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+      case '돌체구스토 커피캡슐':
+        bannerOne = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
+        break;
+      case '돌체쿠스토 커피머신':
+        bannerOne = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:
-        bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        bannerOne = <FastImage source={require('../../assets/001.png')} style={styles.banner} />;
         break;
     }
 
     switch (this.state.streamTwoName) {
       case '페루산 애플망고 당일출고':
-        bannerTwo = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/001.png')} style={styles.banner} />;
         break;
       case '국산 무농약 작두콩차':
-        bannerTwo = <Image source={require('../../assets/002.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/002.png')} style={styles.banner} />;
         break;
       case '안다르 레깅스':
-        bannerTwo = <Image source={require('../../assets/003.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/003.png')} style={styles.banner} />;
         break;
       case '모니터 받침대 끝판왕':
-        bannerTwo = <Image source={require('../../assets/004.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/004.png')} style={styles.banner} />;
         break;
       case '새학기 노트북 구매하세요':
-        bannerTwo = <Image source={require('../../assets/005.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/005.png')} style={styles.banner} />;
         break;
       case '페퍼민트티 25개 할인':
-        bannerTwo = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
+        break;
+      case '돌체구스토 커피캡슐':
+        bannerTwo = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
+        break;
+      case '돌체쿠스토 커피머신':
+        bannerTwo = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:
-        bannerTwo = <Image source={require('../../assets/001.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/001.png')} style={styles.banner} />;
         break;
     }
 
