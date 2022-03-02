@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 import get from 'lodash/get';
 import { template } from 'lodash';
+import FastImage from 'react-native-fast-image';
 import { LIVE_STATUS } from '../../utils/constants';
 import Theme from '../Theme/theme';
 import PreviewComponent from './PreviewComponent';
-
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     height: SCREEN_HEIGHT / 3,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     backgroundColor: 'rgba(rgba(255,255,255,0.5)',
     padding: 3,
-    margin:0,
+    margin: 0,
     borderRadius: 8,
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
   },
   streamInfo: {
     width: '100%',
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(255,255,255,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingLeft: 5,
-    marginTop: 3,
+    marginTop: 10,
+    marginBottom: 20,
     borderRadius: 8,
     // justifyContent: 'flex-end'
   },
-
   priceTag: {
     fontSize: 17,
     fontWeight: 'bold',
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
-
 const LiveStreamCard = ({ data, onPress, preview }) => {
   // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
@@ -133,7 +132,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
   let streamIcon = null;
   let previewVideo = null;
   const viewerIcon = (
-    <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+    <FastImage style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
   // const streamIcon = (
   //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
@@ -141,83 +140,98 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
-        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <FastImage source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
     case LIVE_STATUS.ON_LIVE:
       previewVideo = <PreviewComponent data={data} preview={preview} />;
       statusIcon = (
-        <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+        <FastImage source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
       streamIcon = (
-        <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
+        <FastImage style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
       );
       break;
     case LIVE_STATUS.FINISH:
       statusIcon = (
-        <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
+        <FastImage source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
       );
       break;
     default:
       preview;
       statusIcon = (
-        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <FastImage source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
   }
-
   switch (roomName) {
-    case 'room1':
+    case '페루산 애플망고 당일출고':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/001.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
-    case 'room2':
+    case '국산 무농약 작두콩차':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/002.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
-    case 'room3':
+    case '안다르 레깅스':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/003.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
-    case 'room4':
+    case '모니터 받침대 끝판왕':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/004.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
-    case 'room5':
+    case '새학기 노트북 구매하세요':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/005.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
-    case 'room6':
+    case '페퍼민트티 25개 할인':
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/006.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case '돌체구스토 커피캡슐':
+      banner = (
+        <FastImage
+          source={require('../../assets/007.png')}
+          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
+        />
+      );
+      break;
+    case '돌체쿠스도 커피머신':
+      banner = (
+        <FastImage
+          source={require('../../assets/008.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
       break;
     default:
       banner = (
-        <Image
+        <FastImage
           source={require('../../assets/001.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
@@ -264,19 +278,16 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
           </View>
         </ImageBackground>
       </TouchableOpacity>
-
       <TouchableOpacity style={styles.streamInfo2} onPress={() => onPress(data)}>
         {banner}
       </TouchableOpacity>
     </View>
   );
 };
-
 LiveStreamCard.propTypes = {
   data: PropTypes.shape({}),
   onPress: PropTypes.func,
 };
-
 LiveStreamCard.defaultProps = {
   data: null,
   onPress: () => null,

@@ -1,28 +1,47 @@
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
+  Image,
+  TouchableOpacity,
   AppRegistry,
   Animated,
   Alert,
   PanResponder,
   Dimensions,
   SafeAreaView,
+  TouchableWithoutFeedback,
+  Text,
+  KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
+import VideoPlayer from 'react-native-video-controls';
+import Video from 'react-native-video';
+import moment from 'moment';
+import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
+import Icon1 from 'react-native-vector-icons/Entypo';
+import Icon2 from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// compare
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+// action-undo,volume-off,volume-2
+
+import * as Animatable from 'react-native-animatable';
+import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
+import FloatingHearts from '../../components/FloatingHearts';
+import ChatInputGroup from '../../components/ChatInputGroup';
+import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
-import TransParent from './TransParentCover';
-import VideoPlayer from 'react-native-video-controls';
-
 
 export default class Viewer extends Component {
   constructor(props) {
@@ -34,6 +53,7 @@ export default class Viewer extends Component {
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
     const userName = get(data, 'userName');
     const viewerName = get(route, 'params.userName', '');
+    const goodsUrl = get(data, 'productLink');
     const countViewer = get(data, 'countViewer');
     const onPreviewOFF = get(route, 'params.onPreviewOFF');
     const onPreviewON = get(route, 'params.onPreviewON');
@@ -44,7 +64,11 @@ export default class Viewer extends Component {
       isVisibleMessages: true,
       inputUrl: null,
       dragging: false,
-     
+      isUri: false,
+      linkTitle: undefined,
+      linkDesc: undefined,
+      linkFavicon: undefined,
+      linkImg: undefined,
       requestOptions: {},
       isVisible: true,
       audioStatus: true,
@@ -57,10 +81,15 @@ export default class Viewer extends Component {
     };
     this.roomName = roomName;
     this.userName = userName;
+    this.goodsUrl = goodsUrl;
     this.liveStatus = liveStatus;
     this.timeout = null;
+    const { requestOptions } = this.state;
+    this.getPreview(goodsUrl, requestOptions);
     this.onPreviewOFF = onPreviewOFF;
     this.onPreviewON = onPreviewON;
+    this.countViewer = countViewer;
+    this.viewerName = viewerName;
   }
 
   componentWillMount() {
@@ -108,6 +137,14 @@ export default class Viewer extends Component {
     }
   };
 
+  handleOpen = () => {
+    this._animation.setOffset(0);
+    Animated.timing(this._animation, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
 
   componentDidMount() {
     const { navigation } = this.props;
@@ -201,10 +238,40 @@ export default class Viewer extends Component {
       countHeart: 0,
       isVisibleMessages: true,
       inputUrl: null,
-      audioStatus: false,
     });
     clearTimeout(this.timeout);
   }
+
+  getPreview = (text, options) => {
+    const { onError, onLoad } = this.props;
+    getLinkPreview(text, options)
+      .then((data) => {
+        onLoad(data);
+        this.setState({
+          isUri: true,
+          linkTitle: data.title ? data.title : undefined,
+          linkDesc: data.description ? data.description : undefined,
+          linkImg:
+            data.images && data.images.length > 0
+              ? data.images.find((element) => {
+                  return (
+                    element.includes('.png') ||
+                    element.includes('.jpg') ||
+                    element.includes('.jpeg')
+                  );
+                })
+              : undefined,
+          linkFavicon:
+            data.favicons && data.favicons.length > 0
+              ? data.favicons[data.favicons.length - 1]
+              : undefined,
+        });
+      })
+      .catch((error) => {
+        onError(error);
+        this.setState({ isUri: false });
+      });
+  };
 
   onPressHeart = () => {
     SocketManager.instance.emitSendHeart({
@@ -221,14 +288,54 @@ export default class Viewer extends Component {
     // this.setState({ isVisibleMessages: true });
   };
 
+  onEndEditing = () => this.setState({ isVisibleMessages: true });
+
+  onFocusChatGroup = () => {
+    this.setState({ isVisibleMessages: false });
+  };
+
+  onPressClose = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  };
+
+  onPressLinkButton = () => {
+    const { isUri, linkImg, linkFavicon, linkTitle, linkDesc } = this.state;
+    const { isVisible } = this.state;
+    if (isVisible) {
+      return (
+        <BannerButton
+          isUri={isUri}
+          goodsUrl={this.goodsUrl}
+          linkImg={linkImg}
+          linkFavicon={linkFavicon}
+          linkTitle={linkTitle}
+          linkDesc={linkDesc}
+        />
+      );
+    }
+  };
+
+  onPressVisible = () => {
+    const { isVisible } = this.state;
+    this.setState(() => ({ isVisible: !isVisible }));
+  };
+
+  onPressCompare = () => {
+    const { roomName, userName, audioStatus } = this.state;
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Comparison', { roomName, userName, audioStatus });
+  };
+
   onPressSound = () => {
-    const { audioStatus } = this.props;
+    const { audioStatus } = this.state;
+
     if (audioStatus) {
       this.setState({ audioStatus: false });
-      this.setState({ audioIcon: require('../../assets/ico_soundoff.png') });
     } else {
       this.setState({ audioStatus: true });
-      this.setState({ audioIcon: require('../../assets/ico_soundon.png') });
     }
   };
 
@@ -248,7 +355,6 @@ export default class Viewer extends Component {
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
-    console.log(inputUrl);
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -272,7 +378,92 @@ export default class Viewer extends Component {
     if (!inputUrl) return null;
     return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
   };
- 
+
+  renderChatGroup = () => {
+    if (!this.state.dragging) {
+      return (
+        <ChatInputGroup
+          onPressHeart={this.onPressHeart}
+          onPressSend={this.onPressSend}
+          onEndEditing={this.onEndEditing}
+        />
+      );
+    }
+  };
+
+  renderListMessages = () => {
+    const { messages, isVisibleMessages } = this.state;
+    console.log('message!!', this.state.messages);
+    if (!this.state.dragging) {
+      if (!isVisibleMessages) return null;
+      return <MessagesList messages={messages} />;
+    }
+  };
+
+  renderTransParencyObject = () => {
+    const { audioStatus } = this.state;
+    return (
+      <View>
+        <View>
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            {!this.state.dragging && <SimpleLineIcons name="action-undo" size={30} color="white" />}
+            {this.state.dragging && <Icon2 name="close" size={100} color="white" />}
+          </TouchableOpacity>
+        </View>
+
+        {!this.state.dragging && (
+          <View>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+              <MaterialCommunityIcons name="compare" size={30} color="white" />
+            </TouchableOpacity>
+          </View>
+        )}
+        {this.state.dragging && (
+          <View>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
+              <Icon1 name="resize-full-screen" size={100} color="white" />
+            </TouchableOpacity>
+          </View>
+        )}
+        {!this.state.dragging && (
+          <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+            {!audioStatus && <SimpleLineIcons name="volume-off" size={30} color="white" />}
+            {audioStatus && <SimpleLineIcons name="volume-2" size={30} color="white" />}
+          </TouchableOpacity>
+        )}
+        {!this.state.dragging && (
+          <View>
+            <Text style={styles.roomName}>{this.roomName}</Text>
+            <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+            <Text style={styles.countViewer}>{this.state.countViewer}</Text>
+          </View>
+        )}
+      </View>
+    );
+  };
+
+  renderViewerNotification = () => {
+    return (
+      <Animatable.View animation="fadeInLeft">
+        <View style={{ opacity: this.state.opacity }}>
+          <View style={styles.viewerNotificationBackground}>
+            <Text style={styles.viewerNotificationText}> {this.state.enteredViewerName}</Text>
+            <Text
+              style={{
+                color: 'white',
+                textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                textShadowOffset: { width: -1, height: 1 },
+                textShadowRadius: 10,
+                opacity: 1,
+              }}
+            >
+              님이 들어왔습니다.
+            </Text>
+          </View>
+        </View>
+      </Animatable.View>
+    );
+  };
 
   render() {
     const { countHeart } = this.state;
@@ -315,6 +506,8 @@ export default class Viewer extends Component {
       ],
     };
 
+    const { isVisible } = this.state;
+    const {} = this.state;
     /**
      * Replay mode
      */
@@ -333,24 +526,30 @@ export default class Viewer extends Component {
      */
     return (
       <SafeAreaView style={styles.container}>
-         {this.state.dragging && <Home preview={true} navigation={this.props.navigation} route={this.props.route} />}
+        <Home preview={false} navigation={this.props.navigation} route={this.props.route} />
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-          <Draggable disabled={!this.state.dragging}>
+          <Draggable color="black" disabled={!this.state.dragging}>
             <Animated.View
               style={[{ width, height: videoHeight }, videoStyles]}
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
-              <TransParent
-                data={this.data}
-                viewerName={this.viewerName}
-                dragging={this.state.dragging}
-                navigation={this.props.navigation}
-                onError={this.props.onError}
-                onLoad={this.props.onLoad}
-                onHandleOpen={this.onHandleOpen}
-                onPressSound={this.onPressSound}
-              />
+              <TouchableWithoutFeedback onPress={this.onPressVisible}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+                  <View style={styles.contentWrapper}>
+                    {isVisible && this.renderTransParencyObject()}
+                    <View style={styles.body}>
+                      {isVisible && this.renderListMessages()}
+                      {isVisible && this.renderViewerNotification()}
+                      <View style={styles.footer1}>
+                        {!this.state.dragging && this.onPressLinkButton()}
+                      </View>
+                      <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
+                    </View>
+                  </View>
+                </KeyboardAvoidingView>
+              </TouchableWithoutFeedback>
+              <FloatingHearts count={countHeart} />
             </Animated.View>
           </Draggable>
         </View>

@@ -71,6 +71,11 @@ class Comparison extends React.Component {
       this.setState({ streamCards: data });
     });
 
+    SocketManager.instance.emitListLiveStream();
+    SocketManager.instance.listenListLiveStream((data) => {
+      this.setState({ streamCardsFull: data });
+    });
+
     this.setState({
       inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
       // use HLS from trasporting in media server to Viewer
@@ -100,28 +105,6 @@ class Comparison extends React.Component {
     this.setState({ streamOneName: roomName });
     this.setState({ inputUrlFirst: null });
     this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
-  }
-
-  componentDidMount() {
-    SocketManager.instance.emitGetStreamCards();
-    SocketManager.instance.listenGetStreamCards((data) => {
-      this.setState({ streamCards: data });
-    });
-
-    SocketManager.instance.emitListLiveStream();
-    SocketManager.instance.listenListLiveStream((data) => {
-      this.setState({ streamCardsFull: data });
-    });
-
-    this.setState({
-      inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
-      // use HLS from trasporting in media server to Viewer
-      // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
-    });
-
-    setTimeout(() => {
-      this.setState({ opacityOne: 1 });
-    }, 2000);
   }
 
   renderPortraitNodePlayerViewOne = (inputUrl) => {
@@ -276,22 +259,22 @@ class Comparison extends React.Component {
     let bannerTwo = null;
 
     switch (this.state.streamOneName) {
-      case 'room1':
+      case '페루산 애플망고 당일출고':
         bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
         break;
-      case 'room2':
+      case '국산 무농약 작두콩차':
         bannerOne = <Image source={require('../../assets/002.png')} style={styles.banner} />;
         break;
-      case 'room3':
+      case '안다르 레깅스':
         bannerOne = <Image source={require('../../assets/003.png')} style={styles.banner} />;
         break;
-      case 'room4':
+      case '모니터 받침대 끝판왕':
         bannerOne = <Image source={require('../../assets/004.png')} style={styles.banner} />;
         break;
-      case 'room5':
+      case '새학기 노트북 구매하세요':
         bannerOne = <Image source={require('../../assets/005.png')} style={styles.banner} />;
         break;
-      case 'room6':
+      case '페퍼민트티 25개 할인':
         bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
         break;
       default:
@@ -300,22 +283,22 @@ class Comparison extends React.Component {
     }
 
     switch (this.state.streamTwoName) {
-      case 'room1':
+      case '페루산 애플망고 당일출고':
         bannerTwo = <Image source={require('../../assets/001.png')} style={styles.banner} />;
         break;
-      case 'room2':
+      case '국산 무농약 작두콩차':
         bannerTwo = <Image source={require('../../assets/002.png')} style={styles.banner} />;
         break;
-      case 'room3':
+      case '안다르 레깅스':
         bannerTwo = <Image source={require('../../assets/003.png')} style={styles.banner} />;
         break;
-      case 'room4':
+      case '모니터 받침대 끝판왕':
         bannerTwo = <Image source={require('../../assets/004.png')} style={styles.banner} />;
         break;
-      case 'room5':
+      case '새학기 노트북 구매하세요':
         bannerTwo = <Image source={require('../../assets/005.png')} style={styles.banner} />;
         break;
-      case 'room6':
+      case '페퍼민트티 25개 할인':
         bannerTwo = <Image source={require('../../assets/006.png')} style={styles.banner} />;
         break;
       default:

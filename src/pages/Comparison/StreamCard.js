@@ -34,6 +34,30 @@ class StreamCard extends Component {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
     }, 2000);
+
+    let inputUrl = '';
+
+    switch (this.state.roomName) {
+      case '페루산 애플망고 당일출고':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy001/index.m3u8`;
+        break;
+      case '국산 무농약 작두콩차':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy002/index.m3u8`;
+        break;
+      case '안다르 레깅스':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy003/index.m3u8`;
+        break;
+      case '모니터 받침대 끝판왕':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy004/index.m3u8`;
+        break;
+      case '새학기 노트북 구매하세요':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy005/index.m3u8`;
+        break;
+      default:
+        inputUrl = `${HTTP}/live/${this.state.roomName}.flv`;
+        break;
+    }
+    this.setState({ inputUrl: inputUrl });
   }
 
   renderNodePlayerView = (inputUrl) => {

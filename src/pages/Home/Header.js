@@ -7,11 +7,16 @@ export default function Header({ userName }) {
   return (
     <>
       {/* <SafeAreaView style={{ backgroundColor: theme.color.Black }} /> */}
-      <ImageBackground source={require('../../assets/com_back_5.gif')} style={{height:50, flexDirection: 'row',
+      <View
+        style={{
+          height: 50,
+          flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: 50,}} >
-       
+          backgroundColor: 'black',
+          height: 50,
+        }}
+      >
         <View style={{ justifyContent: 'flex-start' }}>
           <Image
             source={require('../../assets/ico_logo.png')}
@@ -19,9 +24,9 @@ export default function Header({ userName }) {
           />
         </View>
         <View style={{ justifyContent: 'flex-end', margin: 5 }}>
-          <Text style={styles.welcomeText}>WelCome!! : {userName}</Text>
+          <Text style={styles.welcomeText}>{userName}</Text>
         </View>
-      </ImageBackground>
+      </View>
     </>
   );
 }

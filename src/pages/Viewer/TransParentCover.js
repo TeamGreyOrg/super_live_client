@@ -79,6 +79,20 @@ export default class TransParentCover extends Component {
       const messages = get(data, 'messages', []);
       this.setState({ messages });
     });
+    SocketManager.instance.emitJoinNotification({
+      enteredViewerName: this.state.enteredViewerName,
+      roomName: this.roomName,
+    });
+    SocketManager.instance.listenJoinNotification((data) => {
+      this.setState({ opacity: 1 });
+      setTimeout(() => {
+        this.setState({ opacity: 0 });
+      }, 3000);
+      this.setState({ enteredViewerName: data });
+    });
+    setTimeout(() => {
+      this.setState({ opacity: 0 });
+    }, 3000);
   }
 
   componentWillUnmount() {
@@ -191,13 +205,13 @@ export default class TransParentCover extends Component {
       toValue: 0,
       duration: 200,
       useNativeDriver: true,
-    }).start()
+    }).start();
     //this.state.dragging = false;
     //this.onPreviewOFF();
     this.setState({
       inputUrl: null,
       dragging: false,
-    })
+    });
   };
 
   renderChatGroup = () => {
@@ -304,9 +318,7 @@ export default class TransParentCover extends Component {
               {isVisible && this.renderTransParencyObject()}
               <View style={styles.body}>{isVisible && this.renderListMessages()}</View>
               {isVisible && this.renderViewerNotification()}
-              <View style={styles.footer1}>
-                {!dragging && this.onPressLinkButton()}
-                </View>
+              <View style={styles.footer1}>{!dragging && this.onPressLinkButton()}</View>
               <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
             </View>
           </KeyboardAvoidingView>
