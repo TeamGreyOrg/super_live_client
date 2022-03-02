@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: 'rgba(0,0,0,0.75)',
-    backgroundColor: 'black',
   },
   blackContainer: {
     flex: 1,

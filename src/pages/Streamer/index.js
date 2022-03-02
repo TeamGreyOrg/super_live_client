@@ -72,10 +72,6 @@ export default class Streamer extends React.Component {
 
   componentWillUnmount() {
     if (this.nodeCameraViewRef) this.nodeCameraViewRef.stop();
-    // SocketManager.instance.emitLeaveRoom({
-    //   userName: this.userName,
-    //   roomName: this.roomName,
-    // });
   }
 
   onPressHeart = () => {
