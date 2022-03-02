@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: windowWidth,
-    height: windowHeight/10,
+    height: windowHeight / 10,
   },
   headerText: {
     textAlign: 'center',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   streamContainerPortrait: {
-    height: windowHeight/2.82,
+    height: windowHeight / 2.82,
     flexDirection: 'row',
     marginTop: -15,
     width: '100%',
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
   },
-  footerText: { 
+  footerText: {
     fontWeight: '700',
     color: 'white',
     fontSize: 15,
     marginHorizontal: 30,
-    paddingBottom:15,
+    paddingBottom: 15,
   },
   cardsContainer: {
     flex: 0.3,
@@ -130,9 +130,9 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:"flex-end"
+    alignItems: 'flex-end',
   },
   // buttonLeft: {
   //   position: 'absolute',
