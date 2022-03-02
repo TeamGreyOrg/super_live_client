@@ -30,7 +30,6 @@ class Comparison extends React.Component {
     const userName = get(route, 'params.userName', '');
     const roomName = get(route, 'params.roomName');
     const viewerName = get(route, 'params.viewerName');
-    const audioStatusOne = get(route, 'params.audioStatus');
 
     const streamTwoHandler = this.streamTwoHandler.bind(this);
     const streamOneHandler = this.streamOneHandler.bind(this);
@@ -50,8 +49,8 @@ class Comparison extends React.Component {
       streamCardsFull: [],
       opacityOne: 0,
       opacityTwo: 0,
-      audioStatusOne,
-      audioStatusTwo: true,
+      audioStatusOne: false,
+      audioStatusTwo: false,
     };
 
     // Dimensions.addEventListener('change', () => {
@@ -76,11 +75,17 @@ class Comparison extends React.Component {
       this.setState({ streamCardsFull: data });
     });
 
-    this.setState({
-      inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
-      // use HLS from trasporting in media server to Viewer
-      // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
-    });
+    if (this.roomName == '페퍼민트티 25개 할인') {
+      this.setState({
+        inputUrlFirst: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
+      });
+    } else {
+      this.setState({
+        inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
+        // use HLS from trasporting in media server to Viewer
+        // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
+      });
+    }
 
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
@@ -92,9 +97,15 @@ class Comparison extends React.Component {
     setTimeout(() => {
       this.setState({ opacityTwo: 1 });
     }, 2000);
-    this.setState({ streamTwoName: roomName });
-    this.setState({ inputUrlSecond: null });
-    this.setState({ inputUrlSecond: `${HTTP}/live/${roomName}.flv` });
+    if (roomName == '페퍼민트티 25개 할인') {
+      this.setState({
+        inputUrlSecond: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
+      });
+    } else {
+      this.setState({ streamTwoName: roomName });
+      this.setState({ inputUrlSecond: null });
+      this.setState({ inputUrlSecond: `${HTTP}/live/${roomName}.flv` });
+    }
   }
 
   streamOneHandler(roomName) {
@@ -102,9 +113,15 @@ class Comparison extends React.Component {
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
     }, 2000);
-    this.setState({ streamOneName: roomName });
-    this.setState({ inputUrlFirst: null });
-    this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
+    if (roomName == '페퍼민트티 25개 할인') {
+      this.setState({
+        inputUrlFirst: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
+      });
+    } else {
+      this.setState({ streamOneName: roomName });
+      this.setState({ inputUrlFirst: null });
+      this.setState({ inputUrlFirst: `${HTTP}/live/${roomName}.flv` });
+    }
   }
 
   renderPortraitNodePlayerViewOne = (inputUrl) => {

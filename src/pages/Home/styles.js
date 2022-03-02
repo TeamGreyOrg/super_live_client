@@ -21,14 +21,18 @@ const styles = StyleSheet.create({
   },
   // --------footer-----------
   liveStreamButton: {
-    backgroundColor: '#34495e',
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'white',
     alignItems: 'center',
     paddingVertical: 10,
     borderRadius: 10,
   },
   logoutButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'white',
     justifyContent: 'center',
-    backgroundColor: 'gray',
     paddingVertical: 10,
     borderRadius: 10,
   },

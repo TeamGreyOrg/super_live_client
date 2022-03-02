@@ -26,17 +26,17 @@ const Footer = ({ onPressLiveStreamNow, onPressLogout }) => {
           <Text style={styles.textButton}>방송 시작</Text>
         </TouchableOpacity>
 
-        <Animatable.View animation={ani}>
-          <TouchableOpacity
-            style={styles.logoutButton}
-            onPress={() => {
-              onClick();
-              onPressLogout();
-            }}
-          >
-            <Text style={styles.textButton}>로그아웃</Text>
-          </TouchableOpacity>
-        </Animatable.View>
+        {/* <Animatable.View animation={ani}> */}
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={() => {
+            onClick();
+            onPressLogout();
+          }}
+        >
+          <Text style={styles.textButton}>로그아웃</Text>
+        </TouchableOpacity>
+        {/* </Animatable.View> */}
       </View>
     </>
   );

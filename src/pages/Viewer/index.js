@@ -71,7 +71,7 @@ export default class Viewer extends Component {
       linkImg: undefined,
       requestOptions: {},
       isVisible: true,
-      audioStatus: true,
+      audioStatus: false,
       roomName,
       userName,
       countViewer,
@@ -322,11 +322,12 @@ export default class Viewer extends Component {
   };
 
   onPressCompare = () => {
-    const { roomName, userName, audioStatus } = this.state;
+    const { roomName, userName } = this.state;
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Comparison', { roomName, userName, audioStatus });
+    this.setState({ audioStatus: false });
+    navigate('Comparison', { roomName, userName });
   };
 
   onPressSound = () => {
@@ -354,7 +355,18 @@ export default class Viewer extends Component {
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
-    const { inputUrl } = this.state;
+    // const { inputUrl } = this.state;
+    let inputUrl = '';
+    const { roomName } = this.state;
+    switch (roomName) {
+      case '페퍼민트티 25개 할인':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`;
+        break;
+      default:
+        inputUrl = `${HTTP}/live/${roomName}.flv`;
+        break;
+    }
+    console.log(inputUrl);
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -393,7 +405,7 @@ export default class Viewer extends Component {
 
   renderListMessages = () => {
     const { messages, isVisibleMessages } = this.state;
-    console.log('message!!', this.state.messages);
+    // console.log('message!!', this.state.messages);
     if (!this.state.dragging) {
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;

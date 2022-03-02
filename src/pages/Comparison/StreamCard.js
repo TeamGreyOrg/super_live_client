@@ -21,6 +21,7 @@ class StreamCard extends Component {
       dropAreaValues: null,
       opacity: new Animated.Value(1),
       cardOpacity: 0,
+      audioStatus: false,
       animation: '',
       inputUrl: `${HTTP}/live/${roomName}.flv`,
     };
@@ -53,6 +54,9 @@ class StreamCard extends Component {
       case '새학기 노트북 구매하세요':
         inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy005/index.m3u8`;
         break;
+      case '페퍼민트티 25개 할인':
+        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy006/index.m3u8`;
+        break;
       default:
         inputUrl = `${HTTP}/live/${this.state.roomName}.flv`;
         break;
@@ -72,7 +76,7 @@ class StreamCard extends Component {
         scaleMode="ScaleAspectFit"
         bufferTime={300}
         maxBufferTime={1000}
-        audioEnable={false}
+        audioEnable={this.state.audioStatus}
         autoplay
       />
     );
@@ -145,22 +149,22 @@ class StreamCard extends Component {
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
 
-  renderNodePlayerView = (inputUrl) => {
-    if (!inputUrl) return null;
-    return (
-      <NodePlayerView
-        style={styles.streamCard}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
-        bufferTime={300}
-        maxBufferTime={1000}
-        autoplay
-      />
-    );
-  };
+  // renderNodePlayerView = (inputUrl) => {
+  //   if (!inputUrl) return null;
+  //   return (
+  //     <NodePlayerView
+  //       style={styles.streamCard}
+  //       ref={(vb) => {
+  //         this.nodePlayerView = vb;
+  //       }}
+  //       inputUrl={inputUrl}
+  //       scaleMode="ScaleAspectFit"
+  //       bufferTime={300}
+  //       maxBufferTime={1000}
+  //       autoplay
+  //     />
+  //   );
+  // };
 
   normalPanResponder() {
     return PanResponder.create({
