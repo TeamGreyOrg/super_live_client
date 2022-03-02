@@ -16,7 +16,7 @@ const PreviewComponent = (props) => {
   let inputUrl = null;
   switch (roomName) {
     case '페루산 애플망고 당일출고':
-      inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy001/index.m3u8`;
+      inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy001_iframe/index.m3u8`;
       break;
     case '국산 무농약 작두콩차':
       inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy002/index.m3u8`;

@@ -277,6 +277,9 @@ class Comparison extends React.Component {
       case '페퍼민트티 25개 할인':
         bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
         break;
+      case '페퍼민트티 25개 할인':
+        bannerOne = <Image source={require('../../assets/006.png')} style={styles.banner} />;
+        break;
       default:
         bannerOne = <Image source={require('../../assets/001.png')} style={styles.banner} />;
         break;
