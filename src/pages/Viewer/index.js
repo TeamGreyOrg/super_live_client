@@ -173,11 +173,22 @@ export default class Viewer extends Component {
       const inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${this.roomName}/index.m3u8`;
       this.setState({ inputUrl });
     } else {
-      this.setState({
-        inputUrl: `${HTTP}/live/${this.roomName}.flv`,
-        // use HLS from trasporting in media server to Viewer
-        // messages: this.messages,
-      });
+      const { roomName } = this.state;
+      switch (roomName) {
+        case '페퍼민트티 25개 할인':
+          this.setState({
+            inputUrl: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
+          });
+          break;
+        default:
+          this.setState({ inputUrl: `${HTTP}/live/${roomName}.flv` });
+          break;
+      }
+      // this.setState({
+      //   inputUrl: `${HTTP}/live/${this.roomName}.flv`,
+      //   // use HLS from trasporting in media server to Viewer
+      //   // messages: this.messages,
+      // });
       SocketManager.instance.emitJoinRoom({
         userName: this.userName,
         roomName: this.roomName,
@@ -327,6 +338,7 @@ export default class Viewer extends Component {
       navigation: { navigate },
     } = this.props;
     this.setState({ audioStatus: false });
+    // this.setState({ inputUrl: null });
     navigate('Comparison', { roomName, userName });
   };
 
@@ -355,18 +367,8 @@ export default class Viewer extends Component {
 
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
-    // const { inputUrl } = this.state;
-    let inputUrl = '';
-    const { roomName } = this.state;
-    switch (roomName) {
-      case '페퍼민트티 25개 할인':
-        inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`;
-        break;
-      default:
-        inputUrl = `${HTTP}/live/${roomName}.flv`;
-        break;
-    }
-    console.log(inputUrl);
+    const { inputUrl } = this.state;
+    // let inputUrl = '';
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -527,7 +529,7 @@ export default class Viewer extends Component {
       return (
         <View style={styles.blackContainer}>
           {this.renderVideoPlayerView()}
-          {this.renderListMessages()}
+          {/* {this.renderListMessages()} */}
           <FloatingHearts count={countHeart} />
         </View>
       );

@@ -189,7 +189,7 @@ const LiveStreamCard = ({ data, onPress }) => {
         />
       );
       break;
-    case 'room6':
+    case '페퍼민트티':
       banner = (
         <Image
           source={require('../../../assets/006.png')}
@@ -210,28 +210,28 @@ const LiveStreamCard = ({ data, onPress }) => {
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
         {/* <ImageBackground source={require('../../../assets/com_back_4.gif')} style={styles.bgimage}> */}
-          <View style={{ flexDirection: 'row', margin: 6 }}>{statusIcon}</View>
+        <View style={{ flexDirection: 'row', margin: 6 }}>{statusIcon}</View>
 
-          <View
-            style={{
-              // height: SCREEN_HEIGHT / 4,
-              width: SCREEN_WIDTH / 2.4,
-              justifyContent: 'flex-end',
-            }}
-          >
-            <View style={styles.streamerContainer}>
-              <Text style={styles.streamerName} numberOfLines={1}>
-                {userName}
-              </Text>
-            </View>
+        <View
+          style={{
+            // height: SCREEN_HEIGHT / 4,
+            width: SCREEN_WIDTH / 2.4,
+            justifyContent: 'flex-end',
+          }}
+        >
+          <View style={styles.streamerContainer}>
+            <Text style={styles.streamerName} numberOfLines={1}>
+              {userName}
+            </Text>
           </View>
-          <View style={{ height: SCREEN_HEIGHT / 4.2, justifyContent: 'flex-end' }}>
-            <View style={styles.streamInfo}>
-              <Text style={styles.roomNameTag} numberOfLines={2}>
-                {roomName}
-              </Text>
-            </View>
+        </View>
+        <View style={{ height: SCREEN_HEIGHT / 4.2, justifyContent: 'flex-end' }}>
+          <View style={styles.streamInfo}>
+            <Text style={styles.roomNameTag} numberOfLines={2}>
+              {roomName}
+            </Text>
           </View>
+        </View>
         {/* </ImageBackground> */}
       </TouchableOpacity>
 

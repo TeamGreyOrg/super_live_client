@@ -331,7 +331,7 @@ class Comparison extends React.Component {
         bannerTwo = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:
-        bannerTwo = <FastImage source={require('../../assets/001.png')} style={styles.banner} />;
+        bannerTwo = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
     }
 
