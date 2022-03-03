@@ -2,6 +2,7 @@ import { NodePlayerView } from 'react-native-nodemediaclient';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { HTTP } from '../../config';
+import Video from 'react-native-video';
 
 const styles = StyleSheet.create({
   previewimage: {
@@ -34,24 +35,21 @@ const PreviewComponent = (props) => {
       inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy006/index.m3u8`;
       break;
     default:
-      inputUrl = `${HTTP}/live/${roomName}.flv`;
+      inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
+      //inputUrl = `${HTTP}/live/${roomName}.flv`;
       break;
   }
   if (!props.preview) inputUrl = null;
-  // console.log(inputUrl);
   if (!inputUrl) {
     return null;
   }
   return (
     <View>
-      <NodePlayerView
+      <Video
         style={styles.previewimage}
-        inputUrl={inputUrl}
-        scaleMode="ScaleToFill"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={false}
-        autoplay
+        source={{ uri: inputUrl }}
+        muted={true}
+        resizeMode="cover"
       />
     </View>
   );
