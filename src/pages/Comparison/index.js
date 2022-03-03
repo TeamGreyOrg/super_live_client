@@ -294,10 +294,10 @@ class Comparison extends React.Component {
       case '페퍼민트티 25개 할인':
         bannerOne = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
-      case '돌체구스토 커피캡슐':
+      case 'CoffeeCapsule':
         bannerOne = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
         break;
-      case '돌체쿠스토 커피머신':
+      case 'CoffeeMachine':
         bannerOne = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:
@@ -324,10 +324,10 @@ class Comparison extends React.Component {
       case '페퍼민트티 25개 할인':
         bannerTwo = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
-      case '돌체구스토 커피캡슐':
+      case 'CoffeeCapsule':
         bannerTwo = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
         break;
-      case '돌체쿠스토 커피머신':
+      case 'CoffeeMachine':
         bannerTwo = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:

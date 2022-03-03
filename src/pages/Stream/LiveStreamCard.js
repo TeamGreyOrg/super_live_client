@@ -213,7 +213,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
         />
       );
       break;
-    case '돌체구스토 커피캡슐':
+    case 'CoffeeCapsule':
       banner = (
         <FastImage
           source={require('../../assets/007.png')}
@@ -221,7 +221,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
         />
       );
       break;
-    case '돌체쿠스토 커피머신':
+    case 'CoffeeMachine':
       banner = (
         <FastImage
           source={require('../../assets/008.png')}
