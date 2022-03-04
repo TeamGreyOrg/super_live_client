@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/superlivecommerce.iml" filepath="$PROJECT_DIR$/.idea/modules/superlivecommerce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/superlivecommerce.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/superlivecommerce.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1835575498/superlivecommerce.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/1835575498/superlivecommerce.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1073779069/superlivecommerce.react-native-fast-image.iml" filepath="$PROJECT_DIR$/.idea/modules/-1073779069/superlivecommerce.react-native-fast-image.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1478030515/superlivecommerce.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-1478030515/superlivecommerce.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/182385396/superlivecommerce.react-native-nodemediaclient.iml" filepath="$PROJECT_DIR$/.idea/modules/182385396/superlivecommerce.react-native-nodemediaclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/28559176/superlivecommerce.react-native-pager-view.iml" filepath="$PROJECT_DIR$/.idea/modules/28559176/superlivecommerce.react-native-pager-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/535623343/superlivecommerce.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/535623343/superlivecommerce.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1898218614/superlivecommerce.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/1898218614/superlivecommerce.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-105979890/superlivecommerce.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-105979890/superlivecommerce.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1908452569/superlivecommerce.react-native-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/1908452569/superlivecommerce.react-native-splash-screen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2030213033/superlivecommerce.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/2030213033/superlivecommerce.react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1878142782/superlivecommerce.react-native-video.iml" filepath="$PROJECT_DIR$/.idea/modules/-1878142782/superlivecommerce.react-native-video.iml" />
+    </modules>
+  </component>
+</project>
