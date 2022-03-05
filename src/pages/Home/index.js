@@ -27,6 +27,13 @@ class Home extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.setState({
+      listLiveStream: [],
+      preview: true,
+    });
+  }
+
   onPreviewON = () => {
     this.setState({
       preview: true,
