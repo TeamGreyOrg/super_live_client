@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Alert,
   PermissionsAndroid,
+  Text,
 } from 'react-native';
 import { NodeCameraView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
@@ -20,6 +21,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import FloatingHearts from '../../components/FloatingHearts';
 import { RTMP_SERVER } from '../../config';
 import Logger from '../../utils/logger';
+import * as Animatable from 'react-native-animatable';
 
 export default class Streamer extends React.Component {
   constructor(props) {
@@ -34,6 +36,8 @@ export default class Streamer extends React.Component {
       messages: [],
       countHeart: 0,
       isVisibleMessages: true,
+      enteredViewerName: '',
+      opacity: 0,
     };
     this.userName = userName;
     this.roomName = roomName;
@@ -42,6 +46,7 @@ export default class Streamer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.state.enteredViewerName);
     this.requestCameraPermission();
     SocketManager.instance.emitPrepareLiveStream({
       userName: this.userName,
@@ -67,6 +72,13 @@ export default class Streamer extends React.Component {
     SocketManager.instance.listenSendMessage((data) => {
       const messages = get(data, 'messages', []);
       this.setState({ messages });
+    });
+    SocketManager.instance.listenJoinNotification((data) => {
+      this.setState({ opacity: 1 });
+      setTimeout(() => {
+        this.setState({ opacity: 0 });
+      }, 3000);
+      this.setState({ enteredViewerName: data });
     });
   }
 
@@ -180,6 +192,29 @@ export default class Streamer extends React.Component {
     return <MessagesList messages={messages} />;
   };
 
+  renderViewerNotification = () => {
+    return (
+      <Animatable.View animation="fadeInLeft">
+        <View style={{ opacity: this.state.opacity }}>
+          <View style={styles.viewerNotificationBackground}>
+            <Text style={styles.viewerNotificationText}> {this.state.enteredViewerName}</Text>
+            <Text
+              style={{
+                color: 'white',
+                textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                textShadowOffset: { width: -1, height: 1 },
+                textShadowRadius: 10,
+                opacity: 1,
+              }}
+            >
+              님이 들어왔습니다.
+            </Text>
+          </View>
+        </View>
+      </Animatable.View>
+    );
+  };
+
   setCameraRef = (ref) => {
     this.nodeCameraViewRef = ref;
   };
@@ -216,7 +251,10 @@ export default class Streamer extends React.Component {
               onPress={this.onPressLiveStreamButton}
             />
           </View>
-          <View style={styles.center}>{this.renderListMessages()}</View>
+          <View style={styles.center}>
+            {this.renderListMessages()}
+            {this.renderViewerNotification()}
+          </View>
           <View style={styles.footer}>{this.renderChatGroup()}</View>
         </SafeAreaView>
         <FloatingHearts count={countHeart} />

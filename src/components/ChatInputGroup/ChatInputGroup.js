@@ -61,7 +61,7 @@ export default class ChatInputGroup extends Component {
             style={styles.textInput}
             placeholder="메시지를 입력해주세요"
             placeholderTextColor={'white'}
-            backgroundColor='transparent'
+            backgroundColor="transparent"
             underlineColorAndroid="transparent"
             onChangeText={this.onChangeMessageText}
             value={message}
@@ -82,7 +82,7 @@ export default class ChatInputGroup extends Component {
         </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.wrapIconHeart}
-            onPress={this.onPressHeart}
+            onPressIn={this.onPressHeart}
             activeOpacity={0.6}
           >
             <AntDesign name="heart" size={40} color="#FF097D" />

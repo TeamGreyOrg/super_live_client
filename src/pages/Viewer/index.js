@@ -427,7 +427,7 @@ export default class Viewer extends Component {
     return (
       <View>
         <View>
-          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+          <TouchableOpacity style={styles.btnClose} onPressIn={this.onPressClose}>
             {!this.state.dragging && <SimpleLineIcons name="action-undo" size={30} color="white" />}
             {this.state.dragging && <Icon2 name="close" size={100} color="white" />}
           </TouchableOpacity>
@@ -435,20 +435,20 @@ export default class Viewer extends Component {
 
         {!this.state.dragging && (
           <View>
-            <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
+            <TouchableOpacity style={styles.btnCompare} onPressIn={this.onPressCompare}>
               <MaterialCommunityIcons name="compare" size={30} color="white" />
             </TouchableOpacity>
           </View>
         )}
         {this.state.dragging && (
           <View>
-            <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
+            <TouchableOpacity style={styles.btnCompare} onPressIn={this.handleOpen}>
               <Icon1 name="resize-full-screen" size={100} color="white" />
             </TouchableOpacity>
           </View>
         )}
         {!this.state.dragging && (
-          <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
+          <TouchableOpacity style={styles.btnSound} onPressIn={this.onPressSound}>
             {!audioStatus && <SimpleLineIcons name="volume-off" size={30} color="white" />}
             {audioStatus && <SimpleLineIcons name="volume-2" size={30} color="white" />}
           </TouchableOpacity>
@@ -558,7 +558,7 @@ export default class Viewer extends Component {
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
-              <TouchableWithoutFeedback onPress={this.onPressVisible}>
+              <TouchableWithoutFeedback onPressIn={this.onPressVisible}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}

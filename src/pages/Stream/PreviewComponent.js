@@ -1,4 +1,3 @@
-import { NodePlayerView } from 'react-native-nodemediaclient';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Video from 'react-native-video';
