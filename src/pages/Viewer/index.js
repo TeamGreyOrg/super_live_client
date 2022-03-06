@@ -182,7 +182,7 @@ export default class Viewer extends Component {
           });
           break;
         default:
-          this.setState({ inputUrl: `${HTTP}/live/${roomName}.flv` });
+          this.setState({ inputUrl: `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8` });
           break;
       }
       // this.setState({
@@ -373,20 +373,14 @@ export default class Viewer extends Component {
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
-    // let inputUrl = '';
     if (!inputUrl) return null;
+    console.log(inputUrl);
     return (
-      <NodePlayerView
+      <Video
         style={styles.playerView}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFill"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={audioStatus}
-        autoplay
+        source={{ uri: inputUrl }}
+        muted={!audioStatus}
+        resizeMode="cover"
       />
     );
   };
@@ -396,14 +390,6 @@ export default class Viewer extends Component {
     const { navigation } = this.props;
     if (!inputUrl) return null;
     return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
-    // return (
-    //   <NodePlayerView
-    //     style={styles.playerView}
-    //     inputUrl={inputUrl}
-    //     scaleMode="ScaleAspectFill"
-    //     autoplay
-    //   />
-    // );
   };
 
   renderChatGroup = () => {
@@ -420,7 +406,6 @@ export default class Viewer extends Component {
 
   renderListMessages = () => {
     const { messages, isVisibleMessages } = this.state;
-    // console.log('message!!', this.state.messages);
     if (!this.state.dragging) {
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;
