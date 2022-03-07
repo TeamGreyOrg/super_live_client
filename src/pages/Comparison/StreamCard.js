@@ -7,6 +7,12 @@ import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import { HTTP } from '../../config';
+// import Animated, {
+//   useSharedValue,
+//   useAnimatedStyle,
+//   useAnimatedGestureHandler,
+//   withSpring,
+// } from 'react-native-reanimated';
 class StreamCard extends Component {
   constructor(props) {
     super(props);

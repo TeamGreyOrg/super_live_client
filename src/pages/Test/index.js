@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
@@ -15,14 +16,16 @@ const Test = () => {
 
   const onGestureEvent = useAnimatedGestureHandler({
     onStart: () => {
-      // triggered at the start of the pan gesture
+      console.log('triggered start!');
     },
     onActive: ({ translationX, translationY }) => {
+      console.log('triggered Active!');
       translateX.value = translationX;
       translateY.value = translationY;
       // triggered on every frame of the pan gesture
     },
     onEnd: () => {
+      console.log('triggered end!');
       // triggered at the end of the pan gesture
     },
   });
@@ -38,11 +41,13 @@ const Test = () => {
   }));
 
   return (
-    <View style={styles.container}>
-      <PanGestureHandler onGestureEvent={onGestureEvent}>
-        <Animated.View style={style} />
-      </PanGestureHandler>
-    </View>
+    <GestureHandlerRootView>
+      <View style={styles.container}>
+        <PanGestureHandler onGestureEvent={onGestureEvent}>
+          <Animated.View style={style} />
+        </PanGestureHandler>
+      </View>
+    </GestureHandlerRootView>
   );
 };
 

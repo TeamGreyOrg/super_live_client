@@ -4,6 +4,13 @@ import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
+import { PanGestureHandler, LongPressGestureHandler } from 'react-native-gesture-handler';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedGestureHandler,
+  withSpring,
+} from 'react-native-reanimated';
 
 const NewStreamCard = (props) => {
   const { data } = props;
@@ -58,26 +65,72 @@ const NewStreamCard = (props) => {
     );
   };
 
+  const pressed = useSharedValue(false);
+  const startingPosition = 100;
+  const x = useSharedValue(startingPosition);
+  const y = useSharedValue(startingPosition);
+
+  const eventHandler = useAnimatedGestureHandler({
+    onStart: (event, ctx) => {
+      console.log('triggered start!');
+      pressed.value = true;
+    },
+    onActive: (event, ctx) => {
+      console.log('triggered Active!');
+      x.value = startingPosition + event.translationX;
+      y.value = startingPosition + event.translationY;
+    },
+    onEnd: (event, ctx) => {
+      console.log('triggered end!');
+      pressed.value = false;
+      x.value = withSpring(startingPosition);
+      y.value = withSpring(startingPosition);
+    },
+  });
+
+  const uas = useAnimatedStyle(() => {
+    return {
+      // backgroundColor: pressed.value ? 'white' : 'grey',
+      transform: [{ translateX: x.value }, { translateY: y.value }],
+    };
+  });
+
   return (
-    <View style={styles.streamCardBackground}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <ImageBackground
-          source={require('../../assets/logoBW_icon.png')}
-          style={styles.streamCardBackgroundLogo}
-        />
-      </View>
-      <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
-    </View>
+    // <View style={styles.streamCardBackground}>
+    <PanGestureHandler onGestureEvent={eventHandler}>
+      <Animated.View style={[styles.test, uas]} />
+      {/* <Animated.View style={[uas, styles.streamCard]}>
+          <View
+            style={[
+              {
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+            ]}
+          >
+            <ImageBackground
+              source={require('../../assets/logoBW_icon.png')}
+              style={styles.streamCardBackgroundLogo}
+            />
+          </View>
+          <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
+        </Animated.View> */}
+    </PanGestureHandler>
+    // </View>
   );
 };
 
 const styles = StyleSheet.create({
+  test: {
+    marginTop: 300, // do not delete
+    backgroundColor: 'grey',
+    width: 90,
+    height: 150,
+    position: 'relative',
+    marginBottom: 5,
+    marginLeft: 5,
+  },
   streamCard: {
     width: 90,
     height: 150,

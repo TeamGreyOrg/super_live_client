@@ -1,7 +1,15 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, Dimensions, ImageBackground } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  ImageBackground,
+  FlatList,
+} from 'react-native';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -14,7 +22,6 @@ import StreamCard from './StreamCard';
 import NewStreamCard from './NewStreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
-import { FlatList } from 'react-native-gesture-handler';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -255,7 +262,7 @@ class Comparison extends React.Component {
 
     // if (this.state.orientation === 'portrait') {
     //   const { streamCards } = this.state;
-    //   console.log('stream cards:', streamCards);
+    // console.log('stream cards:', streamCards);
 
     // For testing lazy loading
     // const testroomName = '345';
@@ -435,7 +442,6 @@ class Comparison extends React.Component {
           keyExtractor={(item) => item._id}
         />
         {/* <View style={styles.cardsContainer} /> */}
-
         <View style={styles.footer}>
           <TouchableOpacity style={styles.buttonLeft} onPress={this.scrollLeft}>
             <Feather name="chevron-left" size={50} color="white" />
