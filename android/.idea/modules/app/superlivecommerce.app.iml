@@ -58,7 +58,7 @@
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fbjni:fbjni-java-only:0.0.3" level="project" />
     <orderEntry type="library" name="Gradle: ./../node_modules/hermes-engine/android/hermes-debug.aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.react:react-native:0.62.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.react:react-native:0.63.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:fresco:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:animated-gif:1.14.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:animated-webp:1.14.2@aar" level="project" />
