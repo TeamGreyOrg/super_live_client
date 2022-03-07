@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ImageBackground, Text } from 'react-native';
 import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
-import { PanGestureHandler, LongPressGestureHandler } from 'react-native-gesture-handler';
+import {
+  PanGestureHandler,
+  LongPressGestureHandler,
+  TapGestureHandler,
+} from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -18,6 +22,8 @@ const NewStreamCard = (props) => {
   const [roomName, setRoomName] = useState(roomNameInit);
   const [cardOpacity, setCardOpacity] = useState(0);
   const [inputUrl, setInputUrl] = useState(null);
+
+  const tapRef = useRef();
 
   useEffect(() => {
     setTimeout(() => {
@@ -95,11 +101,21 @@ const NewStreamCard = (props) => {
     };
   });
 
+  const onHandlerStateChange = (event) => {
+    console.log(event);
+  };
+
   return (
     // <View style={styles.streamCardBackground}>
-    <PanGestureHandler onGestureEvent={eventHandler}>
-      <Animated.View style={[styles.test, uas]} />
-      {/* <Animated.View style={[uas, styles.streamCard]}>
+    <TapGestureHandler ref={tapRef} maxDurationMs={1000}>
+      <Animated.View>
+        <PanGestureHandler
+          onGestureEvent={eventHandler}
+          waitFor={tapRef}
+          onHandlerStateChange={onHandlerStateChange}
+        >
+          <Animated.View style={[styles.test, uas]} />
+          {/* <Animated.View style={[uas, styles.streamCard]}>
           <View
             style={[
               {
@@ -116,7 +132,9 @@ const NewStreamCard = (props) => {
           </View>
           <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
         </Animated.View> */}
-    </PanGestureHandler>
+        </PanGestureHandler>
+      </Animated.View>
+    </TapGestureHandler>
     // </View>
   );
 };

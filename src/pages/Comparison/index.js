@@ -1,15 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-  ImageBackground,
-  FlatList,
-} from 'react-native';
+import { View, Text, TouchableOpacity, Image, Dimensions, ImageBackground } from 'react-native';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -22,6 +14,7 @@ import StreamCard from './StreamCard';
 import NewStreamCard from './NewStreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
+import { FlatList } from 'react-native-gesture-handler';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -433,7 +426,7 @@ class Comparison extends React.Component {
           }}
           data={streamCards}
           renderItem={({ item }) => (
-            <NewStreamCard
+            <StreamCard
               data={item}
               streamTwoHandler={streamTwoHandler.bind(this)}
               streamOneHandler={streamOneHandler.bind(this)}
