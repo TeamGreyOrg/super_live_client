@@ -8,6 +8,7 @@ import Streamer from './pages/Streamer';
 import Viewer from './pages/Viewer';
 import Input from './pages/Input';
 import Comparison from './pages/Comparison';
+import Test from './pages/Test';
 
 const Stack = createStackNavigator();
 const forFade = ({ current }) => ({
@@ -30,7 +31,7 @@ class App extends Component {
             cardStyleInterpolator: forFade,
           }}
         >
-          <Stack.Screen name="Comparison" component={Comparison} />
+          <Stack.Screen name="Test" component={Test} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Input" component={Input} />
           <Stack.Screen name="Home" component={Home} />
@@ -39,7 +40,7 @@ class App extends Component {
 
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
-          {/* <Stack.Screen name="Comparison" component={Comparison} /> */}
+          <Stack.Screen name="Comparison" component={Comparison} />
         </Stack.Navigator>
       </NavigationContainer>
     );
