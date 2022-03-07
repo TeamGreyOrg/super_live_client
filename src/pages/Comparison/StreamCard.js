@@ -7,6 +7,7 @@ import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import { HTTP } from '../../config';
+import Video from 'react-native-video';
 // import Animated, {
 //   useSharedValue,
 //   useAnimatedStyle,
@@ -30,6 +31,7 @@ class StreamCard extends Component {
       audioStatus: false,
       animation: '',
       inputUrl: `${HTTP}/live/${roomName}.flv`,
+      panResponder: null,
     };
     this.onLongPress = this.onLongPress.bind(this);
     this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this);
@@ -70,21 +72,27 @@ class StreamCard extends Component {
     this.setState({ inputUrl: inputUrl });
   }
 
-  renderNodePlayerView = (inputUrl) => {
-    if (!inputUrl) return null;
+  // renderNodePlayerView = (inputUrl) => {
+  //   if (!inputUrl) return null;
+  //   return (
+  //     <NodePlayerView
+  //       style={styles.streamCard}
+  //       ref={(vb) => {
+  //         this.nodePlayerView = vb;
+  //       }}
+  //       inputUrl={inputUrl}
+  //       scaleMode="ScaleAspectFit"
+  //       bufferTime={300}
+  //       maxBufferTime={1000}
+  //       audioEnable={this.state.audioStatus}
+  //       autoplay
+  //     />
+  //   );
+  // };
+
+  renderVideoPlayerView = (inputUrl) => {
     return (
-      <NodePlayerView
-        style={styles.streamCard}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={this.state.audioStatus}
-        autoplay
-      />
+      <Video style={styles.streamCard} source={{ uri: inputUrl }} muted cache resizeMode="cover" />
     );
   };
 
@@ -186,9 +194,9 @@ class StreamCard extends Component {
           clearTimeout(this.longPressTimer); // clean the timeout handler
         }
       },
-      //   onShouldBlockNativeResponder: (e, gestureState) => {
-      // 	return false;
-      //   },
+      // onShouldBlockNativeResponder: (e, gestureState) => {
+      // return false;
+      // },
     });
   }
 
@@ -226,7 +234,7 @@ class StreamCard extends Component {
               />
             </View>
             <View style={{ opacity: this.state.cardOpacity }}>
-              <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
+              <View>{this.renderVideoPlayerView(this.state.inputUrl)}</View>
             </View>
           </View>
         </Animated.View>

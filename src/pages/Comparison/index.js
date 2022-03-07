@@ -15,6 +15,7 @@ import NewStreamCard from './NewStreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
 import { FlatList } from 'react-native-gesture-handler';
+import Video from 'react-native-video';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -118,38 +119,64 @@ class Comparison extends React.Component {
     }
   }
 
-  renderPortraitNodePlayerViewOne = (inputUrl) => {
+  // renderPortraitNodePlayerViewOne = (inputUrl) => {
+  //   if (!inputUrl) return null;
+  //   return (
+  //     <NodePlayerView
+  //       style={styles.streamOnePortrait}
+  //       ref={(vb) => {
+  //         this.nodePlayerView = vb;
+  //       }}
+  //       inputUrl={inputUrl}
+  //       scaleMode="ScaleAspectFit"
+  //       bufferTime={300}
+  //       maxBufferTime={1000}
+  //       audioEnable={this.state.audioStatusOne}
+  //       autoplay
+  //     />
+  //   );
+  // };
+
+  renderVideoPlayerViewOne = (inputUrl) => {
     if (!inputUrl) return null;
     return (
-      <NodePlayerView
+      <Video
         style={styles.streamOnePortrait}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={this.state.audioStatusOne}
-        autoplay
+        source={{ uri: inputUrl }}
+        muted={!this.state.audioStatusOne}
+        cache
+        resizeMode="cover"
       />
     );
   };
 
-  renderPortraitNodePlayerViewTwo = (inputUrl) => {
-    if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
+  // renderPortraitNodePlayerViewTwo = (inputUrl) => {
+  //   if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
+  //   return (
+  //     <NodePlayerView
+  //       style={styles.streamTwoPortrait}
+  //       ref={(vb) => {
+  //         this.nodePlayerView = vb;
+  //       }}
+  //       inputUrl={inputUrl}
+  //       scaleMode="ScaleAspectFit"
+  //       bufferTime={300}
+  //       maxBufferTime={1000}
+  //       audioEnable={this.state.audioStatusTwo}
+  //       autoplay
+  //     />
+  //   );
+  // };
+
+  renderVideoPlayerViewTwo = (inputUrl) => {
+    if (!inputUrl) return null;
     return (
-      <NodePlayerView
+      <Video
         style={styles.streamTwoPortrait}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFit"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={this.state.audioStatusTwo}
-        autoplay
+        source={{ uri: inputUrl }}
+        muted={!this.state.audioStatusTwo}
+        cache
+        resizeMode="cover"
       />
     );
   };
@@ -366,7 +393,7 @@ class Comparison extends React.Component {
                 {!audioStatusOne && <SimpleLineIcons name="volume-off" size={30} color="white" />}
                 {audioStatusOne && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
-              {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
+              {this.renderVideoPlayerViewOne(this.state.inputUrlFirst)}
               {bannerOne}
             </View>
           </View>
@@ -398,7 +425,7 @@ class Comparison extends React.Component {
                 {!audioStatusTwo && <SimpleLineIcons name="volume-off" size={30} color="white" />}
                 {audioStatusTwo && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
-              {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
+              {this.renderVideoPlayerViewTwo(this.state.inputUrlSecond)}
               {bannerTwo}
             </View>
           </View>
