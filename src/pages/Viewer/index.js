@@ -182,7 +182,9 @@ export default class Viewer extends Component {
           });
           break;
         default:
-          this.setState({ inputUrl: `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8` });
+          this.setState({
+          inputUrl : `${HTTP}/live/${this.roomName}.index.m3u8/mainifest(format=m3u8-aapl)`,
+          })
           break;
       }
       // this.setState({
@@ -373,14 +375,26 @@ export default class Viewer extends Component {
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
-    if (!inputUrl) return null;
     console.log(inputUrl);
+    if (!inputUrl) return null;
     return (
       <Video
         style={styles.playerView}
-        source={{ uri: inputUrl }}
+        source={{ uri: inputUrl}}
         muted={!audioStatus}
         resizeMode="cover"
+        ref={(ref) => {
+          this.player = ref
+        }}                                      // Store reference
+        hls={true}
+        paused = {false}
+        bufferConfig={{
+          minBufferMs: 15000,
+          maxBufferMs: 50000,
+          bufferForPlaybackMs: 2500,
+          bufferForPlaybackAfterRebufferMs: 5000
+        }}
+        disableFocus={true} // disables audio focus and wake lock (default false)
       />
     );
   };
