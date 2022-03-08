@@ -75,7 +75,7 @@ export default class Viewer extends Component {
       roomName,
       userName,
       countViewer,
-      viewerName,
+      viewerName: viewerName,
       enteredViewerName: viewerName,
       opacityLoad:0,
       opacity: 1,
@@ -338,13 +338,14 @@ export default class Viewer extends Component {
   };
 
   onPressCompare = () => {
-    const { roomName, userName } = this.state;
+    const { roomName, userName, viewerName } = this.state;
     const {
-      navigation: { navigate },
+      navigation: { push },
     } = this.props;
     this.setState({ audioStatus: false });
     // this.setState({ inputUrl: null });
-    navigate('Comparison', { roomName, userName });
+    if (this.nodePlayerView) this.nodePlayerView.stop();
+    push('Comparison', { roomName, userName, viewerName });
   };
 
   onPressSound = () => {
