@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ImageBackground, Text } from 'react-native';
 import get from 'lodash/get';
-import * as Animatable from 'react-native-animatable';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
 import {
@@ -22,8 +21,8 @@ const NewStreamCard = (props) => {
   const [roomName, setRoomName] = useState(roomNameInit);
   const [cardOpacity, setCardOpacity] = useState(0);
   const [inputUrl, setInputUrl] = useState(null);
-
-  const tapRef = useRef();
+  const [animation, setAnimation] = useState(null);
+  const [display, setDisplay] = useState('flex');
 
   useEffect(() => {
     setTimeout(() => {
@@ -70,27 +69,35 @@ const NewStreamCard = (props) => {
       </View>
     );
   };
-
-  const pressed = useSharedValue(false);
-  const startingPosition = 100;
+  const startingPosition = 0;
   const x = useSharedValue(startingPosition);
   const y = useSharedValue(startingPosition);
 
   const eventHandler = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {
-      console.log('triggered start!');
-      pressed.value = true;
-    },
+    onStart: (event, ctx) => {},
     onActive: (event, ctx) => {
-      console.log('triggered Active!');
       x.value = startingPosition + event.translationX;
       y.value = startingPosition + event.translationY;
     },
     onEnd: (event, ctx) => {
-      console.log('triggered end!');
-      pressed.value = false;
-      x.value = withSpring(startingPosition);
-      y.value = withSpring(startingPosition);
+      if (
+        event.absoluteX >= 75 &&
+        event.absoluteX <= 150 &&
+        event.absoluteY >= 110 &&
+        event.absoluteY <= 280
+      ) {
+        setDisplay('none');
+      } else if (
+        event.absoluteX >= 250 &&
+        event.absoluteX <= 350 &&
+        event.absoluteY >= 110 &&
+        event.absoluteY <= 280
+      ) {
+        setDisplay('none');
+      } else {
+        x.value = withSpring(startingPosition);
+        y.value = withSpring(startingPosition);
+      }
     },
   });
 
@@ -101,54 +108,30 @@ const NewStreamCard = (props) => {
     };
   });
 
-  const onHandlerStateChange = (event) => {
-    console.log(event);
-  };
-
   return (
-    // <View style={styles.streamCardBackground}>
-    <TapGestureHandler ref={tapRef} maxDurationMs={1000}>
-      <Animated.View>
-        <PanGestureHandler
-          onGestureEvent={eventHandler}
-          waitFor={tapRef}
-          onHandlerStateChange={onHandlerStateChange}
+    <PanGestureHandler onGestureEvent={eventHandler}>
+      <Animated.View style={({ display: display }, [styles.streamCardBackground, uas])}>
+        <View
+          style={[
+            {
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+          ]}
         >
-          <Animated.View style={[styles.test, uas]} />
-          {/* <Animated.View style={[uas, styles.streamCard]}>
-          <View
-            style={[
-              {
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              },
-            ]}
-          >
-            <ImageBackground
-              source={require('../../assets/logoBW_icon.png')}
-              style={styles.streamCardBackgroundLogo}
-            />
-          </View>
-          <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
-        </Animated.View> */}
-        </PanGestureHandler>
+          <ImageBackground
+            source={require('../../assets/logoBW_icon.png')}
+            style={styles.streamCardBackgroundLogo}
+          />
+        </View>
+        <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
       </Animated.View>
-    </TapGestureHandler>
-    // </View>
+    </PanGestureHandler>
   );
 };
 
 const styles = StyleSheet.create({
-  test: {
-    marginTop: 300, // do not delete
-    backgroundColor: 'grey',
-    width: 90,
-    height: 150,
-    position: 'relative',
-    marginBottom: 5,
-    marginLeft: 5,
-  },
   streamCard: {
     width: 90,
     height: 150,

@@ -11,7 +11,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import FastImage from 'react-native-fast-image';
 import styles from './styles';
 import StreamCard from './StreamCard';
-import NewStreamCard from './NewStreamCard';
+// import NewStreamCard from './NewStreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
 import { FlatList } from 'react-native-gesture-handler';
@@ -26,8 +26,8 @@ class Comparison extends React.Component {
     const roomName = get(route, 'params.roomName');
     const viewerName = get(route, 'params.viewerName');
 
-    const streamTwoHandler = this.streamTwoHandler.bind(this);
-    const streamOneHandler = this.streamOneHandler.bind(this);
+    // const streamTwoHandler = this.streamTwoHandler.bind(this);
+    // const streamOneHandler = this.streamOneHandler.bind(this);
 
     // const isPortrait = () => {
     //   const dim = Dimensions.get('screen');
@@ -315,10 +315,10 @@ class Comparison extends React.Component {
       case '페퍼민트티 25개 할인':
         bannerOne = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
-      case 'CoffeeCapsule':
+      case 'MimaMask':
         bannerOne = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
         break;
-      case 'CoffeeMachine':
+      case 'DentalMask':
         bannerOne = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:
@@ -345,10 +345,10 @@ class Comparison extends React.Component {
       case '페퍼민트티 25개 할인':
         bannerTwo = <FastImage source={require('../../assets/006.png')} style={styles.banner} />;
         break;
-      case 'CoffeeCapsule':
+      case 'MimaMask':
         bannerTwo = <FastImage source={require('../../assets/007.png')} style={styles.banner} />;
         break;
-      case 'CoffeeMachine':
+      case 'DentalMask':
         bannerTwo = <FastImage source={require('../../assets/008.png')} style={styles.banner} />;
         break;
       default:

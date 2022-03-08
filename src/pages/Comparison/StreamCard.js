@@ -8,12 +8,6 @@ import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
-// import Animated, {
-//   useSharedValue,
-//   useAnimatedStyle,
-//   useAnimatedGestureHandler,
-//   withSpring,
-// } from 'react-native-reanimated';
 class StreamCard extends Component {
   constructor(props) {
     super(props);
