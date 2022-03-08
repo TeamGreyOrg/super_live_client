@@ -77,6 +77,7 @@ export default class Viewer extends Component {
       countViewer,
       viewerName: viewerName,
       enteredViewerName: viewerName,
+      opacityLoad:0,
       opacity: 1,
     };
     this.roomName = roomName;
@@ -175,7 +176,7 @@ export default class Viewer extends Component {
     } else {
       const { roomName } = this.state;
       switch (roomName) {
-        case '페퍼민트티':
+        case '페퍼민트티 25개 할인':
           this.setState({
             inputUrl: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
           });
@@ -231,6 +232,9 @@ export default class Viewer extends Component {
       setTimeout(() => {
         this.setState({ opacity: 0 });
       }, 3000);
+          setTimeout(() => {
+      this.setState({ opacityLoad: 1 });
+    }, 1500);
     }
 
     /*
@@ -251,6 +255,7 @@ export default class Viewer extends Component {
       inputUrl: null,
     });
     clearTimeout(this.timeout);
+
   }
 
   getPreview = (text, options) => {
@@ -490,7 +495,7 @@ export default class Viewer extends Component {
 
   render() {
     const { countHeart } = this.state;
-
+    const { opacityLoad } = this.state;
     const { width, height: screenHeight } = Dimensions.get('window');
     const videoHeight = width * 2.05555;
     const padding = 5;
@@ -555,7 +560,15 @@ export default class Viewer extends Component {
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
           <Draggable color="black" disabled={!this.state.dragging}>
             <Animated.View
-              style={[{ width, height: videoHeight }, videoStyles]}
+              style={[
+                {
+                  width,
+                  height: videoHeight,
+                  opacity: opacityLoad,
+                  backGroundColor: 'black',
+                },
+                videoStyles,
+              ]}
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
