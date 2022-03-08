@@ -84,7 +84,7 @@ class Comparison extends React.Component {
 
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
-    }, 2000);
+    }, 1500);
   }
 
   componentWillUnmount() {
@@ -96,7 +96,7 @@ class Comparison extends React.Component {
     this.setState({ opacityTwo: 0 });
     setTimeout(() => {
       this.setState({ opacityTwo: 1 });
-    }, 2000);
+    }, 1500);
     if (roomName == '페퍼민트티 25개 할인') {
       this.setState({
         inputUrlSecond: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
@@ -112,7 +112,7 @@ class Comparison extends React.Component {
     this.setState({ opacityOne: 0 });
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
-    }, 2000);
+    }, 1500);
     if (roomName == '페퍼민트티 25개 할인') {
       this.setState({
         inputUrlFirst: `https://d350hv82lp5gr5.cloudfront.net/live/eddie/index.m3u8`,
@@ -450,6 +450,9 @@ class Comparison extends React.Component {
           style={styles.flatList}
           showsHorizontalScrollIndicator={false}
           horizontal
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={4}
+          initialNumToRender={4}
           ref={(ref) => {
             this.flatListRef = ref;
           }}
