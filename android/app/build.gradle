@@ -217,6 +217,7 @@ dependencies {
     // For WebP support, including animated WebP
     compile 'com.facebook.fresco:animated-webp:1.+'
     compile 'com.facebook.fresco:webpsupport:1.+' 
+    
     compile project(':react-native-video-exoplayer')
     implementation "androidx.appcompat:appcompat:1.0.0"
 }

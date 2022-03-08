@@ -1,7 +1,8 @@
+import { NodePlayerView } from 'react-native-nodemediaclient';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Video from 'react-native-video';
 import { HTTP } from '../../config';
+import Video from 'react-native-video';
 
 const styles = StyleSheet.create({
   previewimage: {
@@ -35,7 +36,7 @@ const PreviewComponent = (props) => {
       break;
     default:
       //inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
-      inputUrl = `${HTTP}/live/${roomName}/index.m3u8`;
+      inputUrl = `${HTTP}/live/${roomName}.flv`;
       break;
   }
   if (!props.preview) inputUrl = null;
@@ -44,16 +45,14 @@ const PreviewComponent = (props) => {
   }
   return (
     <View>
-      <Video
+      <NodePlayerView
         style={styles.previewimage}
-        source={{ uri: inputUrl, type: 'm3u8' }}
-        muted={true}
-        resizeMode="cover"
-        ref={(ref) => {
-          this.player = ref
-        }}                                      // Store reference
-        hls={true}
-        disableFocus={true} // disables audio focus and wake lock (default false)
+        inputUrl={inputUrl}
+        scaleMode='ScaleToFill'
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={false}
+        autoplay
       />
     </View>
   );
