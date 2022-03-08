@@ -339,6 +339,7 @@ export default class Viewer extends Component {
     } = this.props;
     this.setState({ audioStatus: false });
     // this.setState({ inputUrl: null });
+    if (this.nodePlayerView) this.nodePlayerView.stop();
     navigate('Comparison', { roomName, userName });
   };
 

@@ -87,6 +87,11 @@ class Comparison extends React.Component {
     }, 2000);
   }
 
+  componentWillUnmount() {
+    if (this.nodePlayerViewOne) this.nodePlayerViewOne.stop();
+    if (this.nodePlayerViewTwo) this.nodePlayerViewTwo.stop();
+  }
+
   streamTwoHandler(roomName) {
     this.setState({ opacityTwo: 0 });
     setTimeout(() => {
@@ -119,67 +124,67 @@ class Comparison extends React.Component {
     }
   }
 
-  // renderPortraitNodePlayerViewOne = (inputUrl) => {
+  renderPortraitNodePlayerViewOne = (inputUrl) => {
+    if (!inputUrl) return null;
+    return (
+      <NodePlayerView
+        style={styles.streamOnePortrait}
+        ref={(vb) => {
+          this.nodePlayerViewOne = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={this.state.audioStatusOne}
+        autoplay
+      />
+    );
+  };
+
+  // renderVideoPlayerViewOne = (inputUrl) => {
   //   if (!inputUrl) return null;
   //   return (
-  //     <NodePlayerView
+  //     <Video
   //       style={styles.streamOnePortrait}
-  //       ref={(vb) => {
-  //         this.nodePlayerView = vb;
-  //       }}
-  //       inputUrl={inputUrl}
-  //       scaleMode="ScaleAspectFit"
-  //       bufferTime={300}
-  //       maxBufferTime={1000}
-  //       audioEnable={this.state.audioStatusOne}
-  //       autoplay
+  //       source={{ uri: inputUrl }}
+  //       muted={!this.state.audioStatusOne}
+  //       cache
+  //       resizeMode="cover"
   //     />
   //   );
   // };
 
-  renderVideoPlayerViewOne = (inputUrl) => {
-    if (!inputUrl) return null;
+  renderPortraitNodePlayerViewTwo = (inputUrl) => {
+    if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
     return (
-      <Video
-        style={styles.streamOnePortrait}
-        source={{ uri: inputUrl }}
-        muted={!this.state.audioStatusOne}
-        cache
-        resizeMode="cover"
-      />
-    );
-  };
-
-  // renderPortraitNodePlayerViewTwo = (inputUrl) => {
-  //   if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
-  //   return (
-  //     <NodePlayerView
-  //       style={styles.streamTwoPortrait}
-  //       ref={(vb) => {
-  //         this.nodePlayerView = vb;
-  //       }}
-  //       inputUrl={inputUrl}
-  //       scaleMode="ScaleAspectFit"
-  //       bufferTime={300}
-  //       maxBufferTime={1000}
-  //       audioEnable={this.state.audioStatusTwo}
-  //       autoplay
-  //     />
-  //   );
-  // };
-
-  renderVideoPlayerViewTwo = (inputUrl) => {
-    if (!inputUrl) return null;
-    return (
-      <Video
+      <NodePlayerView
         style={styles.streamTwoPortrait}
-        source={{ uri: inputUrl }}
-        muted={!this.state.audioStatusTwo}
-        cache
-        resizeMode="cover"
+        ref={(vb) => {
+          this.nodePlayerViewTwo = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={this.state.audioStatusTwo}
+        autoplay
       />
     );
   };
+
+  // renderVideoPlayerViewTwo = (inputUrl) => {
+  //   if (!inputUrl) return null;
+  //   return (
+  //     <Video
+  //       style={styles.streamTwoPortrait}
+  //       source={{ uri: inputUrl }}
+  //       muted={!this.state.audioStatusTwo}
+  //       cache
+  //       resizeMode="cover"
+  //     />
+  //   );
+  // };
 
   // renderLandscapeNodePlayerView = (inputUrl) => {
   //   const { audioStatus } = this.props;
@@ -393,7 +398,7 @@ class Comparison extends React.Component {
                 {!audioStatusOne && <SimpleLineIcons name="volume-off" size={30} color="white" />}
                 {audioStatusOne && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
-              {this.renderVideoPlayerViewOne(this.state.inputUrlFirst)}
+              {this.renderPortraitNodePlayerViewOne(this.state.inputUrlFirst)}
               {bannerOne}
             </View>
           </View>
@@ -425,7 +430,7 @@ class Comparison extends React.Component {
                 {!audioStatusTwo && <SimpleLineIcons name="volume-off" size={30} color="white" />}
                 {audioStatusTwo && <SimpleLineIcons name="volume-2" size={30} color="white" />}
               </TouchableOpacity>
-              {this.renderVideoPlayerViewTwo(this.state.inputUrlSecond)}
+              {this.renderPortraitNodePlayerViewTwo(this.state.inputUrlSecond)}
               {bannerTwo}
             </View>
           </View>

@@ -34,8 +34,8 @@ const PreviewComponent = (props) => {
       inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy006/index.m3u8`;
       break;
     default:
-      inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
-      // inputUrl = `${HTTP}/live/${roomName}.flv`;
+      // inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
+      inputUrl = `${HTTP}/live/${roomName}/index.m3u8`;
       break;
   }
   if (!props.preview) inputUrl = null;

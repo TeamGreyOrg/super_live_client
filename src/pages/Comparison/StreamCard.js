@@ -66,29 +66,33 @@ class StreamCard extends Component {
     this.setState({ inputUrl: inputUrl });
   }
 
-  // renderNodePlayerView = (inputUrl) => {
-  //   if (!inputUrl) return null;
-  //   return (
-  //     <NodePlayerView
-  //       style={styles.streamCard}
-  //       ref={(vb) => {
-  //         this.nodePlayerView = vb;
-  //       }}
-  //       inputUrl={inputUrl}
-  //       scaleMode="ScaleAspectFit"
-  //       bufferTime={300}
-  //       maxBufferTime={1000}
-  //       audioEnable={this.state.audioStatus}
-  //       autoplay
-  //     />
-  //   );
-  // };
+  componentWillUnmount() {
+    if (this.nodePlayerView) this.nodePlayerView.stop();
+  }
 
-  renderVideoPlayerView = (inputUrl) => {
+  renderNodePlayerView = (inputUrl) => {
+    if (!inputUrl) return null;
     return (
-      <Video style={styles.streamCard} source={{ uri: inputUrl }} muted cache resizeMode="cover" />
+      <NodePlayerView
+        style={styles.streamCard}
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFit"
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={this.state.audioStatus}
+        autoplay
+      />
     );
   };
+
+  // renderVideoPlayerView = (inputUrl) => {
+  //   return (
+  //     <Video style={styles.streamCard} source={{ uri: inputUrl }} muted={true} resizeMode="cover" />
+  //   );
+  // };
 
   onLongPressPanResponder() {
     return PanResponder.create({
@@ -228,7 +232,7 @@ class StreamCard extends Component {
               />
             </View>
             <View style={{ opacity: this.state.cardOpacity }}>
-              <View>{this.renderVideoPlayerView(this.state.inputUrl)}</View>
+              <View>{this.renderNodePlayerView(this.state.inputUrl)}</View>
             </View>
           </View>
         </Animated.View>
