@@ -419,7 +419,7 @@ class Comparison extends React.Component {
               <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
               <TouchableOpacity
                 style={styles.buttonMaximize}
-                onPress={this.onPressMaximizeStreamOne}
+                onPress={this.onPressMaximizeStreamTwo}
               >
                 <Image
                   source={require('../../assets/ico_maximize.png')}
