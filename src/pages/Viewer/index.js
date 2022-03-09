@@ -17,6 +17,7 @@ import {
   Text,
   KeyboardAvoidingView,
   ImageBackground,
+  ActivityIndicator,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -43,6 +44,7 @@ import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
 import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
+import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedDown = dy > 30;
@@ -51,16 +53,16 @@ const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedRight = dx > 30;
   const isTop = moveY < 90 && moveY > 40 && moveX > 0 && moveX < this.width;
   const isBottom = moveY > this.height - 50 && moveX > 0 && moveX < this.width;
-  let dragDirection = "";
+  let dragDirection = '';
 
   if (draggedDown || draggedUp) {
-    if (draggedDown) dragDirection += "dragged down ";
-    if (draggedUp) dragDirection += "dragged up ";
+    if (draggedDown) dragDirection += 'dragged down ';
+    if (draggedUp) dragDirection += 'dragged up ';
   }
 
   if (draggedLeft || draggedRight) {
-    if (draggedLeft) dragDirection += "dragged left ";
-    if (draggedRight) dragDirection += "dragged right ";
+    if (draggedLeft) dragDirection += 'dragged left ';
+    if (draggedRight) dragDirection += 'dragged right ';
   }
 
   if (isTop) return `top ${dragDirection}`;
@@ -115,7 +117,7 @@ export default class Viewer extends Component {
     this.onPreviewON = onPreviewON;
     this.countViewer = countViewer;
     this.viewerName = viewerName;
-    const { width, height } = Dimensions.get("window");
+    const { width, height } = Dimensions.get('window');
     this.width = width;
     this.hegiht = height;
   }
@@ -207,10 +209,11 @@ export default class Viewer extends Component {
           break;
         default:
           this.setState({
-            inputUrl : `${HTTP}/live/${this.roomName}.flv`});
+            inputUrl: `${HTTP}/live/${this.roomName}.flv`,
+          });
           break;
       }
-          
+
       // this.setState({
       //   inputUrl: `${HTTP}/live/${this.roomName}.flv`,
       //   // use HLS from trasporting in media server to Viewer
@@ -568,14 +571,30 @@ export default class Viewer extends Component {
     /**
      * Viewer mode
      */
-   // if (isVisible){
+    // if (isVisible){
     return (
       <SafeAreaView style={styles.container}>
         {this.state.dragging && (
           <Home navigation={this.props.navigation} route={this.props.route} />
         )}
-      <Draggable disabled={!this.state.dragging}>
-      <Animated.View
+        <Draggable disabled={!this.state.dragging}>
+          <ActivityIndicator
+            size="large"
+            color='#FF097D'
+            style={{
+              position: 'absolute',
+              opacity: 1 - opacityLoad,
+              width: screenWidth,
+              height: screenHeight,
+            }}
+          />
+          <View
+            style={{
+              backgroundColor: 'black',
+              opacity: opacityLoad,
+            }}
+          >
+            <Animated.View
               style={[
                 {
                   width,
@@ -590,10 +609,10 @@ export default class Viewer extends Component {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
-                   <View style={styles.body}>
+                    <View style={styles.body}>
                       <View>
-                      {isVisible && this.renderListMessages()}
-                      {isVisible && this.renderViewerNotification()}
+                        {isVisible && this.renderListMessages()}
+                        {isVisible && this.renderViewerNotification()}
                       </View>
                       <View style={styles.footer1}>
                         {!this.state.dragging && this.onPressLinkButton()}
@@ -605,13 +624,12 @@ export default class Viewer extends Component {
               </TouchableWithoutFeedback>
               <FloatingHearts count={countHeart} />
             </Animated.View>
-            </Draggable>
-          
+          </View>
+        </Draggable>
       </SafeAreaView>
     );
   }
 }
-
 
 Viewer.propTypes = {
   requestOptions: PropTypes.shape({
