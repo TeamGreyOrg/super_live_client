@@ -39,7 +39,6 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-video": "^5.2.0",
     "react-native-video-controls": "^2.8.1",
-    "react-native-vlc-media-player": "^1.0.40",
     "socket.io-client": "^2.1.1",
     "styled-components": "^5.3.3"
   },

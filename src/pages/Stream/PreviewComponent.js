@@ -2,8 +2,7 @@
 import React, {useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { HTTP } from '../../config';
-import LivePlayer from 'react-native-live-stream';
-import { VLCPlayer, VlCPlayerView } from 'react-native-vlc-media-player';
+import { NodePlayerView } from 'react-native-nodemediaclient';
 
 const styles = StyleSheet.create({
   previewimage: {
@@ -45,10 +44,18 @@ const PreviewComponent = (props) => {
     return null;
   }
   return (
-    <VLCPlayer
-        style={[styles.previewimage]}
-        source={{ uri: inputUrl}}
-    />
+    <NodePlayerView
+        style={styles.previewimage}
+        inputUrl={inputUrl}
+        ref={(vb) => {
+          nodePlayerView = vb;
+        }}
+        scaleMode='ScaleToFill'
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={false}
+        autoplay
+      />
   );
 };
 

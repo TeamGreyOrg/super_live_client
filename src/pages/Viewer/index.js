@@ -128,7 +128,7 @@ export default class Viewer extends Component {
     });
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: (evt, gestureState) => !!getDirectionAndColor(gestureState),
+      onMoveShouldSetPanResponder: (evt, gestureState) => !!getDirection(gestureState),
       onPanResponderMove: this.onResponderMove,
       onPanResponderRelease: this.onResponderEnd,
     });
