@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ImageBackground, Text } from 'react-native';
 import get from 'lodash/get';
-import * as Animatable from 'react-native-animatable';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
+import {
+  PanGestureHandler,
+  LongPressGestureHandler,
+  TapGestureHandler,
+} from 'react-native-gesture-handler';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedGestureHandler,
+  withSpring,
+} from 'react-native-reanimated';
 
 const NewStreamCard = (props) => {
   const { data } = props;
@@ -11,6 +21,8 @@ const NewStreamCard = (props) => {
   const [roomName, setRoomName] = useState(roomNameInit);
   const [cardOpacity, setCardOpacity] = useState(0);
   const [inputUrl, setInputUrl] = useState(null);
+  const [animation, setAnimation] = useState(null);
+  const [display, setDisplay] = useState('flex');
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,23 +68,65 @@ const NewStreamCard = (props) => {
       </View>
     );
   };
+  const startingPosition = 0;
+  const x = useSharedValue(startingPosition);
+  const y = useSharedValue(startingPosition);
+
+  const eventHandler = useAnimatedGestureHandler({
+    onStart: (event, ctx) => {},
+    onActive: (event, ctx) => {
+      x.value = startingPosition + event.translationX;
+      y.value = startingPosition + event.translationY;
+    },
+    onEnd: (event, ctx) => {
+      if (
+        event.absoluteX >= 75 &&
+        event.absoluteX <= 150 &&
+        event.absoluteY >= 110 &&
+        event.absoluteY <= 280
+      ) {
+        setDisplay('none');
+      } else if (
+        event.absoluteX >= 250 &&
+        event.absoluteX <= 350 &&
+        event.absoluteY >= 110 &&
+        event.absoluteY <= 280
+      ) {
+        setDisplay('none');
+      } else {
+        x.value = withSpring(startingPosition);
+        y.value = withSpring(startingPosition);
+      }
+    },
+  });
+
+  const uas = useAnimatedStyle(() => {
+    return {
+      // backgroundColor: pressed.value ? 'white' : 'grey',
+      transform: [{ translateX: x.value }, { translateY: y.value }],
+    };
+  });
 
   return (
-    <View style={styles.streamCardBackground}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <ImageBackground
-          source={require('../../assets/logoBW_icon.png')}
-          style={styles.streamCardBackgroundLogo}
-        />
-      </View>
-      <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
-    </View>
+    <PanGestureHandler onGestureEvent={eventHandler}>
+      <Animated.View style={({ display: display }, [styles.streamCardBackground, uas])}>
+        <View
+          style={[
+            {
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+          ]}
+        >
+          <ImageBackground
+            source={require('../../assets/logoBW_icon.png')}
+            style={styles.streamCardBackgroundLogo}
+          />
+        </View>
+        <View style={{ opacity: cardOpacity }}>{renderVideoPlayer()}</View>
+      </Animated.View>
+    </PanGestureHandler>
   );
 };
 

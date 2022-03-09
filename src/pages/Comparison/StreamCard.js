@@ -7,6 +7,7 @@ import get from 'lodash/get';
 import * as Animatable from 'react-native-animatable';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import { HTTP } from '../../config';
+import Video from 'react-native-video';
 class StreamCard extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,7 @@ class StreamCard extends Component {
       audioStatus: false,
       animation: '',
       inputUrl: `${HTTP}/live/${roomName}.flv`,
+      panResponder: null,
     };
     this.onLongPress = this.onLongPress.bind(this);
     this.onLongPressPanResponder = this.onLongPressPanResponder.bind(this);
@@ -64,6 +66,10 @@ class StreamCard extends Component {
     this.setState({ inputUrl: inputUrl });
   }
 
+  componentWillUnmount() {
+    if (this.nodePlayerView) this.nodePlayerView.stop();
+  }
+
   renderNodePlayerView = (inputUrl) => {
     if (!inputUrl) return null;
     return (
@@ -81,6 +87,12 @@ class StreamCard extends Component {
       />
     );
   };
+
+  // renderVideoPlayerView = (inputUrl) => {
+  //   return (
+  //     <Video style={styles.streamCard} source={{ uri: inputUrl }} muted={true} resizeMode="cover" />
+  //   );
+  // };
 
   onLongPressPanResponder() {
     return PanResponder.create({
@@ -180,9 +192,9 @@ class StreamCard extends Component {
           clearTimeout(this.longPressTimer); // clean the timeout handler
         }
       },
-      //   onShouldBlockNativeResponder: (e, gestureState) => {
-      // 	return false;
-      //   },
+      // onShouldBlockNativeResponder: (e, gestureState) => {
+      // return false;
+      // },
     });
   }
 
