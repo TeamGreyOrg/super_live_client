@@ -44,13 +44,13 @@ import { HTTP } from '../../config';
 import Home from '../Home/index';
 import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
 
-const getDirectionAndColor = ({ moveX, moveY, dx, dy }) => {
+const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedDown = dy > 30;
   const draggedUp = dy < -30;
   const draggedLeft = dx < -30;
   const draggedRight = dx > 30;
-  const isRed = moveY < 90 && moveY > 40 && moveX > 0 && moveX < this.width;
-  const isBlue = moveY > this.height - 50 && moveX > 0 && moveX < this.width;
+  const isTop = moveY < 90 && moveY > 40 && moveX > 0 && moveX < this.width;
+  const isBottom = moveY > this.height - 50 && moveX > 0 && moveX < this.width;
   let dragDirection = "";
 
   if (draggedDown || draggedUp) {
@@ -63,8 +63,8 @@ const getDirectionAndColor = ({ moveX, moveY, dx, dy }) => {
     if (draggedRight) dragDirection += "dragged right ";
   }
 
-  if (isRed) return `red ${dragDirection}`;
-  if (isBlue) return `blue ${dragDirection}`;
+  if (isTop) return `top ${dragDirection}`;
+  if (isBottom) return `bottom ${dragDirection}`;
   if (dragDirection) return dragDirection;
 };
 export default class Viewer extends Component {

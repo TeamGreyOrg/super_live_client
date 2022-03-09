@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.9",
+    "@react-native-community/toolbar-android": "^0.2.1",
     "@react-navigation/material-top-tabs": "^5.2.19",
     "@react-navigation/native": "5.1.6",
     "@react-navigation/stack": "5.2.13",
@@ -26,6 +27,7 @@
     "react-native-draggable": "^3.3.0",
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "1.10.3",
+    "react-native-live-stream": "^1.0.1",
     "react-native-nodemediaclient": "0.2.18",
     "react-native-pager-view": "^5.4.11",
     "react-native-reanimated": "2.2.2",
@@ -38,6 +40,7 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-video": "^5.2.0",
     "react-native-video-controls": "^2.8.1",
+    "react-native-vlc-media-player": "^1.0.40",
     "socket.io-client": "^2.1.1",
     "styled-components": "^5.3.3"
   },

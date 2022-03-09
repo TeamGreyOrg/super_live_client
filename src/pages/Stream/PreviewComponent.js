@@ -1,8 +1,9 @@
-import { NodePlayerView } from 'react-native-nodemediaclient';
-import React from 'react';
+
+import React, {useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { HTTP } from '../../config';
-import Video from 'react-native-video';
+import LivePlayer from 'react-native-live-stream';
+import { VLCPlayer, VlCPlayerView } from 'react-native-vlc-media-player';
 
 const styles = StyleSheet.create({
   previewimage: {
@@ -44,18 +45,14 @@ const PreviewComponent = (props) => {
     return null;
   }
   return (
-    <View>
-      <NodePlayerView
-        style={styles.previewimage}
-        inputUrl={inputUrl}
-        scaleMode='ScaleToFill'
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={false}
-        autoplay
-      />
-    </View>
+    <VLCPlayer
+        style={[styles.previewimage]}
+        source={{ uri: inputUrl}}
+    />
   );
 };
 
 export default PreviewComponent;
+
+
+

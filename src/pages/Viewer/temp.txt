@@ -83,3 +83,40 @@ const NodePlayerViewWrapper = React.forwardRef((props, ref) => {
 
   return <NodePlayerView ref={ref} {...props} />;
 });
+
+
+
+<NodePlayerView
+        style={styles.previewimage}
+        inputUrl={inputUrl}
+        ref={(vb) => {
+          nodePlayerView = vb;
+        }}
+        scaleMode='ScaleToFill'
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={false}
+        autoplay
+      />
+
+useEffect(() => {
+    if (nodePlayerView) nodePlayerView.start();
+  return function cleanup() {
+    if (nodePlayerView) this.nodePlayerView.stop();
+  };});
+
+
+  <LivePlayer source={{uri:inputUrl}}
+        ref={(ref) => {
+          this.player = ref
+        }}
+        style={styles.previewimage}
+        paused={false}
+        muted={true}
+        bufferTime={300}
+        maxBufferTime={1000}
+        resizeMode={"cover"}
+        onLoading={()=>{}}
+        onLoad={()=>{}}
+        onEnd={()=>{}}
+      />

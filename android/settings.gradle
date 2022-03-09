@@ -1,4 +1,6 @@
 rootProject.name = 'superlivecommerce'
+include ':react-native-vlc-media-player'
+project(':react-native-vlc-media-player').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vlc-media-player/android')
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
