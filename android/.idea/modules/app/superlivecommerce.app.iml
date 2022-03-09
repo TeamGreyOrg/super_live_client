@@ -57,7 +57,8 @@
     <orderEntry type="library" name="Gradle: com.facebook.yoga:proguard-annotations:1.14.1" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fbjni:fbjni-java-only:0.0.3" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.react:react-native:0.62.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: ./../node_modules/hermes-engine/android/hermes-debug.aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.react:react-native:0.63.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:fresco:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:animated-gif:1.14.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:animated-webp:1.14.2@aar" level="project" />
@@ -96,13 +97,12 @@
     <orderEntry type="library" name="Gradle: com.facebook.flipper:flipper-network-plugin:0.33.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:imagepipeline-okhttp3:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.flipper:flipper-fresco-plugin:0.33.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.webkit:android-jsc:r245459@aar" level="project" />
+    <orderEntry type="library" name="Gradle: artifacts:react-native-reanimated:unspecified" level="project" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-pager-view" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-community_masked-view" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-fast-image" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-gesture-handler" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-nodemediaclient" />
-    <orderEntry type="module" module-name="superlivecommerce.react-native-reanimated" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-safe-area-context" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-screens" />
     <orderEntry type="module" module-name="superlivecommerce.react-native-splash-screen" />

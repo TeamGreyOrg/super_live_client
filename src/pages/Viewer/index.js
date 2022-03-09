@@ -42,7 +42,31 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
 
+const getDirection = ({ moveX, moveY, dx, dy }) => {
+  const draggedDown = dy > 30;
+  const draggedUp = dy < -30;
+  const draggedLeft = dx < -30;
+  const draggedRight = dx > 30;
+  const isTop = moveY < 90 && moveY > 40 && moveX > 0 && moveX < this.width;
+  const isBottom = moveY > this.height - 50 && moveX > 0 && moveX < this.width;
+  let dragDirection = "";
+
+  if (draggedDown || draggedUp) {
+    if (draggedDown) dragDirection += "dragged down ";
+    if (draggedUp) dragDirection += "dragged up ";
+  }
+
+  if (draggedLeft || draggedRight) {
+    if (draggedLeft) dragDirection += "dragged left ";
+    if (draggedRight) dragDirection += "dragged right ";
+  }
+
+  if (isTop) return `top ${dragDirection}`;
+  if (isBottom) return `bottom ${dragDirection}`;
+  if (dragDirection) return dragDirection;
+};
 export default class Viewer extends Component {
   constructor(props) {
     super(props);
@@ -91,6 +115,9 @@ export default class Viewer extends Component {
     this.onPreviewON = onPreviewON;
     this.countViewer = countViewer;
     this.viewerName = viewerName;
+    const { width, height } = Dimensions.get("window");
+    this.width = width;
+    this.hegiht = height;
   }
 
   componentWillMount() {
@@ -101,10 +128,7 @@ export default class Viewer extends Component {
     });
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => {
-        if (this.state.dragging) return false;
-        return true;
-      },
+      onMoveShouldSetPanResponder: (evt, gestureState) => !!getDirection(gestureState),
       onPanResponderMove: this.onResponderMove,
       onPanResponderRelease: this.onResponderEnd,
     });
@@ -182,9 +206,11 @@ export default class Viewer extends Component {
           });
           break;
         default:
-          this.setState({ inputUrl: `${HTTP}/live/${roomName}.flv` });
+          this.setState({
+            inputUrl : `${HTTP}/live/${this.roomName}.flv`});
           break;
       }
+          
       // this.setState({
       //   inputUrl: `${HTTP}/live/${this.roomName}.flv`,
       //   // use HLS from trasporting in media server to Viewer
@@ -373,7 +399,7 @@ export default class Viewer extends Component {
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
-    // let inputUrl = '';
+    console.log(inputUrl);
     if (!inputUrl) return null;
     return (
       <NodePlayerView
@@ -386,7 +412,7 @@ export default class Viewer extends Component {
         bufferTime={300}
         maxBufferTime={1000}
         audioEnable={audioStatus}
-        autoplay
+        autoplay={true}
       />
     );
   };
@@ -396,14 +422,6 @@ export default class Viewer extends Component {
     const { navigation } = this.props;
     if (!inputUrl) return null;
     return <VideoPlayer source={{ uri: inputUrl }} navigator={navigation} />;
-    // return (
-    //   <NodePlayerView
-    //     style={styles.playerView}
-    //     inputUrl={inputUrl}
-    //     scaleMode="ScaleAspectFill"
-    //     autoplay
-    //   />
-    // );
   };
 
   renderChatGroup = () => {
@@ -420,7 +438,6 @@ export default class Viewer extends Component {
 
   renderListMessages = () => {
     const { messages, isVisibleMessages } = this.state;
-    // console.log('message!!', this.state.messages);
     if (!this.state.dragging) {
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;
@@ -432,7 +449,7 @@ export default class Viewer extends Component {
     return (
       <View>
         <View>
-          <TouchableOpacity style={styles.btnClose} onPressIn={this.onPressClose}>
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
             {!this.state.dragging && <SimpleLineIcons name="action-undo" size={30} color="white" />}
             {this.state.dragging && <Icon2 name="close" size={100} color="white" />}
           </TouchableOpacity>
@@ -440,20 +457,20 @@ export default class Viewer extends Component {
 
         {!this.state.dragging && (
           <View>
-            <TouchableOpacity style={styles.btnCompare} onPressIn={this.onPressCompare}>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.onPressCompare}>
               <MaterialCommunityIcons name="compare" size={30} color="white" />
             </TouchableOpacity>
           </View>
         )}
         {this.state.dragging && (
           <View>
-            <TouchableOpacity style={styles.btnCompare} onPressIn={this.handleOpen}>
+            <TouchableOpacity style={styles.btnCompare} onPress={this.handleOpen}>
               <Icon1 name="resize-full-screen" size={100} color="white" />
             </TouchableOpacity>
           </View>
         )}
         {!this.state.dragging && (
-          <TouchableOpacity style={styles.btnSound} onPressIn={this.onPressSound}>
+          <TouchableOpacity style={styles.btnSound} onPress={this.onPressSound}>
             {!audioStatus && <SimpleLineIcons name="volume-off" size={30} color="white" />}
             {audioStatus && <SimpleLineIcons name="volume-2" size={30} color="white" />}
           </TouchableOpacity>
@@ -498,7 +515,7 @@ export default class Viewer extends Component {
     const { width, height: screenHeight } = Dimensions.get('window');
     const videoHeight = width * 2.05555;
     const padding = 5;
-    const yOutput = screenHeight - videoHeight + (videoHeight * 0.8) / 2 - padding;
+    const yOutput = screenHeight - videoHeight + (videoHeight * 0.4) / 2 - padding;
     const xOutput = (width * 0.5) / 2 - padding;
 
     const translateYInterpolate = this._animation.interpolate({
@@ -551,33 +568,33 @@ export default class Viewer extends Component {
     /**
      * Viewer mode
      */
+   // if (isVisible){
     return (
       <SafeAreaView style={styles.container}>
         {this.state.dragging && (
-          <Home preview navigation={this.props.navigation} route={this.props.route} />
+          <Home navigation={this.props.navigation} route={this.props.route} />
         )}
-        <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-          <Draggable color="black" disabled={!this.state.dragging}>
-            <Animated.View
+      <Draggable disabled={!this.state.dragging}>
+      <Animated.View
               style={[
                 {
                   width,
                   height: videoHeight,
-                  opacity: opacityLoad,
-                  backGroundColor: 'black',
                 },
                 videoStyles,
               ]}
               {...this._panResponder.panHandlers}
             >
               {this.renderNodePlayerView()}
-              <TouchableWithoutFeedback onPressIn={this.onPressVisible}>
+              <TouchableWithoutFeedback onPress={this.onPressVisible}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
                   <View style={styles.contentWrapper}>
                     {isVisible && this.renderTransParencyObject()}
-                    <View style={styles.body}>
+                   <View style={styles.body}>
+                      <View>
                       {isVisible && this.renderListMessages()}
                       {isVisible && this.renderViewerNotification()}
+                      </View>
                       <View style={styles.footer1}>
                         {!this.state.dragging && this.onPressLinkButton()}
                       </View>
@@ -588,12 +605,13 @@ export default class Viewer extends Component {
               </TouchableWithoutFeedback>
               <FloatingHearts count={countHeart} />
             </Animated.View>
-          </Draggable>
-        </View>
+            </Draggable>
+          
       </SafeAreaView>
     );
   }
 }
+
 
 Viewer.propTypes = {
   requestOptions: PropTypes.shape({

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Video from 'react-native-video';
 import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 
@@ -35,8 +34,8 @@ const PreviewComponent = (props) => {
       inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/preview/dummy006/index.m3u8`;
       break;
     default:
-      // inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
-      inputUrl = `${HTTP}/live/${roomName}/index.m3u8`;
+      //inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${roomName}/index.m3u8`;
+      inputUrl = `${HTTP}/live/${roomName}.flv`;
       break;
   }
   if (!props.preview) inputUrl = null;
@@ -44,20 +43,18 @@ const PreviewComponent = (props) => {
     return null;
   }
   return (
-    <View>
-      <NodePlayerView
-        style={styles.previewimage}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFill"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={false}
-        autoplay
-      />
-    </View>
+    <NodePlayerView
+      style={styles.previewimage}
+      inputUrl={inputUrl}
+      ref={(vb) => {
+        nodePlayerView = vb;
+      }}
+      scaleMode="ScaleToFill"
+      bufferTime={300}
+      maxBufferTime={1000}
+      audioEnable={false}
+      autoplay
+    />
   );
 };
 

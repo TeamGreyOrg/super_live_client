@@ -49,13 +49,6 @@ const styles = StyleSheet.create({
     top: 20,
     right: 60,
   },
-  PIP: {
-    bottom: 70,
-    left: 200,
-    width: 200,
-    height: 100,
-    zIndex: 2,
-  },
   btnPast: {
     position: 'absolute',
     bottom: 70,
@@ -65,9 +58,6 @@ const styles = StyleSheet.create({
   ModalContainer: {
     flex: 3,
     zIndex: 2,
-  },
-  PIPContainer: {
-    zIndex: 3,
   },
   MultiText: {
     color: 'white',
