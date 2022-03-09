@@ -62,8 +62,7 @@ const NewStreamCard = (props) => {
         <Video
           style={styles.streamCard}
           source={{ uri: inputUrl }}
-          muted
-          cache
+          muted={true}
           resizeMode="cover"
         />
       </View>
