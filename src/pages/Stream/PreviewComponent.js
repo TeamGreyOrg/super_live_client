@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Video from 'react-native-video';
 import { HTTP } from '../../config';
+import { NodePlayerView } from 'react-native-nodemediaclient';
 
 const styles = StyleSheet.create({
   previewimage: {
@@ -44,12 +45,17 @@ const PreviewComponent = (props) => {
   }
   return (
     <View>
-      <Video
+      <NodePlayerView
         style={styles.previewimage}
-        source={{ uri: inputUrl }}
-        muted
-        cache
-        resizeMode="cover"
+        ref={(vb) => {
+          this.nodePlayerView = vb;
+        }}
+        inputUrl={inputUrl}
+        scaleMode="ScaleAspectFill"
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={false}
+        autoplay
       />
     </View>
   );

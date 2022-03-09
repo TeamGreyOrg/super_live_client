@@ -77,7 +77,7 @@ export default class Viewer extends Component {
       countViewer,
       viewerName: viewerName,
       enteredViewerName: viewerName,
-      opacityLoad:0,
+      opacityLoad: 0,
       opacity: 1,
     };
     this.roomName = roomName;
@@ -232,9 +232,9 @@ export default class Viewer extends Component {
       setTimeout(() => {
         this.setState({ opacity: 0 });
       }, 3000);
-          setTimeout(() => {
-      this.setState({ opacityLoad: 1 });
-    }, 1500);
+      setTimeout(() => {
+        this.setState({ opacityLoad: 1 });
+      }, 1500);
     }
 
     /*
@@ -255,7 +255,6 @@ export default class Viewer extends Component {
       inputUrl: null,
     });
     clearTimeout(this.timeout);
-
   }
 
   getPreview = (text, options) => {
@@ -344,7 +343,7 @@ export default class Viewer extends Component {
     } = this.props;
     this.setState({ audioStatus: false });
     // this.setState({ inputUrl: null });
-    if (this.nodePlayerView) this.nodePlayerView.stop();
+    // if (this.nodePlayerView) this.nodePlayerView.stop();
     push('Comparison', { roomName, userName, viewerName });
   };
 
