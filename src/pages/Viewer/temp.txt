@@ -120,3 +120,25 @@ useEffect(() => {
         onLoad={()=>{}}
         onEnd={()=>{}}
       />
+
+
+<NodePlayerView
+        style={styles.previewimage}
+        inputUrl={inputUrl}
+        ref={(vb) => {
+          nodePlayerView = vb;
+        }}
+        scaleMode='ScaleToFill'
+        bufferTime={300}
+        maxBufferTime={1000}
+        audioEnable={false}
+        autoplay
+      />
+
+<VLCPlayer
+        style={styles.previewimage}
+        source={{uri:inputUrl}}
+        autoplay={true}
+        muted={true}
+        resizeMode={"Cover"}
+    />

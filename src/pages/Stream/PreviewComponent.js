@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { HTTP } from '../../config';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 
+
 const styles = StyleSheet.create({
   previewimage: {
     width: '100%',

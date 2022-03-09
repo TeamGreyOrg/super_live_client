@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   playerView: {
-    position: 'absolute',
     top: 0,
     left: 0,
     height: SCREEN_HEIGHT,
@@ -206,6 +205,10 @@ const styles = StyleSheet.create({
     top: 55,
     left: 20,
   },
+
+  viewerBox: {
+    position: 'absolute',
+  }
 });
 
 export default styles;
