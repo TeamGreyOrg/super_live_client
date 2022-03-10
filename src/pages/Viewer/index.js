@@ -43,6 +43,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import { VlCPlayerView, VLCPlayer } from 'react-native-vlc-media-player';
 import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
@@ -96,7 +97,7 @@ export default class Viewer extends Component {
       linkImg: undefined,
       requestOptions: {},
       isVisible: true,
-      audioStatus: false,
+      audioStatus: true,
       roomName,
       userName,
       countViewer,
@@ -401,21 +402,21 @@ export default class Viewer extends Component {
   renderNodePlayerView = () => {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
-    console.log(inputUrl);
     if (!inputUrl) return null;
+    console.log(audioStatus);
     return (
-      <NodePlayerView
-        style={styles.playerView}
-        ref={(vb) => {
-          this.nodePlayerView = vb;
-        }}
-        inputUrl={inputUrl}
-        scaleMode="ScaleAspectFill"
-        bufferTime={300}
-        maxBufferTime={1000}
-        audioEnable={audioStatus}
-        autoplay
-      />
+      <View style={styles.viewerBox}>
+      <VLCPlayer
+          style={styles.playerView}
+          bufferTime={300}
+          maxBufferTime={1000}
+          autoplay={true}
+          muted={!audioStatus}
+          autoAspectRatio={true}
+          source={{uri: inputUrl}}
+          resizeMode={"fill"}
+        />
+        </View>
     );
   };
 
@@ -517,7 +518,7 @@ export default class Viewer extends Component {
     const { width, height: screenHeight } = Dimensions.get('window');
     const videoHeight = width * 2.05555;
     const padding = 5;
-    const yOutput = screenHeight - videoHeight + (videoHeight * 0.4) / 2 - padding;
+    const yOutput = screenHeight - videoHeight + (videoHeight * 0.6) / 2 - padding;
     const xOutput = (width * 0.5) / 2 - padding;
 
     const translateYInterpolate = this._animation.interpolate({
