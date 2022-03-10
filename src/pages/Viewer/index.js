@@ -17,6 +17,7 @@ import {
   Text,
   KeyboardAvoidingView,
   ImageBackground,
+  ActivityIndicator,
 } from 'react-native';
 import get from 'lodash/get';
 import { NodePlayerView } from 'react-native-nodemediaclient';
@@ -33,7 +34,6 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 // action-undo,volume-off,volume-2
 
 import * as Animatable from 'react-native-animatable';
-import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
 import BannerButton from './BannerButton';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -43,6 +43,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
+import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedDown = dy > 30;
@@ -370,7 +371,7 @@ export default class Viewer extends Component {
     } = this.props;
     this.setState({ audioStatus: false });
     // this.setState({ inputUrl: null });
-    if (this.nodePlayerView) this.nodePlayerView.stop();
+    // if (this.nodePlayerView) this.nodePlayerView.stop();
     push('Comparison', { roomName, userName, viewerName });
   };
 
@@ -576,36 +577,57 @@ export default class Viewer extends Component {
           <Home navigation={this.props.navigation} route={this.props.route} />
         )}
         <Draggable disabled={!this.state.dragging}>
-          <Animated.View
-            style={[
-              {
-                width,
-                height: videoHeight,
-              },
-              videoStyles,
-            ]}
-            {...this._panResponder.panHandlers}
+          <ActivityIndicator
+            size="large"
+            color='#FF097D'
+            style={{
+              position: 'absolute',
+              opacity: 1 - opacityLoad,
+              width: screenWidth,
+              height: screenHeight,
+            }}
+          />
+          <View
+            style={{
+              backgroundColor: 'black',
+              opacity: opacityLoad,
+            }}
           >
-            {this.renderNodePlayerView()}
-            <TouchableWithoutFeedback onPress={this.onPressVisible}>
-              <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
-                <View style={styles.contentWrapper}>
-                  {isVisible && this.renderTransParencyObject()}
-                  <View style={styles.body}>
-                    <View>
-                      {isVisible && this.renderListMessages()}
-                      {isVisible && this.renderViewerNotification()}
+            <Animated.View
+              style={[
+                {
+                  width,
+                  height: videoHeight,
+                },
+                videoStyles,
+              ]}
+              {...this._panResponder.panHandlers}
+            >
+              {this.renderNodePlayerView()}
+              <TouchableWithoutFeedback onPress={this.onPressVisible}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+                  <View style={styles.contentWrapper}>
+                    {isVisible && this.renderTransParencyObject()}
+                    <View style={styles.body}>
+                      <View>
+                        {isVisible && this.renderListMessages()}
+                        {isVisible && this.renderViewerNotification()}
+                      </View>
+                      <View style={styles.footer1}>
+                        {!this.state.dragging && this.onPressLinkButton()}
+                      </View>
+                      <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                     </View>
                     <View style={styles.footer1}>
                       {!this.state.dragging && this.onPressLinkButton()}
                     </View>
                     <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                   </View>
-                </View>
-              </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-            <FloatingHearts count={countHeart} />
-          </Animated.View>
+                </KeyboardAvoidingView>
+              </TouchableWithoutFeedback>
+              <FloatingHearts count={countHeart} />
+            </Animated.View>
+          </View>
         </Draggable>
       </SafeAreaView>
     );

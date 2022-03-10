@@ -213,7 +213,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
         />
       );
       break;
-    case 'CoffeeCapsule':
+    case 'MimaMask':
       banner = (
         <FastImage
           source={require('../../assets/007.png')}
@@ -221,7 +221,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
         />
       );
       break;
-    case 'CoffeeMachine':
+    case 'DentalMask':
       banner = (
         <FastImage
           source={require('../../assets/008.png')}

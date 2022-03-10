@@ -48,10 +48,10 @@ class StreamLive extends React.Component {
     }
 
     return (
-      <ImageBackground
-        source={require('../../../assets/logoBW_icon.png')}
-        style={{ flex: 1, backgroundColor: 'black' }}
-      >
+      // <ImageBackground
+      //   source={require('../../../assets/logoBW_icon.png')}
+      //   style={{ flex: 1, backgroundColor: 'black' }}
+      // >
         <Container style={styles.container}>
           <FlatList
             initialNumToRender={4}
@@ -70,7 +70,7 @@ class StreamLive extends React.Component {
             removeClippedSubviews
           />
         </Container>
-      </ImageBackground>
+      // </ImageBackground>
     );
   }
 }
