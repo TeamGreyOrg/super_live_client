@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   // },
   streamOnePortraitBackground: {
     marginLeft: 15,
-    width: 170,
+    width: 180,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
   streamOnePortrait: {
     marginLeft: 5,
     marginTop: 5,
-    width: 160,
+    width: 170,
     height: 290,
   },
   streamTwoPortraitBackground: {
     marginRight: 15,
-    width: 170,
+    width: 180,
     height: 300,
     backgroundColor: 'gray',
     borderRadius: 10,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   streamTwoPortrait: {
     marginLeft: 5,
     marginTop: 5,
-    width: 160,
+    width: 170,
     height: 290,
   },
   // streamOneLandscapeBackground: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   //   borderRadius: 10,
   // },
   banner: {
-    width: 170,
+    width: 180,
     height: 50,
     marginTop: 15,
   },
