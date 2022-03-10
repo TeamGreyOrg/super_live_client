@@ -12,6 +12,7 @@ import {
 import { NodeCameraView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
 import { NavigationContext } from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
 import { LIVE_STATUS, videoConfig, audioConfig } from '../../utils/constants';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -21,7 +22,6 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import FloatingHearts from '../../components/FloatingHearts';
 import { RTMP_SERVER } from '../../config';
 import Logger from '../../utils/logger';
-import * as Animatable from 'react-native-animatable';
 
 export default class Streamer extends React.Component {
   constructor(props) {
@@ -237,27 +237,26 @@ export default class Streamer extends React.Component {
           smoothSkinLevel={3}
           autopreview={false}
         />
-        <SafeAreaView style={styles.contentWrapper}>
-          <View style={styles.header}>
-            <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-              <Image
-                style={styles.icoClose}
-                source={require('../../assets/close.png')}
-                tintColor="white"
-              />
-            </TouchableOpacity>
-            <LiveStreamActionButton
-              currentLiveStatus={currentLiveStatus}
-              onPress={this.onPressLiveStreamButton}
+
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
+            <Image
+              style={styles.icoClose}
+              source={require('../../assets/close.png')}
+              tintColor="white"
             />
-          </View>
-          <View style={styles.center}>
-            {this.renderListMessages()}
-            {this.renderViewerNotification()}
-          </View>
-          <View style={styles.footer}>{this.renderChatGroup()}</View>
-        </SafeAreaView>
-        <FloatingHearts count={countHeart} />
+          </TouchableOpacity>
+          <LiveStreamActionButton
+            currentLiveStatus={currentLiveStatus}
+            onPress={this.onPressLiveStreamButton}
+          />
+        </View>
+        <View style={styles.center}>
+          {this.renderListMessages()}
+          {this.renderViewerNotification()}
+          <FloatingHearts count={countHeart} />
+        </View>
+         <View style={styles.footer}>{this.renderChatGroup()}</View>
       </SafeAreaView>
     );
   }

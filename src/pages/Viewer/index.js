@@ -43,7 +43,6 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
-import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
 import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
@@ -101,7 +100,7 @@ export default class Viewer extends Component {
       roomName,
       userName,
       countViewer,
-      viewerName: viewerName,
+      viewerName,
       enteredViewerName: viewerName,
       opacityLoad: 0,
       opacity: 1,
@@ -415,7 +414,7 @@ export default class Viewer extends Component {
         bufferTime={300}
         maxBufferTime={1000}
         audioEnable={audioStatus}
-        autoplay={true}
+        autoplay
       />
     );
   };
@@ -480,7 +479,7 @@ export default class Viewer extends Component {
         )}
         {!this.state.dragging && (
           <View>
-            <Text style={styles.roomName}>{this.roomName}</Text>
+            <Text style={styles.roomName} numberOfLines={1}>{this.roomName}</Text>
             <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
             <Text style={styles.countViewer}>{this.state.countViewer}</Text>
           </View>
@@ -619,6 +618,10 @@ export default class Viewer extends Component {
                       </View>
                       <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                     </View>
+                    <View style={styles.footer1}>
+                      {!this.state.dragging && this.onPressLinkButton()}
+                    </View>
+                    <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                   </View>
                 </KeyboardAvoidingView>
               </TouchableWithoutFeedback>
