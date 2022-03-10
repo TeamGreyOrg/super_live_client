@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: SCREEN_HEIGHT / 3,
     flexDirection: 'row',
-    backgroundColor: 'rgba(rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(0,0,0,0)',
     padding: 3,
     // margin: 5,
     borderRadius: 8,
@@ -200,7 +200,7 @@ const LiveStreamCard = ({ data, onPress }) => {
     default:
       banner = (
         <Image
-          source={require('../../../assets/001.png')}
+          source={require('../../../assets/009.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );
@@ -209,30 +209,30 @@ const LiveStreamCard = ({ data, onPress }) => {
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.card} onPress={() => onPress(data)}>
-        {/* <ImageBackground source={require('../../../assets/com_back_4.gif')} style={styles.bgimage}> */}
-        <View style={{ flexDirection: 'row', margin: 6 }}>{statusIcon}</View>
+        <ImageBackground source={require('../../../assets/saved_icon.png')} style={styles.bgimage}>
+          <View style={{ flexDirection: 'row', margin: 6 }}>{statusIcon}</View>
 
-        <View
-          style={{
-            // height: SCREEN_HEIGHT / 4,
-            width: SCREEN_WIDTH / 2.4,
-            justifyContent: 'flex-end',
-          }}
-        >
-          <View style={styles.streamerContainer}>
-            <Text style={styles.streamerName} numberOfLines={1}>
-              {userName}
-            </Text>
+          <View
+            style={{
+              // height: SCREEN_HEIGHT / 4,
+              width: SCREEN_WIDTH / 2.4,
+              justifyContent: 'flex-end',
+            }}
+          >
+            <View style={styles.streamerContainer}>
+              <Text style={styles.streamerName} numberOfLines={1}>
+                {userName}
+              </Text>
+            </View>
           </View>
-        </View>
-        <View style={{ height: SCREEN_HEIGHT / 4.2, justifyContent: 'flex-end' }}>
-          <View style={styles.streamInfo}>
-            <Text style={styles.roomNameTag} numberOfLines={2}>
-              {roomName}
-            </Text>
+          <View style={{ height: SCREEN_HEIGHT / 4.2, justifyContent: 'flex-end' }}>
+            <View style={styles.streamInfo}>
+              <Text style={styles.roomNameTag} numberOfLines={2}>
+                {roomName}
+              </Text>
+            </View>
           </View>
-        </View>
-        {/* </ImageBackground> */}
+        </ImageBackground>
       </TouchableOpacity>
 
       <View style={styles.streamInfo2}>

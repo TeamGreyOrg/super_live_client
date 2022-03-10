@@ -232,7 +232,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
     default:
       banner = (
         <FastImage
-          source={require('../../assets/001.png')}
+          source={require('../../assets/009.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
       );

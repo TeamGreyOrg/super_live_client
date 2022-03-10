@@ -421,10 +421,7 @@ class Comparison extends React.Component {
                 style={styles.buttonMaximize}
                 onPress={this.onPressMaximizeStreamTwo}
               >
-                <Image
-                  source={require('../../assets/ico_maximize.png')}
-                  style={styles.icoMaximize}
-                />
+                 <Feather name="maximize-2" size={30} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
                 {!audioStatusTwo && <SimpleLineIcons name="volume-off" size={30} color="white" />}
