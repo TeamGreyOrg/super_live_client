@@ -618,10 +618,6 @@ export default class Viewer extends Component {
                       </View>
                       <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                     </View>
-                    <View style={styles.footer1}>
-                      {!this.state.dragging && this.onPressLinkButton()}
-                    </View>
-                    <View style={styles.footer2}>{isVisible && this.renderChatGroup()}</View>
                   </View>
                 </KeyboardAvoidingView>
               </TouchableWithoutFeedback>
