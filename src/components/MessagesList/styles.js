@@ -34,12 +34,14 @@ const styles = StyleSheet.create({
     textShadowRadius: 10,
   },
   content: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: 'bold',
+    borderColor: 'black',
+    borderEndWidth:3,
     marginLeft: 10,
-    color: 'white',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
+    color: 'orange',
+    textShadowColor: 'rgba(0, 0, 0, 1)',
+    textShadowOffset: { width: 2, height: 1 },
     textShadowRadius: 10,
   },
 });

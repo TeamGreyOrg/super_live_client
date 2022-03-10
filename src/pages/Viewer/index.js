@@ -43,12 +43,8 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
-import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
-<<<<<<< HEAD
 import { VlCPlayerView, VLCPlayer } from 'react-native-vlc-media-player';
-=======
 import { screenWidth } from '../../utils/utility';
->>>>>>> 0d585cab3d067e3cb589a85f2398689fc0977b5e
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedDown = dy > 30;
@@ -105,7 +101,7 @@ export default class Viewer extends Component {
       roomName,
       userName,
       countViewer,
-      viewerName: viewerName,
+      viewerName,
       enteredViewerName: viewerName,
       opacityLoad: 0,
       opacity: 1,
@@ -484,7 +480,7 @@ export default class Viewer extends Component {
         )}
         {!this.state.dragging && (
           <View>
-            <Text style={styles.roomName}>{this.roomName}</Text>
+            <Text style={styles.roomName} numberOfLines={1}>{this.roomName}</Text>
             <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
             <Text style={styles.countViewer}>{this.state.countViewer}</Text>
           </View>

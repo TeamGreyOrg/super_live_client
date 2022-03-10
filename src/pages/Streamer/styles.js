@@ -4,7 +4,7 @@ import * as Utility from '../../utils/utility';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3498db',
+    backgroundColor: 'black',
   },
   contentWrapper: { flex: 1 },
   header: { zIndex: 3, flex: 0.1, justifyContent: 'space-around', flexDirection: 'row' },
