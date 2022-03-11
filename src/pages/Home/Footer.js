@@ -5,7 +5,7 @@ import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
 import styles from './styles';
 import theme from '../Theme/theme';
 
-const Footer = ({ onPressLiveStreamNow, onPressLogout }) => {
+const Footer = ({ onPreviewON, onPreviewOFF, onPressLiveStreamNow, onPressLogout }) => {
   const [ani, setani] = useState('');
   const onClick = () => setani('bounceOut');
 
@@ -22,7 +22,7 @@ const Footer = ({ onPressLiveStreamNow, onPressLogout }) => {
           paddingHorizontal: 15,
         }}
       >
-        <TouchableOpacity style={styles.liveStreamButton} onPress={() => onPressLiveStreamNow()}>
+        <TouchableOpacity style={styles.liveStreamButton} onPress={() => {onPressLiveStreamNow(), onPreviewOFF()}}>
           <Text style={styles.textButton}>방송 시작</Text>
         </TouchableOpacity>
 

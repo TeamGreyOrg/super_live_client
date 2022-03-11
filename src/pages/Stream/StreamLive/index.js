@@ -11,7 +11,6 @@ import LiveStreamCard from '../LiveStreamCard';
 class StreamLive extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       listLiveStream: [],
     };
@@ -23,7 +22,15 @@ class StreamLive extends React.Component {
       this.setState({ listLiveStream: data });
     });
   }
-
+/*
+  componentDidUpdate(prevProps) {
+    console.log("hi")
+    if (prevProps.isFocused !== this.props.isFocused) {
+      this.props.onPreviewON();
+      console.log("update");
+    }
+  }
+*/
   onPressCardItem = (data) => {
     const { route } = this.props;
     const { onPreviewON, onPreviewOFF } = this.props;
@@ -55,8 +62,8 @@ class StreamLive extends React.Component {
         <Container style={styles.container}>
           <FlatList
             initialNumToRender={4}
+            removeClippedSubviews={false}
             data={newListLiveStream}
-            // data={listLiveStream}
             renderItem={({ item }) => (
               <LiveStreamCard
                 data={item}
@@ -67,7 +74,6 @@ class StreamLive extends React.Component {
             keyExtractor={(item) => item._id}
             numColumns={2}
             contentContainerStyle={styles.flatList}
-            removeClippedSubviews
           />
         </Container>
       </ImageBackground>

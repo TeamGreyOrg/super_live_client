@@ -579,16 +579,6 @@ export default class Viewer extends Component {
           <Home navigation={this.props.navigation} route={this.props.route} />
         )}
         <Draggable disabled={!this.state.dragging}>
-          {/* <ActivityIndicator
-            size="large"
-            color='#FF097D'
-            style={{
-              position: 'absolute',
-              opacity: 1 - opacityLoad,
-              width: screenWidth,
-              height: screenHeight,
-            }}
-          /> */}
             <Animated.View
               style={[
                 {

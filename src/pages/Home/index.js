@@ -30,14 +30,13 @@ class Home extends React.Component {
   componentWillUnmount() {
     this.setState({
       listLiveStream: [],
-      preview: true,
+      preview: false,
     });
   }
 
   onPreviewON = () => {
-    this.setState({
-      preview: true,
-    });
+    //this.setState({ preview : true });
+    this.state.preview = true;
   };
 
   onPreviewOFF = () => {
@@ -119,6 +118,8 @@ class Home extends React.Component {
           /> */}
         </Tab.Navigator>
         <Footer
+          onPreviewON={this.onPreviewON}
+          onPreviewOFF={this.onPreviewOFF}
           onPressLiveStreamNow={this.onPressLiveStreamNow}
           onPressLogout={this.onPressLogout}
         />
@@ -137,7 +138,6 @@ Home.propTypes = {
 
 Home.defaultProps = {
   route: null,
-  preview: true,
 };
 
 export default Home;
