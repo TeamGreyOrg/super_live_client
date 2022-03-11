@@ -52,24 +52,24 @@ class StreamLive extends React.Component {
       //   source={require('../../../assets/logoBW_icon.png')}
       //   style={{ flex: 1, backgroundColor: 'black' }}
       // >
-        <Container style={styles.container}>
-          <FlatList
-            initialNumToRender={4}
-            data={newListLiveStream}
-            data={listLiveStream}
-            renderItem={({ item }) => (
-              <LiveStreamCard
-                data={item}
-                onPress={this.onPressCardItem}
-                preview={this.props.preview}
-              />
-            )}
-            keyExtractor={(item) => item._id}
-            numColumns={2}
-            contentContainerStyle={styles.flatList}
-            removeClippedSubviews
-          />
-        </Container>
+      <Container style={styles.container}>
+        <FlatList
+          initialNumToRender={4}
+          data={newListLiveStream}
+          // data={listLiveStream}
+          renderItem={({ item }) => (
+            <LiveStreamCard
+              data={item}
+              onPress={this.onPressCardItem}
+              preview={this.props.preview}
+            />
+          )}
+          keyExtractor={(item) => item._id}
+          numColumns={2}
+          contentContainerStyle={styles.flatList}
+          removeClippedSubviews
+        />
+      </Container>
       // </ImageBackground>
     );
   }

@@ -36,7 +36,7 @@ class StreamCard extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
-    }, 2000);
+    }, 3000);
 
     let inputUrl = '';
 
@@ -213,7 +213,7 @@ class StreamCard extends Component {
       transform: this.state.pan.getTranslateTransform(),
     };
     return (
-      <Animatable.View animation={this.state.animation}>
+      // <Animatable.View animation={this.state.animation}>
         <Animated.View
           {...panHandlers}
           style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
@@ -236,7 +236,7 @@ class StreamCard extends Component {
             </View>
           </View>
         </Animated.View>
-      </Animatable.View>
+      // </Animatable.View>
     );
   }
 }
