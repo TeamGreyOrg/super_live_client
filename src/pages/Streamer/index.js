@@ -256,7 +256,7 @@ export default class Streamer extends React.Component {
           {this.renderViewerNotification()}
           <FloatingHearts count={countHeart} />
         </View>
-         <View style={styles.footer}>{this.renderChatGroup()}</View>
+        <View style={styles.footer}>{this.renderChatGroup()}</View>
       </SafeAreaView>
     );
   }

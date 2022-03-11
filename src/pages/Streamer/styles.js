@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   contentWrapper: { flex: 1 },
   header: { zIndex: 3, flex: 0.1, justifyContent: 'space-around', flexDirection: 'row' },
   footer: { zIndex: 3, flex: 0.1 },
-  center: { zIndex: 3, flex: 0.8 },
+  center: { zIndex: 3, flex: 0.8 , justifyContent:'flex-end'},
   streamerView: {
     position: 'absolute',
     top: 0,

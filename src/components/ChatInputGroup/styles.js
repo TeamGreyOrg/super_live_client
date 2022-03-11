@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     color: 'white',
-    fontSize:15,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    fontSize:18,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
     borderRadius: 10,
     paddingHorizontal: 15,
     height: 45,
