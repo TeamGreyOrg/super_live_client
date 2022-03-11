@@ -60,7 +60,7 @@ export default class ChatInputGroup extends Component {
             style={styles.textInput}
             placeholder="메시지를 입력해주세요"
             placeholderTextColor={'white'}
-            backgroundColor="transparent"
+            backgroundColor="rgba(0,0,0,0.5)"
             underlineColorAndroid="transparent"
             onChangeText={this.onChangeMessageText}
             value={message}

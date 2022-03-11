@@ -408,7 +408,7 @@ class Comparison extends React.Component {
                 style={styles.buttonMaximize}
                 onPress={this.onPressMaximizeStreamTwo}
               >
-                 <Feather name="maximize-2" size={30} color="white" />
+                <Feather name="maximize-2" size={30} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnAudio} onPress={this.onPressAudioTwo}>
                 {!audioStatusTwo && <SimpleLineIcons name="volume-off" size={30} color="white" />}
@@ -434,9 +434,9 @@ class Comparison extends React.Component {
           style={styles.flatList}
           showsHorizontalScrollIndicator={false}
           horizontal
-          removeClippedSubviews={true}
-          maxToRenderPerBatch={4}
-          initialNumToRender={4}
+          removeClippedSubviews={false}
+          // maxToRenderPerBatch={8}
+          // initialNumToRender={8}
           ref={(ref) => {
             this.flatListRef = ref;
           }}

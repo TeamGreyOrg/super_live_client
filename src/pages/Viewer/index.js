@@ -43,7 +43,7 @@ import MessagesList from '../../components/MessagesList/MessagesList';
 import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
-import { VlCPlayerView, VLCPlayer } from 'react-native-vlc-media-player';
+import { VLCPlayer } from 'react-native-vlc-media-player';
 import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
@@ -405,17 +405,17 @@ export default class Viewer extends Component {
     if (!inputUrl) return null;
     return (
       <View style={styles.viewerBox}>
-      <VLCPlayer
+        <VLCPlayer
           style={styles.playerView}
           bufferTime={300}
           maxBufferTime={1000}
           autoplay={true}
           muted={!audioStatus}
           autoAspectRatio={true}
-          source={{uri: inputUrl}}
-          resizeMode={"fill"}
+          source={{ uri: inputUrl }}
+          resizeMode={'fill'}
         />
-        </View>
+      </View>
     );
   };
 
@@ -479,7 +479,9 @@ export default class Viewer extends Component {
         )}
         {!this.state.dragging && (
           <View>
-            <Text style={styles.roomName} numberOfLines={1}>{this.roomName}</Text>
+            <Text style={styles.roomName} numberOfLines={1}>
+              {this.roomName}
+            </Text>
             <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
             <Text style={styles.countViewer}>{this.state.countViewer}</Text>
           </View>
