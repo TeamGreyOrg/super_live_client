@@ -36,7 +36,7 @@ class StreamCard extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cardOpacity: 1 });
-    }, 3000);
+    }, 3500);
 
     let inputUrl = '';
 
