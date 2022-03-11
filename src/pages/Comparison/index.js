@@ -84,7 +84,7 @@ class Comparison extends React.Component {
 
     setTimeout(() => {
       this.setState({ opacityOne: 1 });
-    }, 3000);
+    }, 2000);
   }
 
   componentWillUnmount() {
