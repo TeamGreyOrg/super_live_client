@@ -34,7 +34,6 @@ export default class ChatInputGroup extends Component {
 
   onPressHeart = () => {
     const { onPressHeart } = this.props;
-    // console.log(imgArray[0]);
     onPressHeart();
   };
 

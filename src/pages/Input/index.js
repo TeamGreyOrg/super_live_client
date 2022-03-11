@@ -55,6 +55,8 @@ class Input extends React.Component {
             style={styles.input}
             placeholder="방제목을 입력 해주세요"
             onChangeText={(roomName) => this.setState({ roomName })}
+    
+            //onChangeText={(roomName) => this.setState({ roomName })}
             value={this.state.roomName}
           />
           <Text style={styles.inputHeader}>Product link</Text>

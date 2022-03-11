@@ -46,7 +46,6 @@ export default class Streamer extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.enteredViewerName);
     this.requestCameraPermission();
     SocketManager.instance.emitPrepareLiveStream({
       userName: this.userName,

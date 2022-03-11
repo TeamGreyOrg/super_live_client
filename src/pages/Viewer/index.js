@@ -403,7 +403,6 @@ export default class Viewer extends Component {
     const { audioStatus } = this.state;
     const { inputUrl } = this.state;
     if (!inputUrl) return null;
-    console.log(audioStatus);
     return (
       <View style={styles.viewerBox}>
       <VLCPlayer
@@ -578,22 +577,6 @@ export default class Viewer extends Component {
           <Home navigation={this.props.navigation} route={this.props.route} />
         )}
         <Draggable disabled={!this.state.dragging}>
-          <ActivityIndicator
-            size="large"
-            color='#FF097D'
-            style={{
-              position: 'absolute',
-              opacity: 1 - opacityLoad,
-              width: screenWidth,
-              height: screenHeight,
-            }}
-          />
-          <View
-            style={{
-              backgroundColor: 'black',
-              opacity: opacityLoad,
-            }}
-          >
             <Animated.View
               style={[
                 {
@@ -624,7 +607,6 @@ export default class Viewer extends Component {
               </TouchableWithoutFeedback>
               <FloatingHearts count={countHeart} />
             </Animated.View>
-          </View>
         </Draggable>
       </SafeAreaView>
     );

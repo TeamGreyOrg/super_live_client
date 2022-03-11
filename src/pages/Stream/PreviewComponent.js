@@ -18,7 +18,6 @@ class PreviewComponent extends Component {
     super(props);
     const { data } = props;
     const roomName = get(data, 'roomName');
-
     this.state = {
       inputUrl: null,
     };
@@ -27,7 +26,8 @@ class PreviewComponent extends Component {
   }
 
   componentDidMount() {
-    let inputUrl = '';
+    let inputUrl = null;
+    if(this.props.preview){
 
     switch (this.roomName) {
       case '페루산 애플망고 당일출고':
@@ -52,15 +52,23 @@ class PreviewComponent extends Component {
         inputUrl = `${HTTP}/live/${this.roomName}.flv`;
         break;
     }
-    this.setState({ inputUrl: inputUrl });
+  }
+    if (this.props.preview) {
+      this.setState({ inputUrl : inputUrl});
+    }
+    else{
+      this.setState({ inputUrl : null});
+    }
+
+    //console.log(inputUrl);
   }
 
   componentWillUnmount() {
     if (this.nodePlayerView) this.nodePlayerView.stop();
+    this.setState({ inputUrl: null });
   }
 
   render() {
-    // if (!props.preview) inputUrl = null;
     if (!this.state.inputUrl) {
       return null;
     }
@@ -76,6 +84,7 @@ class PreviewComponent extends Component {
         maxBufferTime={1000}
         audioEnable={false}
         autoplay
+        autoPreview={false}
       />
     );
   }

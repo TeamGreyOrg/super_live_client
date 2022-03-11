@@ -158,7 +158,6 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
       );
       break;
     default:
-      preview;
       statusIcon = (
         <FastImage source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );

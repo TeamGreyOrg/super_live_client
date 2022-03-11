@@ -285,19 +285,6 @@ class Comparison extends React.Component {
     const { streamOneHandler } = this;
     const { streamCards } = this.state;
 
-    // if (this.state.orientation === 'portrait') {
-    //   const { streamCards } = this.state;
-    // console.log('stream cards:', streamCards);
-
-    // For testing lazy loading
-    // const testroomName = '345';
-    // const  testStreamCards = [{"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-    // {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName}, {"roomName": testroomName},  {"roomName": testroomName}, {"roomName": testroomName},
-    // ]
-
     let bannerOne = null;
     let bannerTwo = null;
 
