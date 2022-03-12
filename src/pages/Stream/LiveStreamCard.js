@@ -132,7 +132,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
   let streamIcon = null;
   let previewVideo = null;
   const viewerIcon = (
-    <FastImage style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
+    <Image style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
   // const streamIcon = (
   //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
@@ -140,33 +140,33 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
-        <FastImage source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
     case LIVE_STATUS.ON_LIVE:
       previewVideo = <PreviewComponent data={data} preview={preview} />;
       statusIcon = (
-        <FastImage source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
+        <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
       streamIcon = (
-        <FastImage style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
+        <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
       );
       break;
     case LIVE_STATUS.FINISH:
       statusIcon = (
-        <FastImage source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
       );
       break;
     default:
       statusIcon = (
-        <FastImage source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
       );
       break;
   }
   switch (roomName) {
     case '페루산 애플망고 당일출고':
       banner = (
-        <FastImage
+        <Image
           source={require('../../assets/001.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
@@ -174,7 +174,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
       break;
     case '국산 무농약 작두콩차':
       banner = (
-        <FastImage
+        <Image
           source={require('../../assets/002.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
@@ -182,7 +182,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
       break;
     case '안다르 레깅스':
       banner = (
-        <FastImage
+        <Image
           source={require('../../assets/003.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
@@ -190,7 +190,7 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
       break;
     case '모니터 받침대 끝판왕':
       banner = (
-        <FastImage
+        <Image
           source={require('../../assets/004.png')}
           style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
         />
