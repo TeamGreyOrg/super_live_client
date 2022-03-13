@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
