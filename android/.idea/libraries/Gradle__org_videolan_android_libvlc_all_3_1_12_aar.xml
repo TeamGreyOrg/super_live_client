@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: org.videolan.android:libvlc-all:3.1.12@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/04eab80bfc1f9b9e5c0ab2984b7a1a8e/transformed/libvlc-all-3.1.12/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04eab80bfc1f9b9e5c0ab2984b7a1a8e/transformed/libvlc-all-3.1.12/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04eab80bfc1f9b9e5c0ab2984b7a1a8e/transformed/libvlc-all-3.1.12/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.videolan.android/libvlc-all/3.1.12/280c847bd1f8ce10ccf222586a1dbf7a0c29fbf/libvlc-all-3.1.12-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.videolan.android/libvlc-all/3.1.12/7a3da64d2d9bdc74f50debb2e3f2e19ffe0c9f94/libvlc-all-3.1.12-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

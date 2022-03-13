@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1273634785/android-exoplayer.superlivecommerce.react-native-video.iml" filepath="$PROJECT_DIR$/.idea/modules/1273634785/android-exoplayer.superlivecommerce.react-native-video.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/superlivecommerce.iml" filepath="$PROJECT_DIR$/.idea/modules/superlivecommerce.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/superlivecommerce.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/superlivecommerce.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1835575498/superlivecommerce.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/1835575498/superlivecommerce.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/282093105/superlivecommerce.react-native-community_toolbar-android.iml" filepath="$PROJECT_DIR$/.idea/modules/282093105/superlivecommerce.react-native-community_toolbar-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1073779069/superlivecommerce.react-native-fast-image.iml" filepath="$PROJECT_DIR$/.idea/modules/-1073779069/superlivecommerce.react-native-fast-image.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1478030515/superlivecommerce.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-1478030515/superlivecommerce.react-native-gesture-handler.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/182385396/superlivecommerce.react-native-nodemediaclient.iml" filepath="$PROJECT_DIR$/.idea/modules/182385396/superlivecommerce.react-native-nodemediaclient.iml" />
@@ -14,7 +16,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-105979890/superlivecommerce.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-105979890/superlivecommerce.react-native-screens.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1908452569/superlivecommerce.react-native-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/1908452569/superlivecommerce.react-native-splash-screen.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2030213033/superlivecommerce.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/2030213033/superlivecommerce.react-native-vector-icons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1878142782/superlivecommerce.react-native-video.iml" filepath="$PROJECT_DIR$/.idea/modules/-1878142782/superlivecommerce.react-native-video.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1273634785/superlivecommerce.react-native-video-exoplayer.iml" filepath="$PROJECT_DIR$/.idea/modules/1273634785/superlivecommerce.react-native-video-exoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2056249364/superlivecommerce.react-native-vlc-media-player.iml" filepath="$PROJECT_DIR$/.idea/modules/2056249364/superlivecommerce.react-native-vlc-media-player.iml" />
     </modules>
   </component>
 </project>
