@@ -1,7 +1,6 @@
 # On Air Super Live
 
 ## 소개
-![OnAirSuperLive 포스터](https://user-images.githubusercontent.com/49712957/158327013-9d44cc0b-5fa8-42e7-a53a-1b6b9c7047b2.jpg)
 
 제작 기간: 2022.02.03 ~ 2022. 3.11
 
@@ -20,6 +19,9 @@
 - 🟩  다시보기시 채팅, 하트 등 방송 이벤트 보기
 - 🟩  홈화면과 동시시청 페이지에서 상품 배너 띄우기
 
+**포스터**
+
+![OnAirSuperLive 포스터](https://user-images.githubusercontent.com/49712957/158327013-9d44cc0b-5fa8-42e7-a53a-1b6b9c7047b2.jpg)
 ## Getting Started
 
 We need the RTMP server first. Download the repository below and follow the README information.
