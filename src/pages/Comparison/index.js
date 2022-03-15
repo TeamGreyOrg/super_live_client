@@ -1,21 +1,17 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, Dimensions, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { NodePlayerView } from 'react-native-nodemediaclient';
 import get from 'lodash/get';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-// action-undo,volume-off,volume-2
 import Feather from 'react-native-vector-icons/Feather';
-// maximize-2
 import FastImage from 'react-native-fast-image';
 import styles from './styles';
 import StreamCard from './StreamCard';
-// import NewStreamCard from './NewStreamCard';
 import { HTTP } from '../../config';
 import SocketManager from '../../socketManager';
 import { FlatList } from 'react-native-gesture-handler';
-import Video from 'react-native-video';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -26,16 +22,7 @@ class Comparison extends React.Component {
     const roomName = get(route, 'params.roomName');
     const viewerName = get(route, 'params.viewerName');
 
-    // const streamTwoHandler = this.streamTwoHandler.bind(this);
-    // const streamOneHandler = this.streamOneHandler.bind(this);
-
-    // const isPortrait = () => {
-    //   const dim = Dimensions.get('screen');
-    //   return dim.height >= dim.width;
-    // };
-
     this.state = {
-      // orientation: isPortrait() ? 'portrait' : 'landscape',
       inputUrlFirst: null,
       inputUrlSecond: null,
       streamOneName: roomName,
@@ -48,11 +35,6 @@ class Comparison extends React.Component {
       audioStatusTwo: false,
     };
 
-    // Dimensions.addEventListener('change', () => {
-    //   this.setState({
-    //     orientation: isPortrait() ? 'portrait' : 'landscape',
-    //   });
-    // });
     this.roomName = roomName;
     this.userName = userName;
     this.viewerName = viewerName;
@@ -77,8 +59,6 @@ class Comparison extends React.Component {
     } else {
       this.setState({
         inputUrlFirst: `${HTTP}/live/${this.state.streamOneName}.flv`,
-        // use HLS from trasporting in media server to Viewer
-        // inputUrlSecond: `${HTTP}/live/${this.state.streamTwoName}.flv`,
       });
     }
 
@@ -142,19 +122,6 @@ class Comparison extends React.Component {
     );
   };
 
-  // renderVideoPlayerViewOne = (inputUrl) => {
-  //   if (!inputUrl) return null;
-  //   return (
-  //     <Video
-  //       style={styles.streamOnePortrait}
-  //       source={{ uri: inputUrl }}
-  //       muted={!this.state.audioStatusOne}
-  //       cache
-  //       resizeMode="cover"
-  //     />
-  //   );
-  // };
-
   renderPortraitNodePlayerViewTwo = (inputUrl) => {
     if (!inputUrl) return <View style={styles.streamTwoPortrait} />;
     return (
@@ -172,38 +139,6 @@ class Comparison extends React.Component {
       />
     );
   };
-
-  // renderVideoPlayerViewTwo = (inputUrl) => {
-  //   if (!inputUrl) return null;
-  //   return (
-  //     <Video
-  //       style={styles.streamTwoPortrait}
-  //       source={{ uri: inputUrl }}
-  //       muted={!this.state.audioStatusTwo}
-  //       cache
-  //       resizeMode="cover"
-  //     />
-  //   );
-  // };
-
-  // renderLandscapeNodePlayerView = (inputUrl) => {
-  //   const { audioStatus } = this.props;
-  //   if (!inputUrl) return null;
-  //   return (
-  //     <NodePlayerView
-  //       style={styles.streamOneLandscape}
-  //       ref={(vb) => {
-  //         this.nodePlayerView = vb;
-  //       }}
-  //       inputUrl={inputUrl}
-  //       scaleMode="ScaleAspectFit"
-  //       bufferTime={300}
-  //       maxBufferTime={1000}
-  //       // audioEnable={audioStatus}
-  //       autoplay
-  //     />
-  //   );
-  // };
 
   onPressClose = () => {
     const { navigation } = this.props;
@@ -434,9 +369,9 @@ class Comparison extends React.Component {
           style={styles.flatList}
           showsHorizontalScrollIndicator={false}
           horizontal
-          removeClippedSubviews={false}
-          // maxToRenderPerBatch={8}
-          // initialNumToRender={8}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={6}
+          initialNumToRender={6}
           ref={(ref) => {
             this.flatListRef = ref;
           }}
@@ -453,7 +388,6 @@ class Comparison extends React.Component {
           )}
           keyExtractor={(item) => item._id}
         />
-        {/* <View style={styles.cardsContainer} /> */}
         <View style={styles.footer}>
           <TouchableOpacity style={styles.buttonLeft} onPress={this.scrollLeft}>
             <Feather name="chevron-left" size={50} color="white" />
@@ -465,28 +399,6 @@ class Comparison extends React.Component {
         </View>
       </View>
     );
-    // }
-    // else {
-    //   return (
-    //     <View style={styles.container}>
-    //       <TouchableOpacity style={styles.btnClose} onPress={this.onPressClose}>
-    //         <Image
-    //           style={styles.icoClose}
-    //           source={require('../../assets/ico_goback.png')}
-    //           tintColor="white"
-    //         />
-    //       </TouchableOpacity>
-    //       <View style={styles.streamContainerLandscape}>
-    //         <View style={styles.streamOneLandscapeBackground}>
-    //           {this.renderLandscapeNodePlayerView(this.state.inputUrlFirst)}
-    //         </View>
-    //         <View style={styles.streamTwoLandscapeBackground}>
-    //           {this.renderLandscapeNodePlayerView(this.state.inputUrlSecond)}
-    //         </View>
-    //       </View>
-    //     </View>
-    //   );
-    // }
   }
 }
 

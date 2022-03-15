@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import * as Animatable from 'react-native-animatable';
 import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
 import styles from './styles';
 import theme from '../Theme/theme';
@@ -26,7 +25,6 @@ const Footer = ({ onPreviewON, onPreviewOFF, onPressLiveStreamNow, onPressLogout
           <Text style={styles.textButton}>방송 시작</Text>
         </TouchableOpacity>
 
-        {/* <Animatable.View animation={ani}> */}
         <TouchableOpacity
           style={styles.logoutButton}
           onPress={() => {
@@ -36,7 +34,6 @@ const Footer = ({ onPreviewON, onPreviewOFF, onPressLiveStreamNow, onPressLogout
         >
           <Text style={styles.textButton}>로그아웃</Text>
         </TouchableOpacity>
-        {/* </Animatable.View> */}
       </View>
     </>
   );

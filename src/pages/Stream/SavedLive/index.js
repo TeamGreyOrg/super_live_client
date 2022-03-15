@@ -2,9 +2,7 @@
 /* eslint-disable no-plusplus */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, View, ImageBackground, Alert } from 'react-native';
-import { useIsFocused, useFocusEffect } from '@react-navigation/native';
-import get from 'lodash/get';
+import { FlatList, ImageBackground } from 'react-native';
 import styled from 'styled-components';
 import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
@@ -40,14 +38,7 @@ class SavedLive extends React.Component {
         newListLiveStream.push(listLiveStream[i]);
       }
     }
-    // useFocusEffect(
-    //   React.useCallback(() => {
-    //     alert('Enter');
-    //     return () => alert('Exit');
-    //   })
-    // );
     return (
-      // <ImageBackground source={require('../../../assets/ico_logo.png')} style={styles.container}>
       <ImageBackground
         source={require('../../../assets/logoBW_icon.png')}
         style={{ flex: 1, backgroundColor: 'black' }}

@@ -35,7 +35,6 @@ class Home extends React.Component {
   }
 
   onPreviewON = () => {
-    //this.setState({ preview : true });
     this.state.preview = true;
   };
 
@@ -68,7 +67,6 @@ class Home extends React.Component {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     // eslint-disable-next-line no-unused-vars
-    const { listLiveStream } = this.state;
     return (
       <>
         <StatusBar barStyle="light-content" animated backgroundColor="black" />
@@ -79,7 +77,6 @@ class Home extends React.Component {
           removeClippedSubviews={true}
           lazyPreloadDistance={0}
           tabBarOptions={{
-            // unmountOnBlur: true,
             activeTintColor: Theme.color.PrettyRed,
             inactiveTintColor: Theme.color.LightGray,
             indicatorStyle: {
@@ -87,16 +84,11 @@ class Home extends React.Component {
               borderBottomWidth: 4,
             },
             lazyPreloadDistance: 1,
-            // lazyPlaceholder:{() => <Text>Loading</Text>},
             style: { backgroundColor: '#333' },
             labelStyle: { fontSize: 16, fontWeight: 'bold' },
           }}
         >
-          <Tab.Screen
-            name="StreamLive"
-            // component={StreamLive}
-            options={{ tabBarLabel: '진행중인 라이브' }}
-          >
+          <Tab.Screen name="StreamLive" options={{ tabBarLabel: '진행중인 라이브' }}>
             {() => (
               <StreamLive
                 preview={this.state.preview}
@@ -111,11 +103,6 @@ class Home extends React.Component {
             component={SavedLive}
             options={{ tabBarLabel: '지나간 라이브' }}
           />
-          {/* <Tab.Screen
-            name="UpcomLive"
-            component={Empty}
-            options={{ tabBarLabel: '다가오는 라이브' }}
-          /> */}
         </Tab.Navigator>
         <Footer
           onPreviewON={this.onPreviewON}

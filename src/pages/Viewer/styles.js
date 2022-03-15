@@ -6,9 +6,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'rgba(0,0,0,0.75)',
     backgroundColor: 'black',
-  
   },
   blackContainer: {
     flex: 1,
@@ -80,23 +78,16 @@ const styles = StyleSheet.create({
     flex: 0.87,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    // height: SCREEN_HEIGHT-150,
-    // backgroundColor: 'blue',
   },
   footer1: {
     width: SCREEN_WIDTH,
-    // flex: 0.1,
     height: 75,
     flexDirection: 'column',
-    // backgroundColor: 'gray',
     alignContent: 'space-between',
-    // alignItems:'flex-end',
   },
   footer2: {
-    // flex: 0.07,
     width: SCREEN_WIDTH,
     height: 50,
-    // backgroundColor: 'yellow',
   },
   viewerNotificationBackground: {
     backgroundColor: '#137a63',

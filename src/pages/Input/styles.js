@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 20,
     paddingHorizontal: 20,
-    // paddingTop: Platform.OS === 'android' ? 25 : 0,
     marginVertical: 5,
     marginBottom: 0,
     marginHorizontal: 25,
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 300,
     height: 200,
-    // padding: 30,
     padding: 100,
   },
 });

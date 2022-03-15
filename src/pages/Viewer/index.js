@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyleSheet,
   View,
   Image,
   TouchableOpacity,
@@ -16,13 +15,9 @@ import {
   TouchableWithoutFeedback,
   Text,
   KeyboardAvoidingView,
-  ImageBackground,
-  ActivityIndicator,
 } from 'react-native';
 import get from 'lodash/get';
-import { NodePlayerView } from 'react-native-nodemediaclient';
 import VideoPlayer from 'react-native-video-controls';
-import Video from 'react-native-video';
 import moment from 'moment';
 import { getLinkPreview } from 'link-preview-js';
 import Draggable from 'react-native-draggable';
@@ -44,7 +39,6 @@ import { LIVE_STATUS } from '../../utils/constants';
 import { HTTP } from '../../config';
 import Home from '../Home/index';
 import { VLCPlayer } from 'react-native-vlc-media-player';
-import { screenWidth } from '../../utils/utility';
 
 const getDirection = ({ moveX, moveY, dx, dy }) => {
   const draggedDown = dy > 30;
@@ -73,7 +67,6 @@ export default class Viewer extends Component {
   constructor(props) {
     super(props);
     const { route } = props;
-    // route로 넘어오는 정보: { userName, roomName: userName, enteredRoomName, enteredProductLink });
     const data = get(route, 'params.data');
     const roomName = get(data, 'roomName');
     const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
@@ -84,6 +77,7 @@ export default class Viewer extends Component {
     const onPreviewOFF = get(route, 'params.onPreviewOFF');
     const onPreviewON = get(route, 'params.onPreviewON');
     const messages = get(data, 'messages');
+
     this.state = {
       messages,
       countHeart: 0,
@@ -106,6 +100,7 @@ export default class Viewer extends Component {
       opacityLoad: 0,
       opacity: 1,
     };
+
     this.roomName = roomName;
     this.userName = userName;
     this.goodsUrl = goodsUrl;
@@ -196,7 +191,6 @@ export default class Viewer extends Component {
           })(i, this);
         }
       });
-      // const inputUrl = `${HTTP}/live/${this.roomName}/replayFor${this.userName}`;
       const inputUrl = `https://d350hv82lp5gr5.cloudfront.net/live/${this.roomName}/index.m3u8`;
       this.setState({ inputUrl });
     } else {
@@ -214,11 +208,6 @@ export default class Viewer extends Component {
           break;
       }
 
-      // this.setState({
-      //   inputUrl: `${HTTP}/live/${this.roomName}.flv`,
-      //   // use HLS from trasporting in media server to Viewer
-      //   // messages: this.messages,
-      // });
       SocketManager.instance.emitJoinRoom({
         userName: this.userName,
         roomName: this.roomName,
@@ -266,9 +255,6 @@ export default class Viewer extends Component {
       }, 1500);
     }
 
-    /*
-    seriezable animation
-    */
   }
 
   componentWillUnmount() {
@@ -329,7 +315,6 @@ export default class Viewer extends Component {
       userName: this.viewerName,
       message,
     });
-    // this.setState({ isVisibleMessages: true });
   };
 
   onEndEditing = () => this.setState({ isVisibleMessages: true });
@@ -371,8 +356,7 @@ export default class Viewer extends Component {
       navigation: { push },
     } = this.props;
     this.setState({ audioStatus: false });
-    // this.setState({ inputUrl: null });
-    // if (this.nodePlayerView) this.nodePlayerView.stop();
+
     push('Comparison', { roomName, userName, viewerName });
   };
 
@@ -563,7 +547,6 @@ export default class Viewer extends Component {
       return (
         <View style={styles.blackContainer}>
           {this.renderVideoPlayerView()}
-          {/* {this.renderListMessages()} */}
           <FloatingHearts count={countHeart} />
         </View>
       );
@@ -572,7 +555,6 @@ export default class Viewer extends Component {
     /**
      * Viewer mode
      */
-    // if (isVisible){
     return (
       <SafeAreaView style={styles.container}>
         {this.state.dragging && (

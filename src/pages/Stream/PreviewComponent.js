@@ -59,7 +59,6 @@ class PreviewComponent extends Component {
       this.setState({ inputUrl : null});
     }
 
-    //console.log(inputUrl);
   }
 
   componentWillUnmount() {

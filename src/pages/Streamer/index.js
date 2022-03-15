@@ -122,7 +122,6 @@ export default class Streamer extends React.Component {
        * Waiting live stream
        */
       SocketManager.instance.emitBeginLiveStream({ userName, roomName: this.roomName });
-      // SocketManager.instance.emitJoinRoom({ userName, roomName: userName });
       if (this.nodeCameraViewRef) this.nodeCameraViewRef.start();
       NavigationContext;
     } else if (Number(currentLiveStatus) === Number(LIVE_STATUS.ON_LIVE)) {

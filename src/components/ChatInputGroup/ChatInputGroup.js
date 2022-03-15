@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  // Image,
-  Keyboard,
-  Platform,
-} from 'react-native';
+import { View, SafeAreaView, TextInput, TouchableOpacity, Keyboard, Platform } from 'react-native';
 import KeyboardAccessory from 'react-native-sticky-keyboard-accessory';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
 import styles from './styles';
-
-const getRandomNumber = (min, max) => Math.random() * (max - min) + min;
 
 export default class ChatInputGroup extends Component {
   constructor(props) {
@@ -54,7 +43,6 @@ export default class ChatInputGroup extends Component {
     const { message } = this.state;
     return (
       <>
-        {/* <Image source={require('../../assets/001.png')} style={{width:200, height:50}} /> */}
         <View style={styles.row}>
           <TextInput
             style={styles.textInput}
@@ -72,13 +60,6 @@ export default class ChatInputGroup extends Component {
             multiline={false}
             returnKeyType="done"
           />
-          {/* <TouchableOpacity
-          style={styles.wrapIconSend}
-          onPress={this.onPressSend}
-          activeOpacity={0.6}
-        >
-          <Image source={require('../../assets/ico_send.png')} style={styles.iconSend} />
-        </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.wrapIconHeart}
             onPressIn={this.onPressHeart}

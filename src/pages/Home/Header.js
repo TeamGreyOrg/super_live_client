@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, SafeAreaView, Image, Text, ImageBackground } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import styles from './styles';
-import theme from '../Theme/theme';
 
 export default function Header({ userName }) {
   return (
     <>
-      {/* <SafeAreaView style={{ backgroundColor: theme.color.Black }} /> */}
       <View
         style={{
           height: 50,
