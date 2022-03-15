@@ -70,4 +70,7 @@ yarn run run-android
 ```
 
 ## License 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit/) 
+<br/>
+<br/>
+Credit to [@sieuhuflit](https://github.com/sieuhuflit/react-native-live-stream-rtmp-example) 
