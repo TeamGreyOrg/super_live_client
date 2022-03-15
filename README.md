@@ -1,7 +1,7 @@
 # On Air Super Live
 
 ## 소개
-[poster]
+![OnAirSuperLive 포스터](https://user-images.githubusercontent.com/49712957/158327013-9d44cc0b-5fa8-42e7-a53a-1b6b9c7047b2.jpg)
 
 제작 기간: 2022.02.03 ~ 2022. 3.11
 
