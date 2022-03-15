@@ -68,3 +68,6 @@ or
 
 yarn run run-android
 ```
+
+## License 
+[MIT](https://choosealicense.com/licenses/mit/)
