@@ -22,15 +22,7 @@ class StreamLive extends React.Component {
       this.setState({ listLiveStream: data });
     });
   }
-/*
-  componentDidUpdate(prevProps) {
-    console.log("hi")
-    if (prevProps.isFocused !== this.props.isFocused) {
-      this.props.onPreviewON();
-      console.log("update");
-    }
-  }
-*/
+
   onPressCardItem = (data) => {
     const { route } = this.props;
     const { onPreviewON, onPreviewOFF } = this.props;
@@ -46,7 +38,6 @@ class StreamLive extends React.Component {
     const { isFocused } = this.props;
     const { listLiveStream } = this.state;
 
-    // Only include not cancelled live streams
     const newListLiveStream = [];
     for (let i = 0; i < listLiveStream.length; i++) {
       if (listLiveStream[i].liveStatus === 1) {

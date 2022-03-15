@@ -4,19 +4,19 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image,
   View,
   Dimensions,
   ImageBackground,
 } from 'react-native';
 import get from 'lodash/get';
-import { template } from 'lodash';
 import FastImage from 'react-native-fast-image';
 import { LIVE_STATUS } from '../../utils/constants';
 import Theme from '../Theme/theme';
 import PreviewComponent from './PreviewComponent';
+
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   cardContainer: {
     justifyContent: 'center',
@@ -30,33 +30,27 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     height: SCREEN_HEIGHT / 3,
-    // flexDirection: 'row',
     backgroundColor: 'rgba(rgba(255,255,255,0.5)',
     padding: 3,
     margin: 0,
     borderRadius: 8,
-    // flexWrap: 'wrap',
   },
   streamInfo: {
     width: '100%',
     height: 50,
-    // backgroundColor: 'rgba(255,255,255,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     padding: 5,
     margin: 5,
     borderRadius: 8,
-    // justifyContent: 'flex-end'
   },
   streamInfo2: {
     width: '100%',
     height: 50,
-    // backgroundColor: 'rgba(255,255,255,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingLeft: 5,
     marginTop: 10,
     marginBottom: 20,
     borderRadius: 8,
-    // justifyContent: 'flex-end'
   },
   priceTag: {
     fontSize: 17,
@@ -67,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     width: SCREEN_WIDTH / 2.6,
-    // color: 'rgba(255,255,255,0.8)',
     color: Theme.color.PrettyRed,
   },
   liveStatus: {
@@ -93,14 +86,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   streamerContainer: {
-    // flexDirection: 'row',
     alignContent: 'flex-end',
     backgroundColor: 'transparent',
     borderRadius: 7,
     padding: 5,
     marginLeft: 3,
     width: 'auto',
-    // marginTop: 105,
   },
   streamerName: {
     width: '100%',
@@ -121,7 +112,6 @@ const styles = StyleSheet.create({
   },
 });
 const LiveStreamCard = ({ data, onPress, preview }) => {
-  // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
@@ -134,9 +124,6 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
   const viewerIcon = (
     <FastImage style={styles.viewerIcon} source={require('../../assets/ico_viewer.png')} />
   );
-  // const streamIcon = (
-  //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
-  // );
   switch (liveStatus) {
     case LIVE_STATUS.PREPARE:
       statusIcon = (
@@ -269,9 +256,6 @@ const LiveStreamCard = ({ data, onPress, preview }) => {
                 <Text style={styles.roomNameTag} numberOfLines={2}>
                   {roomName}
                 </Text>
-                {/* <Text style={styles.priceTag} numberOfLines={1}>
-          Price : {productPrice} 원
-        </Text> */}
               </View>
             </View>
           </View>

@@ -30,7 +30,6 @@ export default class TransParentCover extends Component {
     const { data, viewerName, onHandleOpen, audioStatus, onPressSound } = props;
     const roomName = get(data, 'roomName');
     const userName = get(data, 'userName');
-    // const viewerName = get(route, 'params.userName', '');
     const goodsUrl = get(data, 'productLink');
     const countViewer = get(data, 'countViewer');
     this.state = {
@@ -65,7 +64,6 @@ export default class TransParentCover extends Component {
 
   componentDidMount() {
     this.setState({
-      // use HLS from trasporting in media server to Viewer
       messages: this.messages,
     });
     SocketManager.instance.listenSendHeart(() => {
@@ -206,8 +204,6 @@ export default class TransParentCover extends Component {
       duration: 200,
       useNativeDriver: true,
     }).start();
-    //this.state.dragging = false;
-    //this.onPreviewOFF();
     this.setState({
       inputUrl: null,
       dragging: false,
@@ -217,7 +213,6 @@ export default class TransParentCover extends Component {
   renderChatGroup = () => {
     const { dragging } = this.props;
     if (!dragging) {
-      // check
       return (
         <ChatInputGroup
           onPressHeart={this.onPressHeart}
@@ -233,13 +228,11 @@ export default class TransParentCover extends Component {
     const { dragging } = this.props;
     const { messages, isVisibleMessages } = this.state;
     if (!dragging) {
-      // check
       if (!isVisibleMessages) return null;
       return <MessagesList messages={messages} />;
     }
   };
 
-  // <Image source={require('../../assets/compare-icon.png')} >
   renderTransParencyObject = () => {
     const { audioStatus } = this.state;
     const { dragging } = this.props;

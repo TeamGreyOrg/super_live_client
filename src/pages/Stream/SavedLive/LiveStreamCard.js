@@ -32,15 +32,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
     padding: 3,
-    // margin: 5,
     borderRadius: 8,
     flexWrap: 'wrap',
   },
   streamInfo: {
     width: '95%',
     height: 50,
-    // flexDirection: 'row',
-    //  backgroundColor: 'rgba(225,225,225,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     padding: 5,
     margin: 5,
@@ -49,12 +46,10 @@ const styles = StyleSheet.create({
   streamInfo2: {
     width: '100%',
     height: 50,
-    // backgroundColor: 'rgba(255,255,255,0.5)',
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingLeft: 5,
     marginTop: 3,
     borderRadius: 8,
-    // justifyContent: 'flex-end'
   },
 
   priceTag: {
@@ -66,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     width: SCREEN_WIDTH / 2.6,
-    // color: 'rgba(255,255,255,0.8)',
     color: Theme.color.PrettyRed,
   },
   liveStatus: {
@@ -92,14 +86,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   streamerContainer: {
-    // flexDirection: 'row',
     alignContent: 'flex-end',
     backgroundColor: 'transparent',
     borderRadius: 7,
     padding: 5,
     marginLeft: 3,
     width: 'auto',
-    // marginTop: 105,
   },
   streamerName: {
     width: '100%',
@@ -121,7 +113,6 @@ const styles = StyleSheet.create({
 });
 
 const LiveStreamCard = ({ data, onPress }) => {
-  // const roomImage = get(data, 'roomImage');
   const roomName = get(data, 'roomName', '');
   const userName = get(data, 'userName', '');
   const productPrice = get(data, 'productPrice', '');
@@ -132,9 +123,6 @@ const LiveStreamCard = ({ data, onPress }) => {
   const viewerIcon = (
     <Image style={styles.viewerIcon} source={require('../../../assets/ico_viewer.png')} />
   );
-  // const streamIcon = (
-  //   <Image style={styles.statusIcon} source={require('../../assets/ico_stream_3.gif')} />
-  // );
   switch (liveStatus) {
     case LIVE_STATUS.FINISH:
       statusIcon = (
@@ -149,46 +137,6 @@ const LiveStreamCard = ({ data, onPress }) => {
   }
 
   switch (roomName) {
-    case 'room1':
-      banner = (
-        <Image
-          source={require('../../../assets/001.png')}
-          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
-        />
-      );
-      break;
-    case 'room2':
-      banner = (
-        <Image
-          source={require('../../../assets/002.png')}
-          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
-        />
-      );
-      break;
-    case 'room3':
-      banner = (
-        <Image
-          source={require('../../../assets/003.png')}
-          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
-        />
-      );
-      break;
-    case 'room4':
-      banner = (
-        <Image
-          source={require('../../../assets/004.png')}
-          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
-        />
-      );
-      break;
-    case 'room5':
-      banner = (
-        <Image
-          source={require('../../../assets/005.png')}
-          style={{ width: SCREEN_WIDTH / 2.2, height: 50 }}
-        />
-      );
-      break;
     case '페퍼민트티':
       banner = (
         <Image
@@ -214,7 +162,6 @@ const LiveStreamCard = ({ data, onPress }) => {
 
           <View
             style={{
-              // height: SCREEN_HEIGHT / 4,
               width: SCREEN_WIDTH / 2.4,
               justifyContent: 'flex-end',
             }}
@@ -235,15 +182,7 @@ const LiveStreamCard = ({ data, onPress }) => {
         </ImageBackground>
       </TouchableOpacity>
 
-      <View style={styles.streamInfo2}>
-        {banner}
-        {/* <Text style={styles.roomNameTag} numberOfLines={1}>
-          방제목 : {roomName}
-        </Text>
-        <Text style={styles.priceTag} numberOfLines={1}>
-          Price : {productPrice} 원
-        </Text> */}
-      </View>
+      <View style={styles.streamInfo2}>{banner}</View>
     </View>
   );
 };

@@ -32,12 +32,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
-  // streamContainerLandscape: {
-  //   flex: 0.9,
-  //   flexDirection: 'row',
-  //   width: '100%',
-  //   justifyContent: 'space-between',
-  // },
   streamOnePortraitBackground: {
     marginLeft: 15,
     width: 180,
@@ -64,13 +58,6 @@ const styles = StyleSheet.create({
     width: 170,
     height: 290,
   },
-  // streamOneLandscapeBackground: {
-  //   marginLeft: 20,
-  //   marginTop: 60,
-  //   width: windowWidth * 0.43,
-  //   backgroundColor: 'gray',
-  //   borderRadius: 10,
-  // },
   streamCardOneBackground: {
     width: 100,
     height: 100,
@@ -81,26 +68,12 @@ const styles = StyleSheet.create({
     height: 100,
     marginTop: 300,
   },
-  // streamOneLandscape: {
-  //   width: windowWidth * 0.43,
-  // },
-  // streamTwoLandscapeBackground: {
-  //   marginRight: 20,
-  //   marginTop: 60,
-  //   width: windowWidth * 0.43,
-  //   backgroundColor: 'gray',
-  //   borderRadius: 10,
-  // },
   banner: {
     width: 180,
     height: 50,
     marginTop: 15,
   },
-  // streamTwoLandscape: {
-  //   width: windowWidth * 0.43,
-  // },
   cardsHeader: {
-    // height: windowHeight/2,
     flex: 0.1,
   },
   cardsHeaderText: {
@@ -134,18 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
-  // buttonLeft: {
-  //   position: 'absolute',
-  //   bottom: 5,
-  //   left: 50,
-  //   zIndex: 100,
-  // },
-  // buttonRight: {
-  //   position: 'absolute',
-  //   bottom: 5,
-  //   right: 50,
-  //   zIndex: 100,
-  // },
   icoRight: {
     width: 30,
     height: 30,

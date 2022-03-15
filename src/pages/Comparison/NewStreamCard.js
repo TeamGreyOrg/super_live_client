@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, ImageBackground, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import get from 'lodash/get';
 import { HTTP } from '../../config';
 import Video from 'react-native-video';
-import {
-  PanGestureHandler,
-  LongPressGestureHandler,
-  TapGestureHandler,
-} from 'react-native-gesture-handler';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -21,7 +17,6 @@ const NewStreamCard = (props) => {
   const [roomName, setRoomName] = useState(roomNameInit);
   const [cardOpacity, setCardOpacity] = useState(0);
   const [inputUrl, setInputUrl] = useState(null);
-  const [animation, setAnimation] = useState(null);
   const [display, setDisplay] = useState('flex');
 
   useEffect(() => {
@@ -102,7 +97,6 @@ const NewStreamCard = (props) => {
 
   const uas = useAnimatedStyle(() => {
     return {
-      // backgroundColor: pressed.value ? 'white' : 'grey',
       transform: [{ translateX: x.value }, { translateY: y.value }],
     };
   });

@@ -88,12 +88,6 @@ class StreamCard extends Component {
     );
   };
 
-  // renderVideoPlayerView = (inputUrl) => {
-  //   return (
-  //     <Video style={styles.streamCard} source={{ uri: inputUrl }} muted={true} resizeMode="cover" />
-  //   );
-  // };
-
   onLongPressPanResponder() {
     return PanResponder.create({
       onStartShouldSetPanResponder: (e, gesture) => true,
@@ -161,23 +155,6 @@ class StreamCard extends Component {
     this.setState({ panResponder: this.onLongPressPanResponder() });
   }
 
-  // renderNodePlayerView = (inputUrl) => {
-  //   if (!inputUrl) return null;
-  //   return (
-  //     <NodePlayerView
-  //       style={styles.streamCard}
-  //       ref={(vb) => {
-  //         this.nodePlayerView = vb;
-  //       }}
-  //       inputUrl={inputUrl}
-  //       scaleMode="ScaleAspectFit"
-  //       bufferTime={300}
-  //       maxBufferTime={1000}
-  //       autoplay
-  //     />
-  //   );
-  // };
-
   normalPanResponder() {
     return PanResponder.create({
       onPanResponderTerminationRequest: () => false,
@@ -185,7 +162,7 @@ class StreamCard extends Component {
       onPanResponderGrant: (e, gestureState) => {
         this.state.pan.setOffset({ x: this.state.pan.x._value, y: this.state.pan.y._value });
         this.state.pan.setValue({ x: 0, y: 0 });
-        this.longPressTimer = setTimeout(this.onLongPress, 200); // this is where you trigger the onlongpress panResponder handler
+        this.longPressTimer = setTimeout(this.onLongPress, 200); // trigger the onlongpress panResponder handler
       },
       onPanResponderRelease: (e, { vx, vy }) => {
         if (!this.state.panResponder) {
@@ -213,7 +190,7 @@ class StreamCard extends Component {
       transform: this.state.pan.getTranslateTransform(),
     };
     return (
-      // <Animatable.View animation={this.state.animation}>
+      <Animatable.View animation={this.state.animation}>
         <Animated.View
           {...panHandlers}
           style={[panStyle, { opacity: this.state.opacity, display: this.state.display }]}
@@ -236,7 +213,7 @@ class StreamCard extends Component {
             </View>
           </View>
         </Animated.View>
-      // </Animatable.View>
+      </Animatable.View>
     );
   }
 }

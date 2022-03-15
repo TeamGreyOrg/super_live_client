@@ -12,14 +12,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 0,
   },
-  // --------main card list-----------
   flatList: {
-    // width: SCREEN_WIDTH,
     flexDirection: 'column',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
-  // --------footer-----------
   liveStreamButton: {
     backgroundColor: 'transparent',
     borderWidth: 1,

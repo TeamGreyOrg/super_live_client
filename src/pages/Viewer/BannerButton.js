@@ -57,7 +57,6 @@ export default class BannerButton extends React.PureComponent {
   };
 
   renderLinkPreview = (
-    // goodsUrl,
     imageLink,
     faviconLink,
     showTitle,
@@ -87,7 +86,6 @@ export default class BannerButton extends React.PureComponent {
   render() {
     const {
       isUri,
-      // goodsUrl,
       linkImg,
       linkFavicon,
       linkTitle,
@@ -98,7 +96,6 @@ export default class BannerButton extends React.PureComponent {
     } = this.props;
     return isUri
       ? this.renderLinkPreview(
-          // goodsUrl,
           linkImg,
           linkFavicon,
           linkTitle,
